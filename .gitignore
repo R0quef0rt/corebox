@@ -1,0 +1,11 @@
+*.txt
+*.backup
+*.info
+*.img
+*.vmdk
+*.ign.merged
+packer_cache
+config.ign.merged
+.terraform/
+.vagrant/
+*.log
