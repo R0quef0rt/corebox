@@ -40,6 +40,6 @@ volumes:
   # plex:
   #   image: plexinc/pms-docker:1.13.2.5154-fd05be322
   #   ports:
-  #     - 8200:8200
+  #     - 32400:32400
   #   network_mode: "host"
   #   restart: always
