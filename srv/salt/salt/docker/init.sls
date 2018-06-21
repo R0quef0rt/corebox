@@ -57,9 +57,9 @@ purge old packages:
 
 docker package repository:
   pkgrepo.{{ repo_state }}:
-    - name: deb https://apt.dockerproject.org/repo {{ grains["os"]|lower }}-{{ grains["oscodename"] }} main
+    - name: deb [arch=amd64] https://download.docker.com/linux/{{ grains["os"]|lower }} {{ grains["oscodename"] }} stable
     - humanname: {{ grains["os"] }} {{ grains["oscodename"]|capitalize }} Docker Package Repository
-    - keyid: 58118E89F3A912897C070ADBF76221572C52609D
+    - keyid: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
 {%- endif %}
     - keyserver: hkp://p80.pool.sks-keyservers.net:80
     - file: /etc/apt/sources.list.d/docker.list
@@ -91,7 +91,7 @@ docker package:
     {%- if grains['os']|lower in ('amazon', 'fedora', 'suse',) %}
     - name: docker
     {%- else %}
-    - name: docker-engine
+    - name: docker-ce
     {%- endif %}
     - version: {{ docker.version }}
     {%- endif %}
@@ -104,7 +104,7 @@ docker package:
     {%- if grains['os']|lower in ('amazon', 'fedora', 'suse',) %}
     - name: docker
     {%- else %}
-    - name: docker-engine
+    - name: docker-ce
     {%- endif %}
     {%- endif %}
   {%- endif %}
