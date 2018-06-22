@@ -1,48 +1,48 @@
 version: '3'
 
 services:
-  sonarr:
-    image: linuxserver/sonarr:140
-    ports:
-      - 8989:8989
-    restart: always
+  # sonarr:
+  #   image: linuxserver/sonarr:140
+  #   ports:
+  #     - 8989:8989
+  #   restart: always
 
-  radarr:
-    image: linuxserver/radarr:116
-    ports:
-      - 7878:7878
-    restart: always
+  # radarr:
+  #   image: linuxserver/radarr:116
+  #   ports:
+  #     - 7878:7878
+  #   restart: always
 
   nzbget:
     image: linuxserver/nzbget:125
+    # build: ./etc/nzbget
     ports:
       - 6789:6789
     volumes:
-      - "config:/config"
+      - "./etc/nzbget/config:/config"
       - "downloads:/downloads"
-      - "/etc/nzbget:/defaults"
     restart: always
 
-  duplicati:
-    image: linuxserver/duplicati:82
-    ports:
-      - 8200:8200
-    restart: always
+  # duplicati:
+  #   image: linuxserver/duplicati:82
+  #   ports:
+  #     - 8200:8200
+  #   restart: always
 
-  sync:
-    image: resilio/sync:release-2.5.13
-    ports:
-      - 8888:8888
-      - 55555:55555
-    restart: always
+  # sync:
+  #   image: resilio/sync:release-2.5.13
+  #   ports:
+  #     - 8888:8888
+  #     - 55555:55555
+  #   restart: always
 
-  plex:
-    image: plexinc/pms-docker:1.13.2.5154-fd05be322
-    ports:
-      - 32400:32400
-    network_mode: "host"
-    restart: always
+  # plex:
+  #   image: plexinc/pms-docker:1.13.2.5154-fd05be322
+  #   ports:
+  #     - 32400:32400
+  #   network_mode: "host"
+  #   restart: always
 
 volumes:
-  config:
+  # config:
   downloads:
