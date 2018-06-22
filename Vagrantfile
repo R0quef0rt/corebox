@@ -11,8 +11,11 @@ Vagrant.configure("2") do |config|
     vb.cpus = 1
   end
 
+  config.vm.network "forwarded_port", guest: 6789, host: 6789
+
   config.vm.synced_folder "./srv/salt", "/srv/salt"
   config.vm.synced_folder "./srv/pillar", "/srv/pillar"
+  config.vm.synced_folder "./etc/nzbget", "/etc/nzbget"
   config.vm.synced_folder ".", "/tmp/seedbox"
 
   config.vm.provision :salt do |salt|
