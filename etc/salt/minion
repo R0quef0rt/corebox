@@ -7,3 +7,4 @@ file_roots:
 pillar_roots:
   dev:
     - /srv/pillar
+    - /etc

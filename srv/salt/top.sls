@@ -3,13 +3,15 @@ dev:
     - common
     - system.timezone
     - system.firewall
-    - system.directory
     - docker
-    - docker.compose
+    - docker.containers
+    - docker.compose-ng
     - users.vagrant
 qa:
   '*':
     - common
+    - system
 prod:
   '*':
     - common
+    - system

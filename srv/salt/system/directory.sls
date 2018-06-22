@@ -1,8 +1,8 @@
 /etc/nzbget:
   file.directory:
-    - user: root
+    - user: vagrant
     - group: docker
-    - mode: 755
+    - mode: 777
     - makedirs: True
     - recurse:
       - user

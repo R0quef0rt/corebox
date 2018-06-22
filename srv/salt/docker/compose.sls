@@ -4,8 +4,8 @@ compose-pip:
   pkg.installed:
     - name: python-pip
   pip.installed:
-    - name: pip < 10.0.0 
-    - upgrade: True
+    - name: pip
+    - upgrade: False
 
 compose:
   pip.installed:

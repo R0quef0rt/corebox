@@ -63,7 +63,7 @@ docker package repository:
 {%- endif %}
     - keyserver: hkp://p80.pool.sks-keyservers.net:80
     - file: /etc/apt/sources.list.d/docker.list
-    - refresh_db: True
+    - refresh: True
 {%- endif %}
 
 {%- elif grains['os_family']|lower in ('redhat', 'suse',) and grains['os']|lower not in ('amazon', 'fedora', 'suse',) %}

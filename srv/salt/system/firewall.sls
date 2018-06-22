@@ -1,4 +1,4 @@
-ssh:
+ssh-firewall:
   iptables.append:
     - table: filter
     - chain: INPUT
@@ -10,7 +10,7 @@ ssh:
     - sport: 1025:65535
     - save: True
 
-nzbget:
+nzbget-firewall:
   iptables.append:
     - table: filter
     - chain: INPUT
@@ -22,7 +22,7 @@ nzbget:
     - sport: 1025:65535
     - save: True
 
-sonarr:
+sonarr-firewall:
   iptables.append:
     - table: filter
     - chain: INPUT
@@ -34,7 +34,7 @@ sonarr:
     - sport: 1025:65535
     - save: True
 
-radarr:
+radarr-firewall:
   iptables.append:
     - table: filter
     - chain: INPUT
@@ -46,7 +46,7 @@ radarr:
     - sport: 1025:65535
     - save: True
 
-duplicati:
+duplicati-firewall:
   iptables.append:
     - table: filter
     - chain: INPUT
@@ -58,7 +58,7 @@ duplicati:
     - sport: 1025:65535
     - save: True
 
-sync-web:
+sync-web-firewall:
   iptables.append:
     - table: filter
     - chain: INPUT
@@ -70,7 +70,7 @@ sync-web:
     - sport: 1025:65535
     - save: True
 
-sync-api:
+sync-api-firewall:
   iptables.append:
     - table: filter
     - chain: INPUT
@@ -82,7 +82,7 @@ sync-api:
     - sport: 1025:65535
     - save: True
 
-plex:
+plex-firewall:
   iptables.append:
     - table: filter
     - chain: INPUT
