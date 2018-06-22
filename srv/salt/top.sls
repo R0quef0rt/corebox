@@ -2,7 +2,8 @@ dev:
   '*':
     - common
     - system.timezone
-  '*seedbox*':
+    - system.firewall
+    - system.directory
     - docker
     - docker.compose
     - users.vagrant
