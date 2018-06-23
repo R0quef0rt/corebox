@@ -1,4 +1,3 @@
 {{ saltenv }}:
   '*':
-    - common
-    # - docker
+    - system.settings

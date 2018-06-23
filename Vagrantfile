@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "./srv/salt", "/srv/salt"
   config.vm.synced_folder "./srv/pillar", "/srv/pillar"
   config.vm.synced_folder "./etc/nzbget", "/etc/nzbget"
-  config.vm.synced_folder ".", "/tmp/seedbox"
+  config.vm.synced_folder ".", "/app"
 
   config.vm.provision :salt do |salt|
     salt.masterless = true
@@ -28,10 +28,4 @@ Vagrant.configure("2") do |config|
     salt.colorize = true
     salt.verbose = true
   end
-
-  # config.vm.provision "shell" do |compose|
-  #   compose.inline = <<-SHELL
-  #     salt-call --local dockercompose.up /srv/seedbox/docker-compose.yml
-  #   SHELL
-  # end
 end
