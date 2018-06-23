@@ -1,6 +1,18 @@
 version: '3'
 
 services:
+
+  nzbget:
+    image: linuxserver/nzbget:125
+    ports:
+      - 6789:6789
+    volumes:
+      - ./etc/nzbget/config:/config
+      - downloads:/downloads
+    environment:
+      PUID: 1000
+      PGID: 1000
+
   sonarr:
     image: linuxserver/sonarr:140
     ports:
@@ -25,16 +37,18 @@ services:
       PUID: 1000
       PGID: 1000
 
-  nzbget:
-    image: linuxserver/nzbget:125
+  plex:
+    image: plexinc/pms-docker:1.13.2.5154-fd05be322
     ports:
-      - 6789:6789
+      - 32400:32400
     volumes:
-      - ./etc/nzbget/config:/config
-      - downloads:/downloads
+      - ./etc/plex/config:/config
+      - temp:/transcode
+      - movies:/movies
+      - television:/television
     environment:
-      PUID: 1000
-      PGID: 1000
+      PLEX_UID: 1000
+      PLEX_GID: 1000
 
   duplicati:
     image: linuxserver/duplicati:82
@@ -58,19 +72,6 @@ services:
       - movies:/mnt/mounted_folders/movies
       - television:/mnt/mounted_folders/television
       - downloads:/mnt/mounted_folders/downloads
-
-  plex:
-    image: plexinc/pms-docker:1.13.2.5154-fd05be322
-    ports:
-      - 32400:32400
-    volumes:
-      - ./etc/plex/config:/config
-      - temp:/transcode
-      - movies:/movies
-      - television:/television
-    environment:
-      PLEX_UID: 1000
-      PLEX_GID: 1000
 
 volumes:
   downloads:

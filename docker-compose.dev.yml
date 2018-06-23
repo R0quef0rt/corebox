@@ -10,14 +10,14 @@ services:
   sonarr:
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - config:/config
+      - /etc/sonarr/config:/config
       - television:/tv
       - downloads:/downloads
 
   radarr:
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - config:/config
+      - /etc/radarr/config:/config
       - movies:/movies
       - downloads:/downloads
 
@@ -28,8 +28,15 @@ services:
       - movies:/movies
       - television:/television
 
-volumes:
-  downloads:
-  television:
-  movies:
-  temp:
+  duplicati:
+    volumes:
+      - /etc/duplicati/config:/config
+      - backups:/backups
+      - source:/source
+
+  sync:
+    volumes:
+      - sync:/mnt/sync
+      - movies:/mnt/mounted_folders/movies
+      - television:/mnt/mounted_folders/television
+      - downloads:/mnt/mounted_folders/downloads
