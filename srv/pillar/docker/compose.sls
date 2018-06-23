@@ -13,16 +13,16 @@ docker:
     force_running: True
 
   compose:
-    image:
+    app:
       image: linuxserver/nzbget:125
       ports:
         - 6789:6789
-      volumes:
-        - "/etc/nzbget/config:/config"
-        - "downloads:/downloads"
-      environment:
-        PUID: 1000
-        GUID: 1000
+      # volumes:
+      #   - "/etc/nzbget/config:/config"
+      #   - "downloads:/downloads"
+      # environment:
+      #   PUID: '1000'
+      #   GUID: '1000'
       deploy: 
         restart_policy: 
           condition: always

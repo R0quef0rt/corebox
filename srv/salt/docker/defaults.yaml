@@ -7,8 +7,8 @@ docker:
   refresh_repo: True
   config: []
 
-  pip:
-    upgrade: False
+#  pip:
+#    upgrade: False
 
   use_upstream_repo: True
   compose_version:

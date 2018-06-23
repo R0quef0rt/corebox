@@ -4,8 +4,8 @@ dev:
     - system.timezone
     - system.firewall
     - docker
-    - docker.containers
-    - docker.compose-ng
+    - docker.compose
+    - docker.compose-cmd
     - users.vagrant
 qa:
   '*':

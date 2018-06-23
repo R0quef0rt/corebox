@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  nzbget:
+    volumes:
+      - "/etc/nzbget/config:/config"
+      - "downloads:/downloads"
+
+volumes:
+  downloads:

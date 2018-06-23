@@ -1,4 +1,4 @@
 {{ saltenv }}:
   '*':
     - common
-    - docker
+    # - docker
