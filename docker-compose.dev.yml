@@ -7,5 +7,29 @@ services:
       - "/etc/nzbget/config:/config"
       - "downloads:/downloads"
 
+  sonarr:
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - config:/config
+      - television:/tv
+      - downloads:/downloads
+
+  radarr:
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - config:/config
+      - movies:/movies
+      - downloads:/downloads
+
+  plex:
+    volumes:
+      - /etc/plex/config:/config
+      - temp:/transcode
+      - movies:/movies
+      - television:/television
+
 volumes:
   downloads:
+  television:
+  movies:
+  temp:
