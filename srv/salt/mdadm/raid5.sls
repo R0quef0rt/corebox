@@ -8,6 +8,5 @@
     - chunk: 256
     - run: True
   blockdev.formatted:
-    - name: mnt
     - fs_type: ext4
     - force: True
