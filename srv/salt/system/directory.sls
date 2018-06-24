@@ -1,4 +1,4 @@
-{% for key, dir in pillar.get('directory', {}).items() %}
+{% for name, dir in pillar.get('directory', {}).items() %}
 {{dir}}:
   file.directory:
     - user: vagrant

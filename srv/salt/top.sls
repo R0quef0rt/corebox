@@ -3,7 +3,6 @@ dev:
     - common
     - system.timezone
     - system.firewall.devbox
-    - system.directory
     - docker
     - docker.compose
     - docker.compose-cmd
@@ -12,3 +11,4 @@ prod:
   '*':
     - common
     - system
+    - system.directory

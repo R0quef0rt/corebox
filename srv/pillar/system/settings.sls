@@ -2,8 +2,8 @@ timezone:
   main: America/Chicago
 
 directory:
-  - /etc/nzbget
-  - /etc/sonarr
-  - /etc/radarr
-  - /etc/plex
-  - /etc/duplicati
+  nzbget: /etc/nzbget
+  sonarr: /etc/sonarr
+  radarr: /etc/radarr
+  plex: /etc/plex
+  duplicati: /etc/duplicati
