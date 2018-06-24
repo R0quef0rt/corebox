@@ -1,7 +1,6 @@
 #!/bin/bash
 
-SALT_VERSION=${SALT_VERSION}
-MINION_TEMPLATE="${MINION_TEMPLATE}"
+SALT_VERSION=2018.3.1
 
 apt-get update && apt-get install wget git python-dev python-pip -y
 
@@ -14,6 +13,7 @@ echo "${MINION_TEMPLATE}" > /etc/salt/minion.d/custom.conf
 
 wget -O bootstrap-salt.sh https://bootstrap.saltstack.com
 sh bootstrap-salt.sh -P -U -F \
-  -i ${MINION_ID} \
+  -p python-git \
+  -i devbox \
   -c /tmp \
   git v${SALT_VERSION}

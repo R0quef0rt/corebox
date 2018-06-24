@@ -1,5 +1,7 @@
 file_client: local
 
+environment: dev
+
 file_roots:
   dev:
     - /srv/salt
@@ -9,8 +11,8 @@ pillar_roots:
     - /srv/pillar
 
 fileserver_backend:
-  - gitfs
   - roots
+  - gitfs
 
 gitfs_provider: gitpython
 
