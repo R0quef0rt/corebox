@@ -1,9 +1,0 @@
-file_client: local
-
-file_roots:
-  dev:
-    - /srv/salt
-
-pillar_roots:
-  dev:
-    - /srv/pillar

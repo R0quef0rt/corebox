@@ -1,4 +1,6 @@
-seedbox
+# DevBox
+
+## Salt
 
 List all minions
 salt-run manage.up
@@ -17,3 +19,12 @@ salt-run jobs.lookup_jid <job id number>
 
 List recently completed jobs
 salt-run jobs.list_jobs
+
+
+## Docker Compose
+
+docker-compose up
+
+docker-compose down
+
+docker volume prune

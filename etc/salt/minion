@@ -1,12 +1,21 @@
 file_client: local
 
+file_roots:
+  dev:
+    - /srv/salt
+
+pillar_roots:
+  dev:
+    - /srv/pillar
+
 fileserver_backend:
   - gitfs
+  - roots
 
 gitfs_provider: gitpython
 
 gitfs_remotes:
-  - https://github.com/R0quef0rt/devbox.git:
+  - https://github.com/R0quef0rt/devbox.git
 
 gitfs_root: srv/salt
 

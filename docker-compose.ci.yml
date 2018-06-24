@@ -2,27 +2,27 @@ version: '3'
 
 services:
   drone-server:
-    image: drone/drone:0.8
+    image: drone/drone:0.8.5
     ports:
       - 8000:8000
       - 9000:9000
     volumes:
       - drone:/var/lib/drone/
     environment:
-      - DRONE_OPEN=true
-      - DRONE_HOST=http://localhost
       - DRONE_GITHUB=true
+      - DRONE_GITHUB_URL=https://github.com
       - DRONE_ADMIN=admin
       - DRONE_SECRET=password
-      # - DRONE_GITHUB_CLIENT=${DRONE_GITHUB_CLIENT}
-      # - DRONE_GITHUB_SECRET=${DRONE_GITHUB_SECRET}
+      - DRONE_HOST=http://localhost
+      - DRONE_GITHUB_CLIENT=t
+      - DRONE_GITHUB_SECRET=t
     deploy: 
       restart_policy: 
         condition: always
         delay: 5s 
 
   drone-agent:
-    image: drone/agent:0.8
+    image: drone/agent:0.8.5
     command: agent
     # volumes:
     #   - /var/run/docker.sock:/var/run/docker.sock

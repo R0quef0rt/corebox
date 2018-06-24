@@ -1,4 +1,5 @@
-/etc/nzbget:
+{% for key, dir in pillar.get('directory', {}).items() %}
+{{dir}}:
   file.directory:
     - user: vagrant
     - group: docker
@@ -8,3 +9,4 @@
       - user
       - group
       - mode
+{% endfor %}

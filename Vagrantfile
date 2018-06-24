@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "2048"
+    vb.memory = "4096"
     vb.cpus = 1
   end
 
@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :salt do |salt|
     salt.masterless = true
-    salt.minion_config = "etc/salt/minion.dev"
+    salt.minion_config = "etc/salt/minion"
     salt.install_type = "stable"
     salt.bootstrap_options = "-F -P -p python-git"
     salt.salt_call_args = ["saltenv=dev", "pillarenv=dev"]
