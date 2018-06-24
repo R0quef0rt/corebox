@@ -4,8 +4,29 @@ file_roots:
   dev:
     - /srv/salt
     - /etc
+  prod:
+    - /srv/salt
+    - /etc
 
 pillar_roots:
   dev:
     - /srv/pillar
     - /etc
+  prod:
+    - /srv/salt
+    - /etc
+
+fileserver_backend:
+  - git
+  - roots
+
+gitfs_provider: gitpython
+
+gitfs_remotes:
+  - https://github.com/R0quef0rt/devbox.git
+
+gitfs_saltenv:
+  - dev:
+    - ref: dev
+  - prod:
+    - ref: master
