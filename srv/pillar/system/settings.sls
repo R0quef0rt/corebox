@@ -1,6 +1,9 @@
 timezone:
   main: America/Chicago
 
+filesystem:
+  mount: True
+
 directory:
   nzbget: /etc/nzbget
     user: vagrant
