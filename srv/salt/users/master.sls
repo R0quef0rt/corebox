@@ -3,7 +3,7 @@ master:
     - fullname: master
     - shell: /bin/bash
     - home: /home/master
-    - uid: 1000
-    - gid: 1000
+    - uid: 1050
+    - gid: 1050
     - groups:
       - docker
