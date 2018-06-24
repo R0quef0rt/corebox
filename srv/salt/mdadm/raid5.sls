@@ -7,8 +7,6 @@
       - /dev/sdc
     - chunk: 256
     - run: True
-
-/dev/md0:
   blockdev.formatted:
     - name: mnt
     - fs_type: ext4
