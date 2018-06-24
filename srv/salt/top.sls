@@ -2,7 +2,7 @@ dev:
   '*':
     - common
     - system.timezone
-    - system.firewall.seedbox
+    - system.firewall.devbox
     - docker
     - docker.compose
     - docker.compose-cmd

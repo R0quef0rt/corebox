@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
 
   config.vm.box = "generic/ubuntu1804"
-  config.vm.hostname = "seedbox"
+  config.vm.hostname = "devbox"
 
   config.vm.provider "hyperv" do |vb|
     vb.memory = "2048"
