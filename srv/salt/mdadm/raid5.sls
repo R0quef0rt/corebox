@@ -10,3 +10,10 @@
   blockdev.formatted:
     - fs_type: ext4
     - force: True
+/mnt:
+  mount.mounted:
+    - device: /dev/md0
+    - fstype: ext4
+    - mkmnt: True
+    - opts:
+      - defaults
