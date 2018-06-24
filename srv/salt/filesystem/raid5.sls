@@ -21,7 +21,6 @@ md0:
     - name: /dev/md0
     - read-write: True
     - read-ahead: 65536
-    - filesystem-read-ahead: 65536
   blockdev.formatted:
     - fs_type: ext4
     - force: True
