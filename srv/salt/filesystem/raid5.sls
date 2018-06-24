@@ -2,6 +2,10 @@
   raid:
     - absent
 
+/mnt:
+  mount.unmounted:
+    - device: /dev/md0
+
 # /dev/md0:
 #   raid.present:
 #     - level: 5
