@@ -7,11 +7,15 @@ dev:
     - docker.compose
     - docker.compose-cmd
     - users.vagrant
+    - users.master
 qa:
   '*':
     - common
-    - system
+    - system.timezone
+    - users.master
 prod:
   '*':
     - common
-    - system
+    - system.timezone
+    - users.terraform
+    - users.master
