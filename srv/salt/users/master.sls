@@ -6,4 +6,5 @@ master:
     - uid: 1050
     - gid: 1050
     - groups:
-      - docker
+      # - docker
+      - sudo

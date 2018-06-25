@@ -27,4 +27,6 @@ directory:
     mode: 777
 
 users:
-  - vagrant
+  masters:
+    - master
+    # - vagrant

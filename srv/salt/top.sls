@@ -8,7 +8,7 @@ dev:
     # - docker
     # - docker.compose
     # - docker.compose-cmd
-    # - users.vagrant
+    - users.master
 prod:
   '*':
     - common
