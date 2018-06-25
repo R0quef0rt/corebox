@@ -4,6 +4,7 @@ dev:
     - system.timezone
     - filesystem.raid5
     - system.firewall.devbox
+    - devbox
     # - docker
     # - docker.compose
     # - docker.compose-cmd

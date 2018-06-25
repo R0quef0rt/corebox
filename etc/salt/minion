@@ -19,7 +19,7 @@ gitfs_provider: gitpython
 gitfs_remotes:
   - https://github.com/R0quef0rt/devbox.git
 
-gitfs_root: srv/salt
+gitfs_root: ''
 
 gitfs_saltenv:
   - dev:
