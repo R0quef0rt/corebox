@@ -22,7 +22,6 @@
 md0:
   blockdev.tuned:
     - name: /dev/md0
-    - read-write: True
     - read-ahead: 65536
     - filesystem-read-ahead: 65536
 
