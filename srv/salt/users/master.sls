@@ -1,4 +1,5 @@
 master:
+
   user.present:
     - fullname: master
     - shell: /bin/bash
@@ -9,7 +10,6 @@ master:
       # - docker
       - sudo
 
-master:
   group.present:
     - gid: 7648
     - system: True
