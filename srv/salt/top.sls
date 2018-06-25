@@ -2,15 +2,16 @@ dev:
   '*':
     - common
     - system.timezone
-    - filesystem.raid5
     - system.firewall.devbox
     # - devbox
-    - users.master
+    - users.masters
   'sandbox':
-    - system.directory
     - docker
     - docker.compose
-    - docker.compose-cmd
+    # - docker.compose-cmd
+    # - users.vagrant
+  'devbox':
+    - filesystem.raid5
 prod:
   '*':
     - common

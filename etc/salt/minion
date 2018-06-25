@@ -1,6 +1,8 @@
 file_client: local
 
-environment: dev
+saltenv: dev
+
+pillarenv: dev
 
 file_roots:
   dev:

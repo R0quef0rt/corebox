@@ -1,9 +1,9 @@
-master:
-
+{% for name, group, user in pillar.get('users:masters', {}).items() %}
+{{user}}:
   user.present:
-    - fullname: master
+    - fullname: {{user}}
     - shell: /bin/bash
-    - home: /home/master
+    - home: /home/{{user}}
     - createhome: True
     - gid_from_name: True
     - allow_uid_change: True
@@ -11,7 +11,7 @@ master:
     - optional_groups:
       - docker
       - sudo
-
   group.present:
     - members:
-      - master
+      - {{user}}
+{% endfor %}
