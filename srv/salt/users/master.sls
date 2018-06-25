@@ -4,14 +4,14 @@ master:
     - fullname: master
     - shell: /bin/bash
     - home: /home/master
-    - uid: 1050
-    - gid: 7648
+    - uid: 1005
+    - gid: 1005
     - groups:
       # - docker
       - sudo
 
   group.present:
-    - gid: 7648
+    - gid: 1005
     - system: True
     - addusers:
       - master
