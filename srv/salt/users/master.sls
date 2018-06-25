@@ -2,7 +2,6 @@ master:
 
   user.present:
     - fullname: master
-    - password: $1$fVgw2iOU$ncUS3h.adzyCpGrceZInx1
     - shell: /bin/bash
     - home: /home/master
     - createhome: True
