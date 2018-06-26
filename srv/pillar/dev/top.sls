@@ -1,5 +1,3 @@
 dev:
   '*':
-    - settings
-    - firewall
-    - directory
+    - system

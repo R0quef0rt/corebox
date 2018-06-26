@@ -1,0 +1,83 @@
+version: '3'
+
+services:
+
+  nzbget:
+    image: linuxserver/nzbget:125
+    ports:
+      - 6789:6789
+    volumes:
+      - ./etc/nzbget/config:/config
+      - downloads:/downloads
+    environment:
+      PUID: 1050
+      PGID: 1040
+
+  sonarr:
+    image: linuxserver/sonarr:140
+    ports:
+      - 8989:8989
+    volumes:
+      - ./etc/sonarr/config:/config
+      - television:/tv
+      - downloads:/downloads
+    environment:
+      PUID: 1051
+      PGID: 1040
+
+  radarr:
+    image: linuxserver/radarr:116
+    ports:
+      - 7878:7878
+    volumes:
+      - ./etc/radarr/config:/config
+      - movies:/movies
+      - downloads:/downloads
+    environment:
+      PUID: 1052
+      PGID: 1040
+
+  plex:
+    image: plexinc/pms-docker:1.13.2.5154-fd05be322
+    ports:
+      - 32400:32400
+    volumes:
+      - ./etc/plex/config:/config
+      - temp:/transcode
+      - movies:/movies
+      - television:/television
+    environment:
+      PLEX_UID: 1053
+      PLEX_GID: 1040
+
+  duplicati:
+    image: linuxserver/duplicati:82
+    ports:
+      - 18200:8200
+    volumes:
+      - ./etc/duplicati/config:/config
+      - backups:/backups
+      - source:/source
+    environment:
+      PUID: 1054
+      PGID: 1040
+
+  sync:
+    image: resilio/sync:release-2.5.13
+    ports:
+      - 18888:8888
+      - 15555:55555
+    volumes:
+      - sync:/mnt/sync
+      - movies:/mnt/mounted_folders/movies
+      - television:/mnt/mounted_folders/television
+      - downloads:/mnt/mounted_folders/downloads
+
+volumes:
+  downloads:
+  television:
+  movies:
+  sync:
+  temp:
+  backups:
+  source:

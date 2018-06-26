@@ -1,5 +1,3 @@
 qa:
   '*':
-    - settings
-    - firewall
-    - directory
+    - system
