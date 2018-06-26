@@ -1,6 +1,6 @@
 file_client: local
 
-top_file_merging_strategy: merge
+top_file_merging_strategy: same
 
 saltenv: dev
 
