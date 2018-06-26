@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "hyperv" do |vb|
     vb.memory = "2048"
+    vb.maxmemory = "4096"
     vb.cpus = 1
   end
 
@@ -30,7 +31,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "./etc/radarr", "/etc/radarr"
   config.vm.synced_folder "./etc/plex", "/etc/plex"
   config.vm.synced_folder "./etc/duplicati", "/etc/duplicati"
-  config.vm.synced_folder ".", "/app"
+  config.vm.synced_folder ".", "/app/dev"
 
   config.vm.provision :salt do |salt|
     salt.masterless = true
