@@ -1,12 +1,12 @@
 dev:
   '*':
-    - dev.settings
-    - dev.firewall
+    - settings
+    - firewall
 qa:
   '*':
-    - qa.settings
+    - settings
     - qa.firewall
 prod:
   '*':
-    - prod.settings
-    - prod.firewall
+    - settings
+    - firewall
