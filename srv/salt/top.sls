@@ -17,7 +17,7 @@ qa:
     - common
     - system.timezone
     - system.directory
-    - users
+    - system.users
     - docker
     - docker.compose
   'devbox':
@@ -28,7 +28,7 @@ prod:
     - common
     - system.timezone
     - system.directory
-    - users
+    - system.users
     - docker
     - docker.compose
   'devbox':
