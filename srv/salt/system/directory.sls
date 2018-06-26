@@ -5,8 +5,10 @@
     - group: {{args['group']}}
     - mode: {{args['mode']}}
     - makedirs: True
+    {% if {args['recurse']} %}
     - recurse:
       - user
       - group
       - mode
+    {% endif %}
 {% endfor %}
