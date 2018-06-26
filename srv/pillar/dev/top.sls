@@ -1,0 +1,5 @@
+dev:
+  '*':
+    - settings
+    - firewall
+    - directory

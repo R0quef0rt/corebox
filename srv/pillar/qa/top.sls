@@ -1,0 +1,5 @@
+qa:
+  '*':
+    - settings
+    - firewall
+    - directory

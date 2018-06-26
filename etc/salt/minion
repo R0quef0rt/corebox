@@ -16,11 +16,11 @@ file_roots:
 
 pillar_roots:
   dev:
-    - /srv/pillar
+    - /srv/pillar/dev
   qa:
-    - /srv/pillar
+    - /srv/pillar/qa
   prod:
-    - /srv/pillar
+    - /srv/pillar/prod
 
 fileserver_backend:
   - roots
