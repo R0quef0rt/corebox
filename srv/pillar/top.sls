@@ -5,7 +5,7 @@ dev:
 qa:
   '*':
     - settings
-    - qa.firewall
+    - firewall
 prod:
   '*':
     - settings
