@@ -2,14 +2,14 @@ dev:
   '*':
     - settings
     - firewall
-    - system
+    - system.directory
 qa:
   '*':
     - settings
     - firewall
-    - system
+    - system.directory
 prod:
   '*':
     - settings
     - firewall
-    - system
+    - system.directory
