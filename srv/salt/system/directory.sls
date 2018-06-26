@@ -5,7 +5,7 @@
     - group: {{args['group']}}
     - mode: {{args['mode']}}
     - makedirs: True
-    {% if "recurse" in system.directory.path %}
+    {% if "recurse" in directory %}
     - recurse:
       - user
       - group
