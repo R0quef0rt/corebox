@@ -1,0 +1,23 @@
+timezone:
+  main: America/Chicago
+
+users:
+  masters:
+    - master
+  services:
+    - service1
+    - service2
+
+directory:
+  /etc/nzbget:
+    user: nzbget
+    group: master
+    mode: 660
+    recurse: False
+
+firewall-rules:
+  ssh:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 22
+    protocol: tcp

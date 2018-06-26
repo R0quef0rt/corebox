@@ -1,36 +1,36 @@
 dev:
   '*':
     - common
-    - system.timezone
-    - system.firewall
-    - system.directory
-    - system.users
-    # - groups
+    - system
     - docker
     - docker.compose
   'sandbox':
+    - common
+    - system
+    - docker
+    - docker.compose
     - docker.compose-cmd
   'devbox':
-    - filesystem.raid5
+    - common
+    - system
+    - docker
+    - docker.compose
+    - system.raid
 qa:
   '*':
     - common
-    - system.timezone
-    - system.directory
-    - system.users
+    - system
     - docker
     - docker.compose
   'devbox':
     - docker.compose-cmd
-    - filesystem.raid5
+    - system.raid
 prod:
   '*':
     - common
-    - system.timezone
-    - system.directory
-    - system.users
+    - system
     - docker
     - docker.compose
   'devbox':
     - docker.compose-cmd
-    - filesystem.raid5
+    - system.raid
