@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
     salt.minion_config = "etc/salt/minion"
     salt.install_type = "stable"
     salt.bootstrap_options = "-F -P -p python-git"
-    salt.salt_call_args = ["saltenv=qa", "pillarenv=qa"]
+    salt.salt_call_args = ["saltenv=dev", "pillarenv=dev"]
     salt.run_highstate = true
     salt.colorize = true
     salt.verbose = true

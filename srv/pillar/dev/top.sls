@@ -1,5 +1,5 @@
 dev:
   '*':
     - settings
-    - firewall
+    - system.firewall
     - directory
