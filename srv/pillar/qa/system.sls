@@ -3,8 +3,10 @@ dir_set_perms: True
 
 users:
   masters:
-    - master
-    - vagrant
+    master:
+      uid: 1040
+    vagrant:
+      uid: 1000
   services:
     nzbget:
       uid: 1050

@@ -6,6 +6,9 @@
     - shell: /bin/bash
     - home: /home/{{user}}
     - createhome: True
+    {% for uid in salt['pillar.get']('user', {}) %}
+    - uid: {{uid}}
+    {% endfor %}
     - gid_from_name: True
     - allow_uid_change: True
     - allow_gid_change: True
