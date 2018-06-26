@@ -1,21 +1,21 @@
 directory:
   /etc/nzbget:
-    user: master
-    group: docker
-    mode: 777
+    user: nzbget
+    group: master
+    mode: 660
   /etc/sonarr:
-    user: master
-    group: docker
-    mode: 777
+    user: sonarr
+    group: master
+    mode: 660
   /etc/radarr:
-    user: master
-    group: docker
-    mode: 777
+    user: radarr
+    group: master
+    mode: 660
   /etc/plex:
-    user: master
-    group: docker
-    mode: 777
+    user: plex
+    group: master
+    mode: 660
   /etc/duplicati:
-    user: master
-    group: docker
-    mode: 777
+    user: duplicati
+    group: master
+    mode: 660

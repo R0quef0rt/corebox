@@ -9,4 +9,8 @@ users:
     - master
     - vagrant
   services:
-    - salt
+    - nzbget
+    - sonarr
+    - radarr
+    - plex
+    - duplicati
