@@ -3,12 +3,12 @@ directory:
     user: nzbget
     group: master
     mode: 660
-    recurse: True
+    recurse: False
   /etc/sonarr:
     user: sonarr
     group: master
     mode: 660
-    recurse: True
+    recurse: False
   /etc/radarr:
     user: radarr
     group: master
