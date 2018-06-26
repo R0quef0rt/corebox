@@ -5,13 +5,13 @@ dev:
     - system.firewall
     - users.masters
     - users.services
-  'sandbox':
     - docker
     - docker.compose
+  'sandbox':
     - docker.compose-cmd
   'devbox':
     - filesystem.raid5
-'*':
+*:
   '*':
     - common
     - system.timezone
