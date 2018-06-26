@@ -37,7 +37,7 @@ gitfs_saltenv:
   - dev:
     - ref: dev
   - qa:
-    - ref: qa
+    - ref: dev
   - prod:
     - ref: master
 

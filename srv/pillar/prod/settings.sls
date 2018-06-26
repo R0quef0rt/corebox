@@ -7,6 +7,3 @@ filesystem:
 users:
   masters:
     - master
-    - vagrant
-  services:
-    - salt

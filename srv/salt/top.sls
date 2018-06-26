@@ -3,8 +3,9 @@ dev:
     - common
     - system.timezone
     - system.firewall
-    - users.masters
-    - users.services
+    - system.directory
+    - system.users
+    # - groups
     - docker
     - docker.compose
   'sandbox':
@@ -16,8 +17,7 @@ qa:
     - common
     - system.timezone
     - system.directory
-    - users.masters
-    - users.services
+    - users
     - docker
     - docker.compose
   'devbox':
@@ -28,8 +28,7 @@ prod:
     - common
     - system.timezone
     - system.directory
-    - users.masters
-    - users.services
+    - users
     - docker
     - docker.compose
   'devbox':
