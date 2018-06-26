@@ -37,7 +37,7 @@ gitfs_saltenv:
   - dev:
     - ref: dev
   - qa:
-    - ref: dev
+    - ref: qa
   - prod:
     - ref: master
 
@@ -46,7 +46,7 @@ ext_pillar:
     - dev https://github.com/R0quef0rt/devbox.git:
       - env: dev
       - name: dev
-    - dev https://github.com/R0quef0rt/devbox.git:
+    - qa https://github.com/R0quef0rt/devbox.git:
       - env: qa
       - name: qa
     - master https://github.com/R0quef0rt/devbox.git:
