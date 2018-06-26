@@ -5,7 +5,7 @@
     - group: {{args['group']}}
     - mode: {{args['mode']}}
     - makedirs: True
-    {% if 'recurse' == True in args %}
+    {% if 'recurse' == True in pillar['args'] %}
     - recurse:
       - user
       - group
