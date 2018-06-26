@@ -6,23 +6,23 @@ filesystem:
 
 directory:
   /etc/nzbget:
-    user: vagrant
+    user: master
     group: docker
     mode: 777
   /etc/sonarr:
-    user: vagrant
+    user: master
     group: docker
     mode: 777
   /etc/radarr:
-    user: vagrant
+    user: master
     group: docker
     mode: 777
   /etc/plex:
-    user: vagrant
+    user: master
     group: docker
     mode: 777
   /etc/duplicati:
-    user: vagrant
+    user: master
     group: docker
     mode: 777
 

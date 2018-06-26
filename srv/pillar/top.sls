@@ -1,12 +1,12 @@
 dev:
   '*':
-    - system.settings
-    - system.firewall
+    - dev.settings
+    - dev.firewall
 qa:
   '*':
-    - system.settings
-    - system.firewall
+    - qa.settings
+    - qa.firewall
 prod:
   '*':
-    - system.settings
-    - system.firewall
+    - prod.settings
+    - prod.firewall
