@@ -5,11 +5,26 @@ filesystem:
   mount: True
 
 directory:
-  nzbget: /etc/nzbget
-  sonarr: /etc/sonarr
-  radarr: /etc/radarr
-  plex: /etc/plex
-  duplicati: /etc/duplicati
+  /etc/nzbget:
+    user: vagrant
+    group: docker
+    mode: 777
+  /etc/sonarr:
+    user: vagrant
+    group: docker
+    mode: 777
+  /etc/radarr:
+    user: vagrant
+    group: docker
+    mode: 777
+  /etc/plex:
+    user: vagrant
+    group: docker
+    mode: 777
+  /etc/duplicati:
+    user: vagrant
+    group: docker
+    mode: 777
 
 users:
   masters:

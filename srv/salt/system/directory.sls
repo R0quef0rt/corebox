@@ -1,14 +1,12 @@
-{% for name, dir in pillar.get('directory', {}).items() %}
-{{dir}}:
+{% for path, args in pillar['directory'].iteritems() %}
+{{path}}:
   file.directory:
-  {% for key, value in pillar.get('dir', {}) %}
-    - user: {{user}}
-    - group: docker
-    - mode: 777
+    - user: {{args['user']}}
+    - group: {{args['group']}}
+    - mode: {{args['mode']}}
     - makedirs: True
     - recurse:
       - user
       - group
       - mode
-  {% endfor %}
 {% endfor %}

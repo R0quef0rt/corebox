@@ -9,6 +9,7 @@ dev:
   'sandbox':
     - docker
     - docker.compose
+    - system.directory
     # - docker.compose-cmd
   'devbox':
     - filesystem.raid5
