@@ -1,6 +1,6 @@
 file_client: local
 
-top_file_merging_strategy: merge_all
+top_file_merging_strategy: merge
 
 saltenv: dev
 
@@ -16,11 +16,11 @@ file_roots:
 
 pillar_roots:
   dev:
-    - /srv/pillar/dev
+    - /srv/pillar
   qa:
-    - /srv/pillar/qa
+    - /srv/pillar
   prod:
-    - /srv/pillar/prod
+    - /srv/pillar
 
 fileserver_backend:
   - roots
