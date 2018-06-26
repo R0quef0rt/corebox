@@ -1,8 +1,7 @@
 timezone:
   main: America/Chicago
 
-filesystem:
-  mount: True
+raid: True
 
 users:
   masters:

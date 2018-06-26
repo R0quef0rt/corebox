@@ -1,3 +1,6 @@
+raid: False
+dir_set_perms: False
+
 timezone:
   main: America/Chicago
 
@@ -5,8 +8,10 @@ users:
   masters:
     - master
   services:
-    - service1
-    - service2
+    service1:
+      uid: 1050
+    service2:
+      uid: 1051
 
 directory:
   /etc/nzbget:

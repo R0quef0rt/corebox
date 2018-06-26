@@ -1,5 +1,5 @@
 {% for rule, args in pillar['firewall-rules'].iteritems() %}
-{{rule}}:
+{{rule}}-managed-rule:
   iptables.append:
     - table: filter
     - chain: {{args['chain']}}

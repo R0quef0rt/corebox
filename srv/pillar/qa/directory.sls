@@ -1,3 +1,5 @@
+dir_set_perms: True
+
 directory:
   /etc/nzbget:
     user: nzbget
