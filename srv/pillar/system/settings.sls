@@ -15,4 +15,5 @@ users:
   masters:
     - master
     - vagrant
-    - terraform
+  services:
+    - salt
