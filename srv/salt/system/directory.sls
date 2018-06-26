@@ -5,10 +5,10 @@
     - group: {{args['group']}}
     - mode: {{args['mode']}}
     - makedirs: True
-    {% if {args['recurse']} %}
+    {% for switches in pillar['args:recurse'].iteritems() %}
     - recurse:
       - user
       - group
       - mode
-    {% endif %}
+    {% endfor %}
 {% endfor %}
