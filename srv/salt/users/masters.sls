@@ -1,4 +1,4 @@
-{% for name, group, user in pillar.get('users:masters', {}).items() %}
+{% for user in salt['pillar.get']('users:masters', {}) %}
 {{user}}:
   user.present:
     - fullname: {{user}}
@@ -14,4 +14,5 @@
   group.present:
     - members:
       - {{user}}
+
 {% endfor %}
