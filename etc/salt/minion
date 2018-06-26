@@ -46,9 +46,12 @@ ext_pillar:
     - dev https://github.com/R0quef0rt/devbox.git:
       - env: dev
       - name: dev
-    - qa https://github.com/R0quef0rt/devbox.git:
+      - root: srv/pillar/dev
+    - dev https://github.com/R0quef0rt/devbox.git:
       - env: qa
       - name: qa
+      - root: srv/pillar/qa
     - master https://github.com/R0quef0rt/devbox.git:
       - env: prod
       - name: prod
+      - root: srv/pillar/prod
