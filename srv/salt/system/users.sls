@@ -1,6 +1,7 @@
 {% for user in salt['pillar.get']('users:masters', {}) %}
-{{user}}:
+{{user}}-master:
   user.present:
+    - name: {{user}}
     - fullname: {{user}}
     - shell: /bin/bash
     - home: /home/{{user}}
@@ -11,21 +12,20 @@
     - optional_groups:
       - docker
       - sudo
-  group.present:
-    - addusers:
-      - {{user}}
+{{user}}:
+  group.present
 {% endfor %}
 
 {% for user in salt['pillar.get']('users:services', {}) %}
-{{user}}:
+{{user}}-service:
   user.present:
+    - name: {{user}}
     - fullname: {{user}}
     - shell: /bin/bash
     - createhome: False
     - gid_from_name: True
     - allow_uid_change: True
     - allow_gid_change: True
-  group.present:
-    - addusers:
-      - {{user}}
+{{user}}:
+  group.present
 {% endfor %}
