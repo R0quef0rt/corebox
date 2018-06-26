@@ -1,5 +1,3 @@
 prod:
   '*':
     - settings
-    - firewall
-    - directory
