@@ -40,8 +40,8 @@ jobs:
 
   - stage: prepare
     before_install:
-    - curl --silent https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-    - unzip terraform_${TERRAFORM_VERSION_linux_amd64}.zip -d /tmp
+    - curl --silent https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terraform_$TERRAFORM_VERSION_linux_amd64.zip
+    - unzip terraform_$TERRAFORM_VERSION_linux_amd64.zip -d /tmp
     - mkdir ~/bin || true
     - mv /tmp/terraform ~/bin
     - export PATH="~/bin:$PATH"
