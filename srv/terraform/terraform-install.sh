@@ -2,8 +2,9 @@
 
 TERRAFORM_VERSION=0.11.7
 
-wget --quiet https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-mv terraform /usr/local/bin
+wget -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+unzip /tmp/terraform.zip -d /tmp
+mkdir ~/bin
+mv /tmp/terraform ~/bin
 
-export PATH="~/usr/local/bin:$PATH"
+export PATH="~/bin:$PATH"
