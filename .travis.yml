@@ -41,8 +41,6 @@ jobs:
   - stage: prepare
     before_install:
     - bash -x ./srv/terraform/terraform-install.sh
-    - mkdir ~/bin || true
-    - mv /tmp/terraform ~/bin
     - export PATH="~/bin:$PATH"
     script: 
     - terraform --version
