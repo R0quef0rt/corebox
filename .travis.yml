@@ -40,6 +40,7 @@ jobs:
   - stage: prepare
     before_install:
     - bash ./srv/terraform/terraform-install.sh
+    - "export PATH="~/bin:$PATH"
     script: 
     - terraform --version
     - "bash ./srv/terraform/terraform-init.sh"
