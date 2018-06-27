@@ -4,7 +4,7 @@ services:
 
   nzbget:
     volumes:
-      - ./etc/nzbget/config:/config
+      - /etc/nzbget/config:/config
       - /mnt/downloads:/downloads
     environment:
       PUID: 1050

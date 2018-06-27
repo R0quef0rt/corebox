@@ -4,8 +4,8 @@ services:
 
   nzbget:
     volumes:
-      - "/etc/nzbget/config:/config"
-      - "downloads:/downloads"
+      - /etc/nzbget/config:/config
+      - downloads:/downloads
 
   sonarr:
     volumes:
