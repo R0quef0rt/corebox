@@ -28,3 +28,7 @@ docker-compose up
 docker-compose down
 
 docker volume prune
+
+## Travis CI
+
+travis encrypt MY_SECRET_ENV=super_secret --add env.global

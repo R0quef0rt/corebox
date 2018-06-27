@@ -1,27 +1,56 @@
-sudo: required
+dist: trusty
+sudo: true
 
 services:
   - docker
 
-language: ruby
-
-node_js:
-  - 6.0.0
-
-# establish environment variables
 env:
   global:
-    - GH_USER_NAME="TravisCI"
-    - GH_USER_EMAIL="mikedball@gmail.com"
-    - GH_REPO="mdb/terraform-example"
-    # encrypted GH_TOKEN and AWS credentials
-    - secure: "EBtNoRGUNjgom7lk6+O7Zh9A33X/251Cg7j5C+HqfkPMQcQwS6MEAXPT1vbnh1HoQixR1e6VTHdXxvWyE/14+98qtJiHnSbGiY67ZvQNDuFLb2+PKx7xhhl9heNj8Xk1K1SYJtfYQZIvZNl32V9db6eR3r7kKlWlpUVmnSnXrnm4ztI8se45OX/XPjAnARdBvkpbcTSprrAf7Qudc5R86ain18tJah6PICd12TIH4Cpdcr6CVL8kRK808VH+AS2oii7QcKXc084gBOJJLCiwa2DrcSEPOOk0AIn5ft+XVcaCsV6oOc6NliFKEPoJkaxbYWtunDlnqgB6epuaGrf99TfCg4E9R8sXBFqJwdMGDu3xM6Nddw87tMj/oCbUmjrNnl4qAxIMBD2TdjwFS1lNaXAML8W/jx3bNGSEg5MAYrqLL32eJta/vxRJwpCVnXUHxef9JcZMNZcvuKMdHC98JQIYbGRRFZ0cFtqMe63tgWafCi3WS+FIqSWnGdiKZ7dS110ANHaiQkDAZKTlh/9YJpzR9LyOoq7xXYtQIUovyDD2j498mAkcgByEbyZ39k6xMvLHHXsdUq25tdaMvqE3ZUASIDWqDk1QPfxkXX6n62Tj2X1HCA+3JI/DKyEfzt3QV4rntiP4Qv9jSuxNpd47rgsgVFg+HGJmko9QzAA/g+E="
+  - REGION="us-east-1"
+  - ENV="dev"
+  - ACCOUNT="dev"
+  - PROJECT_KEY="rjb"
+  - PROVIDER="aws"
+  - SERVICE_NAME="devbox"
+  - SERVICE_VERSION="0.1.0"
+  - DESTROY_ALL="false"
+  - REBUILD="false"
+  - TF_INPUT="false"
 
-before_install:
-- docker pull carlad/sinatra
-- docker run -d -p 127.0.0.1:80:4567 carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec foreman start;"
-- docker ps -a
-- docker run carlad/sinatra /bin/sh -c "cd /root/sinatra; bundle exec rake test"
+branches:
+  only:
+    - dev
+    - master
 
-script:
-- bundle exec rake test
+stages:
+  - prepare
+  - destroy
+  - build
+  - plan
+  - deploy
+
+cache:
+  directories:
+  - .terraform
+
+jobs:
+  include:
+  - stage: prepare
+    before_install:
+      - curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.8.8/terraform_0.8.8_linux_amd64.zip
+      - unzip /tmp/terraform.zip -d /tmp
+      - mkdir ~/bin
+      - mv /tmp/terraform ~/bin
+      - export PATH="~/bin:$PATH"
+    script: "bash ./srv/terraform/terraform-init.sh"
+    script: "bash ./srv/terraform/terraform-validate.sh"
+  - stage: destroy
+    script: "bash ./srv/terraform/terraform-destroy.sh"
+  - stage: plan
+    script: "bash ./srv/terraform/terraform-init.sh"
+    script: "bash ./srv/terraform/terraform-plan.sh"
+  - stage: deploy
+    script: "bash ./srv/terraform/terraform-apply.sh"
+    if: branch = master
+    env:
+    - ENV=dev
