@@ -36,20 +36,19 @@ stages:
 cache:
   directories:
   - ".terraform"
+before_script:
+  - bash -x ./srv/ci/get-credentials.sh
+  - bash -x ./srv/terraform/terraform-install.sh
+  - export PATH="~/bin:$PATH"
+  - bash ./srv/terraform/terraform-init.sh
 jobs:
   include:
   - stage: prepare
-    before_install:
-    - bash -x ./srv/ci/get-credentials.sh
-    - bash -x ./srv/terraform/terraform-install.sh
-    - export PATH="~/bin:$PATH"
     script:
-    - bash ./srv/terraform/terraform-init.sh
     - bash ./srv/terraform/terraform-validate.sh
     - bash ./srv/terraform/terraform-destroy.sh
   - stage: plan
     script:
-    - bash ./srv/terraform/terraform-init.sh
     - bash ./srv/terraform/terraform-plan.sh
   - stage: deploy
     script: bash ./srv/terraform/terraform-apply.sh
