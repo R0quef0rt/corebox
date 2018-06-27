@@ -1,5 +1,6 @@
 dist: trusty
 sudo: true
+language: bash
 
 services:
   - docker
@@ -19,8 +20,8 @@ env:
 
 branches:
   only:
-    - dev
-    - master
+  - dev
+  - master
 
 stages:
   - prepare
@@ -35,20 +36,23 @@ cache:
 
 jobs:
   include:
+
   - stage: prepare
     before_install:
-      - curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.8.8/terraform_0.8.8_linux_amd64.zip
-      - unzip /tmp/terraform.zip -d /tmp
-      - mkdir ~/bin
-      - mv /tmp/terraform ~/bin
-      - export PATH="~/bin:$PATH"
-    script: "bash ./srv/terraform/terraform-init.sh"
-    script: "bash ./srv/terraform/terraform-validate.sh"
+    - bash ./srv/terraform/terraform-install.sh
+    script: 
+    - "bash ./srv/terraform/terraform-init.sh"
+    - "bash ./srv/terraform/terraform.sh"
+
   - stage: destroy
-    script: "bash ./srv/terraform/terraform-destroy.sh"
+    script: 
+    - "bash ./srv/terraform/terraform-destroy.sh"
+
   - stage: plan
-    script: "bash ./srv/terraform/terraform-init.sh"
-    script: "bash ./srv/terraform/terraform-plan.sh"
+    script:
+    - "bash ./srv/terraform/terraform-init.sh"
+    - "bash ./srv/terraform/terraform-plan.sh"
+
   - stage: deploy
     script: "bash ./srv/terraform/terraform-apply.sh"
     if: branch = master

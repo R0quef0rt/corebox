@@ -38,7 +38,6 @@ stages:
 tf:init:
   stage: prepare
   script:
-    - bash ./srv/terraform/terraform-install.sh
     - bash ./srv/terraform/terraform-init.sh
     - bash ./srv/terraform/terraform-validate.sh
   artifacts:
