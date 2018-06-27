@@ -6,7 +6,7 @@
     - shell: /bin/bash
     - home: /home/{{user}}
     - createhome: True
-    {% for key, args in salt['pillar.get']('user') %}
+    {% for args in salt['pillar.get']('user:uid') %}
     - uid: {{args['uid']}}
     {% endfor %}
     - gid_from_name: True
@@ -26,7 +26,7 @@
     - fullname: {{user}}
     - shell: /bin/bash
     - createhome: False
-    {% for key, args in salt['pillar.get']('user') %}
+    {% for args in salt['pillar.get']('user:uid') %}
     - uid: {{args['uid']}}
     {% endfor %}
     - gid_from_name: True
