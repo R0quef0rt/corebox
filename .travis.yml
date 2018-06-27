@@ -41,6 +41,7 @@ jobs:
     before_install:
     - bash ./srv/terraform/terraform-install.sh
     script: 
+    - terraform --version
     - "bash ./srv/terraform/terraform-init.sh"
     - "bash ./srv/terraform/terraform.sh"
 
