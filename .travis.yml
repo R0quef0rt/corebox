@@ -31,8 +31,6 @@ branches:
   - master
 stages:
 - prepare
-- destroy
-- build
 - plan
 - deploy
 cache:
@@ -48,8 +46,6 @@ jobs:
     script:
     - bash ./srv/terraform/terraform-init.sh
     - bash ./srv/terraform/terraform-validate.sh
-  - stage: destroy
-    script:
     - bash ./srv/terraform/terraform-destroy.sh
   - stage: plan
     script:
