@@ -1,10 +1,8 @@
 dist: trusty
 sudo: true
 language: bash
-
 services:
-  - docker
-
+- docker
 env:
   global:
   - REGION="us-east-1"
@@ -18,46 +16,44 @@ env:
   - DESTROY_ALL="false"
   - REBUILD="false"
   - TF_INPUT="false"
+  - TFSTATE_BUCKET="roquefort-tfstate"
 
+  # Required variables for S3 artifacts upload
+  - ARTIFACTS_BUCKET="roquefort-tfstate"
+  - secure: mv28mxrSt+6eygRT/CWMGiVyYMqL6JNia6YsPc3Hdl1pdonVguOVIUfR8Ti6UU5LdFyV3Fo5RnMNv4Pel452XWubm2+Q3gTgTxA7n/QkiHjVUu3Sj2EWucm5fonhn4iQt2Z+2Y2TCGoMfazGE8M1D1dVvm5TdBdlj7QSuSWs75fKqUD6lLqYgZX7GCZsIl9oVFJeupVfUeftrHuh+zwV815xZlLsnkuroo7Kp19n7P6S+yWs9L71DtmkpDFW1I6Uwf8D+Cx18jA3YG6knzzZBmQNSG/UVi0yG69hL56XftEDlvtFjkLF9wgbT8s+bfgj2K2RAkxUpFKEk/xJTmmh801sfBjqKOYj560YQA55dGrQd62VwYjvedKurRYTt7kOyh3QARqLF3rwgXXy1jItLWDQnwfyRHZ8QGgomBpGcn2IqFyOizojdx/aaIRY9FTtJ9qnd+ZyrRdhe2Xw1y90bn3ZmHpqNP/0jryjM9M2m2+qcF+Q7PhZF1/rbRuARP+9X1OFXavYmCwso6AWMYrKk+bx02XtQTg2dgg8ktjNlRjBciw0SRVdyiNggOODlWB2lpXVGb4KThq8VknxGOJB44JgzULEZLDtL1Y2nCaEur+jqanKWRSaW7q1T3ypZQWkKnV7BLLzs7Zt161fdjHFXccAth1UxiciG5POrApKLhg=
+  - secure: amIB3nDD5fXey1r85DqIasDL//uzbtY8xVVEX/18RKCpq7ELWlk8YBPvOqmgVEdnzSiAo5wwG6QeknLhuSIMhsV8MhFyJBrdTJqrqvAB/5gqIkEQeRRxp7z0AfhsE8hc9z6GUZWiXLnIyyYm+PeU9f3faWQGiWNXUjTF60WjmWlCUzS/GyAmhN7TdXHGl8WZ4uPge008E08cPS1s91jzdhdx8b21owk6eSzN2hJoUrclVeTBNj9FJHWvaKCOzDd5xbzcBThArX9o10GjEEXcyt94hxFhNUprYMPVh9t1rlwUAZzisfQKiE0zzS6frzbK3DgnS4APonmv2Iozw8/7iNPkaKIXNtuobJUDqwwecSbjzgF+R3mfB9+BWtHPRj88XBJ8bdbUPA7y4XyJ2zCLZj6c2HoI4GET/6izfG8k5tg7JXKHPL5nCkjhVE1zD4pKkqJjH4khbAp4lkuDcA40f4Iml7pTYQUuaE5MPLP2Uelm3qarRMXvdzdWoiZd3sZuipcOAd2qaQGMfdQclNBsicHv4jDJbYy9wyRyyy3iKSQAiI6b3Pj3lxwZ/x/WRSDlm3Y0w0vuZr7P1/kE4lvAsin0qArS4FR0KrXOoFzfQU8V4x5zqo6QyIKa7otOjZF6b5GnupmdDwzrx4QKHiikp9dgyCAIfyWZtBnRqAytQ4M=
 branches:
   only:
   - dev
   - master
-
 stages:
-  - prepare
-  - destroy
-  - build
-  - plan
-  - deploy
-
+- prepare
+- destroy
+- build
+- plan
+- deploy
 cache:
   directories:
-  - .terraform
-
+  - ".terraform"
 jobs:
   include:
-
   - stage: prepare
     before_install:
     - bash -x ./srv/terraform/terraform-install.sh
     - export PATH="~/bin:$PATH"
-    script: 
+    script:
     - terraform --version
-    - "bash ./srv/terraform/terraform-init.sh"
-    - "bash ./srv/terraform/terraform.sh"
-
+    - bash ./srv/terraform/terraform-init.sh
+    - bash ./srv/terraform/terraform.sh
   - stage: destroy
-    script: 
-    - "bash ./srv/terraform/terraform-destroy.sh"
-
+    script:
+    - bash ./srv/terraform/terraform-destroy.sh
   - stage: plan
     script:
-    - "bash ./srv/terraform/terraform-init.sh"
-    - "bash ./srv/terraform/terraform-plan.sh"
-
+    - bash ./srv/terraform/terraform-init.sh
+    - bash ./srv/terraform/terraform-plan.sh
   - stage: deploy
-    script: "bash ./srv/terraform/terraform-apply.sh"
+    script: bash ./srv/terraform/terraform-apply.sh
     if: branch = master
     env:
     - ENV=dev
