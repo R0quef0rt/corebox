@@ -37,6 +37,7 @@ cache:
   - ".terraform"
 before_script:
   - bash -x ./srv/ci/get-credentials.sh
+  - bash -x ./srv/ci/export-variables.sh
   - bash -x ./srv/terraform/terraform-install.sh
   - export PATH="~/bin:$PATH"
   - bash ./srv/terraform/terraform-init.sh
