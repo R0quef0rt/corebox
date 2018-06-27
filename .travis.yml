@@ -19,7 +19,6 @@ env:
   - REBUILD="false"
   - TF_INPUT="false"
   - TFSTATE_BUCKET="roquefort-tfstate"
-
   # Required variables for S3 artifacts upload
   - ARTIFACTS_BUCKET="roquefort-tfstate"
   - ARTIFACTS_REGION="us-east-1"
