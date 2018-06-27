@@ -41,7 +41,7 @@ jobs:
     before_install:
     - curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.8.8/terraform_0.8.8_linux_amd64.zip
     - unzip /tmp/terraform.zip -d /tmp
-    - mkdir ~/bin
+    - mkdir ~/bin || true
     - mv /tmp/terraform ~/bin
     - export PATH="~/bin:$PATH"
     - terraform --version
