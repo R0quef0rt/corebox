@@ -6,8 +6,10 @@
     - shell: /bin/bash
     - home: /home/{{user}}
     - createhome: True
-    {% for args in salt['pillar.get']('user:uid') %}
-    - uid: {{args['uid']}}
+    {% set count = 1050 %}
+      {% for i in p %}
+    - uid: {{ count }}
+      {% set count = count + 1 %}
     {% endfor %}
     - gid_from_name: True
     - allow_uid_change: True
@@ -26,8 +28,10 @@
     - fullname: {{user}}
     - shell: /bin/bash
     - createhome: False
-    {% for args in salt['pillar.get']('user:uid') %}
-    - uid: {{args['uid']}}
+    {% set count = 1050 %}
+      {% for i in p %}
+    - uid: {{ count }}
+      {% set count = count + 1 %}
     {% endfor %}
     - gid_from_name: True
     - allow_uid_change: True
