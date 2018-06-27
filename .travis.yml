@@ -14,6 +14,7 @@ env:
   - PROVIDER="aws"
   - SERVICE_NAME="devbox"
   - SERVICE_VERSION="0.1.0"
+  - TERRAFORM_VERSION="0.11.7"
   - DESTROY_ALL="false"
   - REBUILD="false"
   - TF_INPUT="false"
@@ -39,12 +40,11 @@ jobs:
 
   - stage: prepare
     before_install:
-    - curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.8.8/terraform_0.8.8_linux_amd64.zip
+    - curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terraform_$TERRAFORM_VERSION_linux_amd64.zip
     - unzip /tmp/terraform.zip -d /tmp
     - mkdir ~/bin || true
     - mv /tmp/terraform ~/bin
     - export PATH="~/bin:$PATH"
-    - terraform --version
     script: 
     - terraform --version
     - "bash ./srv/terraform/terraform-init.sh"
