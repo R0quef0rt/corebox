@@ -7,7 +7,7 @@ env:
   global:
   - REGION="us-east-1"
   - ENV="dev"
-  - ACCOUNT="dev"
+  - ACCOUNT="root"
   - PROJECT_KEY="rjb"
   - PROVIDER="aws"
   - SERVICE_NAME="devbox"
@@ -39,10 +39,10 @@ jobs:
   include:
   - stage: prepare
     before_install:
+    - bash -x ./srv/ci/get-credentials.sh
     - bash -x ./srv/terraform/terraform-install.sh
     - export PATH="~/bin:$PATH"
     script:
-    - terraform --version
     - bash ./srv/terraform/terraform-init.sh
     - bash ./srv/terraform/terraform.sh
   - stage: destroy
