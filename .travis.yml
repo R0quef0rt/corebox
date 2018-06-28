@@ -5,6 +5,11 @@ services:
 - docker
 addons:
   artifacts: true
+    paths:
+    - $(git ls-files -o | tr "\n" ":")
+    - $(ls /var/log/*.log | tr "\n" ":")
+    - terraform.tfvars
+    - plan.tfplan
 env:
   global:
   - REGION="us-east-1"
@@ -53,6 +58,6 @@ jobs:
   - stage: deploy
     script: 
     - bash ./srv/terraform/terraform-apply.sh
-    - DESTROY_ALL="true" bash ./srv/terraform/terraform-destroy.sh
+    - export DESTROY_ALL="true" && bash ./srv/terraform/terraform-destroy.sh
     env:
     - ENV=dev
