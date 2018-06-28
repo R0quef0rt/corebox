@@ -84,3 +84,28 @@ resource "aws_instance" "minion" {
     Terraform   = "true"
   }
 }
+
+resource "null_resource" "minion" {
+  triggers {
+    node               = "${join(",", aws_instance.minion.*.id)}"
+    user-data          = "${sha256("${data.template_file.minion-user-data.rendered}")}"
+    docker-compose     = "${sha256(file("docker-compose.yml"))}"
+    docker-compose-env = "${sha256(file("docker-compose.${var.env}.yml"))}"
+    packer             = "${sha256(file("packer.json"))}"
+  }
+
+  connection {
+    host        = "${element(aws_instance.minion.*.public_ip, count.index)}"
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = "${file("${path.root}/auth/${var.env}.key")}"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo salt-call --local state.highstate",
+    ]
+  }
+
+  depends_on = ["aws_instance.minion"]
+}
