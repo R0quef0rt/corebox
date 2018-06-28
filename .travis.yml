@@ -37,6 +37,7 @@ branches:
   - master
 stages:
 - prepare
+- build
 - plan
 - deploy
 cache:
