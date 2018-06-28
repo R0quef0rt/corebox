@@ -31,7 +31,7 @@
       "minion_config": "etc/salt/minion",
       "local_state_tree": "./srv/salt",
       "bootstrap_args": "-i cloudbox -F -P -p python-git",
-      "salt_call_args": "-i cloudbox"
+      "salt_call_args": "-id cloudbox"
     }
   ]
 }
