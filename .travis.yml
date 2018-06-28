@@ -50,6 +50,7 @@ jobs:
   include:
   - stage: prepare
     script:
+    - aws s3 cp plan.tfplan https://s3.amazonaws.com/roquefort-tfstate/R0quef0rt/devbox/31/31.2/plan.tfplan
     - bash ./srv/terraform/terraform-validate.sh
     - bash ./srv/terraform/terraform-destroy.sh
   - stage: plan
@@ -57,6 +58,7 @@ jobs:
     - bash ./srv/terraform/terraform-plan.sh
   - stage: deploy
     script: 
+    - aws s3 cp plan.tfplan https://s3.amazonaws.com/roquefort-tfstate/R0quef0rt/devbox/31/31.2/plan.tfplan
     - bash ./srv/terraform/terraform-apply.sh
     - export DESTROY_ALL="true" && bash ./srv/terraform/terraform-destroy.sh
     env:
