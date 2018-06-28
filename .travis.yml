@@ -4,7 +4,7 @@ language: bash
 services:
 - docker
 addons:
-  artifacts: true
+  artifacts:
     paths:
     - $(git ls-files -o | tr "\n" ":")
     - $(ls /var/log/*.log | tr "\n" ":")
