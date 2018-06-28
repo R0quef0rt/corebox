@@ -28,7 +28,7 @@
     }],
     "provisioners": [{
       "type": "salt-masterless",
-      "minion_config_file": "etc/salt/minion",
+      "minion_config": "etc/salt/minion",
       "local_state_tree": "./srv/salt",
       "bootstrap_args": "-i cloudbox -F -P -p python-git",
       "salt_call_args": "-i cloudbox"
