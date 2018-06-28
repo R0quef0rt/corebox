@@ -55,6 +55,8 @@ jobs:
     script:
     - bash -x ./srv/terraform/terraform-validate.sh
     - bash -x ./srv/terraform/terraform-destroy.sh
+    - bash ./srv/terraform/terraform-plan.sh
+    - bash -x ./srv/terraform/terraform-apply.sh
   - stage: plan
     script:
     - bash -x ./srv/terraform/terraform-plan.sh
