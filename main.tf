@@ -12,6 +12,21 @@ terraform {
   }
 }
 
+data "aws_ami" "minion" {
+  most_recent = true
+  owners      = ["self"]
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name   = "name"
+    values = ["${var.env}-${var.service_name}-*"]
+  }
+}
+
 data "template_file" "minion-user-data" {
   template = "${file("${path.root}/setup.sh")}"
 }
@@ -39,7 +54,7 @@ resource "aws_security_group" "minion" {
 
 resource "aws_instance" "minion" {
   instance_type = "t2.micro"
-  ami           = "ami-5cc39523"
+  ami           = "${data.aws_ami.minion.image_id}"
 
   user_data              = "${data.template_file.minion-user-data.rendered}"
   key_name               = "${var.env}"
