@@ -52,16 +52,16 @@ resource "aws_instance" "minion" {
     private_key = "${file("${path.root}/auth/${var.env}.key")}"
   }
 
-  provisioner "salt-masterless" {
-    # minion_config_file = "etc/salt/minion"
-    local_state_tree    = "${path.root}/srv/salt"
-    remote_state_tree   = "/tmp/srv/salt"
-    local_pillar_roots  = "${path.root}/srv/pillar/${var.env}"
-    remote_pillar_roots = "/tmp/srv/pillar"
-    disable_sudo        = "false"
-    bootstrap_args      = "-i cloudbox -F -P -p python-git"
-    salt_call_args      = "-i cloudbox"
-  }
+  # provisioner "salt-masterless" {
+  #   # minion_config_file = "etc/salt/minion"
+  #   local_state_tree    = "${path.root}/srv/salt"
+  #   remote_state_tree   = "/tmp/srv/salt"
+  #   local_pillar_roots  = "${path.root}/srv/pillar/${var.env}"
+  #   remote_pillar_roots = "/tmp/srv/pillar"
+  #   disable_sudo        = "false"
+  #   bootstrap_args      = "-i cloudbox -F -P -p python-git"
+  #   salt_call_args      = "-i cloudbox"
+  # }
 
   tags {
     Name        = "${var.project_key}-${var.service_name}-${var.env}"

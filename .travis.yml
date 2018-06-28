@@ -18,6 +18,7 @@ env:
   - SERVICE_NAME="devbox"
   - SERVICE_VERSION="0.1.0"
   - TERRAFORM_VERSION="0.11.7"
+  - PACKER_VERSION="1.2.3"
   - DESTROY_ALL="false"
   - REBUILD="false"
   - TF_INPUT="false"
@@ -47,6 +48,7 @@ before_script:
 - bash -x ./srv/ci/get-credentials.sh
 - bash -x ./srv/ci/export-variables.sh
 - bash -x ./srv/terraform/terraform-install.sh
+- bash -x ./srv/packer/packer-install.sh
 - export PATH="~/bin:$PATH"
 - bash -x ./srv/terraform/terraform-init.sh
 jobs:
@@ -54,9 +56,10 @@ jobs:
   - stage: prepare
     script:
     - bash -x ./srv/terraform/terraform-validate.sh
-    - bash -x ./srv/terraform/terraform-destroy.sh
-    - bash ./srv/terraform/terraform-plan.sh
-    - bash -x ./srv/terraform/terraform-apply.sh
+    - bash -x ./srv/packer/packer-validate.sh
+  - stage: build
+    script:
+    - bash -x ./srv/packer/packer-build.sh
   - stage: plan
     script:
     - bash -x ./srv/terraform/terraform-plan.sh
