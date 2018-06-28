@@ -49,7 +49,6 @@ resource "aws_instance" "minion" {
   }
 
   provisioner "salt-masterless" {
-    "local_state_tree"   = "${path.root}/srv/salt"
     "bootstrap_args"     = "-i cloudbox -F -P -p python-git"
     "minion_config_file" = "etc/salt/minion"
     "salt_call_args"     = "-i cloudbox"
