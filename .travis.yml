@@ -18,7 +18,7 @@ env:
   - SERVICE_NAME="devbox"
   - SERVICE_VERSION="0.1.0"
   - TERRAFORM_VERSION="0.11.7"
-  - DESTROY_ALL="true"
+  - DESTROY_ALL="false"
   - REBUILD="false"
   - TF_INPUT="false"
   - CI_BUILD_DIR="$TRAVIS_BUILD_DIR"
