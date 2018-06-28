@@ -12,6 +12,10 @@ terraform {
   }
 }
 
+data "template_file" "minion-user-data" {
+  template = "${file("${path.root}/user-data.sh")}"
+}
+
 resource "aws_security_group" "minion" {
   name        = "${var.env}-${var.service_name}-minion"
   description = "Used by the AWS instance."
@@ -36,10 +40,10 @@ resource "aws_security_group" "minion" {
 resource "aws_instance" "minion" {
   instance_type = "t2.micro"
   ami           = "ami-5cc39523"
-  key_name      = "${var.env}"
 
-  subnet_id = "subnet-df80f097"
-
+  user_data              = "${data.template_file.minion-user-data.rendered}"
+  key_name               = "${var.env}"
+  subnet_id              = "subnet-df80f097"
   vpc_security_group_ids = ["${aws_security_group.minion.id}"]
 
   connection {
