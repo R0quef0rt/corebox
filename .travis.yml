@@ -9,7 +9,7 @@ addons:
     # - $(git ls-files -o | tr "\n" ":")
     - $(ls /var/log/*.log | tr "\n" ":")
     - $TRAVIS_BUILD_DIR/terraform.tfvars
-    - $TRAVIS_BUILD_DIR/plan.tfplan
+    # - $TRAVIS_BUILD_DIR/plan.tfplan
 env:
   global:
   - REGION="us-east-1"
