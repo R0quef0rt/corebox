@@ -12,6 +12,6 @@ mkdir -p /etc/salt
 #   -i cloudbox \
 #   -c /tmp \
 #   -p python-git \
-#   git v${SALT_VERSION
+#   git vSALT_VERSION
 
 # salt-call state.highstate
