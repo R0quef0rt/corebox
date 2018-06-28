@@ -13,7 +13,11 @@ terraform {
 }
 
 data "template_file" "minion-user-data" {
-  template = "${file("${path.root}/user-data.sh")}"
+  template = "${file("${path.root}/setup.sh")}"
+
+  vars {
+    SALT_VERSION = "2018.3.2"
+  }
 }
 
 resource "aws_security_group" "minion" {
@@ -50,14 +54,6 @@ resource "aws_instance" "minion" {
     type        = "ssh"
     user        = "ubuntu"
     private_key = "${file("${path.root}/auth/${var.env}.key")}"
-  }
-
-  provisioner "salt-masterless" {
-    minion_config_file = "etc/salt/minion"
-    local_state_tree   = "${path.root}/srv/salt"
-    disable_sudo       = "false"
-    bootstrap_args     = "-i cloudbox -F -P -p python-git"
-    salt_call_args     = "-i cloudbox"
   }
 
   tags {
