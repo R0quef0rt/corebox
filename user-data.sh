@@ -1,4 +1,4 @@
 #!/bin/bash
 
 mkdir -p /app
-mkdir -p /srv/salt/states
+mkdir -p /srv/salt
