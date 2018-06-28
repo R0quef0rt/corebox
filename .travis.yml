@@ -18,7 +18,7 @@ env:
   - SERVICE_NAME="devbox"
   - SERVICE_VERSION="0.1.0"
   - TERRAFORM_VERSION="0.11.7"
-  - DESTROY_ALL="false"
+  - DESTROY_ALL="true"
   - REBUILD="false"
   - TF_INPUT="false"
   - CI_BUILD_DIR="$TRAVIS_BUILD_DIR"
@@ -62,7 +62,7 @@ jobs:
     script:
     - bash ./srv/terraform/terraform-plan.sh
     - bash ./srv/terraform/terraform-apply.sh
-    - bash ./srv/terraform/terraform-destroy.sh
+    - bash -x ./srv/terraform/terraform-destroy.sh
     env:
     - ENV=dev
     - DESTROY_ALL=true
