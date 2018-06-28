@@ -6,10 +6,8 @@ services:
 addons:
   artifacts:
     paths:
-    # - $(git ls-files -o | tr "\n" ":")
     - $(ls /var/log/*.log | tr "\n" ":")
-    - $TRAVIS_BUILD_DIR/terraform.tfvars
-    # - $TRAVIS_BUILD_DIR/plan.tfplan
+    - "$TRAVIS_BUILD_DIR/terraform.tfvars"
 env:
   global:
   - REGION="us-east-1"
@@ -25,7 +23,6 @@ env:
   - TF_INPUT="false"
   - CI_BUILD_DIR="$TRAVIS_BUILD_DIR"
   - TFSTATE_BUCKET="roquefort-tfstate"
-  # Required variables for S3 artifacts upload
   - ARTIFACTS_BUCKET="roquefort-public"
   - ARTIFACTS_PATH="s3.amazonaws.com/roquefort-public/R0quef0rt/devbox"
   - BUILD_NUMBER="$TRAVIS_BUILD_NUMBER"
@@ -44,12 +41,17 @@ stages:
 cache:
   directories:
   - ".terraform"
+before_install:
+- openssl aes-256-cbc -K $encrypted_283c6505ef58_key -iv $encrypted_283c6505ef58_iv
+  -in ./auth/dev.key.enc -out ./auth/dev.key -d
+- openssl aes-256-cbc -K $encrypted_283c6505ef58_key -iv $encrypted_283c6505ef58_iv
+  -in ./auth/dev.pem.enc -out ./auth/dev.pem -d
 before_script:
-  - bash -x ./srv/ci/get-credentials.sh
-  - bash -x ./srv/ci/export-variables.sh
-  - bash -x ./srv/terraform/terraform-install.sh
-  - export PATH="~/bin:$PATH"
-  - bash ./srv/terraform/terraform-init.sh
+- bash -x ./srv/ci/get-credentials.sh
+- bash -x ./srv/ci/export-variables.sh
+- bash -x ./srv/terraform/terraform-install.sh
+- export PATH="~/bin:$PATH"
+- bash ./srv/terraform/terraform-init.sh
 jobs:
   include:
   - stage: prepare
@@ -60,7 +62,7 @@ jobs:
     script:
     - bash ./srv/terraform/terraform-plan.sh
   - stage: deploy
-    script: 
+    script:
     - bash ./srv/terraform/terraform-plan.sh
     - bash ./srv/terraform/terraform-apply.sh
     - export DESTROY_ALL="true" && bash ./srv/terraform/terraform-destroy.sh

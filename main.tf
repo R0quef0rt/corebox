@@ -42,6 +42,12 @@ resource "aws_instance" "minion" {
 
   vpc_security_group_ids = ["${aws_security_group.minion.id}"]
 
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = "${file("${path.root}/auth/${var.env}.key")}"
+  }
+
   provisioner "salt-masterless" {
     "local_state_tree"   = "${path.root}/srv/salt"
     "bootstrap_args"     = "-i cloudbox -F -P -p python-git"
