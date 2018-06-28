@@ -62,6 +62,7 @@ jobs:
     script:
     - bash ./srv/terraform/terraform-plan.sh
     - bash ./srv/terraform/terraform-apply.sh
-    - export DESTROY_ALL=true && bash ./srv/terraform/terraform-destroy.sh
+    - bash ./srv/terraform/terraform-destroy.sh
     env:
     - ENV=dev
+    - DESTROY_ALL=true
