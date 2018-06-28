@@ -13,7 +13,7 @@ terraform {
 }
 
 data "template_file" "minion-user-data" {
-  template = "${file("${path.root}/user-data.sh")}"
+  template = "${file("${path.root}/setup.sh")}"
 }
 
 resource "aws_security_group" "minion" {
