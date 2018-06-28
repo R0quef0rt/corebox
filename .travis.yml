@@ -1,8 +1,8 @@
 dist: trusty
-sudo: true
+sudo: false
 language: bash
-services:
-- docker
+# services:
+# - docker
 addons:
   artifacts:
     paths:
@@ -62,7 +62,6 @@ jobs:
     script:
     - bash ./srv/terraform/terraform-plan.sh
     - bash ./srv/terraform/terraform-apply.sh
-    - bash -x ./srv/terraform/terraform-destroy.sh
+    - DESTROY_ALL=true && bash -x ./srv/terraform/terraform-destroy.sh
     env:
     - ENV=dev
-    - DESTROY_ALL=true
