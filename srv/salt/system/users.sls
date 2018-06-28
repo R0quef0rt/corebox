@@ -9,6 +9,8 @@
     - gid_from_name: True
     - allow_uid_change: True
     - allow_gid_change: True
+    - require:
+      - group: {{user}}
     - optional_groups:
       - docker
       - sudo
@@ -24,6 +26,8 @@
     - shell: /bin/bash
     - createhome: False
     - gid_from_name: True
+    - require:
+      - group: {{user}}
     - allow_uid_change: True
     - allow_gid_change: True
 {{user}}:
