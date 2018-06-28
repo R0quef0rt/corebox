@@ -36,7 +36,7 @@ resource "aws_security_group" "minion" {
 resource "aws_instance" "minion" {
   instance_type = "t2.micro"
   ami           = "ami-5cc39523"
-  key_name      = "dev"
+  key_name      = "${var.env}"
 
   subnet_id = "subnet-df80f097"
 
