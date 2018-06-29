@@ -6,13 +6,19 @@ services:
     volumes:
       - /etc/nzbget/config:/config
       - downloads:/downloads
-
+    environment:
+      PLEX_UID: 1000
+      PLEX_GID: 1000
+      
   sonarr:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/sonarr/config:/config
       - television:/tv
       - downloads:/downloads
+    environment:
+      PLEX_UID: 1000
+      PLEX_GID: 1000
 
   radarr:
     volumes:
@@ -20,6 +26,9 @@ services:
       - /etc/radarr/config:/config
       - movies:/movies
       - downloads:/downloads
+    environment:
+      PLEX_UID: 1000
+      PLEX_GID: 1000
 
   plex:
     volumes:
@@ -27,12 +36,18 @@ services:
       - temp:/transcode
       - movies:/movies
       - television:/television
+    environment:
+      PLEX_UID: 1000
+      PLEX_GID: 1000
 
   duplicati:
     volumes:
       - /etc/duplicati/config:/config
       - backups:/backups
       - source:/source
+    environment:
+      PLEX_UID: 1000
+      PLEX_GID: 1000
 
   sync:
     volumes:
@@ -40,3 +55,14 @@ services:
       - movies:/mnt/mounted_folders/movies
       - television:/mnt/mounted_folders/television
       - downloads:/mnt/mounted_folders/downloads
+    environment:
+      PLEX_UID: 1000
+      PLEX_GID: 1000
+
+volumes:
+  downloads:
+  television:
+  movies:
+  sync:
+  backups:
+  temp:

@@ -4,48 +4,51 @@ services:
 
   nzbget:
     volumes:
-      - ./etc/nzbget/config:/config
+      - /etc/nzbget/config:/config
       - downloads:/downloads
 
   sonarr:
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./etc/sonarr/config:/config
-      - television:/tv
+      - /etc/sonarr/config:/config
+      - /mnt/television:/tv
       - downloads:/downloads
 
   radarr:
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./etc/radarr/config:/config
-      - movies:/movies
+      - /etc/radarr/config:/config
+      - /mnt/movies:/movies
       - downloads:/downloads
 
   plex:
     volumes:
-      - ./etc/plex/config:/config
+      - /etc/plex/config:/config
       - temp:/transcode
-      - movies:/movies
-      - television:/television
+      - /mnt/movies:/movies
+      - /mnt/television:/television
 
   duplicati:
+    ports:
+      - 8200:8200
     volumes:
-      - ./etc/duplicati/config:/config
-      - backups:/backups
+      - /etc/duplicati/config:/config
+      - /mnt/backups:/backups
+      - /mnt/movies:/movies
+      - /mnt/television:/television
       - source:/source
 
   sync:
+    ports:
+      - 8888:8888
+      - 55555:55555
     volumes:
       - sync:/mnt/sync
-      - movies:/mnt/mounted_folders/movies
-      - television:/mnt/mounted_folders/television
-      - downloads:/mnt/mounted_folders/downloads
+      - /mnt/movies:/mnt/movies
+      - /mnt/television:/mnt/television
+      - /mnt/backups:/mnt/backups
+      - downloads:/mnt/downloads
 
 volumes:
   downloads:
-  television:
-  movies:
   sync:
   temp:
-  backups:
   source:
