@@ -7,9 +7,10 @@
       "env": "{{env `ENV`}}"
     },
     "builders": [{
-      "ami_name": "{{user `env`}}-{{user `service_name`}}-{{user `service_version` | clean_ami_name}}-{{timestamp | clean_ami_name}}",
+      "ami_name": "{{user `env`}}-{{user `service_name`}}-{{user `service_version` | clean_ami_name}}",
       "ami_description": "An Ubuntu 18.04 AMI pre-installed with Salt.",
       "instance_type": "t2.micro",
+      "force_deregister": "true",
       "name": "{{user `env`}}-{{user `service_name`}}",
       "region": "{{user `region`}}",
       "type": "amazon-ebs",

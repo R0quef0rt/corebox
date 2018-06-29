@@ -68,21 +68,21 @@ resource "aws_instance" "minion" {
   }
 
   ebs_block_device {
-    device_name           = "/dev/sd1"
+    device_name           = "/dev/sdx"
     volume_size           = 5
     volume_type           = "gp2"
     delete_on_termination = false
   }
 
   ebs_block_device {
-    device_name           = "/dev/sd2"
+    device_name           = "/dev/sdy"
     volume_size           = 5
     volume_type           = "gp2"
     delete_on_termination = false
   }
 
   ebs_block_device {
-    device_name           = "/dev/sd3"
+    device_name           = "/dev/sdz"
     volume_size           = 5
     volume_type           = "gp2"
     delete_on_termination = false
