@@ -11,7 +11,7 @@ compose-project:
 
 cmd-docker-compose-up:
   cmd.run:
-    - name: 'docker-compose -f /app/src/docker-compose.yml up -f /app/src/docker-compose.{{saltenv}}.yml -d'
+    - name: 'docker-compose -f /app/src/docker-compose.yml -f /app/src/docker-compose.{{saltenv}}.yml up -d'
     - require:
       - pip: compose
       - git: compose-project
