@@ -86,6 +86,6 @@ directory:
     recurse: False
   /mnt:
     user: master
-    group: master
+    group: docker
     mode: 777
-    recurse: False
+    recurse: True

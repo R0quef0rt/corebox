@@ -30,6 +30,8 @@
       - group: {{user}}
     - allow_uid_change: True
     - allow_gid_change: True
+    - optional_groups:
+      - docker
 {{user}}:
   group.present
 {% endfor %}

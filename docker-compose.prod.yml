@@ -27,8 +27,6 @@ services:
       - /mnt/television:/television
 
   duplicati:
-    ports:
-      - 8200:8200
     volumes:
       - /etc/duplicati/config:/config
       - /mnt/backups:/backups
@@ -37,9 +35,6 @@ services:
       - source:/source
 
   sync:
-    ports:
-      - 8888:8888
-      - 55555:55555
     volumes:
       - sync:/mnt/sync
       - /mnt/movies:/mnt/movies
