@@ -32,6 +32,7 @@
     - allow_gid_change: True
     - optional_groups:
       - docker
+      - master
 {{user}}:
   group.present
 {% endfor %}
