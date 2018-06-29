@@ -20,6 +20,9 @@ salt-run jobs.lookup_jid <job id number>
 List recently completed jobs
 salt-run jobs.list_jobs
 
+Test before highstate
+salt-call --local state.highstate test=True
+
 
 ## Docker Compose
 
