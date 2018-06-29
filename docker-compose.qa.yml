@@ -37,9 +37,9 @@ services:
   sync:
     volumes:
       - sync:/mnt/sync
-      - /mnt/movies:/mnt/movies
-      - /mnt/television:/mnt/television
-      - /mnt/backups:/mnt/backups
+      - /mnt/movies:/mnt/mounted_folders/movies
+      - /mnt/television:/mnt/mounted_folders/television
+      - /mnt/backups:/mnt/mounted_folders/backups
       - downloads:/mnt/downloads
 
 volumes:
