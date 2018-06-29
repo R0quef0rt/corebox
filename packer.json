@@ -7,7 +7,7 @@
       "env": "{{env `ENV`}}"
     },
     "builders": [{
-      "ami_name": "{{user `env`}}-{{user `service_name`}}-{{user `service_version` | clean_ami_name}}",
+      "ami_name": "{{user `env`}}-{{user `service_name`}}-{{user `service_version` | clean_ami_name}}-{{timestamp | clean_ami_name}}",
       "ami_description": "An Ubuntu 18.04 AMI pre-installed with Salt.",
       "instance_type": "t2.micro",
       "name": "{{user `env`}}-{{user `service_name`}}",
@@ -30,7 +30,7 @@
       "type": "salt-masterless",
       "minion_config": "etc/salt/minion",
       "local_state_tree": "./srv/salt",
-      "bootstrap_args": "-i cloudbox -F -P -p python-git",
+      "bootstrap_args": "-i newbox -F -P -p python-git",
       "salt_call_args": "--id newbox"
     }
   ]
