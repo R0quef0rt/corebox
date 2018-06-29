@@ -84,3 +84,8 @@ directory:
     group: master
     mode: 660
     recurse: False
+  /mnt:
+    user: master
+    group: master
+    mode: 777
+    recurse: False

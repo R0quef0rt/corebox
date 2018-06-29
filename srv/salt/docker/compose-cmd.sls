@@ -3,7 +3,6 @@ compose-project:
     - name: https://github.com/R0quef0rt/devbox
     - rev: dev
     - target: /app/src
-    # - bare: True
     - force_checkout: True
     - force_clone: True
     - force_fetch: True
