@@ -7,7 +7,7 @@
 #     - device: /dev/md0
 
 {% for mount, args in pillar['raid_devices'].iteritems() %}
-{{args['mnt']}}:
+{{mount}}:
   raid.present:
     - level: 5
     - devices:
@@ -19,6 +19,7 @@
   blockdev.formatted:
     - fs_type: ext4
     - force: True
+{% endfor %}
 
 md0:
   blockdev.tuned:
@@ -35,4 +36,3 @@ md0:
     - mkmnt: True
     - opts:
       - defaults
-{% endfor %}
