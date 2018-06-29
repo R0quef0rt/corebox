@@ -6,15 +6,15 @@ users:
     - master
   services:
     nzbget:
-      uid: 1050
+      uid: 1002
     sonarr:
-      uid: 1051
+      uid: 1003
     radarr:
-      uid: 1052
+      uid: 1004
     plex:
-      uid: 1053
+      uid: 1005
     duplicati:
-      uid: 1054
+      uid: 1006
       
 firewall-rules:
   ssh:
@@ -60,29 +60,29 @@ firewall-rules:
 
 directory:
   /etc/nzbget:
-    user: nzbget
-    group: master
-    mode: 660
+    user: master
+    group: nzbget
+    mode: 766
     recurse: False
   /etc/sonarr:
-    user: sonarr
-    group: master
-    mode: 660
+    user: master
+    group: sonarr
+    mode: 766
     recurse: False
   /etc/radarr:
-    user: radarr
-    group: master
-    mode: 660
+    user: master
+    group: radarr
+    mode: 766
     recurse: False
   /etc/plex:
-    user: plex
-    group: master
-    mode: 660
+    user: master
+    group: plex
+    mode: 766
     recurse: False
   /etc/duplicati:
-    user: duplicati
-    group: master
-    mode: 660
+    user: master
+    group: duplicati
+    mode: 766
     recurse: False
   /mnt:
     user: master
