@@ -6,8 +6,9 @@ dev:
     - docker.compose
   'devbox':
     - docker.compose-cmd
-  'cloudbox':
     - system.raid
+  'newbox':
+    - docker.compose-cmd
 qa:
   '*':
     - common

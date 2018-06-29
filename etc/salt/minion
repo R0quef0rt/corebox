@@ -1,3 +1,5 @@
+id: devbox
+
 file_client: local
 
 top_file_merging_strategy: same
@@ -55,3 +57,7 @@ ext_pillar:
       - env: prod
       - name: prod
       - root: srv/pillar/prod
+
+# Add custom grains to minion
+ext:
+  - raid5
