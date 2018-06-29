@@ -9,7 +9,7 @@ services:
     environment:
       PLEX_UID: 1000
       PLEX_GID: 1000
-      
+
   sonarr:
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -66,3 +66,4 @@ volumes:
   sync:
   backups:
   temp:
+  source:
