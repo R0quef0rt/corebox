@@ -1,5 +1,5 @@
 timezone:
-  default: UTC-6
+  default: America/Chicago
 
 users:
   masters:
