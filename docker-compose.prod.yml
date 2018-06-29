@@ -55,10 +55,9 @@ services:
       - 55555:55555
     volumes:
       - sync:/mnt/sync
-      - /mnt/movies:/mnt/mounted_folders/movies
-      - /mnt/television:/mnt/mounted_folders/television
-      - downloads:/mnt/mounted_folders/downloads
-
+      - /mnt/movies:/mnt/movies
+      - /mnt/television:/mnt/television
+      - downloads:/mnt/downloads
 
 volumes:
   downloads:
