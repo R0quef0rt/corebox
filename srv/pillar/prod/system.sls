@@ -2,7 +2,7 @@ raid: True
 dir_set_perms: True
 
 timezone:
-  default: utc-6
+  default: UTC-6
 
 users:
   masters:

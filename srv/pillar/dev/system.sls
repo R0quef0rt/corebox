@@ -1,5 +1,5 @@
 timezone:
-  default: utc-6
+  default: UTC-6
 
 users:
   masters:
