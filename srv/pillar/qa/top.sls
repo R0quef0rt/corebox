@@ -1,3 +1,4 @@
 qa:
   '*':
     - system
+    - raid

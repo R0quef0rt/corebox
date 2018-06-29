@@ -67,56 +67,25 @@ resource "aws_instance" "minion" {
     private_key = "${file("${path.root}/auth/${var.env}.key")}"
   }
 
-  # provisioner "salt-masterless" {
-  #   # minion_config_file = "etc/salt/minion"
-  #   local_state_tree    = "${path.root}/srv/salt"
-  #   remote_state_tree   = "/tmp/srv/salt"
-  #   local_pillar_roots  = "${path.root}/srv/pillar/${var.env}"
-  #   remote_pillar_roots = "/tmp/srv/pillar"
-  #   disable_sudo        = "false"
-  #   bootstrap_args      = "-i cloudbox -F -P -p python-git"
-  #   salt_call_args      = "-i cloudbox"
-  # }
-
   ebs_block_device {
-    device_name           = "/dev/sdb"
+    device_name           = "/dev/sd1"
     volume_size           = 5
     volume_type           = "gp2"
-    delete_on_termination = true
-  }
-  ebs_block_device {
-    device_name           = "/dev/sdc"
-    volume_size           = 5
-    volume_type           = "gp2"
-    delete_on_termination = true
-  }
-  ebs_block_device {
-    device_name           = "/dev/sdd"
-    volume_size           = 5
-    volume_type           = "gp2"
-    delete_on_termination = true
-  }
-  tags {
-    Name        = "${var.project_key}-${var.service_name}-${var.env}"
-    environment = "${var.env}"
-    Terraform   = "true"
-  }
-}
-
-resource "null_resource" "minion" {
-  triggers {
-    node               = "${join(",", aws_instance.minion.*.id)}"
-    user-data          = "${sha256("${data.template_file.minion-user-data.rendered}")}"
-    docker-compose     = "${sha256(file("docker-compose.yml"))}"
-    docker-compose-env = "${sha256(file("docker-compose.${var.env}.yml"))}"
-    packer             = "${sha256(file("packer.json"))}"
+    delete_on_termination = false
   }
 
-  connection {
-    host        = "${element(aws_instance.minion.*.public_ip, count.index)}"
-    type        = "ssh"
-    user        = "ubuntu"
-    private_key = "${file("${path.root}/auth/${var.env}.key")}"
+  ebs_block_device {
+    device_name           = "/dev/sd2"
+    volume_size           = 5
+    volume_type           = "gp2"
+    delete_on_termination = false
+  }
+
+  ebs_block_device {
+    device_name           = "/dev/sd3"
+    volume_size           = 5
+    volume_type           = "gp2"
+    delete_on_termination = false
   }
 
   provisioner "remote-exec" {
@@ -125,5 +94,9 @@ resource "null_resource" "minion" {
     ]
   }
 
-  depends_on = ["aws_instance.minion"]
+  tags {
+    Name        = "${var.project_key}-${var.service_name}-${var.env}"
+    environment = "${var.env}"
+    Terraform   = "true"
+  }
 }

@@ -1,3 +1,4 @@
 prod:
   '*':
     - system
+    - raid
