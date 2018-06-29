@@ -78,6 +78,24 @@ resource "aws_instance" "minion" {
   #   salt_call_args      = "-i cloudbox"
   # }
 
+  ebs_block_device {
+    device_name           = "/dev/sda"
+    volume_size           = 5
+    volume_type           = "gp2"
+    delete_on_termination = true
+  }
+  ebs_block_device {
+    device_name           = "/dev/sdb"
+    volume_size           = 5
+    volume_type           = "gp2"
+    delete_on_termination = true
+  }
+  ebs_block_device {
+    device_name           = "/dev/sdc"
+    volume_size           = 5
+    volume_type           = "gp2"
+    delete_on_termination = true
+  }
   tags {
     Name        = "${var.project_key}-${var.service_name}-${var.env}"
     environment = "${var.env}"
@@ -105,27 +123,6 @@ resource "null_resource" "minion" {
     inline = [
       "sudo salt-call --local state.highstate",
     ]
-  }
-
-  ebs_block_device {
-    device_name           = "/dev/sda"
-    volume_size           = 5
-    volume_type           = "gp2"
-    delete_on_termination = true
-  }
-
-  ebs_block_device {
-    device_name           = "/dev/sdb"
-    volume_size           = 5
-    volume_type           = "gp2"
-    delete_on_termination = true
-  }
-
-  ebs_block_device {
-    device_name           = "/dev/sdc"
-    volume_size           = 5
-    volume_type           = "gp2"
-    delete_on_termination = true
   }
 
   depends_on = ["aws_instance.minion"]
