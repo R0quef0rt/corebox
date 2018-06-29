@@ -6,7 +6,7 @@
 #   mount.unmounted:
 #     - device: /dev/md0
 
-{% for args in pillar['raid_devices'].iteritems() %}
+{% for mount, args in pillar['raid_devices'].iteritems() %}
 {{args['mnt']}}:
   raid.present:
     - level: 5

@@ -2,10 +2,10 @@ raid: True
 dir_set_perms: False
 
 raid_devices:
-  - mnt: /dev/md0
-  - dev1: /dev/sdb
-  - dev2: /dev/sdc
-  - dev3: /dev/sdd
+  /dev/md0: 
+    dev1: /dev/sdb
+    dev2: /dev/sdc
+    dev3: /dev/sdd
 
 users:
   masters:
