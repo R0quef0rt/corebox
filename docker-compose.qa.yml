@@ -4,23 +4,27 @@ services:
 
   nzbget:
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /etc/nzbget/config:/config
       - downloads:/downloads
 
   sonarr:
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /etc/sonarr/config:/config
       - /mnt/television:/tv
       - downloads:/downloads
 
   radarr:
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /etc/radarr/config:/config
       - /mnt/movies:/movies
       - downloads:/downloads
 
   plex:
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /etc/plex/config:/config
       - temp:/transcode
       - /mnt/movies:/movies
@@ -28,6 +32,7 @@ services:
 
   duplicati:
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - /etc/duplicati/config:/config
       - /mnt/backups:/backups
       - /mnt/movies:/movies
@@ -36,6 +41,7 @@ services:
 
   sync:
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - sync:/mnt/sync
       - /mnt/movies:/mnt/mounted_folders/movies
       - /mnt/television:/mnt/mounted_folders/television
