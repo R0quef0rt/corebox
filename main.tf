@@ -107,5 +107,26 @@ resource "null_resource" "minion" {
     ]
   }
 
+  ebs_block_device {
+    device_name           = "/dev/sda"
+    volume_size           = 5
+    volume_type           = "gp2"
+    delete_on_termination = true
+  }
+
+  ebs_block_device {
+    device_name           = "/dev/sdb"
+    volume_size           = 5
+    volume_type           = "gp2"
+    delete_on_termination = true
+  }
+
+  ebs_block_device {
+    device_name           = "/dev/sdc"
+    volume_size           = 5
+    volume_type           = "gp2"
+    delete_on_termination = true
+  }
+
   depends_on = ["aws_instance.minion"]
 }
