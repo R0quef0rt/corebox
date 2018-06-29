@@ -9,15 +9,17 @@ users:
       uid: 1000
   services:
     nzbget:
-      uid: 1050
+      uid: 1002
     sonarr:
-      uid: 1051
+      uid: 1003
     radarr:
-      uid: 1052
+      uid: 1004
     plex:
-      uid: 1053
+      uid: 1005
     duplicati:
-      uid: 1054
+      uid: 1006
+    sync:
+      uid: 1007
       
 firewall-rules:
   ssh:
@@ -86,4 +88,9 @@ directory:
     user: duplicati
     group: master
     mode: 660
+    recurse: False
+  /etc/sync:
+    user: master
+    group: sync
+    mode: 766
     recurse: False

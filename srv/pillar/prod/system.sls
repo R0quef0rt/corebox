@@ -18,6 +18,8 @@ users:
       uid: 1005
     duplicati:
       uid: 1006
+    sync:
+      uid: 1007
       
 firewall-rules:
   ssh:
@@ -85,6 +87,11 @@ directory:
   /etc/duplicati:
     user: master
     group: duplicati
+    mode: 766
+    recurse: False
+  /etc/sync:
+    user: master
+    group: sync
     mode: 766
     recurse: False
   /mnt:
