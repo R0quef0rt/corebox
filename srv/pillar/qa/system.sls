@@ -65,32 +65,37 @@ firewall-rules:
 
 directory:
   /etc/nzbget:
-    user: nzbget
-    group: master
-    mode: 660
+    user: master
+    group: nzbget
+    mode: 776
     recurse: False
   /etc/sonarr:
-    user: sonarr
-    group: master
-    mode: 660
+    user: master
+    group: sonarr
+    mode: 776
     recurse: False
   /etc/radarr:
-    user: radarr
-    group: master
-    mode: 660
+    user: master
+    group: radarr
+    mode: 776
     recurse: False
   /etc/plex:
-    user: plex
-    group: master
-    mode: 660
+    user: master
+    group: plex
+    mode: 776
     recurse: False
   /etc/duplicati:
-    user: duplicati
-    group: master
-    mode: 660
+    user: master
+    group: duplicati
+    mode: 776
     recurse: False
   /etc/sync:
     user: master
     group: sync
-    mode: 766
+    mode: 776
     recurse: False
+  /mnt:
+    user: master
+    group: docker
+    mode: 777
+    recurse: True
