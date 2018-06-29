@@ -34,3 +34,11 @@ docker volume prune
 travis encrypt MY_SECRET_ENV=super_secret --add env.global
 
 travis encrypt-file dev.key --add
+
+
+### To do
+
+- Add CI, CD, CM, unit testing, integration testing
+- Add Slack alerts and ChatOps functionality
+- Support all 3 major cloud providers
+- Support at least 3 linux distros, and Windows

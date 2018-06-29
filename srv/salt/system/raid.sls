@@ -6,13 +6,14 @@
 #   mount.unmounted:
 #     - device: /dev/md0
 
-/dev/md0:
+{% for rule, args in pillar['raid_devices'].iteritems() %}
+{{args['mnt']}}:
   raid.present:
     - level: 5
     - devices:
-      - /dev/sda
-      - /dev/sdb
-      - /dev/sdc
+      - {{args['dev1']}}
+      - {{args['dev2']}}
+      - {{args['dev3']}}
     - chunk: 64
     - run: True
   blockdev.formatted:
@@ -34,3 +35,4 @@ md0:
     - mkmnt: True
     - opts:
       - defaults
+{% endfor %}
