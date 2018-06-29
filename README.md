@@ -42,3 +42,4 @@ travis encrypt-file dev.key --add
 - Add Slack alerts and ChatOps functionality
 - Support all 3 major cloud providers
 - Support at least 3 linux distros, and Windows
+- Blue/Green deployments
