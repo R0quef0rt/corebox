@@ -44,6 +44,8 @@ services:
     volumes:
       - /etc/duplicati/config:/config
       - /mnt/backups:/backups
+      - /mnt/movies:/movies
+      - /mnt/television:/television
       - source:/source
     environment:
       PUID: 1006
@@ -57,6 +59,7 @@ services:
       - sync:/mnt/sync
       - /mnt/movies:/mnt/movies
       - /mnt/television:/mnt/television
+      - /mnt/backups:/mnt/backups
       - downloads:/mnt/downloads
 
 volumes:
