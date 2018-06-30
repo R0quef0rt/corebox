@@ -23,10 +23,6 @@ services:
       - downloads:/downloads
 
   plex:
-    networks:
-      plex:
-        aliases:
-          - devbox
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/plex/config:/config
@@ -57,7 +53,3 @@ volumes:
   downloads:
   temp:
   source:
-
-networks:
-  plex:
-    driver: bridge
