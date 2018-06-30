@@ -73,12 +73,12 @@ directory:
     user: master
     group: sonarr
     mode: 776
-    recurse: False
+    recurse: True
   /etc/radarr:
     user: master
     group: radarr
     mode: 776
-    recurse: False
+    recurse: True
   /etc/plex:
     user: master
     group: plex
