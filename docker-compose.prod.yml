@@ -12,7 +12,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/sonarr/config:/config
-      - /mnt/television:/tv
+      - /mnt/television:/television
       - downloads:/downloads
 
   radarr:

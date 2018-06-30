@@ -12,6 +12,8 @@ services:
   sonarr:
     volumes:
       - ./etc/sonarr/config:/config
+      - television:/television
+      - downloads:/downloads
     environment:
       PUID: 1000
       PGID: 1000
@@ -19,6 +21,8 @@ services:
   radarr:
     volumes:
       - ./etc/radarr/config:/config
+      - movies:/movies
+      - downloads:/downloads
     environment:
       PUID: 1000
       PGID: 1000
@@ -43,3 +47,8 @@ services:
     ports:
       - 18888:8888
       - 15555:55555
+
+volumes:
+  downloads:
+  television:
+  movies:

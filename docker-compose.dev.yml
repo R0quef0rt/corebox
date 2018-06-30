@@ -14,7 +14,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/sonarr/config:/config
-      - television:/tv
+      - television:/television
       - downloads:/downloads
     environment:
       PLEX_UID: 1000
