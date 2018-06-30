@@ -33,6 +33,7 @@ services:
     environment:
       PLEX_UID: 1005
       PLEX_GID: 1005
+      ADVERTISE_IP: "http://192.168.5.20:32400/"
 
   duplicati:
     image: linuxserver/duplicati:82

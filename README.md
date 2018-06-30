@@ -45,4 +45,5 @@ travis encrypt-file dev.key --add
 - Add Slack alerts and ChatOps functionality
 - Support all 3 major cloud providers
 - Support at least 3 linux distros, and Windows
+- Example code for Terraform, Vagrant, Docker, Vault, Packer, Chef, Puppet, Test-Kitchen, Ansible, Gitlab CI, Travis CI
 - Blue/Green deployments
