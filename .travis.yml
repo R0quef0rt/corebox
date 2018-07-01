@@ -62,7 +62,7 @@ jobs:
     script:
     - bash -x ./srv/packer/packer-build.sh
     env:
-    - ENV=dev
+    - ENV=qa
   - stage: plan
     script:
     - bash -x ./srv/terraform/terraform-plan.sh
@@ -72,4 +72,4 @@ jobs:
     - bash -x ./srv/terraform/terraform-apply.sh
     - DESTROY_ALL=true && bash -x ./srv/terraform/terraform-destroy.sh
     env:
-    - ENV=dev
+    - ENV=qa
