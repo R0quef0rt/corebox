@@ -1,4 +1,0 @@
-dev:
-  '*':
-    - system
-    - raid

@@ -64,7 +64,7 @@ resource "aws_instance" "minion" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = "${file("${path.root}/auth/${var.env}.key")}"
+    private_key = "${file("${path.root}/auth/dev.key")}"
   }
 
   ebs_block_device {
