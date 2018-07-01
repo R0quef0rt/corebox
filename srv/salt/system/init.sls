@@ -3,6 +3,4 @@ include:
   - system.timezone
   - system.users
   - system.firewall
-  {% if pillar['dir_set_perms'] %}
   - system.directory
-  {% endif %}
