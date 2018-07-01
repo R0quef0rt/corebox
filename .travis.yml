@@ -61,8 +61,6 @@ jobs:
   - stage: build
     script:
     - bash -x ./srv/packer/packer-build.sh
-    env:
-    - ENV=qa
   - stage: plan
     script:
     - bash -x ./srv/terraform/terraform-plan.sh
