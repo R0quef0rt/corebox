@@ -23,7 +23,7 @@ data "aws_ami" "minion" {
 
   filter {
     name   = "name"
-    values = ["${var.env}-${var.service_name}-*"]
+    values = ["${var.service_name}-*"]
   }
 }
 

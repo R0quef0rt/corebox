@@ -4,7 +4,7 @@ services:
 
   nzbget:
     volumes:
-      - /etc/nzbget/config:/config
+      - ./etc/nzbget/config:/config
       - downloads:/downloads
     environment:
       PLEX_UID: 1000
@@ -13,7 +13,7 @@ services:
   sonarr:
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /etc/sonarr/config:/config
+      - ./etc/sonarr/config:/config
       - television:/television
       - downloads:/downloads
     environment:
@@ -23,7 +23,7 @@ services:
   radarr:
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /etc/radarr/config:/config
+      - ./etc/radarr/config:/config
       - movies:/movies
       - downloads:/downloads
     environment:
@@ -32,7 +32,7 @@ services:
 
   plex:
     volumes:
-      - /etc/plex/config:/config
+      - ./etc/plex/config:/config
       - temp:/transcode
       - movies:/movies
       - television:/television
@@ -44,7 +44,7 @@ services:
     ports:
       - 8200:8200
     volumes:
-      - /etc/duplicati/config:/config
+      - ./etc/duplicati/config:/config
       - backups:/backups
       - source:/source
     environment:

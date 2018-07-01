@@ -1,5 +1,4 @@
 raid: False
-dir_set_perms: False
 
 raid_devices:
   /dev/md0: 
