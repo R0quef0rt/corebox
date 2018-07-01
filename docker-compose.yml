@@ -11,7 +11,7 @@ services:
       PGID: 1002
 
   sonarr:
-    image: linuxserver/sonarr:140
+    image: linuxserver/sonarr:143
     ports:
       - 8989:8989
     environment:
