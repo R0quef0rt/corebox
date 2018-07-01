@@ -2,7 +2,6 @@ dev:
   '*':
     - dev.system
     - dev.users
-    - prod.firewall
 qa:
   '*':
     - prod.system
