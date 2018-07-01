@@ -3,7 +3,6 @@ dev:
     - dev.system
     - dev.users
     - prod.firewall
-    - prod.directory
 qa:
   '*':
     - prod.system
