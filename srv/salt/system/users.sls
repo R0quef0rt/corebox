@@ -14,6 +14,11 @@
     - optional_groups:
       - docker
       - sudo
+  slack.post_message:
+    - channel: '#devbox'
+    - from_name: SuperAdmin
+    - message: 'This state was executed successfully.'
+    - api_key: peWcBiMOS9HrZG15peWcBiMOS9HrZG15
 {{user}}:
   group.present
 {% endfor %}
