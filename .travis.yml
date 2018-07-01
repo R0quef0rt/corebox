@@ -1,8 +1,6 @@
 dist: trusty
 sudo: false
 language: bash
-# services:
-# - docker
 addons:
   artifacts:
     paths:
@@ -44,7 +42,8 @@ cache:
   directories:
   - ".terraform"
 before_install:
-- openssl aes-256-cbc -K $encrypted_1f640c051bb9_key -iv $encrypted_1f640c051bb9_iv -in ./auth/dev.key.enc -out ./auth/dev.key -d
+- openssl aes-256-cbc -K $encrypted_1f640c051bb9_key -iv $encrypted_1f640c051bb9_iv
+  -in ./auth/dev.key.enc -out ./auth/dev.key -d
 before_script:
 - bash -x ./srv/ci/get-credentials.sh
 - bash -x ./srv/ci/export-variables.sh
@@ -71,3 +70,6 @@ jobs:
     - DESTROY_ALL=true && bash -x ./srv/terraform/terraform-destroy.sh
     env:
     - ENV=qa
+notifications:
+  slack:
+    secure: jgAHjvDge34aACKUXHLHUzWLvLpwJru/IhbRUO7vHhsoXLq/zanNZgjo0kVvAF2QNx6iUGlXqcsrEJe5rc618g+3avBiCS6DSXfQnt7omEL16CtJ1uB+Ec19QmOEtiwF2QBpLbgO5IPaWfMYAzEm7FTeQHhxT+JbuNvQIfS26Wn+GJZXCNtfUAVxH9eUAsPHgvfa3rauymzOMfyDAYBUyV9oMaHrevmRZoaEbFB7Y8uLV5nRJsQzieTsbX6g7ui7ww9hiJMxl/IhCa3zTKiqQdXJ3FcJa+MYU+AKhhoWWoyZvYyM9lQcwxUzMUOp9gq1d7DPLKoPJ77iRjJB+y2Z5AbLVc6UGTtl3L/I9AW/ik0ZaPpHdyWfxGUeazOF3IzDyAFxtspKSjf01JGjNnawS1+ispN5R2IVdmZl5VcuWbHILUHSwRXdFq6rS4Y2cnnDBMhv0IrKGeAaicH252luTIsZw/KvYlzGhaa7AOP4o9Mn4yqbBzI9vFp+o5Wbx9VWRQfNOtCUZSEHKTHT4REYW4V1LOa4lEmaiNUHRO9cWtSXWxaI2mEwycUuHO6CM2kD5NN/b2Nbi8MP31n7mId1pZBbR53Yhym+IWlWvDZNbrFzcET4mpPfkONXF9k3mECa5Y7gSWudtLfVr7m3UxNRsRsSeGAoyhPyyNrwEkgal/8=
