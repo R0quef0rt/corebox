@@ -13,6 +13,8 @@ qa:
   '*':
     - common
     - system
+    - system.directory
+    - system.firewall
     - docker
     - docker.compose
   'devbox':
@@ -24,6 +26,8 @@ prod:
   '*':
     - common
     - system
+    - system.directory
+    - system.firewall
     - docker
     - docker.compose
   'devbox':
