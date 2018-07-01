@@ -4,6 +4,8 @@ dev:
     - system
     - docker
     - docker.compose
+  'sandbox':
+    - docker.compose-cmd
   'devbox':
     - docker.compose-cmd
     - system.raid

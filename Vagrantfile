@@ -9,12 +9,12 @@ Vagrant.configure("2") do |config|
   config.vm.provider "hyperv" do |vb|
     vb.memory = "2048"
     vb.maxmemory = "4096"
-    vb.cpus = 1
+    vb.cpus = 2
   end
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "4096"
-    vb.cpus = 1
+    vb.cpus = 2
   end
 
   config.vm.network "forwarded_port", guest: 6789,  host: 6789   # NZBGet

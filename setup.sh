@@ -2,7 +2,6 @@
 
 # apt-get update && apt-get -y install git wget
 
-mkdir -p /app
 mkdir -p /srv/salt
 mkdir -p /srv/pillar
 mkdir -p /etc/salt
