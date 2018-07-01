@@ -25,7 +25,7 @@ md0:
     - read-ahead: 65536
     - filesystem-read-ahead: 65536
 
-{{args['mounted_dir']}}
+{{args['mounted_dir']}}:
   mount.mounted:
     - device: {{mount}}
     - fstype: {{args['fs_type']}}
