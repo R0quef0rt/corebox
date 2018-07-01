@@ -32,7 +32,7 @@
       "minion_config": "etc/salt/minion",
       "local_state_tree": "./srv/salt",
       "bootstrap_args": "-i newbox -F -P -p python-git",
-      "salt_call_args": "--id newbox saltenv={{env `ENV`}} pillarenv={{env `ENV`}}"
+      "salt_call_args": "--id newbox --saltenv {{env `ENV`}} --pillarenv {{env `ENV`}}"
     }
   ]
 }
