@@ -39,6 +39,7 @@ services:
       - 18200:8200
     volumes:
       - ./etc/duplicati/config:/config
+      - backups:/backups
     environment:
       PUID: 1000
       PGID: 1000
@@ -52,3 +53,4 @@ volumes:
   downloads:
   television:
   movies:
+  backups:

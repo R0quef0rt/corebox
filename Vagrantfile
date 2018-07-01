@@ -26,11 +26,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "./srv/salt", "/srv/salt"
   config.vm.synced_folder "./srv/pillar", "/srv/pillar"
-  config.vm.synced_folder "./etc/nzbget", "/etc/nzbget"
-  config.vm.synced_folder "./etc/sonarr", "/etc/sonarr"
-  config.vm.synced_folder "./etc/radarr", "/etc/radarr"
-  config.vm.synced_folder "./etc/plex", "/etc/plex"
-  config.vm.synced_folder "./etc/duplicati", "/etc/duplicati"
   config.vm.synced_folder ".", "/app/dev"
 
   config.vm.provision :salt do |salt|
