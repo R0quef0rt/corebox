@@ -57,7 +57,7 @@ resource "aws_instance" "minion" {
   ami           = "${data.aws_ami.minion.image_id}"
 
   user_data              = "${data.template_file.minion-user-data.rendered}"
-  key_name               = "${var.env}"
+  key_name               = "dev"
   subnet_id              = "subnet-df80f097"
   vpc_security_group_ids = ["${aws_security_group.minion.id}"]
 
