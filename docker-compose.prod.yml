@@ -37,6 +37,11 @@ services:
       - /mnt/backups:/backups
       - /mnt/movies:/movies
       - /mnt/television:/television
+      - /etc/plex:/etc/plex
+      - /etc/radarr:/etc/radarr
+      - /etc/sonarr:/etc/sonarr
+      - /etc/nzbget:/etc/nzbget
+      - /etc/
       - source:/source
 
   sync:
