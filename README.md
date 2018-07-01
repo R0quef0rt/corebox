@@ -48,6 +48,8 @@ travis encrypt-file dev.key --add
 - Example code for Terraform, Vagrant, Docker, Vault, Packer, Chef, Puppet, Test-Kitchen, Ansible, Gitlab CI, Travis CI
 - Blue/Green deployments
 - Provide secure defaults
+- Setup reverse proxy
+- Make a default landing page w/ links to all running apps
 
 ### Requirements
 

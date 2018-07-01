@@ -17,22 +17,21 @@
     - chunk: 64
     - run: True
   blockdev.formatted:
-    - fs_type: ext4
+    - fs_type: {{args['fs_type']}}
     - force: True
-{% endfor %}
-
 md0:
   blockdev.tuned:
-    - name: /dev/md0
+    - name: {{mount}}
     - read-ahead: 65536
     - filesystem-read-ahead: 65536
-
-/mnt:
+{{args['mounted_dir']}}
+    - chunk: 64:
   mount.mounted:
-    - device: /dev/md0
-    - fstype: ext4
+    - device: {{mount}}
+    - fstype: {{args['fs_type']}}
     - persist: True
     - mount: True
     - mkmnt: True
     - opts:
       - defaults
+{% endfor %}
