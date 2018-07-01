@@ -6,43 +6,24 @@ services:
     image: linuxserver/nzbget:125
     ports:
       - 6789:6789
-    environment:
-      PUID: 1002
-      PGID: 1002
 
   sonarr:
     image: linuxserver/sonarr:143
     ports:
       - 8989:8989
-    environment:
-      PUID: 1003
-      PGID: 1003
 
   radarr:
     image: linuxserver/radarr:116
     ports:
       - 7878:7878
-    environment:
-      PUID: 1004
-      PGID: 1004
 
   plex:
     image: plexinc/pms-docker:1.13.2.5154-fd05be322
     ports:
       - 32400:32400
-    environment:
-      PLEX_UID: 1005
-      PLEX_GID: 1005
-      ADVERTISE_IP: "http://192.168.5.20:32400/"
-      PLEX_CLAIM: "claim-Bitt7vYft5suy34w1Se7"
 
   duplicati:
     image: linuxserver/duplicati:82
-    ports:
-      - 8200:8200
-    environment:
-      PUID: 1006
-      PGID: 1006
 
   sync:
     image: resilio/sync:release-2.5.13

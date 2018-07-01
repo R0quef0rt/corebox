@@ -7,6 +7,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/nzbget/config:/config
       - downloads:/downloads
+    environment:
+      PUID: 1002
+      PGID: 1002
 
   sonarr:
     volumes:
@@ -14,6 +17,9 @@ services:
       - /etc/sonarr/config:/config
       - /mnt/television:/television
       - downloads:/downloads
+    environment:
+      PUID: 1003
+      PGID: 1003
 
   radarr:
     volumes:
@@ -21,6 +27,9 @@ services:
       - /etc/radarr/config:/config
       - /mnt/movies:/movies
       - downloads:/downloads
+    environment:
+      PUID: 1004
+      PGID: 1004
 
   plex:
     volumes:
@@ -29,8 +38,15 @@ services:
       - temp:/transcode
       - /mnt/movies:/movies
       - /mnt/television:/television
+    environment:
+      PLEX_UID: 1005
+      PLEX_GID: 1005
+      ADVERTISE_IP: "http://192.168.5.20:32400/"
+      PLEX_CLAIM: "claim-Bitt7vYft5suy34w1Se7"
 
   duplicati:
+    ports:
+      - 8200:8200
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - config:/config
@@ -43,6 +59,9 @@ services:
       - /etc/nzbget:/etc/nzbget
       - /etc/
       - source:/source
+    environment:
+      PUID: 1006
+      PGID: 1006
 
   sync:
     ports:
