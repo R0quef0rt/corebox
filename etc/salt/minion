@@ -48,15 +48,15 @@ ext_pillar:
     - dev https://github.com/R0quef0rt/devbox.git:
       - env: dev
       - name: dev
-      - root: srv/pillar/dev
+      - root: srv/pillar
     - dev https://github.com/R0quef0rt/devbox.git:
       - env: qa
       - name: qa
-      - root: srv/pillar/qa
+      - root: srv/pillar
     - dev https://github.com/R0quef0rt/devbox.git:
       - env: prod
       - name: prod
-      - root: srv/pillar/prod
+      - root: srv/pillar
 
 # Add custom grains to minion
 ext:

@@ -19,7 +19,7 @@ variable "env" {
 }
 
 variable "project_key" {
-  default = "cdi"
+  default = "rjb"
 }
 
 variable "region" {
