@@ -9,8 +9,6 @@ dev:
   'devbox':
     - docker.compose-cmd
     - system.raid
-  'newbox':
-    - docker.compose-cmd
 qa:
   '*':
     - common
