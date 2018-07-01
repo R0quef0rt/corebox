@@ -33,7 +33,7 @@ services:
   duplicati:
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /etc/duplicati/config:/config
+      - config:/config
       - /mnt/backups:/backups
       - /mnt/movies:/movies
       - /mnt/television:/television
@@ -61,3 +61,4 @@ volumes:
   downloads:
   temp:
   source:
+  config:
