@@ -1,7 +1,7 @@
 compose-project:
   git.latest:
     - name: https://github.com/R0quef0rt/devbox
-    - rev: {{saltenv}}
+    - rev: dev
     - target: /app/live
     - force_checkout: True
     - force_clone: True
