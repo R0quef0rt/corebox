@@ -1,9 +1,7 @@
 users:
   masters:
     master:
-      uid: 1040
-    vagrant:
-      uid: 1000
+      uid: 1001
   services:
     nzbget:
       uid: 1002
