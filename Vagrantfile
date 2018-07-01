@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :salt do |salt|
     salt.masterless = true
     salt.minion_id = "sandbox"
-    salt.minion_config = "etc/salt/minion"
+    salt.minion_config = "etc/salt/minion.dev"
     salt.install_type = "stable"
     salt.bootstrap_options = "-F -P -p python-git"
     salt.salt_call_args = ["saltenv=dev", "pillarenv=dev"]

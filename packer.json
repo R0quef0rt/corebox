@@ -29,7 +29,7 @@
     }],
     "provisioners": [{
       "type": "salt-masterless",
-      "minion_config": "etc/salt/minion",
+      "minion_config": "etc/salt/minion.qa",
       "local_state_tree": "./srv/salt",
       "bootstrap_args": "-i newbox -F -P -p python-git",
       "salt_call_args": "--id newbox"
