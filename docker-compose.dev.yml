@@ -55,6 +55,9 @@ services:
       - movies:/mnt/mounted_folders/movies
       - television:/mnt/mounted_folders/television
       - downloads:/mnt/mounted_folders/downloads
+    ports:
+      - 8888:8888
+      - 55555:55555
     environment:
       PLEX_UID: 1000
       PLEX_GID: 1000

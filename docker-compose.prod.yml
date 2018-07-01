@@ -40,6 +40,9 @@ services:
       - source:/source
 
   sync:
+    ports:
+      - 8888:8888
+      - 55555:55555
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/sync:/mnt/sync

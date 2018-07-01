@@ -46,6 +46,3 @@ services:
 
   sync:
     image: resilio/sync:release-2.5.13
-    ports:
-      - 8888:8888
-      - 55555:55555
