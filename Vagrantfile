@@ -17,6 +17,7 @@ Vagrant.configure("2") do |config|
     vb.cpus = 2
   end
 
+  config.vm.network "forwarded_port", guest: 1313,  host: 1313   # Hugo
   config.vm.network "forwarded_port", guest: 6789,  host: 6789   # NZBGet
   config.vm.network "forwarded_port", guest: 8989,  host: 8989   # Sonarr
   config.vm.network "forwarded_port", guest: 7878,  host: 7878   # Radarr
