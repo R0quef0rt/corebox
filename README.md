@@ -57,7 +57,9 @@ hugo new site /home/master/journal
 - Setup reverse proxy
 - Make a default landing page w/ links to all running apps
 - Add a shared .vscode configuration to repo
+- "DEVBOX" on the landing page should display the hostname of the machine
 
 ### Requirements
 
 - Your CI config should be IN THIS REPO. So that we can share it with others.
+- This repo should generally not make an effort to configure the final applications. It should only provide a clean-slate for bootstrapping them, managing their lifecyle, etc
