@@ -9,11 +9,13 @@ RUN curl -O -L --silent https://github.com/gohugoio/hugo/releases/download/v${HU
     tar xvf hugo_${HUGO_VERSION}_Linux-64bit.tar.gz && \
     mv hugo /usr/local/bin
 
-COPY ./entrypoint.sh /entrypoint.sh
-
 VOLUME /src
 VOLUME /output
 
 EXPOSE 1313
+
+COPY ./entrypoint.sh /entrypoint.sh
+
+WORKDIR /src
 
 CMD ["/entrypoint.sh"]

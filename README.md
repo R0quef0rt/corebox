@@ -56,6 +56,7 @@ hugo new site /home/master/journal
 - Provide secure defaults
 - Setup reverse proxy
 - Make a default landing page w/ links to all running apps
+- Add a shared .vscode configuration to repo
 
 ### Requirements
 
