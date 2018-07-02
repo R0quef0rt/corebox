@@ -59,6 +59,10 @@ hugo new site /home/master/journal
 - Add a shared .vscode configuration to repo
 - "DEVBOX" on the landing page should display the hostname of the machine
 
+### Potential
+
+- Dotmesh
+
 ### Requirements
 
 - Your CI config should be IN THIS REPO. So that we can share it with others.

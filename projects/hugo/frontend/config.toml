@@ -1,4 +1,4 @@
-baseurl = "http://autom8te.org" # Hostname (and path) to the root.
+baseurl = "http://localhost" # Hostname (and path) to the root.
 title = "Autom8te.org" # Site title.
 theme = "custom" # Set the theme.
 languagecode = "en" # The site’s language code.

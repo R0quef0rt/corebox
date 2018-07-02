@@ -4,7 +4,8 @@ dev:
     - system
     - docker
     - docker.compose
-    - docker.compose-cli
+    # - docker.compose-cli.build
+    - docker.compose-cli.up
 qa:
   '*':
     - common

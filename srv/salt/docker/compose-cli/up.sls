@@ -1,13 +1,18 @@
-docker-compose-up:
+{% for repo in salt['pillar.get']('compose:repos', 'https://github.com/R0quef0rt/devbox') %}
+  {% for project in salt['pillar.get']('compose:projects', 'hugo') %}
+
+{{project}}-compose-pull:
   cmd.run:
-    {% if saltenv == 'dev' %}
-    - name: 'docker-compose -f /app/dev/docker-compose.yml -f /app/dev/docker-compose.dev.yml up -d'
+    - name: 'docker-compose pull'
+    - cwd: /app/dev/projects/{{project}}
     - require:
       - pip: compose
-      - git: compose-project
-    {% elif saltenv == 'qa' or 'prod' %}
-    - name: 'docker-compose -f /app/live/docker-compose.yml -f /app/live/docker-compose.prod.yml up -d'
+
+{{project}}-compose-up:
+  cmd.run:
+    - name: 'docker-compose up --no-build -d'
+    - cwd: /app/dev/projects/{{project}}
     - require:
-      - pip: compose
-      - git: compose-project
-    {% endif %}
+      - cmd: {{project}}-compose-pull
+  {% endfor %}
+{% endfor %}

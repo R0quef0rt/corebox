@@ -26,3 +26,8 @@ variable "region" {
   description = "Region the services are deployed into."
   default     = "us-east-1"
 }
+
+variable "test" {
+  description = "Toggle unit testing for Salt"
+  default     = "false"
+}

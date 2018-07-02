@@ -1,4 +1,4 @@
-{% for repo in pillar['compose:repos'].iteritems() %}
+{% for repo in salt['pillar.get']('compose:repos', 'https://github.com/R0quef0rt/devbox') %}
 {{repo}}-download-latest:
   git.latest:
     - name: {{repo}}
@@ -9,20 +9,23 @@
     - force_fetch: True
     - force_reset: True
     - depth: 1
-{% endfor %}
 
-{% for project in pillar['compose:projects'].iteritems() %}
+  {% for project in salt['pillar.get']('compose:projects', '') %}
 {{project}}-compose-build:
   cmd.run:
-    - name: 'docker-compose -f /app/live/projects/{{project}}/docker-compose.yml build -d'
+    - name: 'docker-compose build'
+    - cwd: /app/dev/projects/{{project}}
     - require:
       - pip: compose
-      - git: compose-project
+      - git: {{repo}}-download-latest
 
-{{project}}-compose-push:
-  cmd.run:
-    - name: 'docker-compose -f /app/live/projects/{{project}}/docker-compose.yml push -d'
-    - require:
-      - pip: compose
-      - git: compose-project
+# {{project}}-compose-push:
+#   cmd.run:
+#     - name: 'docker-compose push'
+#     - cwd: /app/dev/projects/{{project}}
+#     - require:
+#       - pip: compose
+#       - git: {{repo}}-download-latest
+#       - cmd: {{project}}-compose-build
+  {% endfor %}
 {% endfor %}
