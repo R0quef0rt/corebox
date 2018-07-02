@@ -17,13 +17,14 @@ services:
       HUGO_REFRESH_TIME: 15
       HUGO_THEME: coder
       HUGO_BASEURL: http://localhost
-    labels:
-      - "traefik.enable=true"
-      - "traefik.port=1313"
-      - "traefik.frontend.rule=Host:webserver.docker.localhost"
-      - "traefik.docker.network=frontend"
+    deploy:
+      labels:
+        traefik.enable: true
+        traefik.port: 1313
+        traefik.frontend.rule: Host:localhost
+        traefik.docker.network: frontend
 
 networks:
   frontend:
     external:
-      name: traefik_hugo
+      name: proxy_hugo

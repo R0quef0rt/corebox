@@ -11,6 +11,7 @@ pillarenv: dev
 file_roots:
   dev:
     - /srv/salt
+    - /app/dev/srv/salt
   qa:
     - /srv/salt
   prod:
