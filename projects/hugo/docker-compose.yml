@@ -9,7 +9,7 @@ services:
       - 1313:1313
     volumes:
       - ./frontend:/src
-      - ./output/frontend:/output
+      - ./live/frontend:/output
     networks:
       - frontend
     environment:
@@ -17,14 +17,13 @@ services:
       HUGO_REFRESH_TIME: 15
       HUGO_THEME: coder
       HUGO_BASEURL: http://localhost
-    deploy:
-      labels:
-        traefik.enable: true
-        traefik.port: 1313
-        traefik.frontend.rule: Host:localhost
-        traefik.docker.network: frontend
+    labels:
+      traefik.enable: "true"
+      traefik.port: "1313"
+      traefik.frontend.rule: "Host:localhost"
+      traefik.docker.network: frontend
 
 networks:
   frontend:
     external:
-      name: proxy_hugo
+      name: traefik_hugo

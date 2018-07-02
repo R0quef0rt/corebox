@@ -8,9 +8,11 @@ services:
     ports:
       - "80:80"
       - "8080:8080"
+    networks:
+      - hugo
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
 networks:
   hugo:
-    driver: overlay
+    driver: bridge
