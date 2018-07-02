@@ -1,4 +1,4 @@
-# DevBox
+# DevBox [![Build Status](https://travis-ci.org/R0quef0rt/devbox.svg?branch=dev)](https://travis-ci.org/R0quef0rt/devbox)
 
 ## Salt
 

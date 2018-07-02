@@ -1,6 +1,6 @@
 baseurl = "http://autom8te.org" # Hostname (and path) to the root.
 title = "Autom8te.org" # Site title.
-theme = "coder" # Set the theme.
+theme = "custom" # Set the theme.
 languagecode = "en" # The site’s language code.
 
 paginate = 20 # Default number of pages per page in pagination.

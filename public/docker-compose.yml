@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+
+  nzbget:
+    image: jojomi/hugo:0.42
+    ports:
+      - 1313:1313
+    volumes:
+      - ./frontend:/src
+      - ./tmp/hugo:/output
+    environment:
+      - HUGO_THEME=custom
+      - HUGO_BASEURL=autom8te.org
