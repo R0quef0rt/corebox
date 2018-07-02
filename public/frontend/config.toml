@@ -1,5 +1,5 @@
-baseurl = "http://www.example.com" # Hostname (and path) to the root.
-title = "johndoe" # Site title.
+baseurl = "http://autom8te.org" # Hostname (and path) to the root.
+title = "Autom8te.org" # Site title.
 theme = "coder" # Set the theme.
 languagecode = "en" # The site’s language code.
 
@@ -11,16 +11,16 @@ pygmentscodefences = true # Enable code fence background highlighting.
 pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences without specified language.
 
 [params] # theme parameters
-    author = "John Doe" # Author's name.
-    info = "Full Stack DevOps and Magician" # Author's job title or info.
-    description = "John Doe's personal website" # Site description.
+    author = "Roquefort" # Author's name.
+    info = "Seek and destroy" # Author's job title or info.
+    description = "" # Site description.
     keywords = "blog,developer,personal" # Site keywords.
 
     disqusShortname = "yourdiscussshortname" # Enable or disable Disqus
 
     # Whether you want to hide copyright and credits in the footer.
-    hideCredits = false
-    hideCopyright = false
+    hideCredits = true
+    hideCopyright = true
 
     # Custom CSS
     custom_css = []
@@ -32,15 +32,15 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
 [[params.social]]
     name = "Github"
     weight = 1
-    url = "https://github.com/johndoe/"
+    url = "https://github.com/R0quef0rt/devbox"
 [[params.social]]
     name = "Twitter"
     weight = 2
-    url = "https://twitter.com/johndoe/"
+    url = "https://twitter.com/R0quef0rt"
 [[params.social]]
-    name = "LinkedIn"
+    name = "Slack"
     weight = 3
-    url = "https://www.linkedin.com/in/johndoe/"
+    url = "https://autom8te-devbox.slack.com"
 
 # Menu links
 [[menu.main]]
@@ -51,3 +51,27 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     name = "About"
     weight = 2
     url = "/about/"
+[[menu.main]]
+    name = "NZBGet"
+    weight = 3
+    url = "http://192.168.5.20:6789"
+[[menu.main]]
+    name = "Sonarr"
+    weight = 4
+    url = "http://192.168.5.20:8989"
+[[menu.main]]
+    name = "Radarr"
+    weight = 5
+    url = "http://192.168.5.20:7878"
+[[menu.main]]
+    name = "Sync"
+    weight = 6
+    url = "http://192.168.5.20:8888"
+[[menu.main]]
+    name = "Duplicati"
+    weight = 7
+    url = "http://192.168.5.20:8200"
+[[menu.main]]
+    name = "Plex"
+    weight = 7
+    url = "http://192.168.5.20:32400"
