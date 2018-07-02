@@ -38,6 +38,12 @@ travis encrypt MY_SECRET_ENV=super_secret --add env.global
 
 travis encrypt-file dev.key --add
 
+## Hugo
+
+sudo hugo server --bind="0.0.0.0"
+
+hugo new site /home/master/journal
+
 
 ### To do
 
