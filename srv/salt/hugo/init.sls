@@ -8,7 +8,7 @@ hugo-{{project}}:
     {% elif saltenv == 'qa' or 'prod' %}
     - name: /app/live/projects/hugo/src/{{project}}/config.toml
     {% endif %}
-
+  {% for args in salt['pillar.get']('project', '') %}
 hugo-{{project}}-compose: 
   file.managed: 
     - source: salt://projects/hugo/docker-compose.yml.template
@@ -18,4 +18,5 @@ hugo-{{project}}-compose:
     {% elif saltenv == 'qa' or 'prod' %}
     - name: /app/live/projects/hugo/docker-compose.yml
     {% endif %}
+  {% endfor %}
 {% endfor %}
