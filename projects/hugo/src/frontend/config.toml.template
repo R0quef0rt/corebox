@@ -12,7 +12,7 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
 
 [params] # theme parameters
     author = "{{ grains['id'] }}" # Author's name.
-    info = "SERVICE [{{ salt['pillar.get']('hugo:projects', '') }}.iteritems()] is ONLINE" # Author's job title or info.
+    info = "SERVICE:{{ pillar('projects') }} is ONLINE" # Author's job title or info.
     description = "" # Site description.
     keywords = "blog,developer,personal" # Site keywords.
 

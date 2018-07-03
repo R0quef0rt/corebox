@@ -3,6 +3,7 @@ hugo-{{project}}:
   file.managed: 
     - source: salt://projects/hugo/src/{{project}}/config.toml.template
     - template: jinja
+    - contents_pillar: hugo:projects
     {% if saltenv == 'dev' %}
     - name: /app/dev/projects/hugo/src/{{project}}/config.toml
     {% elif saltenv == 'qa' or 'prod' %}
