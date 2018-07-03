@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  {% set port = ( port | default(1312) ) + 1 %}
   {% for project in salt['pillar.get']('hugo:projects', '') %}
+  {% set port = ( port | default(1312) ) + 1 %}
   {{project}}-webserver:
     image: roquefort/hugo:latest
     build: .
