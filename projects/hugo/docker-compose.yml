@@ -6,10 +6,12 @@ services:
     image: roquefort/hugo:latest
     build: .
     ports:
-      - 1313:1313
+      - *:1313
+    
     volumes:
       - ./src/frontend:/src
       - ./output/frontend:/output
+    
     # networks:
     #   - frontend
     environment:

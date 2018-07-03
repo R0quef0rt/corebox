@@ -2,23 +2,20 @@ version: '3'
 
 services:
 
-  webserver:
+{% set port = 1313 %}
+{% for project in salt['pillar.get']('hugo:projects', '') %}
+  {{ loop.index }}
+
+  {{project}}-webserver:
     image: roquefort/hugo:latest
     build: .
     ports:
-      - *:1313
-    {% for project in salt['pillar.get']('hugo:projects', '') %}
+      - {{port}}:1313
+
     volumes:
       - ./src/{{project}}:/src
       - ./output/{{project}}:/output
-    {% endfor %}
-    # networks:
-    #   - frontend
     environment:
       HUGO_WATCH: "true"
       HUGO_REFRESH_TIME: 15
-
-# networks:
-#   frontend:
-#     external:
-#       name: traefik_hugo
+{% endfor %}
