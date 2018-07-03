@@ -1,8 +1,9 @@
 version: '3'
 
+{% for projects in salt['pillar.get']('hugo', '') %}
 services:
-{% set port = ( port | default(1313) ) + 1 %}
-{% for project in salt['pillar.get']('hugo:projects', '') %}
+  {% set port = ( port | default(1312) ) + 1 %}
+  {% for project in salt['pillar.get']('projects', '') %}
   {{project}}-webserver:
     image: roquefort/hugo:latest
     build: .
@@ -14,4 +15,5 @@ services:
     environment:
       HUGO_WATCH: "true"
       HUGO_REFRESH_TIME: 15
+  {% endfor %}
 {% endfor %}
