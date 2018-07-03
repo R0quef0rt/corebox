@@ -13,7 +13,7 @@ services:
     environment:
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "http://192.168.5.122"
+      BASEURL: "http://192.168.5.124"
   
   frontend-webserver:
     image: roquefort/hugo:latest
@@ -26,5 +26,5 @@ services:
     environment:
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "http://192.168.5.122"
+      BASEURL: "http://192.168.5.124"
   
