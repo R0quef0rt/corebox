@@ -2,23 +2,19 @@ version: '3'
 
 services:
 
-  webserver:
+
+
+  1
+
+  frontend-webserver:
     image: roquefort/hugo:latest
     build: .
     ports:
-      - *:1313
-    
+      - 1313:1313
+
     volumes:
       - ./src/frontend:/src
       - ./output/frontend:/output
-    
-    # networks:
-    #   - frontend
     environment:
       HUGO_WATCH: "true"
       HUGO_REFRESH_TIME: 15
-
-# networks:
-#   frontend:
-#     external:
-#       name: traefik_hugo

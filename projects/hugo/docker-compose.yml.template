@@ -4,14 +4,13 @@ services:
 
 {% set port = 1313 %}
 {% for project in salt['pillar.get']('hugo:projects', '') %}
-  {{ loop.index }}
+  {{ port.index }}
 
   {{project}}-webserver:
     image: roquefort/hugo:latest
     build: .
     ports:
       - {{port}}:1313
-
     volumes:
       - ./src/{{project}}:/src
       - ./output/{{project}}:/output
