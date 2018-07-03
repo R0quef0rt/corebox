@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  {% for project in salt['pillar.get']('hugo:projects', '') %}
+  {% for project, args in salt['pillar.get']('hugo:projects', '') %}
   {{project}}-webserver:
     image: roquefort/hugo:latest
     build: .
@@ -15,4 +15,9 @@ services:
       REFRESH_TIME: 15
       BASEURL: "http://{{ grains['ip_interfaces']['eth0'][0] }}"
       SERVICE_NAME: "{{project}}"
+      {% for theme in salt['pillar.get'}('args', 'coder') %]}
+      THEME: "coder"
+      {% else %}
+      THEME: "{{args['theme']}}"
+      {% endfor %}
   {% endfor %}

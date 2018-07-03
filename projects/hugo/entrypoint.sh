@@ -14,6 +14,7 @@ do
                      --destination="/output/${SERVICE_NAME}" \
                      --gc \
                      --baseURL="${BASEURL}" \
+                     --theme="${THEME}" \
                      --bind="0.0.0.0" "$@" || exit 1
     else
 	    echo "Building one time..."
