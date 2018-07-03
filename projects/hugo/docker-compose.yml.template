@@ -15,5 +15,3 @@ services:
       REFRESH_TIME: 15
       BASEURL: "http://192.168.5.118"
   {% endfor %}
-
-  {{ grains['ip_interfaces:eth0:0'] }}
