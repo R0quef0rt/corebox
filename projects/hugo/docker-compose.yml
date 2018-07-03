@@ -10,13 +10,13 @@ services:
     volumes:
       - ./frontend:/src
       - ./live/frontend:/output
-    networks:
-      - frontend
+    # networks:
+    #   - frontend
     environment:
       HUGO_WATCH: "true"
       HUGO_REFRESH_TIME: 15
 
-networks:
-  frontend:
-    external:
-      name: traefik_hugo
+# networks:
+#   frontend:
+#     external:
+#       name: traefik_hugo
