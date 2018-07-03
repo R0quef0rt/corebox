@@ -7,6 +7,6 @@ compose:
 
 hugo:
   projects:
-    - backend
-      theme: dark
-    - frontend
+    - backend:
+      - theme: dark
+    - frontend:
