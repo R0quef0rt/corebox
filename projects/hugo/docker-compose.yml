@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-
+  
   
   backend-webserver:
     image: roquefort/hugo:latest
@@ -15,7 +15,7 @@ services:
       HUGO_WATCH: "true"
       HUGO_REFRESH_TIME: 15
   
-
+  
   
   frontend-webserver:
     image: roquefort/hugo:latest
@@ -28,4 +28,36 @@ services:
     environment:
       HUGO_WATCH: "true"
       HUGO_REFRESH_TIME: 15
+  
+  
+
+services:
+  
+  
+  backend-webserver:
+    image: roquefort/hugo:latest
+    build: .
+    ports:
+      - 1313:1313
+    volumes:
+      - ./src/backend:/src
+      - ./output/backend:/output
+    environment:
+      HUGO_WATCH: "true"
+      HUGO_REFRESH_TIME: 15
+  
+  
+  
+  frontend-webserver:
+    image: roquefort/hugo:latest
+    build: .
+    ports:
+      - 1313:1313
+    volumes:
+      - ./src/frontend:/src
+      - ./output/frontend:/output
+    environment:
+      HUGO_WATCH: "true"
+      HUGO_REFRESH_TIME: 15
+  
   
