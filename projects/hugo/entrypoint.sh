@@ -10,15 +10,15 @@ do
     if [[ $WATCH != 'false' ]]; then
 	    echo "Watching..."
         $HUGO server --watch=true \
-                     --source="/src" \
-                     --destination="/output" \
+                     --source="/src/${SERVICE_NAME}" \
+                     --destination="/output/${SERVICE_NAME}" \
                      --gc \
                      --baseURL="${BASEURL}" \
                      --bind="0.0.0.0" "$@" || exit 1
     else
 	    echo "Building one time..."
-        $HUGO --source="/src" \
-              --destination="/output" "$@" || exit 1
+        $HUGO --source="/src/${SERVICE_NAME}" \
+              --destination="/output/${SERVICE_NAME}" "$@" || exit 1
     fi
 
     if [[ $REFRESH_TIME == -1 ]]; then
