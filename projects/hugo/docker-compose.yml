@@ -3,6 +3,18 @@ version: '3'
 services:
 
 
+  backend-webserver:
+    image: roquefort/hugo:latest
+    build: .
+    ports:
+      - 1314:1313
+    volumes:
+      - ./src/backend:/src
+      - ./output/backend:/output
+    environment:
+      HUGO_WATCH: "true"
+      HUGO_REFRESH_TIME: 15
+
 
   frontend-webserver:
     image: roquefort/hugo:latest
