@@ -8,12 +8,13 @@ services:
     ports:
       - 1313:1313
     volumes:
-      - ./src/backend:/src
-      - ./output/backend:/output
+      - ./src:/src
+      - ./output:/output
     environment:
       WATCH: "true"
       REFRESH_TIME: 15
       BASEURL: "http://192.168.5.125"
+      SERVICE_NAME: "backend"
   
   frontend-webserver:
     image: roquefort/hugo:latest
@@ -21,10 +22,11 @@ services:
     ports:
       - 1323:1313
     volumes:
-      - ./src/frontend:/src
-      - ./output/frontend:/output
+      - ./src:/src
+      - ./output:/output
     environment:
       WATCH: "true"
       REFRESH_TIME: 15
       BASEURL: "http://192.168.5.125"
+      SERVICE_NAME: "frontend"
   
