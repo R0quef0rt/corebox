@@ -7,7 +7,7 @@ services:
     image: roquefort/hugo:latest
     build: .
     ports:
-      - {{port}}:1313
+      - {{loop.port}}:1313
     volumes:
       - ./src/{{project}}:/src
       - ./output/{{project}}:/output

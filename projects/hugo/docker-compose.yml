@@ -15,6 +15,7 @@ services:
       HUGO_WATCH: "true"
       HUGO_REFRESH_TIME: 15
   
+  
   frontend-webserver:
     image: roquefort/hugo:latest
     build: .
