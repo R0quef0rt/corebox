@@ -4,3 +4,8 @@ compose:
   projects:
     # - traefik
     - hugo
+
+hugo:
+  projects:
+    - frontend
+    # - backend
