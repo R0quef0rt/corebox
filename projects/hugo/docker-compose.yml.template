@@ -6,7 +6,7 @@ services:
     image: roquefort/hugo:latest
     build: .
     ports:
-      - {{ grains['ip_interfaces:eth0:0'] }}:*:1313
+      - {{ grains['ip_interfaces:eth0'] }}:*:1313
     {% for project in salt['pillar.get']('hugo:projects', '') %}
     volumes:
       - ./src/{{project}}:/src
