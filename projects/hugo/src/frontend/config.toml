@@ -12,7 +12,7 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
 
 [params] # theme parameters
     author = "sandbox" # Author's name.
-    info = "Seek and destroy" # Author's job title or info.
+    info = "[u'backend', u'frontend']" # Author's job title or info.
     description = "" # Site description.
     keywords = "blog,developer,personal" # Site keywords.
 
