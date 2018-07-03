@@ -1,7 +1,5 @@
-/app/dev/projects/hugo/config.toml: 
+hugo-frontend: 
   file.managed: 
-    - user: root 
-    - group: root 
-    - mode: 0644 
-    - source: salt://projects/hugo/frontend/config.toml.template
+    - source: salt://projects/hugo/src/frontend/config.toml.template
+    - name: /app/dev/projects/hugo/src/frontend/config.toml
     - template: jinja

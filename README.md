@@ -58,6 +58,7 @@ hugo new site /home/master/journal
 - Make a default landing page w/ links to all running apps
 - Add a shared .vscode configuration to repo
 - "DEVBOX" on the landing page should display the hostname of the machine
+- Random phrase generator below title
 
 ### Potential
 

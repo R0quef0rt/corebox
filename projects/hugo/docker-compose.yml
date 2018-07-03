@@ -8,8 +8,8 @@ services:
     ports:
       - 1313:1313
     volumes:
-      - ./frontend:/src
-      - ./live/frontend:/output
+      - ./src/frontend:/src
+      - ./output/frontend:/output
     # networks:
     #   - frontend
     environment:

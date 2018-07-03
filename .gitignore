@@ -8,5 +8,4 @@ packer_cache
 config.ign.merged
 .terraform/
 .vagrant/
-src/
 *.log
