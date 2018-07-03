@@ -12,15 +12,11 @@ do
         $HUGO server --watch=true \
                      --source="/src" \
                      --destination="/output" \
-                     --theme="$HUGO_THEME" \
-                     --baseURL="$HUGO_BASEURL" \
                      --bind="0.0.0.0" "$@" || exit 1
     else
 	    echo "Building one time..."
         $HUGO --source="/src" \
-              --destination="/output" \
-              --theme="$HUGO_THEME" \
-              --baseURL="$HUGO_BASEURL" "$@" || exit 1
+              --destination="/output" "$@" || exit 1
     fi
 
     if [[ $HUGO_REFRESH_TIME == -1 ]]; then

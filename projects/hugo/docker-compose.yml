@@ -15,13 +15,6 @@ services:
     environment:
       HUGO_WATCH: "true"
       HUGO_REFRESH_TIME: 15
-      HUGO_THEME: coder
-      HUGO_BASEURL: http://localhost
-    labels:
-      traefik.enable: "true"
-      traefik.port: "1313"
-      traefik.frontend.rule: "Host:localhost"
-      traefik.docker.network: frontend
 
 networks:
   frontend:

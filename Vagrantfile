@@ -17,17 +17,8 @@ Vagrant.configure("2") do |config|
     vb.cpus = 2
   end
 
-  config.vm.network "forwarded_port", guest: 80,  host: 8080   # Hugo
-  config.vm.network "forwarded_port", guest: 8080,  host: 8880   # Hugo
-  # config.vm.network "forwarded_port", guest: 6789,  host: 6789   # NZBGet
-  # config.vm.network "forwarded_port", guest: 8989,  host: 8989   # Sonarr
-  # config.vm.network "forwarded_port", guest: 7878,  host: 7878   # Radarr
-  # config.vm.network "forwarded_port", guest: 8200, host: 18200  # Duplicati
-  # config.vm.network "forwarded_port", guest: 8888, host: 18888  # Resilio Sync
-  # config.vm.network "forwarded_port", guest: 32400, host: 32400  # Plex
+  config.vm.network "forwarded_port", guest: 1313,  host: 1313
 
-  config.vm.synced_folder "./srv/salt", "/srv/salt"
-  config.vm.synced_folder "./srv/pillar", "/srv/pillar"
   config.vm.synced_folder ".", "/app/dev"
 
   config.vm.provision :salt do |salt|
