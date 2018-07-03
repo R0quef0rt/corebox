@@ -13,5 +13,7 @@ services:
     environment:
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "localhost"
+      BASEURL: "http://192.168.5.118"
   {% endfor %}
+
+  {{ grains['ip_interfaces:eth0:0'] }}
