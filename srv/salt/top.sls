@@ -4,6 +4,7 @@ dev:
     - system
     - docker
     - docker.compose
+    - hugo
     # - docker.compose-cli.build
     - docker.compose-cli.up
 qa:
