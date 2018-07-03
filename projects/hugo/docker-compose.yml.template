@@ -1,12 +1,11 @@
 version: '3'
 
 services:
-  {% for project, args in salt['pillar.get']('hugo:projects', '') %}
   {{project}}-webserver:
     image: roquefort/hugo:latest
     build: .
     ports:
-      - 13{{ loop.index }}3:1313
+      - 13{{loop.index}}3:1313
     volumes:
       - ./src/{{project}}:/src/{{project}}
       - ./output/{{project}}:/output/{{project}}
@@ -20,4 +19,3 @@ services:
       {% else %}
       THEME: "{{args['theme']}}"
       {% endfor %}
-  {% endfor %}
