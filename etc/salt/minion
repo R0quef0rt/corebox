@@ -14,12 +14,12 @@ env_order:
 
 file_roots:
   dev:
+    - /srv/salt
     - /app/dev/srv/salt
     - /app/live/srv/salt
   qa:
-    - /app/dev/srv/salt
-    - /app/live/srv/salt
     - /srv/salt
+    - /app/live/srv/salt
   prod:
     - /srv/salt
 

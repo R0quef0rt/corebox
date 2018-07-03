@@ -9,7 +9,7 @@ Apply highstate on all minions
 salt '*' state.highstate saltenv=dev pillarenv=dev
 
 Return fgdn for all minions
-salt '*' grains.item fqdn
+salt --local grains.item fqdn
 
 Return all grains for every minion
 salt '*' grains.items
@@ -59,6 +59,7 @@ hugo new site /home/master/journal
 - Add a shared .vscode configuration to repo
 - "DEVBOX" on the landing page should display the hostname of the machine
 - Random phrase generator below title
+- Grafana, Prometheus, Alerts
 
 ### Potential
 
