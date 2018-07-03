@@ -1,5 +1,5 @@
 version: '3'
-{% set port = ( port | default(1312) ) + 1 %}
+
 services:
   {% for project in salt['pillar.get']('hugo:projects', '') %}
   {{project}}-webserver:
@@ -13,5 +13,4 @@ services:
     environment:
       HUGO_WATCH: "true"
       HUGO_REFRESH_TIME: 15
-  {% set port = port + 1 %}
   {% endfor %}

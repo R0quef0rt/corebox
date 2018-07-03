@@ -18,8 +18,8 @@ file_roots:
     - /app/live/srv/salt
   qa:
     - /app/dev/srv/salt
-    - /srv/salt
     - /app/live/srv/salt
+    - /srv/salt
   prod:
     - /srv/salt
 
