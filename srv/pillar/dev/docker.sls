@@ -8,5 +8,5 @@ compose:
 hugo:
   projects:
     - backend:
-      - theme: dark
+      theme: dark
     - frontend:
