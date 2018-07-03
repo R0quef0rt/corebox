@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-
 {% for project in salt['pillar.get']('hugo:projects', '') %}
 {% set port = ( port | default(1313) ) + 1 %}
   {{project}}-webserver:

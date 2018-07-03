@@ -7,5 +7,5 @@ compose:
 
 hugo:
   projects:
+    - backend
     - frontend
-    # - backend
