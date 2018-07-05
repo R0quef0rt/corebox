@@ -28,7 +28,7 @@
     {% if saltenv == 'dev' %}
     - cwd: /app/dev/projects/{{project}}
     {% elif saltenv == 'qa' or 'prod' %}
-    - cwd: /app/dev/projects/{{project}}
+    - cwd: /app/live/projects/{{project}}
     {% endif %}
     - require:
       - pip: compose
