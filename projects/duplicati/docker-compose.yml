@@ -6,14 +6,10 @@ services:
       - 8200:8200
     volumes:
       - source:/source
-      {% if saltenv == 'dev' %}
-      - ./config:/config
-      - ./mnt:/mnt
-      {% elif saltenv == 'prod' or 'qa' %}
-      - /etc/localtime:/etc/localtime:ro
-      - /etc:/etc.local
       - /mnt:/mnt
-      {% endif %}
+      
+      - ./config:/config
+      
     environment:
       PUID: 1006
       PGID: 1006

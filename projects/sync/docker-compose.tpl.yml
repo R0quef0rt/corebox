@@ -7,10 +7,11 @@ services:
       - 8888:8888
       - 55555:55555
     volumes:
-      - /mnt:/mnt/mounted_folders
       {% if saltenv == 'dev' %}
       - ./etc/sync:/config
+      - ./mnt:/mnt/mounted_folders
       {% elif saltenv == 'prod' or 'qa' %}
       - /etc/localtime:/etc/localtime:ro
       - /etc/sync/config:/config
+      - /mnt:/mnt/mounted_folders
       {% endif %}

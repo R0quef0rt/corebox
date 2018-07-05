@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  sync:
+    image: resilio/sync:release-2.5.13
+    ports:
+      - 8888:8888
+      - 55555:55555
+    volumes:
+      - /mnt:/mnt/mounted_folders
+      
+      - ./etc/sync:/config
+      

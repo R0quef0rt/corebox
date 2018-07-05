@@ -6,13 +6,14 @@ services:
     ports:
       - 8989:8989
     volumes:
-      - /mnt/television:/television
       - downloads:/downloads
       {% if saltenv == 'dev' %}
       - ./config:/config
+      - ./mnt/television:/television
       {% elif saltenv == 'prod' or 'qa' %}
       - /etc/localtime:/etc/localtime:ro
       - /etc/sonarr/config:/config
+      - /mnt/television:/television
       {% endif %}
     environment:
       PUID: 1003

@@ -6,13 +6,14 @@ services:
     ports:
       - 7878:7878
     volumes:
-      - /mnt/movies:/movies
       - downloads:/downloads
       {% if saltenv == 'dev' %}
       - ./config:/config
+      - ./mnt/movies:/movies
       {% elif saltenv == 'prod' or 'qa' %}
       - /etc/localtime:/etc/localtime:ro
       - /etc/radarr/config:/config
+      - /mnt/movies:/movies
       {% endif %}
     environment:
       PUID: 1004
