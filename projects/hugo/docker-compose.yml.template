@@ -14,8 +14,6 @@ services:
       REFRESH_TIME: 15
       BASEURL: "http://{{ grains['ip_interfaces']['eth0'][0] }}"
       SERVICE_NAME: "{{project}}"
-      {% for theme in salt['pillar.get'}('args', 'coder') %]}
-      THEME: "coder"
-      {% else %}
+      {% for args in salt['pillar.get']('project') %]}
       THEME: "{{args['theme']}}"
       {% endfor %}
