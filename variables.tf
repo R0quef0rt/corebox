@@ -1,25 +1,31 @@
 variable "service_name" {
-  default = "devbox"
+  description = "Name of this project"
+  default     = "devbox"
 }
 
 variable "service_version" {
-  default = "0.0.0"
+  description = "Version of this project"
+  default     = "0.0.0"
 }
 
 variable "provider" {
-  default = "aws"
+  description = "Terraform cloud provider"
+  default     = "aws"
 }
 
 variable "account" {
-  default = "dev"
+  description = "AWS account to connect with"
+  default     = "dev"
 }
 
 variable "env" {
-  default = "dev"
+  description = "dev/qa/prod"
+  default     = "dev"
 }
 
 variable "project_key" {
-  default = "rjb"
+  description = "Per-customer isolation key"
+  default     = "rjb"
 }
 
 variable "region" {
