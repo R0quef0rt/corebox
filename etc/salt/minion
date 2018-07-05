@@ -1,0 +1,72 @@
+id: devbox
+
+file_client: local
+
+top_file_merging_strategy: merge
+
+saltenv: dev
+pillarenv: dev
+
+env_order:
+  - dev
+  - qa
+  - prod
+
+file_roots:
+  dev:
+    - /app/dev/srv/salt
+  qa:
+    - /app/dev/srv/salt
+    - /app/live/srv/salt
+  prod:
+    - /srv/salt
+    - /app/live/srv/salt
+
+pillar_roots:
+  dev:
+    - /app/dev/srv/pillar
+    - /app/live/srv/pillar
+  qa:
+    - /srv/pillar
+    - /app/live/srv/pillar
+  prod:
+    - /srv/pillar
+    - /app/live/srv/pillar
+
+fileserver_backend:
+  - roots
+  - gitfs
+
+gitfs_root: srv/salt
+
+gitfs_provider: gitpython
+
+gitfs_remotes:
+  - https://github.com/R0quef0rt/devbox.git
+
+gitfs_saltenv:
+  - dev:
+    - ref: dev
+  - qa:
+    - ref: dev
+  - prod:
+    - ref: dev
+
+ext_pillar:
+  - git:
+    - dev https://github.com/R0quef0rt/devbox.git:
+      - env: dev
+      - name: dev
+      - root: srv/pillar
+    - dev https://github.com/R0quef0rt/devbox.git:
+      - env: qa
+      - name: qa
+      - root: srv/pillar
+    - dev https://github.com/R0quef0rt/devbox.git:
+      - env: prod
+      - name: prod
+      - root: srv/pillar
+
+# Add custom grains to minion
+ext:
+  - raid5

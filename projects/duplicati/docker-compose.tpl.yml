@@ -1,0 +1,26 @@
+version: '3'
+services:
+  duplicati:
+    image: linuxserver/duplicati:82
+    ports:
+      - 8200:8200
+    volumes:
+      - source:/source
+      {% if saltenv == 'dev' %}
+      - ./config:/config
+      - ./mnt:/mnt
+    environment:
+      PUID: 1000
+      PGID: 1000
+      {% elif saltenv == 'prod' or 'qa' %}
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/duplicati/config:/config
+      - /etc:/etc.local
+      - /mnt:/mnt
+    environment:
+      PUID: 1006
+      PGID: 1006
+      {% endif %}
+
+volumes:
+  source:

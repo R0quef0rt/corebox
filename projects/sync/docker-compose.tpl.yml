@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  sync:
+    image: resilio/sync:release-2.5.13
+    ports:
+      - 8888:8888
+      - 55555:55555
+    volumes:
+      {% if saltenv == 'dev' %}
+      - ./etc/sync:/mnt/sync
+      - ./mnt:/mnt/mounted_folders
+      {% elif saltenv == 'prod' or 'qa' %}
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/sync/config:/mnt/sync
+      - /mnt:/mnt/mounted_folders
+      {% endif %}

@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  sonarr:
+    image: linuxserver/sonarr:143
+    ports:
+      - 8989:8989
+    volumes:
+      - downloads:/downloads
+      {% if saltenv == 'dev' %}
+      - ./config:/config
+      - ./mnt/television:/television
+    environment:
+      PUID: 1000
+      PGID: 1000
+      {% elif saltenv == 'prod' or 'qa' %}
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/sonarr/config:/config
+      - /mnt/television:/television
+    environment:
+      PUID: 1003
+      PGID: 1003
+      {% endif %}
+    networks:
+      - media
+
+volumes:
+  downloads:
+
+networks:
+  media:
+    external: 
+      name: plex_media

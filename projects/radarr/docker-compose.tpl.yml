@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  radarr:
+    image: linuxserver/radarr:116
+    ports:
+      - 7878:7878
+    volumes:
+      - downloads:/downloads
+      {% if saltenv == 'dev' %}
+      - ./config:/config
+      - ./mnt/movies:/movies
+    environment:
+      PUID: 1000
+      PGID: 1000
+      {% elif saltenv == 'prod' or 'qa' %}
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/radarr/config:/config
+      - /mnt/movies:/movies
+    environment:
+      PUID: 1004
+      PGID: 1004
+      {% endif %}
+    networks:
+      - media
+
+volumes:
+  downloads:
+
+networks:
+  media:
+    external: 
+      name: plex_media

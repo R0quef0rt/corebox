@@ -1,0 +1,33 @@
+raid: False
+
+raid_devices:
+  /dev/md0: 
+    dev1: /dev/sdb
+    dev2: /dev/sdc
+    dev3: /dev/sdd
+
+timezone:
+  main: America/Chicago
+
+users:
+  masters:
+    - master
+  services:
+    service1:
+      uid: 1050
+    service2:
+      uid: 1051
+
+directory:
+  /etc/nzbget:
+    user: nzbget
+    group: master
+    mode: 660
+    recurse: False
+
+firewall-rules:
+  ssh:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 22
+    protocol: tcp
