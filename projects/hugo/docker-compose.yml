@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+
   backend-webserver:
     image: roquefort/hugo:latest
     build: .
@@ -15,7 +16,6 @@ services:
       BASEURL: "http://192.168.5.117"
       SERVICE_NAME: "backend"
 
-services:
   frontend-webserver:
     image: roquefort/hugo:latest
     build: .
