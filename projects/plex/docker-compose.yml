@@ -10,10 +10,10 @@ services:
       - ./config:/config
       - ./mnt/movies:/movies
       - ./mnt/television:/television
-      
     environment:
-      PLEX_UID: 1005
-      PLEX_GID: 1005
+      PUID: 1000
+      PGID: 1000
+      
       ADVERTISE_IP: "http://192.168.5.20:32400/"
       PLEX_CLAIM: "claim-Bitt7vYft5suy34w1Se7"
 

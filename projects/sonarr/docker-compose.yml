@@ -10,10 +10,10 @@ services:
       
       - ./config:/config
       - ./mnt/television:/television
-      
     environment:
-      PUID: 1003
-      PGID: 1003
+      PUID: 1000
+      PGID: 1000
+      
 
 volumes:
   downloads:

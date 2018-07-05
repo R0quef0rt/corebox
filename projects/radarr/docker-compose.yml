@@ -10,10 +10,10 @@ services:
       
       - ./config:/config
       - ./mnt/movies:/movies
-      
     environment:
-      PUID: 1004
-      PGID: 1004
+      PUID: 1000
+      PGID: 1000
+      
 
 volumes:
   downloads:

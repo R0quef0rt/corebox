@@ -9,10 +9,10 @@ services:
       
       - ./config:/config
       - ./mnt:/mnt
-      
     environment:
-      PUID: 1006
-      PGID: 1006
+      PUID: 1000
+      PGID: 1000
+      
 
 volumes:
   source:
