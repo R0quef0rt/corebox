@@ -37,6 +37,8 @@ fileserver_backend:
   - roots
   - gitfs
 
+gitfs_root: srv/salt
+
 gitfs_provider: gitpython
 
 gitfs_remotes:

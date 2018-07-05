@@ -48,6 +48,10 @@ hugo new site /home/master/journal
 
 - Plex docker-compose template has CLAIM_ID hardcoded. This gives a person FULL ACCESS to the account (I think)
 
+## Known issues
+
+- In prod, the root partition is running out of space. Probably because Docker mount should be moved to /mnt
+
 ### To do
 
 - Add CI, CD, CM, unit testing, integration testing
