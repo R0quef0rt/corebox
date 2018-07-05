@@ -25,7 +25,11 @@
 {{project}}-compose-build:
   cmd.run:
     - name: 'docker-compose build'
+    {% if saltenv == 'dev' %}
     - cwd: /app/dev/projects/{{project}}
+    {% elif saltenv == 'qa' or 'prod' %}
+    - cwd: /app/dev/projects/{{project}}
+    {% endif %}
     - require:
       - pip: compose
       - file: {{project}}-compose-config
