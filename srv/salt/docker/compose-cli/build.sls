@@ -12,11 +12,12 @@
   {% for project in salt['pillar.get']('compose:projects', '') %}
 {{project}}-compose-config: 
   file.managed: 
-    - source: salt://projects/{{project}}/docker-compose.tpl.yml
     - template: jinja
     {% if saltenv == 'dev' %}
+    - source: /app/dev/projects/{{project}}/docker-compose.tpl.yml
     - name: /app/dev/projects/{{project}}/docker-compose.yml
     {% elif saltenv == 'qa' or 'prod' %}
+    - source: /app/live/projects/{{project}}/docker-compose.tpl.yml
     - name: /app/live/projects/{{project}}/docker-compose.yml
     {% endif %}
     - require:
