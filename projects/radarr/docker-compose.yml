@@ -6,12 +6,8 @@ services:
     ports:
       - 7878:7878
     volumes:
-      - downloads:/downloads
-      
-      - ./config:/config
-      - ./mnt/movies:/movies
-      
-    environment:
+      - downloads:/downloads- ./config:/config
+      - ./mnt/movies:/moviesenvironment:
       PUID: 1004
       PGID: 1004
 

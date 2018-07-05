@@ -5,13 +5,9 @@ services:
     ports:
       - 32400:32400
     volumes:
-      - temp:/transcode
-      
-      - ./config:/config
+      - temp:/transcode- ./config:/config
       - ./mnt/movies:/movies
-      - ./mnt/television:/television
-      
-    environment:
+      - ./mnt/television:/televisionenvironment:
       PLEX_UID: 1005
       PLEX_GID: 1005
       ADVERTISE_IP: "http://192.168.5.20:32400/"

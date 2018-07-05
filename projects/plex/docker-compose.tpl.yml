@@ -6,16 +6,16 @@ services:
       - 32400:32400
     volumes:
       - temp:/transcode
-      {%- if saltenv == 'dev' -%}
+      {% if saltenv == 'dev' %}
       - ./config:/config
       - ./mnt/movies:/movies
       - ./mnt/television:/television
-      {%- elif saltenv == 'prod' or 'qa' -%}
+      {% elif saltenv == 'prod' or 'qa' %}
       - /etc/localtime:/etc/localtime:ro
       - /etc/plex/config:/config
       - /mnt/movies:/movies
       - /mnt/television:/television
-      {%- endif -%}
+      {% endif %}
     environment:
       PLEX_UID: 1005
       PLEX_GID: 1005
