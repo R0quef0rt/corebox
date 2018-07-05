@@ -9,8 +9,7 @@
     - force_fetch: True
     - force_reset: True
     - depth: 1
-{% endfor %}
-{% for project in salt['pillar.get']('compose:projects', '') %}
+  {% for project in salt['pillar.get']('compose:projects', '') %}
 {{project}}-compose-config: 
   file.managed: 
     - source: salt://projects/{{project}}/docker-compose.tpl.yml
@@ -37,4 +36,5 @@
 #       - pip: compose
 #       - git: {{repo}}-download-latest
 #       - cmd: {{project}}-compose-build
+  {% endfor %}
 {% endfor %}

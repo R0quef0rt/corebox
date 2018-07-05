@@ -23,7 +23,7 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     hideCopyright = true
 
     # Custom CSS
-    custom_css = ["less/inverted.less"]
+    custom_css = []
 
     # RTL support
     rtl = false

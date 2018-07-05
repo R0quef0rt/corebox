@@ -4,8 +4,7 @@
     - name: 'docker-compose pull'
     - cwd: /app/dev/projects/{{project}}
     - require:
-      - pip: compose
-      - sls: build
+      - cmd: {{project}}-compose-build
 {{project}}-compose-up:
   cmd.run:
     - name: 'docker-compose up --no-build -d'

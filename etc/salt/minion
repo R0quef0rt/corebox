@@ -14,7 +14,6 @@ env_order:
 
 file_roots:
   dev:
-    - /srv/salt
     - /app/dev/srv/salt
     - /app/live/srv/salt
   qa:
@@ -22,14 +21,18 @@ file_roots:
     - /app/live/srv/salt
   prod:
     - /srv/salt
+    - /app/live/srv/salt
 
 pillar_roots:
   dev:
-    - /srv/pillar
+    - /app/dev/srv/pillar
+    - /app/live/srv/pillar
   qa:
     - /srv/pillar
+    - /app/live/srv/pillar
   prod:
     - /srv/pillar
+    - /app/live/srv/pillar
 
 fileserver_backend:
   - roots
