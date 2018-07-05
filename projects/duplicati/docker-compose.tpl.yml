@@ -21,8 +21,3 @@ services:
       PUID: 1006
       PGID: 1006
       {% endif %}
-
-networks:
-  media:
-    external: 
-      name: plex_media
