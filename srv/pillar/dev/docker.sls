@@ -4,6 +4,7 @@ compose:
   projects:
     # - traefik
     - hugo
+    - nzbget
 
 hugo:
   projects:
