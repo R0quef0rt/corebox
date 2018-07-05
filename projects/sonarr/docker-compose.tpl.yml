@@ -1,15 +1,22 @@
 version: '3'
 
 services:
-  {{project}}:
+  sonarr:
     image: linuxserver/sonarr:143
     ports:
       - 8989:8989
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/sonarr/config:/config
       - /mnt/television:/television
       - downloads:/downloads
+      {% if saltenv == 'dev' %}
+      - ./config:/config
+      {% elif saltenv == 'prod' or 'qa' %}
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/sonarr/config:/config
+      {% endif %}
     environment:
       PUID: 1003
       PGID: 1003
+
+volumes:
+  downloads:

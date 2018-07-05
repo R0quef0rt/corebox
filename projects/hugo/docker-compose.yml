@@ -12,7 +12,7 @@ services:
     environment:
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "http://192.168.5.128"
+      BASEURL: "http://192.168.5.121"
       SERVICE_NAME: "backend"
 
 services:
@@ -27,5 +27,5 @@ services:
     environment:
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "http://192.168.5.128"
+      BASEURL: "http://192.168.5.121"
       SERVICE_NAME: "frontend"

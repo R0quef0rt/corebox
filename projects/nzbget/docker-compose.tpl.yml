@@ -1,17 +1,20 @@
 version: '3'
-{% for project in salt['pillar.get']('hugo:projects', '') %}
 services:
-  {{project}}:
+  nzbget:
     image: linuxserver/nzbget:125
     ports:
       - 6789:6789
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./etc/nzbget/config:/config
       - downloads:/downloads
+      {% if saltenv == 'dev' %}
+      - ./config:/config
+      {% elif saltenv == 'prod' or 'qa' %}
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/nzbget/config:/config
+      {% endif %}
     environment:
       PUID: 1002
       PGID: 1002
-{% endfor%}
+
 volumes:
   downloads:

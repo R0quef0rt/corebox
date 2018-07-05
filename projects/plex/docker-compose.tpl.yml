@@ -1,18 +1,24 @@
 version: '3'
-
 services:
-  {{project}}:
+  plex:
     image: plexinc/pms-docker:1.13.2.5154-fd05be322
     ports:
       - 32400:32400
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/plex/config:/config
       - temp:/transcode
       - /mnt/movies:/movies
       - /mnt/television:/television
+      {% if saltenv == 'dev' %}
+      - ./config:/config
+      {% elif saltenv == 'prod' or 'qa' %}
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/plex/config:/config
+      {% endif %}
     environment:
       PLEX_UID: 1005
       PLEX_GID: 1005
       ADVERTISE_IP: "http://192.168.5.20:32400/"
       PLEX_CLAIM: "claim-Bitt7vYft5suy34w1Se7"
+
+volumes:
+  temp:

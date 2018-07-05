@@ -44,6 +44,9 @@ sudo hugo server --bind="0.0.0.0"
 
 hugo new site /home/master/journal
 
+# MAJOR SECURITY ISSUES
+
+- Plex docker-compose template has CLAIM_ID hardcoded. This gives a person FULL ACCESS to the account (I think)
 
 ### To do
 

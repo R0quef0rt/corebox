@@ -16,7 +16,7 @@ file_roots:
   dev:
     - /app/dev/srv/salt
   qa:
-    - /srv/salt
+    - /app/dev/srv/salt
     - /app/live/srv/salt
   prod:
     - /srv/salt

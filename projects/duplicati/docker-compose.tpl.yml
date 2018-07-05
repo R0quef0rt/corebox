@@ -1,21 +1,21 @@
 version: '3'
-
 services:
-  {{project}}:
+  duplicati:
     image: linuxserver/duplicati:82
     ports:
       - 8200:8200
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/duplicati/config:/config
-      - /mnt/backups:/backups
-      - /mnt/movies:/movies
-      - /mnt/television:/television
-      - /etc/plex:/etc/plex
-      - /etc/radarr:/etc/radarr
-      - /etc/sonarr:/etc/sonarr
-      - /etc/nzbget:/etc/nzbget
       - source:/source
+      - /mnt:/mnt
+      {% if saltenv == 'dev' %}
+      - ./config:/config
+      {% elif saltenv == 'prod' or 'qa' %}
+      - /etc/localtime:/etc/localtime:ro
+      - /etc:/etc.local
+      {% endif %}
     environment:
       PUID: 1006
       PGID: 1006
+
+volumes:
+  source:

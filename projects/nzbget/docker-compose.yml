@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  backend:
+    image: linuxserver/nzbget:125
+    ports:
+      - 6789:6789
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./etc/nzbget/config:/config
+      - downloads:/downloads
+    environment:
+      PUID: 1002
+      PGID: 1002
+
+services:
+  frontend:
+    image: linuxserver/nzbget:125
+    ports:
+      - 6789:6789
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./etc/nzbget/config:/config
+      - downloads:/downloads
+    environment:
+      PUID: 1002
+      PGID: 1002
+
+volumes:
+  downloads:

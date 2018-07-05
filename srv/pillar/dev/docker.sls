@@ -5,6 +5,11 @@ compose:
     # - traefik
     - hugo
     - nzbget
+    - sonarr
+    - radarr
+    - sync
+    - plex
+    - duplicati
 
 hugo:
   projects:
