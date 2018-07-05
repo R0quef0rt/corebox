@@ -6,10 +6,10 @@ services:
       - 32400:32400
     volumes:
       - temp:/transcode
-      - /mnt/movies:/movies
-      - /mnt/television:/television
       
       - ./config:/config
+      - ./mnt/movies:/movies
+      - ./mnt/television:/television
       
     environment:
       PLEX_UID: 1005

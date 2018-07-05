@@ -6,12 +6,12 @@ services:
       - 6789:6789
     volumes:
       - downloads:/downloads
-      {% if saltenv == 'dev' %}
+      {%- if saltenv == 'dev' -%}
       - ./config:/config
-      {% elif saltenv == 'prod' or 'qa' %}
+      {%- elif saltenv == 'prod' or 'qa' -%}
       - /etc/localtime:/etc/localtime:ro
       - /etc/nzbget/config:/config
-      {% endif %}
+      {%- endif -%}
     environment:
       PUID: 1002
       PGID: 1002

@@ -7,7 +7,7 @@ services:
       - 8888:8888
       - 55555:55555
     volumes:
-      - /mnt:/mnt/mounted_folders
       
       - ./etc/sync:/config
+      - ./mnt:/mnt/mounted_folders
       

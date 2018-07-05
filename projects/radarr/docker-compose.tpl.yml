@@ -7,14 +7,14 @@ services:
       - 7878:7878
     volumes:
       - downloads:/downloads
-      {% if saltenv == 'dev' %}
+      {%- if saltenv == 'dev' -%}
       - ./config:/config
       - ./mnt/movies:/movies
-      {% elif saltenv == 'prod' or 'qa' %}
+      {%- elif saltenv == 'prod' or 'qa' -%}
       - /etc/localtime:/etc/localtime:ro
       - /etc/radarr/config:/config
       - /mnt/movies:/movies
-      {% endif %}
+      {%- endif -%}
     environment:
       PUID: 1004
       PGID: 1004

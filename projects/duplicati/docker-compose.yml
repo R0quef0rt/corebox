@@ -6,9 +6,9 @@ services:
       - 8200:8200
     volumes:
       - source:/source
-      - /mnt:/mnt
       
       - ./config:/config
+      - ./mnt:/mnt
       
     environment:
       PUID: 1006

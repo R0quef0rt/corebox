@@ -7,14 +7,14 @@ services:
       - 8989:8989
     volumes:
       - downloads:/downloads
-      {% if saltenv == 'dev' %}
+      {%- if saltenv == 'dev' -%}
       - ./config:/config
       - ./mnt/television:/television
-      {% elif saltenv == 'prod' or 'qa' %}
+      {%- elif saltenv == 'prod' or 'qa' -%}
       - /etc/localtime:/etc/localtime:ro
       - /etc/sonarr/config:/config
       - /mnt/television:/television
-      {% endif %}
+      {%- endif -%}
     environment:
       PUID: 1003
       PGID: 1003
