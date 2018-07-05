@@ -13,7 +13,7 @@
 {% for project in salt['pillar.get']('compose:projects', '') %}
 {{project}}-compose-config: 
   file.managed: 
-    - source: salt://projects/{{project}}/docker-compose.yml.template
+    - source: salt://projects/{{project}}/docker-compose.tpl.yml
     - template: jinja
     {% if saltenv == 'dev' %}
     - name: /app/dev/projects/{{project}}/docker-compose.yml

@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  {{project}}:
+    image: resilio/sync:release-2.5.13
+    ports:
+      - 8888:8888
+      - 55555:55555
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/sync:/mnt/sync
+      - /mnt/movies:/mnt/mounted_folders/movies
+      - /mnt/television:/mnt/mounted_folders/television
+      - /mnt/backups:/mnt/mounted_folders/backups
+      - /mnt/music:/mnt/mounted_folders/music
+      - downloads:/mnt/downloads
