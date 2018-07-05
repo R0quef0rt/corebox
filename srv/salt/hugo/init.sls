@@ -1,15 +1,16 @@
 {% for project in salt['pillar.get']('hugo:projects', '') %}
-  {% for name, args in salt['pillar.get']('project', '') %}
-hugo-{{name}}: 
+
+hugo-{{project}}: 
   file.managed: 
-    - source: salt://projects/hugo/src/{{name}}/config.toml.template
+    - source: salt://projects/hugo/src/{{project}}/config.toml.template
     - template: jinja
     {% if saltenv == 'dev' %}
-    - name: /app/dev/projects/hugo/src/{{name}}/config.toml
+    - name: /app/dev/projects/hugo/src/{{project}}/config.toml
     {% elif saltenv == 'qa' or 'prod' %}
-    - name: /app/live/projects/hugo/src/{{name}}/config.toml
+    - name: /app/live/projects/hugo/src/{{project}}/config.toml
     {% endif %}
-hugo-{{name}}-compose: 
+
+hugo-{{project}}-compose: 
   file.managed: 
     - source: salt://projects/hugo/docker-compose.yml.template
     - template: jinja
@@ -18,5 +19,5 @@ hugo-{{name}}-compose:
     {% elif saltenv == 'qa' or 'prod' %}
     - name: /app/live/projects/hugo/docker-compose.yml
     {% endif %}
-  {% endfor %}
+
 {% endfor %}
