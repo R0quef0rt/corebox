@@ -21,6 +21,12 @@ services:
       PUID: 1003
       PGID: 1003
       {% endif %}
+    networks:
+      - media
 
 volumes:
   downloads:
+
+networks:
+  media:
+    external: plex_media

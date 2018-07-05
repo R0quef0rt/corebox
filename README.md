@@ -51,6 +51,7 @@ hugo new site /home/master/journal
 ## Known issues
 
 - In prod, the root partition is running out of space. Probably because Docker mount should be moved to /mnt
+- Race conditions. Sometimes requires salt highstate reapply
 
 ### To do
 
