@@ -3,11 +3,11 @@ compose:
     - https://github.com/R0quef0rt/devbox
   projects:
     - hugo
+    - plex
     - nzbget
     - sonarr
     - radarr
     - sync
-    - plex
     - duplicati
 
 hugo:

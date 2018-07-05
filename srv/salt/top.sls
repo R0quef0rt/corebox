@@ -13,6 +13,7 @@ qa:
     - system
     - docker
     - docker.compose
+  'cloudbox':
     - hugo
     - docker.compose-cli.build
     - docker.compose-cli.up
