@@ -13,6 +13,7 @@ do
                      --source="/src/${SERVICE_NAME}" \
                      --destination="/output/${SERVICE_NAME}" \
                      --gc \
+                     --disableFastRender \
                      --baseURL="${BASEURL}" \
                      --bind="0.0.0.0" "$@" || exit 1
     else

@@ -1,8 +1,8 @@
-name = "Coder"
+name = "Dark"
 license = "MIT"
 licenselink = "https://github.com/luizdepra/hugo-coder/blob/master/LICENSE.md"
-description = "A simple and clean blog theme for Hugo"
-homepage = "https://github.com/luizdepra/hugo-coder/"
+description = "A dark theme for Hugo, based upon the Coder theme."
+homepage = "https://github.com/R0quef0rt/devbox/projects/hugo/src/frontend/dark"
 tags = [
   "blog",
   "minimal",
@@ -22,5 +22,5 @@ features = [
 min_version = "0.32"
 
 [author]
-  name = "Luiz F. A. de Prá"
-  homepage = "https://luizdepra.com"
+  name = "Roquefort"
+  homepage = "http://autom8te.org"
