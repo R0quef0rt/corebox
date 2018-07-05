@@ -29,4 +29,5 @@ volumes:
 
 networks:
   media:
-    external: plex_media
+    external: 
+      name: plex_media

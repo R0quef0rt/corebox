@@ -22,5 +22,7 @@ services:
       PGID: 1006
       {% endif %}
 
-volumes:
-  source:
+networks:
+  media:
+    external: 
+      name: plex_media
