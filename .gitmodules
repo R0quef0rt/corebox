@@ -1,0 +1,4 @@
+[submodule "projects/hugo/src/backend/themes/coder"]
+	url = https://github.com/luizdepra/hugo-coder
+[submodule "projects/hugo/src/frontend/themes/coder"]
+	url = https://github.com/luizdepra/hugo-coder
