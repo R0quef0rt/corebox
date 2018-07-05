@@ -1,5 +1,5 @@
 version: '3'
-
+{% for project in salt['pillar.get']('hugo:projects', '') %}
 services:
   {{project}}:
     image: linuxserver/nzbget:125
@@ -12,6 +12,6 @@ services:
     environment:
       PUID: 1002
       PGID: 1002
-
+{% endfor%}
 volumes:
   downloads:

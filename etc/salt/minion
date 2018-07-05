@@ -15,7 +15,6 @@ env_order:
 file_roots:
   dev:
     - /app/dev/srv/salt
-    - /app/live/srv/salt
   qa:
     - /srv/salt
     - /app/live/srv/salt
