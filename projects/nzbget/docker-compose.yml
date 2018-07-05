@@ -1,0 +1,17 @@
+version: '3'
+services:
+  nzbget:
+    image: linuxserver/nzbget:125
+    ports:
+      - 6789:6789
+    volumes:
+      - downloads:/downloads
+      
+      - ./config:/config
+    environment:
+      PUID: 1000
+      PGID: 1000
+      
+
+volumes:
+  downloads:
