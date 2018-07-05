@@ -1,6 +1,7 @@
 version: '3'
-{% for project in salt['pillar.get']('hugo:projects', '') %}
+
 services:
+{% for project in salt['pillar.get']('hugo:projects', '') %}
   {{project}}-webserver:
     image: roquefort/hugo:latest
     build: .
