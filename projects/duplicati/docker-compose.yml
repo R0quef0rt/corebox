@@ -5,8 +5,12 @@ services:
     ports:
       - 8200:8200
     volumes:
-      - source:/source- ./config:/config
-      - ./mnt:/mntenvironment:
+      - source:/source
+      
+      - ./config:/config
+      - ./mnt:/mnt
+      
+    environment:
       PUID: 1006
       PGID: 1006
 

@@ -6,5 +6,8 @@ services:
     ports:
       - 8888:8888
       - 55555:55555
-    volumes:- ./etc/sync:/config
+    volumes:
+      
+      - ./etc/sync:/config
       - ./mnt:/mnt/mounted_folders
+      

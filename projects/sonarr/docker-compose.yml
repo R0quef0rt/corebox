@@ -6,8 +6,12 @@ services:
     ports:
       - 8989:8989
     volumes:
-      - downloads:/downloads- ./config:/config
-      - ./mnt/television:/televisionenvironment:
+      - downloads:/downloads
+      
+      - ./config:/config
+      - ./mnt/television:/television
+      
+    environment:
       PUID: 1003
       PGID: 1003
 

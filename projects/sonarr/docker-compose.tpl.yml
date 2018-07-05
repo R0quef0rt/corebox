@@ -10,14 +10,17 @@ services:
       {% if saltenv == 'dev' %}
       - ./config:/config
       - ./mnt/television:/television
+    environment:
+      PUID: 1000
+      PGID: 1000
       {% elif saltenv == 'prod' or 'qa' %}
       - /etc/localtime:/etc/localtime:ro
       - /etc/sonarr/config:/config
       - /mnt/television:/television
-      {% endif %}
     environment:
       PUID: 1003
       PGID: 1003
+      {% endif %}
 
 volumes:
   downloads:

@@ -9,14 +9,18 @@ services:
       {% if saltenv == 'dev' %}
       - ./config:/config
       - ./mnt:/mnt
+    environment:
+      PUID: 1000
+      PGID: 1000
       {% elif saltenv == 'prod' or 'qa' %}
       - /etc/localtime:/etc/localtime:ro
+      - /etc/duplicati/config:/config
       - /etc:/etc.local
       - /mnt:/mnt
-      {% endif %}
     environment:
       PUID: 1006
       PGID: 1006
+      {% endif %}
 
 volumes:
   source:
