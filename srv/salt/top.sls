@@ -2,7 +2,6 @@ dev:
   '*':
     - common
     - system
-    - system.directory
     - docker
     - docker.compose
     - hugo
