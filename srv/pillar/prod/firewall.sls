@@ -39,3 +39,13 @@ firewall-rules:
     jump: ACCEPT
     dport: 32400
     protocol: tcp
+  hugo-frontend:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 1313
+    protocol: tcp
+  hugo-backend:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 1323
+    protocol: tcp
