@@ -1,5 +1,5 @@
 version: '3'
-
+{% for project in salt['pillar.get']('hugo:projects', '') %}
 services:
   {{project}}-webserver:
     image: roquefort/hugo:latest
@@ -14,3 +14,4 @@ services:
       REFRESH_TIME: 15
       BASEURL: "http://{{ grains['ip_interfaces']['eth0'][0] }}"
       SERVICE_NAME: "{{project}}"
+{% endfor %}
