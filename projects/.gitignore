@@ -2,3 +2,8 @@
 
 !.gitignore
 !docker-compose.tpl.yml
+!config.tpl.toml
+!Dockerfile
+!entrypoint.sh
+!README.md
+!/hugo/src/**
