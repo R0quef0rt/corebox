@@ -9,7 +9,6 @@ qa:
     - prod.system
     - qa.raid
     - prod.users
-    - prod.docker
     - prod.firewall
     - prod.directory
 prod:

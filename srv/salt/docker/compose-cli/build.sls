@@ -2,7 +2,7 @@
 {{repo}}-download-latest:
   git.latest:
     - name: {{repo}}
-    - rev: dev
+    - rev: master
     - target: /app/live
     - force_checkout: True
     - force_clone: True
