@@ -1,11 +1,12 @@
 {% for project in salt['pillar.get']('hugo:projects', '') %}
 hugo-{{project}}: 
   file.managed: 
-    - source: salt://projects/hugo/src/{{project}}/config.toml.template
     - template: jinja
     {% if saltenv == 'dev' %}
+    - source: /app/dev/projects/hugo/src/{{project}}/config.toml.template
     - name: /app/dev/projects/hugo/src/{{project}}/config.toml
     {% elif saltenv == 'qa' or 'prod' %}
+    - source: /app/live/projects/hugo/src/{{project}}/config.toml.template
     - name: /app/live/projects/hugo/src/{{project}}/config.toml
     {% endif %}
 {% endfor %}
