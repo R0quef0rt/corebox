@@ -13,8 +13,13 @@ services:
     environment:
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "http://192.168.5.117"
+      BASEURL: "http://192.168.5.137"
       SERVICE_NAME: "backend"
+      deploy:
+        labels:
+          - "traefik.enable=true"
+          - "traefik.docker.network=traefik_hugo"
+          - "traefik.port=80"
 
   frontend-webserver:
     image: roquefort/hugo:latest
@@ -27,5 +32,10 @@ services:
     environment:
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "http://192.168.5.117"
+      BASEURL: "http://192.168.5.137"
       SERVICE_NAME: "frontend"
+      deploy:
+        labels:
+          - "traefik.enable=true"
+          - "traefik.docker.network=traefik_hugo"
+          - "traefik.port=80"

@@ -14,6 +14,13 @@ services:
       PUID: 1000
       PGID: 1000
       
+    networks:
+      - media
 
 volumes:
   downloads:
+
+networks:
+  media:
+    external: 
+      name: plex_media

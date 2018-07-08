@@ -15,4 +15,9 @@ services:
       REFRESH_TIME: 15
       BASEURL: "http://{{ grains['ipv4']|last }}"
       SERVICE_NAME: "{{project}}"
+      deploy:
+        labels:
+          - "traefik.enable=true"
+          - "traefik.docker.network=traefik_hugo"
+          - "traefik.port=80"
 {% endfor %}

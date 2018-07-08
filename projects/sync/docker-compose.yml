@@ -8,6 +8,6 @@ services:
       - 55555:55555
     volumes:
       
-      - ./etc/sync:/config
+      - ./etc/sync:/mnt/sync
       - ./mnt:/mnt/mounted_folders
       
