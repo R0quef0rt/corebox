@@ -34,10 +34,6 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     weight = 1
     url = "https://github.com/R0quef0rt/devbox"
 [[params.social]]
-    name = "Twitter"
-    weight = 2
-    url = "https://twitter.com/R0quef0rt"
-[[params.social]]
     name = "Slack"
     weight = 3
     url = "https://autom8te-devbox.slack.com"

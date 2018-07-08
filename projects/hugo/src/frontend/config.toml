@@ -11,7 +11,7 @@ pygmentscodefences = true # Enable code fence background highlighting.
 pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences without specified language.
 
 [params] # theme parameters
-    author = "devbox" # Author's name.
+    author = "sandbox" # Author's name.
     info = "SERVICE:FRONTEND is ONLINE" # Author's job title or info.
     description = "" # Site description.
     keywords = "blog,developer,personal" # Site keywords.
@@ -33,10 +33,6 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     name = "Github"
     weight = 1
     url = "https://github.com/R0quef0rt/devbox"
-[[params.social]]
-    name = "Twitter"
-    weight = 2
-    url = "https://twitter.com/R0quef0rt"
 [[params.social]]
     name = "Slack"
     weight = 3

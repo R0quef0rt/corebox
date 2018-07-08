@@ -2,26 +2,26 @@ version: '3'
 
 services:
 
-  backend:
+  core:
     image: roquefort/hugo:latest
     build: .
     ports:
       - 1313:1313
     volumes:
-      - ./src/backend:/src/backend
-      - ./output/backend:/output/backend
+      - ./src/core:/src/core
+      - ./output/core:/output/core
     networks:
       - public
     environment:
-      SERVICE_NAME: "backend"
+      SERVICE_NAME: "core"
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "http://192.168.5.116"
+      BASEURL: "http://192.168.5.145"
     labels:
       - traefik.enable=true
       - traefik.docker.network=public
       - traefik.port=1313
-      - traefik.frontend.rule=PathPrefixStrip:/backend/
+      - traefik.frontend.rule=PathPrefixStrip:/core/
 
   frontend:
     image: roquefort/hugo:latest
@@ -37,7 +37,7 @@ services:
       SERVICE_NAME: "frontend"
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "http://192.168.5.116"
+      BASEURL: "http://192.168.5.145"
     labels:
       - traefik.enable=true
       - traefik.docker.network=public
