@@ -1,6 +1,6 @@
 version: '3'
 services:
-  nzbget:
+  app:
     image: linuxserver/nzbget:125
     ports:
       - 6789:6789

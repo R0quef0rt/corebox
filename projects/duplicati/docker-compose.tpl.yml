@@ -1,6 +1,7 @@
 version: '3'
+
 services:
-  duplicati:
+  app:
     image: linuxserver/duplicati:82
     ports:
       - 8200:8200

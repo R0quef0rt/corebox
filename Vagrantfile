@@ -17,8 +17,7 @@ Vagrant.configure("2") do |config|
     vb.cpus = 2
   end
 
-  config.vm.network "forwarded_port", guest: 1313,  host: 1313
-  config.vm.network "forwarded_port", guest: 1323,  host: 1323
+  config.vm.network "forwarded_port", guest: 80,  host: 8080
 
   config.vm.synced_folder ".", "/app/dev"
 

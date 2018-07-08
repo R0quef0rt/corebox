@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  backend-webserver:
+  backend:
     image: roquefort/hugo:latest
     build: .
     ports:
@@ -10,18 +10,20 @@ services:
     volumes:
       - ./src/backend:/src/backend
       - ./output/backend:/output/backend
+    networks:
+      - public
     environment:
+      SERVICE_NAME: "backend"
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "http://192.168.5.137"
-      SERVICE_NAME: "backend"
-      deploy:
-        labels:
-          - "traefik.enable=true"
-          - "traefik.docker.network=traefik_hugo"
-          - "traefik.port=80"
+      BASEURL: "http://192.168.5.116"
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=public
+      - traefik.port=1313
+      - traefik.frontend.rule=PathPrefixStrip:/backend/
 
-  frontend-webserver:
+  frontend:
     image: roquefort/hugo:latest
     build: .
     ports:
@@ -29,13 +31,20 @@ services:
     volumes:
       - ./src/frontend:/src/frontend
       - ./output/frontend:/output/frontend
+    networks:
+      - public
     environment:
+      SERVICE_NAME: "frontend"
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "http://192.168.5.137"
-      SERVICE_NAME: "frontend"
-      deploy:
-        labels:
-          - "traefik.enable=true"
-          - "traefik.docker.network=traefik_hugo"
-          - "traefik.port=80"
+      BASEURL: "http://192.168.5.116"
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=public
+      - traefik.port=1313
+      - traefik.frontend.rule=PathPrefixStrip:/frontend/
+
+networks:
+  public:
+    external:
+      name: traefik_hugo

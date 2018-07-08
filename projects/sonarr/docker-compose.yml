@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  sonarr:
+  app:
     image: linuxserver/sonarr:143
     ports:
       - 8989:8989

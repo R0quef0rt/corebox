@@ -2,7 +2,7 @@ version: '3'
 
 services:
 {% for project in salt['pillar.get']('hugo:projects', '') %}
-  {{project}}-webserver:
+  {{project}}:
     image: roquefort/hugo:latest
     build: .
     ports:
@@ -10,14 +10,20 @@ services:
     volumes:
       - ./src/{{project}}:/src/{{project}}
       - ./output/{{project}}:/output/{{project}}
+    networks:
+      - public
     environment:
+      SERVICE_NAME: "{{project}}"
       WATCH: "true"
       REFRESH_TIME: 15
       BASEURL: "http://{{ grains['ipv4']|last }}"
-      SERVICE_NAME: "{{project}}"
-      deploy:
-        labels:
-          - "traefik.enable=true"
-          - "traefik.docker.network=traefik_hugo"
-          - "traefik.port=80"
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=public
+      - traefik.port=1313
+      - traefik.frontend.rule=PathPrefixStrip:/{{project}}/
 {% endfor %}
+networks:
+  public:
+    external:
+      name: traefik_hugo

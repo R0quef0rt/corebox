@@ -13,5 +13,5 @@ compose:
 
 hugo:
   projects:
-    - backend
+    - core
     - frontend
