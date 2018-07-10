@@ -5,6 +5,7 @@ dev:
     - docker
     - docker.compose
     - hugo
+    - sonarr
     - docker.compose-cli.build
     - docker.compose-cli.up
 qa:

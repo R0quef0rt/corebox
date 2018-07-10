@@ -16,6 +16,12 @@ services:
       
     networks:
       - media
+      - traefik_frontend
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_frontend
+      - traefik.port=8989
+      - traefik.frontend.rule=PathPrefix:/sonarr
 
 volumes:
   downloads:
@@ -24,3 +30,5 @@ networks:
   media:
     external: 
       name: plex_media
+  traefik_frontend:
+    external: true

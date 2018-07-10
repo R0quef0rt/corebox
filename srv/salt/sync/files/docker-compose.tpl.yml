@@ -7,10 +7,14 @@ services:
       - 8888:8888
       - 55555:55555
     volumes:
-      
+      {% if saltenv == 'dev' %}
       - ./etc/sync:/mnt/sync
       - ./mnt:/mnt/mounted_folders
-      
+      {% elif saltenv == 'prod' or 'qa' %}
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/sync/config:/mnt/sync
+      - /mnt:/mnt/mounted_folders
+      {% endif %}
     networks:
       - traefik_frontend
     labels:

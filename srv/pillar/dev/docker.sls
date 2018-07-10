@@ -4,12 +4,12 @@ compose:
   projects:
     - traefik
     - hugo
-    # - plex
-    # - nzbget
-    # - sonarr
-    # - radarr
-    # - sync
-    # - duplicati
+    - plex
+    - nzbget
+    - sonarr
+    - radarr
+    - sync
+    - duplicati
 
 hugo:
   projects:

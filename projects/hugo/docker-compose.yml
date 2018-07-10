@@ -11,7 +11,7 @@ services:
       - ./src/core:/src/core
       - ./output/core:/output/core
     networks:
-      - traefik_hugo
+      - traefik_frontend
     environment:
       SERVICE_NAME: "core"
       WATCH: "true"
@@ -19,7 +19,7 @@ services:
       BASEURL: "http://192.168.5.115/core"
     labels:
       - traefik.enable=true
-      - traefik.docker.network=traefik_hugo
+      - traefik.docker.network=traefik_frontend
       - traefik.port=1313
       - traefik.frontend.rule=PathPrefix:/core
 
@@ -32,7 +32,7 @@ services:
       - ./src/frontend:/src/frontend
       - ./output/frontend:/output/frontend
     networks:
-      - traefik_hugo
+      - traefik_frontend
     environment:
       SERVICE_NAME: "frontend"
       WATCH: "true"
@@ -40,10 +40,10 @@ services:
       BASEURL: "http://192.168.5.115/frontend"
     labels:
       - traefik.enable=true
-      - traefik.docker.network=traefik_hugo
+      - traefik.docker.network=traefik_frontend
       - traefik.port=1313
       - traefik.frontend.rule=PathPrefix:/frontend
 
 networks:
-  traefik_hugo:
+  traefik_frontend:
     external: true

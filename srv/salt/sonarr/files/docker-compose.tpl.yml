@@ -2,26 +2,33 @@ version: '3'
 
 services:
   app:
-    image: linuxserver/radarr:116
+    image: linuxserver/sonarr:143
     ports:
-      - 7878:7878
+      - 8989:8989
     volumes:
       - downloads:/downloads
-      
+      {% if saltenv == 'dev' %}
       - ./config:/config
-      - ./mnt/movies:/movies
+      - ./mnt/television:/television
     environment:
       PUID: 1000
       PGID: 1000
-      
+      {% elif saltenv == 'prod' or 'qa' %}
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/sonarr/config:/config
+      - /mnt/television:/television
+    environment:
+      PUID: 1003
+      PGID: 1003
+      {% endif %}
     networks:
       - media
       - traefik_frontend
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik_frontend
-      - traefik.port=7878
-      - traefik.frontend.rule=PathPrefixStrip:/radarr/
+      - traefik.port=8989
+      - traefik.frontend.rule=PathPrefix:/sonarr
 
 volumes:
   downloads:

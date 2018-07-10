@@ -69,6 +69,10 @@ hugo new site /home/master/journal
 - Random phrase generator below title
 - Grafana, Prometheus, Alerts
 
+### Due Dilligence
+
+- Update WHOIS records
+
 ### Potential
 
 - Dotmesh
