@@ -19,7 +19,7 @@ services:
       BASEURL: "http://{{ grains['ipv4']|last }}"
     labels:
       - traefik.enable=true
-      - traefik.docker.network=public
+      - traefik.docker.network=traefik_hugo
       - traefik.port=1313
       - traefik.frontend.rule=Host:/{{ grains['ipv4']|last }}/
 {% endfor %}

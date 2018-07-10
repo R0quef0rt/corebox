@@ -2,6 +2,16 @@ version: '3'
 
 services:
 
+  proxy:
+    image: traefik
+    command: --api --docker
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/etc/traefik/traefik.toml
+
   core:
     image: roquefort/hugo:latest
     build: .
@@ -10,41 +20,13 @@ services:
     volumes:
       - ./src/core:/src/core
       - ./output/core:/output/core
-    networks:
-      - public
     environment:
       SERVICE_NAME: "core"
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "http://192.168.5.118"
+      BASEURL: "http://192.168.5.111"
     labels:
       - traefik.enable=true
-      - traefik.docker.network=public
+      # - traefik.docker.network=hugo_default
       - traefik.port=1313
-      - traefik.frontend.rule=Host:/192.168.5.118/
-
-  frontend:
-    image: roquefort/hugo:latest
-    build: .
-    ports:
-      - 1323:1313
-    volumes:
-      - ./src/frontend:/src/frontend
-      - ./output/frontend:/output/frontend
-    networks:
-      - public
-    environment:
-      SERVICE_NAME: "frontend"
-      WATCH: "true"
-      REFRESH_TIME: 15
-      BASEURL: "http://192.168.5.118"
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=public
-      - traefik.port=1313
-      - traefik.frontend.rule=Host:/192.168.5.118/
-
-networks:
-  public:
-    external:
-      name: traefik_hugo
+      - traefik.frontend.rule=PathPrefix:/
