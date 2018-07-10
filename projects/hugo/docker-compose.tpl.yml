@@ -21,7 +21,7 @@ services:
       - traefik.enable=true
       - traefik.docker.network=public
       - traefik.port=1313
-      - traefik.frontend.rule=PathPrefixStrip:/{{project}}/
+      - traefik.frontend.rule=Host:/{{ grains['ipv4']|last }}/
 {% endfor %}
 networks:
   public:

@@ -65,7 +65,3 @@ ext_pillar:
       - env: prod
       - name: prod
       - root: srv/pillar
-
-# Add custom grains to minion
-ext:
-  - raid5
