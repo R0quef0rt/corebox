@@ -173,7 +173,7 @@ usebindportip = true
 # Optional
 # Default: false
 #
-swarmMode = false
+swarmMode = true
 
 # Enable docker TLS connection.
 #
