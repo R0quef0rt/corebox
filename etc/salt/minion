@@ -45,7 +45,7 @@ gitfs_remotes:
 
 gitfs_saltenv:
   - qa:
-    - ref: master
+    - ref: dev
   - prod:
     - ref: master
 
