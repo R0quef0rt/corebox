@@ -11,14 +11,14 @@ services:
       - ./etc/sync:/mnt/sync
       - ./mnt:/mnt/mounted_folders
       
-    networks:
-      - traefik_frontend
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=traefik_frontend
-      - traefik.port=8888
-      - traefik.frontend.rule=PathPrefix:/sync/
+    # networks:
+    #   - traefik_frontend
+    # labels:
+    #   - traefik.enable=true
+    #   - traefik.docker.network=traefik_frontend
+    #   - traefik.port=8888
+    #   - traefik.frontend.rule=PathPrefix:/sync/
 
-networks:
-  traefik_frontend:
-    external: true
+# networks:
+#   traefik_frontend:
+#     external: true

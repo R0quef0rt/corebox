@@ -4,8 +4,8 @@ dev:
     - system
     - docker
     - docker.compose
+    - traefik
     - hugo
-    - sonarr
     - docker.compose-cli.build
     - docker.compose-cli.up
 qa:

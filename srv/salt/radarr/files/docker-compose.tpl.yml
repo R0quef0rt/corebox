@@ -23,12 +23,12 @@ services:
       {% endif %}
     networks:
       - media
-      - traefik_frontend
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=traefik_frontend
-      - traefik.port=7878
-      - traefik.frontend.rule=PathPrefix:/radarr
+    #   - traefik_frontend
+    # labels:
+    #   - traefik.enable=true
+    #   - traefik.docker.network=traefik_frontend
+    #   - traefik.port=7878
+    #   - traefik.frontend.rule=PathPrefix:/radarr
 
 volumes:
   downloads:
@@ -37,5 +37,5 @@ networks:
   media:
     external: 
       name: plex_media
-  traefik_frontend:
-    external: true
+  # traefik_frontend:
+  #   external: true

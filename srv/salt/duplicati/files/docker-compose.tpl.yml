@@ -10,13 +10,13 @@ services:
       {% if saltenv == 'dev' %}
       - ./config:/config
       - ./mnt:/mnt
-    networks:
-      - traefik_frontend
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=traefik_frontend
-      - traefik.port=8200
-      - traefik.frontend.rule=PathPrefix:/duplicati
+    # networks:
+    #   - traefik_frontend
+    # labels:
+    #   - traefik.enable=true
+    #   - traefik.docker.network=traefik_frontend
+    #   - traefik.port=8200
+    #   - traefik.frontend.rule=PathPrefix:/duplicati
     environment:
       PUID: 1000
       PGID: 1000
@@ -33,6 +33,6 @@ services:
 volumes:
   source:
 
-networks:
-  traefik_frontend:
-    external: true
+# networks:
+#   traefik_frontend:
+#     external: true
