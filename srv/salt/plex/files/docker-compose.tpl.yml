@@ -7,7 +7,7 @@ services:
     volumes:
       - temp:/transcode
       {% if saltenv == 'dev' %}
-      - ./config:/config
+      - config:/config
       - ./mnt/movies:/movies
       - ./mnt/television:/television
     environment:
@@ -29,6 +29,9 @@ services:
 
 volumes:
   temp:
+  {% if saltenv == 'dev' %}
+  config:
+  {% endif %}
 
 networks:
   media:

@@ -8,7 +8,7 @@ services:
     volumes:
       - nzbget_downloads:/downloads
       {% if saltenv == 'dev' %}
-      - ./config:/config
+      - config:/config
       - ./mnt/movies:/movies
     environment:
       PUID: 1000
@@ -31,7 +31,11 @@ services:
     #   - traefik.frontend.rule=PathPrefix:/radarr
 
 volumes:
+  {% if saltenv == 'dev' %}
+  config:
+  {% endif %}
   nzbget_downloads:
+    external: true
 
 networks:
   media:

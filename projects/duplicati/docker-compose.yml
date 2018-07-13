@@ -4,11 +4,11 @@ services:
   app:
     image: linuxserver/duplicati:82
     ports:
-      - "8200"
+      - "8200:8200"
     volumes:
       - source:/source
       
-      - ./config:/config
+      - config:/config
       - ./mnt:/mnt
     networks:
       - traefik_frontend
@@ -23,6 +23,9 @@ services:
 
 volumes:
   source:
+  
+  config:
+  
 
 networks:
   traefik_frontend:
