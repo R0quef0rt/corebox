@@ -15,6 +15,7 @@ qa:
     - docker
     - docker.compose
   'cloudbox':
+    - traefik
     - hugo
     - docker.compose-cli.build
     - docker.compose-cli.up
@@ -26,6 +27,7 @@ prod:
     - system
     - docker
     - docker.compose
+    - traefik
     - hugo
     - docker.compose-cli.build
     - docker.compose-cli.up

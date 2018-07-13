@@ -4,10 +4,15 @@ firewall-rules:
     jump: ACCEPT
     dport: 22
     protocol: tcp
-  nzbget:
+  traefik:
     chain: INPUT
     jump: ACCEPT
-    dport: 6789
+    dport: 80
+    protocol: tcp
+  traefik-api:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 8080
     protocol: tcp
   sonarr:
     chain: INPUT
@@ -38,14 +43,4 @@ firewall-rules:
     chain: INPUT
     jump: ACCEPT
     dport: 32400
-    protocol: tcp
-  hugo-frontend:
-    chain: INPUT
-    jump: ACCEPT
-    dport: 1313
-    protocol: tcp
-  hugo-backend:
-    chain: INPUT
-    jump: ACCEPT
-    dport: 1323
     protocol: tcp
