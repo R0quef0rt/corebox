@@ -6,7 +6,7 @@ services:
     ports:
       - 8989:8989
     volumes:
-      - downloads:/downloads
+      - nzbget_downloads:/downloads
       
       - ./config:/config
       - ./mnt/television:/television
@@ -24,7 +24,8 @@ services:
     #   - traefik.frontend.rule=Path:/sonarr
 
 volumes:
-  downloads:
+  nzbget_downloads:
+    external: true
 
 networks:
   media:

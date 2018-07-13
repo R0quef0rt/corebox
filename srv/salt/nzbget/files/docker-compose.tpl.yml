@@ -25,7 +25,7 @@ services:
       - traefik.enable=true
       - traefik.docker.network=traefik_frontend
       - traefik.port=6789
-      - traefik.frontend.rule=PathPrefix:/nzbget
+      - traefik.frontend.rule=PathPrefixStrip:/nzbget
 
 
 volumes:

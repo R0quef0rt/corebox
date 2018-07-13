@@ -8,8 +8,6 @@ services:
     ports:
       - "80:80"
       - "8080:8080"
-      - "8888:8888"
-      - "8200:8200"
     networks:
       - frontend
       - backend

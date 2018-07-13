@@ -4,7 +4,7 @@ services:
   app:
     image: resilio/sync:release-2.5.13
     ports:
-      - "8888"
+      - "8888:8888"
       - "55555:55555"
     volumes:
       {% if saltenv == 'dev' %}
@@ -15,13 +15,14 @@ services:
       - /etc/sync/config:/mnt/sync
       - /mnt:/mnt/mounted_folders
       {% endif %}
-    networks:
-      - traefik_frontend
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=traefik_frontend"
-      - "traefik.port=8888"
+    # networks:
+    #   - traefik_frontend
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.docker.network=traefik_frontend"
+    #   - "traefik.port=8888"
+    #   - "traefik.frontend.rule=PathPrefixStrip:/sync"
 
-networks:
-  traefik_frontend:
-    external: true
+# networks:
+#   traefik_frontend:
+#     external: true
