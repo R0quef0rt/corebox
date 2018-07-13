@@ -14,6 +14,11 @@ firewall-rules:
     jump: ACCEPT
     dport: 8080
     protocol: tcp
+  nzbget:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 6789
+    protocol: tcp
   sonarr:
     chain: INPUT
     jump: ACCEPT

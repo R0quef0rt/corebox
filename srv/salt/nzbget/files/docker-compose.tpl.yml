@@ -20,12 +20,12 @@ services:
       {% endif %}
     networks:
       - media
-      - traefik_frontend
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=traefik_frontend
-      - traefik.port=6789
-      - traefik.frontend.rule=PathPrefixStrip:/nzbget
+    #   - traefik_frontend
+    # labels:
+    #   - traefik.enable=true
+    #   - traefik.docker.network=traefik_frontend
+    #   - traefik.port=6789
+    #   - traefik.frontend.rule=PathPrefixStrip:/nzbget
 
 
 volumes:
@@ -35,5 +35,5 @@ networks:
   media:
     external: 
       name: plex_media
-  traefik_frontend:
-    external: true
+  # traefik_frontend:
+  #   external: true
