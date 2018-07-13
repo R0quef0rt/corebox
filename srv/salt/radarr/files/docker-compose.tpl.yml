@@ -31,8 +31,8 @@ services:
     #   - traefik.port=7878
     #   - traefik.frontend.rule=PathPrefix:/radarr
 
-volumes:
   {% if saltenv == 'dev' %}
+volumes:
   config:
   movies:
   nzbget_downloads:

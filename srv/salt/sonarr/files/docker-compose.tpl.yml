@@ -31,8 +31,8 @@ services:
     #   - traefik.port=8989
     #   - traefik.frontend.rule=Path:/sonarr
 
-volumes:
   {% if saltenv == 'dev' %}
+volumes:
   config:
   television:
   nzbget_downloads:
