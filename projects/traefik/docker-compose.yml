@@ -8,17 +8,19 @@ services:
     ports:
       - "80:80"
       - "8080:8080"
+      - "8888:8888"
+      - "8200:8200"
     networks:
       - frontend
       - backend
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./config/traefik.toml:/etc/traefik/traefik.toml
-    # labels:
-    #   - "traefik.enable=true"
-    #   - "traefik.frontend.rule=Host:PathPrefixStrip: /traefik"
-    #   - "traefik.port=8080"
-    #   - "traefik.docker.network=backend"
+      - ./traefik.toml:/etc/traefik/traefik.toml
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=PathPrefixStrip:/traefik"
+      - "traefik.port=8080"
+      - "traefik.docker.network=backend"
 networks:
   frontend:
   backend:

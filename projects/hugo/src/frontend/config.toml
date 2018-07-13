@@ -47,27 +47,3 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     name = "About"
     weight = 2
     url = "/about/"
-[[menu.main]]
-    name = "NZBGet"
-    weight = 3
-    url = "http://192.168.5.20:6789"
-[[menu.main]]
-    name = "Sonarr"
-    weight = 4
-    url = "http://192.168.5.20:8989"
-[[menu.main]]
-    name = "Radarr"
-    weight = 5
-    url = "http://192.168.5.20:7878"
-[[menu.main]]
-    name = "Sync"
-    weight = 6
-    url = "http://192.168.5.20:8888"
-[[menu.main]]
-    name = "Duplicati"
-    weight = 7
-    url = "http://192.168.5.20:8200"
-[[menu.main]]
-    name = "Plex"
-    weight = 7
-    url = "http://192.168.5.20:32400"

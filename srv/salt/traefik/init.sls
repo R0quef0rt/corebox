@@ -3,7 +3,7 @@ traefik-config:
     - template: jinja
     - source: salt://traefik/files/traefik.tpl.toml
     {% if saltenv == 'dev' %}
-    - name: /app/dev/projects/traefik/config/traefik.toml
+    - name: /app/dev/projects/traefik/traefik.toml
     {% elif saltenv == 'qa' or 'prod' %}
-    - name: /app/live/projects/traefik/config/traefik.toml
+    - name: /app/live/projects/traefik/traefik.toml
     {% endif %}
