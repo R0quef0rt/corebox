@@ -3,7 +3,6 @@ dev:
     - dev.system
     - dev.users
     - dev.docker
-    - dev.directory
 qa:
   '*':
     - prod.system

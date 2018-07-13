@@ -9,7 +9,7 @@ services:
       - source:/source
       {% if saltenv == 'dev' %}
       - config:/config
-      - ./mnt:/mnt
+      - mnt:/mnt
     networks:
       - traefik_frontend
     labels:
@@ -33,6 +33,7 @@ volumes:
   source:
   {% if saltenv == 'dev' %}
   config:
+  mnt:
   {% endif %}
 
 networks:

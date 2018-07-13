@@ -9,7 +9,7 @@ services:
     volumes:
       
       - ./etc/sync:/mnt/sync
-      - ./mnt:/mnt/mounted_folders
+      - mnt:/mnt/mounted_folders
       
     # networks:
     #   - traefik_frontend
@@ -19,6 +19,10 @@ services:
     #   - "traefik.port=8888"
     #   - "traefik.frontend.rule=PathPrefixStrip:/sync"
 
+volumes:
+  
+  mnt:
+  
 # networks:
 #   traefik_frontend:
 #     external: true

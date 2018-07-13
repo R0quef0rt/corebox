@@ -9,7 +9,7 @@ services:
       - nzbget_downloads:/downloads
       {% if saltenv == 'dev' %}
       - config:/config
-      - ./mnt/television:/television
+      - television:/television
     environment:
       PUID: 1000
       PGID: 1000
@@ -33,6 +33,7 @@ services:
 volumes:
   {% if saltenv == 'dev' %}
   config:
+  television:
   {% endif %}
   nzbget_downloads:
     external: true

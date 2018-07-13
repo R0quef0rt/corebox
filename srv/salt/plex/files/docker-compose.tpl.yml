@@ -8,8 +8,8 @@ services:
       - temp:/transcode
       {% if saltenv == 'dev' %}
       - config:/config
-      - ./mnt/movies:/movies
-      - ./mnt/television:/television
+      - radarr_movies:/movies
+      - sonarr_television:/television
     environment:
       PUID: 1000
       PGID: 1000
@@ -31,6 +31,10 @@ volumes:
   temp:
   {% if saltenv == 'dev' %}
   config:
+  radarr_movies:
+    external: true
+  sonarr_television:
+    external: true
   {% endif %}
 
 networks:

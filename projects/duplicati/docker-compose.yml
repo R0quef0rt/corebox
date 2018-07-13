@@ -9,7 +9,7 @@ services:
       - source:/source
       
       - config:/config
-      - ./mnt:/mnt
+      - mnt:/mnt
     networks:
       - traefik_frontend
     labels:
@@ -25,6 +25,7 @@ volumes:
   source:
   
   config:
+  mnt:
   
 
 networks:

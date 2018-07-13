@@ -9,7 +9,7 @@ services:
     volumes:
       {% if saltenv == 'dev' %}
       - ./etc/sync:/mnt/sync
-      - ./mnt:/mnt/mounted_folders
+      - mnt:/mnt/mounted_folders
       {% elif saltenv == 'prod' or 'qa' %}
       - /etc/localtime:/etc/localtime:ro
       - /etc/sync/config:/mnt/sync
@@ -23,6 +23,10 @@ services:
     #   - "traefik.port=8888"
     #   - "traefik.frontend.rule=PathPrefixStrip:/sync"
 
+volumes:
+  {% if saltenv == 'dev' %}
+  mnt:
+  {% endif %}
 # networks:
 #   traefik_frontend:
 #     external: true

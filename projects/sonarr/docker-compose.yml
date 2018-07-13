@@ -9,7 +9,7 @@ services:
       - nzbget_downloads:/downloads
       
       - config:/config
-      - ./mnt/television:/television
+      - television:/television
     environment:
       PUID: 1000
       PGID: 1000
@@ -26,6 +26,7 @@ services:
 volumes:
   
   config:
+  television:
   
   nzbget_downloads:
     external: true
