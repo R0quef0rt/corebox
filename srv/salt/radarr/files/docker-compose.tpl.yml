@@ -6,8 +6,8 @@ services:
     ports:
       - 7878:7878
     volumes:
-      - nzbget_downloads:/downloads
       {% if saltenv == 'dev' %}
+      - nzbget_downloads:/downloads
       - config:/config
       - movies:/movies
     environment:
@@ -17,6 +17,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/radarr/config:/config
       - /mnt/movies:/movies
+      - /mnt/downloads:/downloads
     environment:
       PUID: 1004
       PGID: 1004
@@ -34,9 +35,9 @@ volumes:
   {% if saltenv == 'dev' %}
   config:
   movies:
-  {% endif %}
   nzbget_downloads:
     external: true
+  {% endif %}
 
 networks:
   media:
