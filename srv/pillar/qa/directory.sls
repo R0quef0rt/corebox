@@ -29,8 +29,3 @@ directory:
     group: sync
     mode: 776
     recurse: False
-  /mnt:
-    user: master
-    group: docker
-    mode: 777
-    recurse: True
