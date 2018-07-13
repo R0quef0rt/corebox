@@ -21,7 +21,7 @@ services:
       - traefik.enable=true
       - traefik.docker.network=traefik_frontend
       - traefik.port=7878
-      - traefik.frontend.rule=PathPrefixStrip:/radarr/
+      - traefik.frontend.rule=PathPrefix:/radarr
 
 volumes:
   downloads:

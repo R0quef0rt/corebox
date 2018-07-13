@@ -21,7 +21,7 @@ services:
       - traefik.enable=true
       - traefik.docker.network=traefik_frontend
       - traefik.port=8989
-      - traefik.frontend.rule=PathPrefix:/sonarr
+      - traefik.frontend.rule=Path:/sonarr
 
 volumes:
   downloads:
