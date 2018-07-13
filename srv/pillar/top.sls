@@ -10,7 +10,7 @@ qa:
     - prod.users
     - prod.docker
     - prod.firewall
-    - prod.directory
+    - qa.directory
 prod:
   '*':
     - prod.system

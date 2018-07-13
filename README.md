@@ -1,5 +1,11 @@
 # DevBox [![Build Status](https://travis-ci.org/R0quef0rt/devbox.svg?branch=master)](https://travis-ci.org/R0quef0rt/devbox)
 
+DevBox is a (someday) production-ready, single-server solution to a DevOps beginner. It aims to bridge the difficult gap between putting automation technologies to good use, and learning the languages necessary to maintain a full stack. 
+
+DevBox is a developer's playground, build for modularity, speed of development, and ease of forking for your own project.
+
+DevBox aims to walk you, the developer, through all common lifecycle stages in the build automation pipeline process.
+
 ## Salt
 
 List all minions
