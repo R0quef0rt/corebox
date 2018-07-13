@@ -1,6 +1,6 @@
 baseurl = "http://localhost" # Hostname (and path) to the root.
 title = "Autom8te.org" # Site title.
-theme = "coder" # Set the theme.
+theme = "dark" # Set the theme.
 languagecode = "en" # The site’s language code.
 
 paginate = 20 # Default number of pages per page in pagination.
@@ -12,7 +12,7 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
 
 [params] # theme parameters
     author = "{{ grains['id'] }}" # Author's name.
-    info = "SERVICE:FRONTEND is ONLINE" # Author's job title or info.
+    info = "SERVICE:CORE is ONLINE" # Author's job title or info.
     description = "" # Site description.
     keywords = "blog,developer,personal" # Site keywords.
 
@@ -23,7 +23,7 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     hideCopyright = true
 
     # Custom CSS
-    custom_css = []
+    custom_css = ["less/inverted.less"]
 
     # RTL support
     rtl = false
@@ -47,3 +47,31 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     name = "About"
     weight = 2
     url = "/about/"
+[[menu.main]]
+    name = "Traefik"
+    weight = 2
+    url = "http://{{ grains['ipv4']|last }}/traefik"
+[[menu.main]]
+    name = "NZBGet"
+    weight = 3
+    url = "http://{{ grains['ipv4']|last }}/nzbget"
+[[menu.main]]
+    name = "Sonarr"
+    weight = 4
+    url = "http://{{ grains['ipv4']|last }}:8989"
+[[menu.main]]
+    name = "Radarr"
+    weight = 5
+    url = "http://{{ grains['ipv4']|last }}:7878"
+[[menu.main]]
+    name = "Sync"
+    weight = 6
+    url = "http://{{ grains['ipv4']|last }}:8888"
+[[menu.main]]
+    name = "Duplicati"
+    weight = 7
+    url = "http://{{ grains['ipv4']|last }}:8200"
+[[menu.main]]
+    name = "Plex"
+    weight = 7
+    url = "http://{{ grains['ipv4']|last }}:32400"

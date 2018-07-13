@@ -1,19 +1,39 @@
 version: '3'
 
 services:
-  sonarr:
+  app:
     image: linuxserver/sonarr:143
     ports:
       - 8989:8989
     volumes:
-      - downloads:/downloads
+      - nzbget_downloads:/downloads
       
-      - ./config:/config
-      - ./mnt/television:/television
+      - config:/config
+      - television:/television
     environment:
       PUID: 1000
       PGID: 1000
       
+    networks:
+      - media
+    #   - traefik_frontend
+    # labels:
+    #   - traefik.enable=true
+    #   - traefik.docker.network=traefik_frontend
+    #   - traefik.port=8989
+    #   - traefik.frontend.rule=Path:/sonarr
 
 volumes:
-  downloads:
+  
+  config:
+  television:
+  
+  nzbget_downloads:
+    external: true
+
+networks:
+  media:
+    external: 
+      name: plex_media
+  # traefik_frontend:
+  #   external: true

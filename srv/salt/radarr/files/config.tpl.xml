@@ -1,0 +1,4 @@
+<Config>
+  <LogLevel>Info</LogLevel>
+  <UrlBase>radarr</UrlBase>
+</Config>

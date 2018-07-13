@@ -7,13 +7,20 @@ services:
       - 7878:7878
     volumes:
       - nzbget_downloads:/downloads
-      
+      {% if saltenv == 'dev' %}
       - config:/config
       - movies:/movies
     environment:
       PUID: 1000
       PGID: 1000
-      
+      {% elif saltenv == 'prod' or 'qa' %}
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/radarr/config:/config
+      - /mnt/movies:/movies
+    environment:
+      PUID: 1004
+      PGID: 1004
+      {% endif %}
     networks:
       - media
     #   - traefik_frontend
@@ -24,10 +31,10 @@ services:
     #   - traefik.frontend.rule=PathPrefix:/radarr
 
 volumes:
-  
+  {% if saltenv == 'dev' %}
   config:
   movies:
-  
+  {% endif %}
   nzbget_downloads:
     external: true
 

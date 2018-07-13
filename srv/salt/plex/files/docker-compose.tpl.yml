@@ -6,14 +6,22 @@ services:
       - 32400:32400
     volumes:
       - temp:/transcode
-      
+      {% if saltenv == 'dev' %}
       - config:/config
       - radarr_movies:/movies
       - sonarr_television:/television
     environment:
       PUID: 1000
       PGID: 1000
-      
+      {% elif saltenv == 'prod' or 'qa' %}
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/plex/config:/config
+      - /mnt/movies:/movies
+      - /mnt/television:/television
+    environment:
+      PLEX_UID: 1005
+      PLEX_GID: 1005
+      {% endif %}
       ADVERTISE_IP: "http://192.168.5.20:32400/"
       PLEX_CLAIM: "claim-Zp5pDPtg2jw93A15G81u"
     networks:
@@ -21,13 +29,13 @@ services:
 
 volumes:
   temp:
-  
+  {% if saltenv == 'dev' %}
   config:
   radarr_movies:
     external: true
   sonarr_television:
     external: true
-  
+  {% endif %}
 
 networks:
   media:

@@ -2,8 +2,7 @@ dev:
   '*':
     - dev.system
     - dev.users
-    - dev.docker
-    - dev.directory
+    - prod.docker
 qa:
   '*':
     - prod.system
@@ -11,7 +10,7 @@ qa:
     - prod.users
     - prod.docker
     - prod.firewall
-    - prod.directory
+    - qa.directory
 prod:
   '*':
     - prod.system

@@ -13,11 +13,10 @@
 {{project}}-compose-config: 
   file.managed: 
     - template: jinja
+    - source: salt://{{project}}/files/docker-compose.tpl.yml
     {% if saltenv == 'dev' %}
-    - source: /app/dev/projects/{{project}}/docker-compose.tpl.yml
     - name: /app/dev/projects/{{project}}/docker-compose.yml
     {% elif saltenv == 'qa' or 'prod' %}
-    - source: /app/live/projects/{{project}}/docker-compose.tpl.yml
     - name: /app/live/projects/{{project}}/docker-compose.yml
     {% endif %}
     - require:
