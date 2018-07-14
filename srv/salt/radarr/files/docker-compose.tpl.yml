@@ -19,8 +19,8 @@ services:
       - /mnt/movies:/movies
       - /mnt/downloads:/downloads
     environment:
-      PUID: 1004
-      PGID: 1004
+      PUID: 1002
+      PGID: 1002
       {% endif %}
     networks:
       - media

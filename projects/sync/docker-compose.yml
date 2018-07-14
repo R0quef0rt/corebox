@@ -19,8 +19,8 @@ services:
     #   - "traefik.port=8888"
     #   - "traefik.frontend.rule=PathPrefixStrip:/sync"
 
-volumes:
   
+volumes:
   mnt:
   
 # networks:

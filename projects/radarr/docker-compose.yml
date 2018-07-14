@@ -6,8 +6,8 @@ services:
     ports:
       - 7878:7878
     volumes:
-      - nzbget_downloads:/downloads
       
+      - nzbget_downloads:/downloads
       - config:/config
       - movies:/movies
     environment:
@@ -23,13 +23,13 @@ services:
     #   - traefik.port=7878
     #   - traefik.frontend.rule=PathPrefix:/radarr
 
-volumes:
   
+volumes:
   config:
   movies:
-  
   nzbget_downloads:
     external: true
+  
 
 networks:
   media:

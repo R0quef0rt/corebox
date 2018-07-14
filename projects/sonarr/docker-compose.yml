@@ -6,8 +6,8 @@ services:
     ports:
       - 8989:8989
     volumes:
-      - nzbget_downloads:/downloads
       
+      - nzbget_downloads:/downloads
       - config:/config
       - television:/television
     environment:
@@ -23,13 +23,13 @@ services:
     #   - traefik.port=8989
     #   - traefik.frontend.rule=Path:/sonarr
 
-volumes:
   
+volumes:
   config:
   television:
-  
   nzbget_downloads:
     external: true
+  
 
 networks:
   media:

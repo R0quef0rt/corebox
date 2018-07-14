@@ -6,12 +6,12 @@ directory:
     recurse: False
   /etc/sonarr:
     user: master
-    group: sonarr
+    group: nzbget
     mode: 776
     recurse: False
   /etc/radarr:
     user: master
-    group: radarr
+    group: nzbget
     mode: 776
     recurse: False
   /etc/plex:
@@ -25,6 +25,11 @@ directory:
     mode: 776
     recurse: False
   /etc/sync:
+    user: master
+    group: sync
+    mode: 776
+    recurse: False
+  /etc/traefik:
     user: master
     group: sync
     mode: 776
