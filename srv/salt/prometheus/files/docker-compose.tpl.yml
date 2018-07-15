@@ -7,6 +7,9 @@ services:
     ports:
       - "9090:9090"
     command: --config.file=/etc/prometheus/prometheus.yml
+    networks:
+      - core
+      - export
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
 
@@ -15,11 +18,15 @@ services:
     #  command: -config.file=alertmanager.conf
     ports:
       - "9093:9093"
+    networks:
+      - core
 
   node-exporter:
     image: prom/node-exporter:v0.16.0
     ports:
       - "9100:9100"
+    networks:
+      - core
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -34,8 +41,14 @@ services:
     image: google/cadvisor:v0.28.5
     ports:
       - "8484:8080"
+    networks:
+      - core
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+
+networks:
+  core:
+  export:
