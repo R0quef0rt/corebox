@@ -13,6 +13,7 @@ qa:
   '*':
     - common
     - system
+    - system.repo
     - docker
     - docker.compose
   'cloudbox':
@@ -26,6 +27,7 @@ prod:
   '*':
     - common
     - system
+    - system.repo
     - docker
     - docker.compose
     - traefik
