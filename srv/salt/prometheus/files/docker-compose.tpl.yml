@@ -15,11 +15,13 @@ services:
 
   alertmanager:
     image: prom/alertmanager:v0.15.1
-    #  command: -config.file=alertmanager.conf
+    command: -config.file=/config/alertmanager.conf
     ports:
       - "9093:9093"
     networks:
       - core
+    volumes:
+      - ./alertmanager.conf:/config/alertmanager.conf
 
   node-exporter:
     image: prom/node-exporter:v0.16.0
