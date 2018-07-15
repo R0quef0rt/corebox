@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 8200,  host: 8200
   config.vm.network "forwarded_port", guest: 32400,  host: 32400
 
-  config.vm.synced_folder ".", "/app/dev"
+  config.vm.synced_folder ".", "/app/live"
 
   config.vm.provision :salt do |salt|
     salt.masterless = true
