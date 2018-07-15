@@ -1,5 +1,5 @@
-{% if saltenv == 'qa' or 'prod' %}
-  {% for repo in salt['pillar.get']('compose:repos', 'https://github.com/R0quef0rt/devbox') %}
+{% for repo in salt['pillar.get']('compose:repos', 'https://github.com/R0quef0rt/devbox') %}
+  {% if saltenv == 'qa' or 'prod' %}
 {{repo}}-download-latest:
   git.latest:
     - name: {{repo}}
@@ -10,8 +10,8 @@
     - force_fetch: True
     - force_reset: True
     - depth: 1
-  {% endfor %}
-{% endif %}
+  {% endif %}
+{% endfor %}
 
 {% for project in salt['pillar.get']('compose:projects', '') %}
 {{project}}-compose-config: 
