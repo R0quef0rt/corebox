@@ -16,12 +16,33 @@ services:
       SERVICE_NAME: "core"
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "http://192.168.5.119/core"
+      BASEURL: "http://192.168.5.120/core"
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik_frontend
       - traefik.port=1313
       - traefik.frontend.rule=PathPrefix:/core
+
+  frontend:
+    image: roquefort/hugo:latest
+    build: .
+    ports:
+      - 1323:1313
+    volumes:
+      - ./src/frontend:/src/frontend
+      - ./output/frontend:/output/frontend
+    networks:
+      - traefik_frontend
+    environment:
+      SERVICE_NAME: "frontend"
+      WATCH: "true"
+      REFRESH_TIME: 15
+      BASEURL: "http://192.168.5.120/frontend"
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_frontend
+      - traefik.port=1313
+      - traefik.frontend.rule=PathPrefix:/frontend
 
 networks:
   traefik_frontend:
