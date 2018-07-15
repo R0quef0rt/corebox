@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "sandbox"
 
   config.vm.provider "hyperv" do |vb|
-    vb.memory = "2048"
+    vb.memory = "4096"
     vb.maxmemory = "8192"
     vb.cpus = 2
   end
