@@ -2,7 +2,7 @@ dev:
   '*':
     - dev.system
     - dev.users
-    - prod.docker
+    - dev.docker
 qa:
   '*':
     - prod.system

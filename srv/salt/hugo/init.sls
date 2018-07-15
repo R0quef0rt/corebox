@@ -9,3 +9,4 @@ hugo-{{project}}:
     - name: /app/live/projects/hugo/src/{{project}}/config.toml
     {% endif %}
 {% endfor %}
+

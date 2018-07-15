@@ -6,6 +6,7 @@ dev:
     - docker.compose
     - traefik
     - hugo
+    - prometheus
     - docker.compose-cli.build
     - docker.compose-cli.up
 qa:
