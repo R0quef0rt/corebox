@@ -20,62 +20,22 @@ services:
     image: prom/node-exporter:v0.16.0
     ports:
       - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command: 
+      - '--path.procfs=/host/proc' 
+      - '--path.sysfs=/host/sys'
+      - --collector.filesystem.ignored-mount-points
+      - "^/(sys|proc|dev|host|etc|mnt|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
 
-  #  logspout-logstash:
-  #    build: ./logspout-logstash
-  #    image: ${DOCKER_REG_HOST}/cdi/logspout-logstash:${SERVICE_VERSION}
-  #    deploy:
-  #      replicas: 1
-  #      restart_policy:
-  #        condition: on-failure
-  #        delay: 30s
-  #    volumes:
-  #      - /var/run/docker.sock:/var/run/docker.sock
-  #    networks:
-  #      - logstash
-  #    environment:
-  #      ROUTE_URIS: 'logstash://logstash:5000'
-
-  #  cadvisor:
-  #    build: ./cadvisor
-  #    image: ${DOCKER_REG_HOST}/cdi/cadvisor:${SERVICE_VERSION}
-  #    deploy:
-  #      mode: global
-  #    networks:
-  #      - prometheus
-  #    ports:
-  #      - "8484:8080"
-
-  #  engine-proxy:
-  #    build: ./socat
-  #    image: ${DOCKER_REG_HOST}/cdi/socat:${SERVICE_VERSION}
-  #    deploy:
-  #      mode: global
-  #    networks:
-  #      - prometheus
-  #    ports:
-  #      - "4998:4999"
-
-  #  elasticsearch_exporter:
-  #    build: ./elasticsearch_exporter
-  #    image: ${DOCKER_REG_HOST}/cdi/elasticsearch_exporter:${SERVICE_VERSION}
-  #    restart: always
-  #    networks:
-  #      - prometheus
-  #      - elasticsearch
-  #    ports:
-  #      - "9108:9108"
-  #    command:
-  #      - '-es.uri=http://elasticsearch:9200'
-  #      - '-es.all=true'
-
-  #  es-monitor:
-  #    build: ./es-monitor
-  #    image: ${DOCKER_REG_HOST}/cdi/es-monitor:${SERVICE_VERSION}
-  #    restart: always
-  #    networks:
-  #      - elasticsearch
-  #    environment:
-  #      ES_METRICS_INDEX_NAME: elasticsearch
-  #      ES_METRICS_CLUSTER_URL: http://elasticsearch:9200
-  #      ES_METRICS_MONITORING_CLUSTER_URL: http://elasticsearch:9200
+  cadvisor:
+    image: google/cadvisor:v0.28.5
+    ports:
+      - "8484:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
