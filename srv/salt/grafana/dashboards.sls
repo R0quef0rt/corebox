@@ -18,6 +18,6 @@ grafana-{{dashboard}}-config:
 grafana-{{dashboard}}-dashboard: 
   file.managed: 
     - template: jinja
-    - source: salt://grafana/files/dashboards/{{dashboard}}.json
+    - source: salt://grafana/files/dashboards/{{dashboard}}.tpl.json
     - name: /app/live/projects/grafana/dashboards/{{dashboard}}.json
 {% endfor %}
