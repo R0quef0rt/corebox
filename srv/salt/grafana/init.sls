@@ -1,3 +1,3 @@
 include:
   - grafana.datasources
-#   - grafana.dashboards
+  - grafana.dashboards
