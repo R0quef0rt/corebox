@@ -3,6 +3,7 @@ dev:
     - dev.system
     - dev.users
     - dev.docker
+    - dev.grafana
 qa:
   '*':
     - prod.system

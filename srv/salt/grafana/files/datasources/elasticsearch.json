@@ -1,0 +1,15 @@
+{ 
+    "name":"${DS_ELASTICSEARCH_PROD_METRICS}", 
+    "type":"elasticsearch", 
+    "access":"proxy", 
+    "url":"http://elasticsearch:9200", 
+    "password":"admin", 
+    "user":"admin", 
+    "database": "*", 
+    "basicAuth":false, 
+    "isDefault":true, 
+    "jsonData":{
+        "timeField":"@timestamp", 
+        "esVersion": 5
+    } 
+}

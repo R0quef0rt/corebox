@@ -6,4 +6,3 @@
 !Dockerfile
 !entrypoint.sh
 !README.md
-!/hugo/src/**

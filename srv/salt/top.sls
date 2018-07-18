@@ -9,6 +9,7 @@ dev:
     - prometheus
     - docker.compose-cli.build
     - docker.compose-cli.up
+    - grafana
 qa:
   '*':
     - common

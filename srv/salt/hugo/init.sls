@@ -11,3 +11,14 @@ hugo-{{project}}:
     - name: /app/live/projects/hugo/src/{{project}}/config.toml
 {% endfor %}
 
+hugo-dockerfile: 
+  file.managed: 
+    - template: jinja
+    - source: salt://hugo/files/Dockerfile
+    - name: /app/live/projects/hugo/Dockerfile
+
+hugo-entrypoint: 
+  file.managed: 
+    - template: jinja
+    - source: salt://hugo/files/entrypoint.sh
+    - name: /app/live/projects/hugo/entrypoint.sh
