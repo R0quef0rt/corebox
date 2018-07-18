@@ -21,3 +21,4 @@ grafana:
       interval: 15
       slice: 15
       quantile: 5m
+      datasourcevar: $DS_THEMIS
