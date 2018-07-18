@@ -9,3 +9,7 @@ hugo:
   projects:
     - core
     - frontend
+
+grafana:
+  datasources:
+    - prometheus

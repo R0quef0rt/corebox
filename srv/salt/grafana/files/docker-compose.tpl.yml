@@ -6,17 +6,19 @@ services:
     image: grafana/grafana:5.2.1
     volumes:
       - grafana-data:/var/lib/grafana:rw
+      - ./provisioning:/etc/grafana/provisioning
     ports:
       - "3000:3000"
     networks:
       - prometheus_export
     environment:
-      #  - "GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}"
-      #  - "GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}"
+      - "GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}"
+      - "GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}"
       - "GF_USERS_ALLOW_SIGN_UP=false"
       - "GF_AUTH_BASIC_ENABLED=true"
       - "GF_AUTH_ANONYMOUS_ENABLED=true"
       - "GF_AUTH_ANONYMOUS_ORG_ROLE=admin"
+      - "GF_PATHS_PROVISIONING=/etc/grafana/provisioning"
       #  - "GF_SERVER_ROOT_URL=https://${SERVICE_NAME}.${PROJECT_KEY}.${DOMAIN_NAME}"
       #  - "GF_SERVER_DOMAIN=${SERVICE_NAME}.${PROJECT_KEY}.${DOMAIN_NAME}"
       #  - "GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,vonage-status-panel"
