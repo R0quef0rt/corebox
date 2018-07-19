@@ -35,6 +35,10 @@ scrape_configs:
     static_configs:
       - targets: ['node-exporter:9100']
 
+  - job_name: 'traefik'
+    static_configs:
+      - targets: ['traefik_proxy_1:8080']
+
   # - job_name: 'docker-engine'
   #   dns_sd_configs:
   #     - names: ['tasks.engine-proxy']

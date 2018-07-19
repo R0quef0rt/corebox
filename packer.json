@@ -10,7 +10,7 @@
       "ami_name": "{{user `service_name`}}-{{user `service_version` | clean_ami_name}}",
       "ami_description": "An Ubuntu 18.04 AMI pre-installed with Salt and basic system configurations.",
       "instance_type": "t2.micro",
-      "force_deregister": "true",
+      "force_deregister": "false",
       "name": "{{user `service_name`}}",
       "region": "{{user `region`}}",
       "type": "amazon-ebs",
@@ -31,8 +31,8 @@
       "type": "salt-masterless",
       "minion_config": "etc/salt/minion",
       "local_state_tree": "./srv/salt",
-      "bootstrap_args": "-i newbox -F -P -p python-git",
-      "salt_call_args": "--id newbox saltenv=qa pillarenv=qa"
+      "bootstrap_args": "-i basebox -F -P -p python-git",
+      "salt_call_args": "--id basebox saltenv=qa pillarenv=qa"
     }
   ]
 }

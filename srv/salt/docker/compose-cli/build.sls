@@ -1,4 +1,9 @@
 {% for project in salt['pillar.get']('compose:projects', '') %}
+{{project}}-directory:
+  file.directory:
+    - name: /app/live/projects/{{project}}
+    - makedirs: True
+
 {{project}}-compose-config: 
   file.managed: 
     - template: jinja
