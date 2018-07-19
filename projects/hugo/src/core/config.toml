@@ -48,49 +48,46 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     weight = 2
     url = "/about/"
 [[menu.main]]
-    name = "apps"
-    weight = 2
-[[menu.main.apps]]
     name = "Traefik"
     weight = 2
     url = "http://192.168.5.124/traefik"
-[[menu.main.apps]]
+[[menu.main]]
     name = "NZBGet"
     weight = 3
     url = "http://192.168.5.124/nzbget"
-[[menu.main.apps]]
+[[menu.main]]
     name = "Sonarr"
     weight = 4
     url = "http://192.168.5.124:8989"
-[[menu.main.apps]]
+[[menu.main]]
     name = "Radarr"
     weight = 5
     url = "http://192.168.5.124:7878"
-[[menu.main.apps]]
+[[menu.main]]
     name = "Sync"
     weight = 6
     url = "http://192.168.5.124:8888"
-[[menu.main.apps]]
+[[menu.main]]
     name = "Duplicati"
     weight = 7
     url = "http://192.168.5.124:8200"
-[[menu.main.apps]]
+[[menu.main]]
     name = "Plex"
     weight = 8
     url = "http://192.168.5.124:32400"
-[[menu.main.apps]]
+[[menu.main]]
     name = "Prometheus"
     weight = 9
     url = "http://192.168.5.124:9090"
-[[menu.main.apps]]
+[[menu.main]]
     name = "Alertmanager"
     weight = 10
     url = "http://192.168.5.124:9093"
-[[menu.main.apps]]
+[[menu.main]]
     name = "CAdvisor"
     weight = 11
     url = "http://192.168.5.124:8484"
-[[menu.main.apps]]
+[[menu.main]]
     name = "Grafana"
     weight = 12
     url = "http://192.168.5.124:3000"
