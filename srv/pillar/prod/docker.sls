@@ -8,6 +8,8 @@ compose:
     - radarr
     - sync
     - duplicati
+    - grafana
+    - prometheus
 
 hugo:
   projects:
