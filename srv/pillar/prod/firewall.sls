@@ -49,3 +49,18 @@ firewall-rules:
     jump: ACCEPT
     dport: 32400
     protocol: tcp
+  prometheus:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 9090
+    protocol: tcp
+  alertmanager:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 9093
+    protocol: tcp
+  cadvisor:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 8484
+    protocol: tcp
