@@ -6,9 +6,9 @@ datasources:
   access: server
   orgId: 1
   url: http://prometheus_app_1:9090
-  basicAuth: true
-  basicAuthUser: admin
-  basicAuthPassword: admin
+  # basicAuth: true
+  # basicAuthUser: admin
+  # basicAuthPassword: admin
   isDefault: true
   version: 1
   editable: true
