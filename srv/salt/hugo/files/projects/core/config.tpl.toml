@@ -87,3 +87,7 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     name = "CAdvisor"
     weight = 11
     url = "http://{{ grains['ipv4']|last }}:8484"
+[[menu.main]]
+    name = "Grafana"
+    weight = 12
+    url = "http://{{ grains['ipv4']|last }}:3000"
