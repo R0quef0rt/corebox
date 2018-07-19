@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: plexinc/pms-docker:1.13.2.5154-fd05be322
+    image: plexinc/pms-docker:1.13.4.5251-2e6e8f841
     ports:
       - 32400:32400
     volumes:
