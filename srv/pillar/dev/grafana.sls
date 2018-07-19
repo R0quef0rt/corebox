@@ -11,9 +11,12 @@ grafana:
       quantile: 5m
       datasource: Prometheus
     traefik-overview:
-      instance: prometheus_app_1
-      method: http
+      instance: traefik_proxy_1
+      protocol: http
+      requests: 
+      service:
+      method: GET
       code: 200
-      service: Traefik
+      backend: backend-core-hugo
       datasource: Prometheus
       

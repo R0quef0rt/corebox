@@ -197,7 +197,7 @@ swarmMode = false
     # Optional
     # Default: "traefik"
     #
-    # entryPoint = "traefik"
+    # entryPoint = "metrics"
 
     # Buckets for latency metrics
     #
