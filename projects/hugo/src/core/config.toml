@@ -11,7 +11,7 @@ pygmentscodefences = true # Enable code fence background highlighting.
 pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences without specified language.
 
 [params] # theme parameters
-    author = "sandbox" # Author's name.
+    author = "devbox" # Author's name.
     info = "SERVICE:CORE is ONLINE" # Author's job title or info.
     description = "" # Site description.
     keywords = "blog,developer,personal" # Site keywords.
@@ -48,42 +48,49 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     weight = 2
     url = "/about/"
 [[menu.main]]
+    name = "apps"
+    weight = 2
+[[menu.main.apps]]
     name = "Traefik"
     weight = 2
-    url = "http://192.168.5.123/traefik"
-[[menu.main]]
+    url = "http://192.168.5.124/traefik"
+[[menu.main.apps]]
     name = "NZBGet"
     weight = 3
-    url = "http://192.168.5.123/nzbget"
-[[menu.main]]
+    url = "http://192.168.5.124/nzbget"
+[[menu.main.apps]]
     name = "Sonarr"
     weight = 4
-    url = "http://192.168.5.123:8989"
-[[menu.main]]
+    url = "http://192.168.5.124:8989"
+[[menu.main.apps]]
     name = "Radarr"
     weight = 5
-    url = "http://192.168.5.123:7878"
-[[menu.main]]
+    url = "http://192.168.5.124:7878"
+[[menu.main.apps]]
     name = "Sync"
     weight = 6
-    url = "http://192.168.5.123:8888"
-[[menu.main]]
+    url = "http://192.168.5.124:8888"
+[[menu.main.apps]]
     name = "Duplicati"
     weight = 7
-    url = "http://192.168.5.123:8200"
-[[menu.main]]
+    url = "http://192.168.5.124:8200"
+[[menu.main.apps]]
     name = "Plex"
     weight = 8
-    url = "http://192.168.5.123:32400"
-[[menu.main]]
+    url = "http://192.168.5.124:32400"
+[[menu.main.apps]]
     name = "Prometheus"
     weight = 9
-    url = "http://192.168.5.123:9090"
-[[menu.main]]
+    url = "http://192.168.5.124:9090"
+[[menu.main.apps]]
     name = "Alertmanager"
     weight = 10
-    url = "http://192.168.5.123:9093"
-[[menu.main]]
+    url = "http://192.168.5.124:9093"
+[[menu.main.apps]]
     name = "CAdvisor"
     weight = 11
-    url = "http://192.168.5.123:8484"
+    url = "http://192.168.5.124:8484"
+[[menu.main.apps]]
+    name = "Grafana"
+    weight = 12
+    url = "http://192.168.5.124:3000"

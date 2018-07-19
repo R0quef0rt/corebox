@@ -11,7 +11,7 @@ pygmentscodefences = true # Enable code fence background highlighting.
 pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences without specified language.
 
 [params] # theme parameters
-    author = "sandbox" # Author's name.
+    author = "devbox" # Author's name.
     info = "SERVICE:FRONTEND is ONLINE" # Author's job title or info.
     description = "" # Site description.
     keywords = "blog,developer,personal" # Site keywords.
