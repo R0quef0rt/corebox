@@ -4,8 +4,3 @@ compose:
     - hugo
     - prometheus
     - grafana
-
-hugo:
-  projects:
-    - core
-    - frontend

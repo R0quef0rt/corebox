@@ -1,4 +1,5 @@
 {% for dashboard, args in salt['pillar.get']('grafana:dashboards', '').iteritems() %}
+  {% if dashboard == 'prometheus-overview' %}
 {
   "__inputs": [
     {
@@ -3036,4 +3037,5 @@
   "title": "Prometheus 2.0 Overview",
   "version": 21
 }
+  {% endif %}
 {% endfor %}

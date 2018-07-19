@@ -10,3 +10,10 @@ grafana:
       slice: 15
       quantile: 5m
       datasource: Prometheus
+    traefik-overview:
+      instance: prometheus_app_1
+      method: http
+      code: 200
+      service: Traefik
+      datasource: Prometheus
+      
