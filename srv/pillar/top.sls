@@ -3,7 +3,7 @@ dev:
     - dev.system
     - dev.users
     - dev.docker
-    - dev.grafana
+    - prod.grafana
     - prod.hugo
 qa:
   '*':
@@ -14,6 +14,8 @@ qa:
     - prod.hugo
     - prod.firewall
     - qa.directory
+    - prod.grafana
+    - prod.hugo
 prod:
   '*':
     - prod.system
@@ -23,3 +25,5 @@ prod:
     - prod.hugo
     - prod.firewall
     - prod.directory
+    - prod.grafana
+    - prod.hugo

@@ -50,28 +50,40 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
 [[menu.main]]
     name = "Traefik"
     weight = 2
-    url = "http://192.168.5.122/traefik"
+    url = "http://192.168.5.123/traefik"
 [[menu.main]]
     name = "NZBGet"
     weight = 3
-    url = "http://192.168.5.122/nzbget"
+    url = "http://192.168.5.123/nzbget"
 [[menu.main]]
     name = "Sonarr"
     weight = 4
-    url = "http://192.168.5.122:8989"
+    url = "http://192.168.5.123:8989"
 [[menu.main]]
     name = "Radarr"
     weight = 5
-    url = "http://192.168.5.122:7878"
+    url = "http://192.168.5.123:7878"
 [[menu.main]]
     name = "Sync"
     weight = 6
-    url = "http://192.168.5.122:8888"
+    url = "http://192.168.5.123:8888"
 [[menu.main]]
     name = "Duplicati"
     weight = 7
-    url = "http://192.168.5.122:8200"
+    url = "http://192.168.5.123:8200"
 [[menu.main]]
     name = "Plex"
-    weight = 7
-    url = "http://192.168.5.122:32400"
+    weight = 8
+    url = "http://192.168.5.123:32400"
+[[menu.main]]
+    name = "Prometheus"
+    weight = 9
+    url = "http://192.168.5.123:9090"
+[[menu.main]]
+    name = "Alertmanager"
+    weight = 10
+    url = "http://192.168.5.123:9093"
+[[menu.main]]
+    name = "CAdvisor"
+    weight = 11
+    url = "http://192.168.5.123:8484"
