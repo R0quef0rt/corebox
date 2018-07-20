@@ -7,3 +7,8 @@ kibana-config:
     - template: jinja
     - source: salt://elasticsearch/files/kibana/kibana.tpl.yml
     - name: /app/live/projects/elasticsearch/kibana.yml
+
+/app/live/projects/elasticsearch/logstash/pipeline:
+  file.recurse:
+    - source: salt://elasticsearch/files/logstash/pipeline
+    - include_empty: True
