@@ -64,3 +64,38 @@ firewall-rules:
     jump: ACCEPT
     dport: 8484
     protocol: tcp
+  elasticsearch-main:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 9200
+    protocol: tcp
+  elasticsearch-alt:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 9300
+    protocol: tcp
+  kibana:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 5601
+    protocol: tcp
+  syslog-tcp:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 5000
+    protocol: tcp
+  syslog-udp:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 5000
+    protocol: udp
+  logstash-beats-tcp:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 5044
+    protocol: tcp
+  logstash-beats-udp:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 5044
+    protocol: udp
