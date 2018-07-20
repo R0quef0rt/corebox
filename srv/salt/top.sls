@@ -5,10 +5,10 @@ dev:
     - docker
     - docker.compose
     - traefik
-    - hugo
     - elasticsearch
     - prometheus
     - grafana
+    - hugo
     - docker.compose-cli.build
     - docker.compose-cli.up
 qa:

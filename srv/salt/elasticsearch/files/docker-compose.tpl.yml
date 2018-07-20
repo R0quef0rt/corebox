@@ -8,8 +8,6 @@ services:
       - core
     ports:
       - "5601:5601"
-    # volumes:
-    #   - ./kibana.yml:/usr/share/kibana/config/kibana.yml
     environment:
       - ELASTICSEARCH_URL=http://app:9200
       - xpack.graph.enabled=false
@@ -25,6 +23,7 @@ services:
       - data:/usr/share/elasticsearch/data
     networks:
       - core
+      - backend
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -57,6 +56,7 @@ services:
       - "5044:5044/udp"
     volumes:
       - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - /var/log:/var/log
     environment:
       - "LS_JAVA_OPTS=-Xmx256m -Xms256m"
       - xpack.graph.enabled=false
@@ -68,6 +68,7 @@ services:
 
 networks:
   core:
+  backend:
 
 volumes:
   data:
