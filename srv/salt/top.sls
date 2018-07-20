@@ -6,6 +6,7 @@ dev:
     - docker.compose
     - traefik
     - hugo
+    - elasticsearch
     - prometheus
     - grafana
     - docker.compose-cli.build

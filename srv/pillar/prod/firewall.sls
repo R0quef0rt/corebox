@@ -64,3 +64,18 @@ firewall-rules:
     jump: ACCEPT
     dport: 8484
     protocol: tcp
+  elasticsearch-main:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 9200
+    protocol: tcp
+  elasticsearch-alt:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 9300
+    protocol: tcp
+  kibana:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 5601
+    protocol: tcp

@@ -3,5 +3,6 @@ compose:
     - traefik
     - hugo
     - duplicati
+    - elasticsearch
     - prometheus
     - grafana

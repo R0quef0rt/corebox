@@ -9,3 +9,5 @@ config.ign.merged
 .terraform/
 .vagrant/
 *.log
+
+projects/
