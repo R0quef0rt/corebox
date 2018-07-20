@@ -6,3 +6,4 @@ compose:
     - elasticsearch
     - prometheus
     - grafana
+    - filebeat

@@ -9,6 +9,7 @@ dev:
     - prometheus
     - grafana
     - hugo
+    - filebeat
     - docker.compose-cli.build
     - docker.compose-cli.up
 qa:

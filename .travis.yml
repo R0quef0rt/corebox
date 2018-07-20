@@ -47,27 +47,27 @@ before_install:
 before_script:
 - bash -x ./srv/ci/get-credentials.sh
 - bash -x ./srv/ci/export-variables.sh
-- bash -x ./srv/terraform/terraform-install.sh
-- bash -x ./srv/packer/packer-install.sh
+- bash -x ./srv/ci/terraform/terraform-install.sh
+- bash -x ./srv/ci/packer/packer-install.sh
 - export PATH="~/bin:$PATH"
-- bash -x ./srv/terraform/terraform-init.sh
+- bash -x ./srv/ci/terraform/terraform-init.sh
 jobs:
   include:
   - stage: prepare
     script:
-    - bash -x ./srv/terraform/terraform-validate.sh
-    - bash -x ./srv/packer/packer-validate.sh
+    - bash -x ./srv/ci/terraform/terraform-validate.sh
+    - bash -x ./srv/ci/packer/packer-validate.sh
   - stage: build
     script:
-    - bash -x ./srv/packer/packer-build.sh || true
+    - bash -x ./srv/ci/packer/packer-build.sh || true
   - stage: plan
     script:
-    - bash -x ./srv/terraform/terraform-plan.sh
+    - bash -x ./srv/ci/terraform/terraform-plan.sh
   - stage: test
     script:
-    - bash ./srv/terraform/terraform-plan.sh
-    - bash -x ./srv/terraform/terraform-apply.sh
-    - DESTROY_ALL=true && bash -x ./srv/terraform/terraform-destroy.sh
+    - bash ./srv/ci/terraform/terraform-plan.sh
+    - bash -x ./srv/ci/terraform/terraform-apply.sh
+    - DESTROY_ALL=true && bash -x ./srv/ci/terraform/terraform-destroy.sh
     env:
     - ENV=qa
     - TEST=true
