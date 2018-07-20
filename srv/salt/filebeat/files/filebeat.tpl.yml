@@ -335,6 +335,7 @@ filebeat.inputs:
   # Make sure not file is defined twice as this can lead to unexpected behaviour.
   paths:
     - /var/log/*.log
+    - /var/log/salt/*.log
     #- c:\programdata\elasticsearch\logs\*
 
   # Configure the file encoding for reading files with international characters
@@ -850,15 +851,15 @@ filebeat.inputs:
 # Configure what output to use when sending the data collected by the beat.
 
 #-------------------------- Elasticsearch output -------------------------------
-output.elasticsearch:
-  # Boolean flag to enable or disable the output module.
-  #enabled: true
+# output.elasticsearch:
+#   # Boolean flag to enable or disable the output module.
+#   #enabled: true
 
-  # Array of hosts to connect to.
-  # Scheme and port can be left out and will be set to the default (http and 9200)
-  # In case you specify and additional path, the scheme is required: http://localhost:9200/path
-  # IPv6 addresses should always be defined as: https://[2001:db8::1]:9200
-  hosts: ["elasticsearch_app_1:9200"]
+#   # Array of hosts to connect to.
+#   # Scheme and port can be left out and will be set to the default (http and 9200)
+#   # In case you specify and additional path, the scheme is required: http://localhost:9200/path
+#   # IPv6 addresses should always be defined as: https://[2001:db8::1]:9200
+#   hosts: ["elasticsearch_app_1:9200"]
 
   # Set gzip compression level.
   #compression_level: 0
@@ -955,12 +956,12 @@ output.elasticsearch:
 
 
 #----------------------------- Logstash output ---------------------------------
-#output.logstash:
+output.logstash:
   # Boolean flag to enable or disable the output module.
-  #enabled: true
+  enabled: true
 
   # The Logstash hosts
-  #hosts: ["localhost:5044"]
+  hosts: ["elasticsearch_logstash_1:5044"]
 
   # Number of workers per Logstash host.
   #worker: 1
