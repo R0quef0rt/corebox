@@ -52,8 +52,21 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
 
+  elasticsearch-exporter:
+    image: justwatch/elasticsearch_exporter:1.0.2
+    networks:
+      - core
+      - elasticsearch_backend
+    command:
+      - '-es.uri=http://elasticsearch_app_1:9200'
+    restart: always
+    ports:
+      - "127.0.0.1:9108:9108"
+
 networks:
   core:
   export:
   traefik_backend:
+    external: true
+  elasticsearch_backend:
     external: true
