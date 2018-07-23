@@ -10,6 +10,7 @@ compose:
     - duplicati
     - grafana
     - prometheus
+    - unifi
 
 hugo:
   projects:

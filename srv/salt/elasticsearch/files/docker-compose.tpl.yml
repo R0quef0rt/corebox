@@ -40,6 +40,7 @@ services:
       - xpack.reporting.enabled=false
       - xpack.security.enabled=false
       - xpack.watcher.enabled=false
+      - discovery.type=single-node
     ulimits:
       memlock:
         soft: -1
