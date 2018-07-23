@@ -11,6 +11,7 @@ services:
       - core
       - export
       - traefik_backend
+    restart: always
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
 
@@ -21,6 +22,7 @@ services:
       - "9093:9093"
     networks:
       - core
+    restart: always
     volumes:
       - ./alertmanager.conf:/config/alertmanager.conf
 
@@ -34,6 +36,7 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
+    restart: always
     command: 
       - '--path.procfs=/host/proc' 
       - '--path.sysfs=/host/sys'
@@ -46,6 +49,7 @@ services:
       - "8484:8080"
     networks:
       - core
+    restart: always
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw

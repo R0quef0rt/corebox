@@ -5,6 +5,7 @@ services:
     image: linuxserver/duplicati:86
     ports:
       - "8200:8200"
+    restart: always
     volumes:
       - source:/source
       {% if saltenv == 'dev' %}

@@ -8,6 +8,7 @@ services:
     networks:
       - core
       - elasticsearch_ingest
+    restart: always
     volumes:
       - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
       - /var/log:/var/log

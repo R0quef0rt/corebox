@@ -13,6 +13,7 @@ services:
     networks:
       - prometheus_export
       - elasticsearch_backend
+    restart: always
     environment:
       - "GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}"
       - "GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}"

@@ -4,6 +4,7 @@ services:
     image: plexinc/pms-docker:1.13.4.5271-200287a06
     ports:
       - 32400:32400
+    restart: always
     volumes:
       - temp:/transcode
       {% if saltenv == 'dev' %}
