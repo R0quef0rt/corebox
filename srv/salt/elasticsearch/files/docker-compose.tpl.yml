@@ -53,6 +53,7 @@ services:
     ports:
       - "5140:5140/tcp"
       - "5140:5140/udp"
+      - "5006:5006/udp"
       - "5044:5044/tcp"
       - "5044:5044/udp"
     volumes:
@@ -67,14 +68,14 @@ services:
       - xpack.security.enabled=false
       - xpack.watcher.enabled=false
 
-  # logspout:
-  #   image: gliderlabs/logspout:v3.2.5
-  #   command: "syslog://logstash:5000"
-  #   restart: always
-  #   networks: 
-  #     - ingest
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock
+  logspout:
+    image: gliderlabs/logspout:v3.2.5
+    command: "syslog://logstash:5006"
+    restart: always
+    networks: 
+      - ingest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 networks:
   core:
