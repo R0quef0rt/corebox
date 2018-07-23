@@ -7,3 +7,4 @@ compose:
     - prometheus
     - grafana
     - filebeat
+    - unifi

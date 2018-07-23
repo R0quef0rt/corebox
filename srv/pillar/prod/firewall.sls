@@ -9,11 +9,26 @@ firewall-rules:
     jump: ACCEPT
     dport: 80
     protocol: tcp
-  traefik-api:
+  unifi-device:
     chain: INPUT
     jump: ACCEPT
     dport: 8080
     protocol: tcp
+  unifi-web:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 8443
+    protocol: tcp
+  unifi-stun:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 3478
+    protocol: udp
+  unifi-discovery:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 10001
+    protocol: udp
   nzbget:
     chain: INPUT
     jump: ACCEPT
