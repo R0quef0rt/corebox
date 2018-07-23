@@ -94,15 +94,15 @@ firewall-rules:
     jump: ACCEPT
     dport: 5601
     protocol: tcp
-  syslog-tcp:
+  logstash-syslog-tcp:
     chain: INPUT
     jump: ACCEPT
-    dport: 5000
+    dport: 5140
     protocol: tcp
-  syslog-udp:
+  logstash-syslog-udp:
     chain: INPUT
     jump: ACCEPT
-    dport: 5000
+    dport: 5140
     protocol: udp
   logstash-beats-tcp:
     chain: INPUT
