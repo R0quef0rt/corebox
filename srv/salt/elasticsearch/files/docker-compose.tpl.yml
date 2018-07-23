@@ -51,8 +51,9 @@ services:
       - ingest
     restart: always
     ports:
-      - "5000:5000/udp"
-      - "5000:5000/tcp"
+      - "5140:5140/tcp"
+      - "5140:5140/udp"
+      - "5006:5006/udp"
       - "5044:5044/tcp"
       - "5044:5044/udp"
     volumes:
@@ -69,7 +70,7 @@ services:
 
   logspout:
     image: gliderlabs/logspout:v3.2.5
-    command: "syslog://logstash:5000"
+    command: "syslog://logstash:5006"
     restart: always
     networks: 
       - ingest
