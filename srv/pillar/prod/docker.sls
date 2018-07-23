@@ -8,8 +8,9 @@ compose:
     - radarr
     - sync
     - duplicati
-    - grafana
+    - elasticsearch
     - prometheus
+    - grafana
     - unifi
 
 hugo:
