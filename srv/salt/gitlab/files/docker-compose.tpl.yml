@@ -6,7 +6,7 @@ services:
     image: gitlab/gitlab-ce:11.1.1-ce.0
     hostname: '{{ grains['fqdn'] }}'
     volumes:
-      - ./config:/etc/gitlab
+      - config:/etc/gitlab
       - logs:/var/log/gitlab
       - data:/var/opt/gitlab
     ports:
@@ -16,6 +16,14 @@ services:
     networks:
       - core
     restart: always
+    configs:
+      - source: ./gitlab.rb
+        target: /etc/gitlab/gitlab.rb
+
+
+configs:
+  gitlab.rb:
+    file: /.gitlab.rb
 
 networks:
   core:
@@ -23,3 +31,4 @@ networks:
 volumes:
   logs:
   data:
+  config:
