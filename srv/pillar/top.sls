@@ -4,7 +4,6 @@ dev:
     - dev.users
     - dev.docker
     - prod.firewall
-    - prod.grafana
     - prod.hugo
 qa:
   '*':
