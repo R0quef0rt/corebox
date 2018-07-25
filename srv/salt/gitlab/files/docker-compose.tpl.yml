@@ -1,5 +1,4 @@
 {%- set proxy_enabled = grains['traefik-enabled'] %}
-
 version: '3.3'
 
 services:
@@ -12,21 +11,19 @@ services:
       - logs:/var/log/gitlab
       - data:/var/opt/gitlab
     ports:
-      - "7000:80"
-      - "7001:443"
       - "5000:5000"
     networks:
       - core
-      {% if proxy_enabled == true %}
+      {% if proxy_enabled == true -%}
       - traefik_frontend
-      {% endif %}
+      {%- endif %}
     restart: always
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://{{ grains['ipv4']|last }}/gitlab'
         gitlab_rails['gitlab_default_projects_features_issues'] = false
         gitlab_rails['gitlab_default_projects_features_wiki'] = false
-    {% if proxy_enabled == true %}
+        {% if proxy_enabled == true -%}
         gitlab_rails['trusted_proxies'] = ['{{ grains['ipv4']|last }}']
         nginx['real_ip_recursive'] = on
         nginx['real_ip_trusted_addresses'] = ['{{ grains['ipv4']|last }}']
@@ -35,14 +32,14 @@ services:
       - traefik.docker.network=traefik_frontend
       - traefik.port=80
       - traefik.frontend.rule=PathPrefix:/gitlab
-    {% endif %}
+       {%- endif %}
 
 networks:
   core:
-  {% if proxy_enabled == true %}
+  {% if proxy_enabled == true -%}
   traefik_frontend:
     external: true
-  {% endif %}
+  {%- endif %}
 
 volumes:
   logs:
