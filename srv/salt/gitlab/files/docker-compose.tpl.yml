@@ -1,4 +1,4 @@
-{%- set proxy_enabled = grains['traefik-enabled'] %}
+{% set proxy_enabled = grains['traefik-enabled'] %}
 version: '3.3'
 
 services:

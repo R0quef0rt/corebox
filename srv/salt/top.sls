@@ -6,7 +6,6 @@ dev:
     - docker.compose
     - traefik
     - hugo
-    - gitlab
     - docker.compose-cli.build
     - docker.compose-cli.up
 qa:
