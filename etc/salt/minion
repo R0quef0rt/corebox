@@ -59,3 +59,9 @@ ext_pillar:
       - env: prod
       - name: prod
       - root: srv/pillar
+
+schedule:
+  routine-highstate:
+    function: state.highstate
+    seconds: 3600
+    run_on_start: True

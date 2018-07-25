@@ -1,3 +1,5 @@
+{%- set proxy_enabled = grains['traefik-enabled'] %}
+
 version: '3.3'
 
 services:
@@ -16,14 +18,17 @@ services:
     networks:
       - core
     restart: always
-    configs:
-      - source: ./gitlab.rb
-        target: /etc/gitlab/gitlab.rb
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://{{ grains['ipv4']|last }}/gitlab'
+        gitlab_rails['gitlab_default_projects_features_issues'] = false
+        gitlab_rails['gitlab_default_projects_features_wiki'] = false
+        {% if proxy_enabled == true %}
+        gitlab_rails['trusted_proxies'] = ['{{ grains['ipv4']|last }}']
+        nginx['real_ip_recursive'] = on
+        nginx['real_ip_trusted_addresses'] = ['{{ grains['ipv4']|last }}']
+        {% endif %}
 
-
-configs:
-  gitlab.rb:
-    file: /.gitlab.rb
 
 networks:
   core:
