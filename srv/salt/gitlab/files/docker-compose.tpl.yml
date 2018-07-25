@@ -17,21 +17,32 @@ services:
       - "5000:5000"
     networks:
       - core
+      {% if proxy_enabled == true %}
+      - traefik_frontend
+      {% endif %}
     restart: always
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://{{ grains['ipv4']|last }}/gitlab'
         gitlab_rails['gitlab_default_projects_features_issues'] = false
         gitlab_rails['gitlab_default_projects_features_wiki'] = false
-        {% if proxy_enabled == true %}
+    {% if proxy_enabled == true %}
         gitlab_rails['trusted_proxies'] = ['{{ grains['ipv4']|last }}']
         nginx['real_ip_recursive'] = on
         nginx['real_ip_trusted_addresses'] = ['{{ grains['ipv4']|last }}']
-        {% endif %}
-
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_frontend
+      - traefik.port=80
+      - traefik.frontend.rule=PathPrefix:/gitlab
+    {% endif %}
 
 networks:
   core:
+  {% if proxy_enabled == true %}
+  traefik_frontend:
+    external: true
+  {% endif %}
 
 volumes:
   logs:
