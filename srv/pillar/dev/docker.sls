@@ -3,4 +3,5 @@ compose:
     - traefik
     - hugo
     - gitlab
-    - sonarr
+    - nzbget
+    # - sonarr

@@ -114,16 +114,6 @@ firewall-rules:
     jump: ACCEPT
     dport: 5044
     protocol: udp
-  gitlab-http:
-    chain: INPUT
-    jump: ACCEPT
-    dport: 7000
-    protocol: tcp
-  gitlab-https:
-    chain: INPUT
-    jump: ACCEPT
-    dport: 7001
-    protocol: tcp
   gitlab-container:
     chain: INPUT
     jump: ACCEPT

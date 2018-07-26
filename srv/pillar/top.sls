@@ -1,6 +1,6 @@
 dev:
   '*':
-    - dev.system
+    - prod.system
     - dev.users
     - dev.docker
     - prod.firewall
