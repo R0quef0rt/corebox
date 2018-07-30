@@ -3,6 +3,10 @@
 
 Vagrant.configure("2") do |config|
 
+  config.vm.define "main" do |mn|
+    mn.vm.box = "sandbox"
+  end
+
   config.vm.box = "r0quef0rt/ubuntu"
   config.vm.box_url = "file://boxes.json"
 
