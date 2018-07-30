@@ -32,6 +32,7 @@ prod:
     - system.repo
     - docker
     - docker.compose
+  'devbox':
     - traefik
     - hugo
     - elasticsearch
@@ -39,5 +40,4 @@ prod:
     - grafana
     - docker.compose-cli.build
     - docker.compose-cli.up
-  'devbox':
     - system.raid
