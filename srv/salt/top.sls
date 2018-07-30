@@ -6,8 +6,6 @@ dev:
     - docker.compose
     - traefik
     - hugo
-    - prometheus
-    - grafana
     - docker.compose-cli.build
     - docker.compose-cli.up
 qa:
@@ -20,6 +18,7 @@ qa:
   'cloudbox':
     - traefik
     - hugo
+    - elasticsearch
     - prometheus
     - grafana
     - docker.compose-cli.build
@@ -35,6 +34,7 @@ prod:
     - docker.compose
     - traefik
     - hugo
+    - elasticsearch
     - prometheus
     - grafana
     - docker.compose-cli.build

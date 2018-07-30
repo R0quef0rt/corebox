@@ -1,4 +1,3 @@
-*.txt
 *.backup
 *.info
 *.img
@@ -9,3 +8,5 @@ config.ign.merged
 .terraform/
 .vagrant/
 *.log
+
+projects/

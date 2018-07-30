@@ -1,0 +1,89 @@
+version: '3.3'
+
+services:
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.3.1
+    networks:
+      - core
+    ports:
+      - "5601:5601"
+    restart: always
+    environment:
+      - ELASTICSEARCH_URL=http://app:9200
+      - xpack.graph.enabled=false
+      - xpack.ml.enabled=false
+      - xpack.monitoring.enabled=false
+      - xpack.reporting.enabled=false
+      - xpack.security.enabled=false
+      - xpack.watcher.enabled=false
+
+  app:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.1
+    volumes:
+      - data:/usr/share/elasticsearch/data
+    networks:
+      - core
+      - backend
+    restart: always
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    command: elasticsearch -E network.host=0.0.0.0
+    environment:
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+      - xpack.graph.enabled=false
+      - xpack.ml.enabled=false
+      - xpack.monitoring.enabled=false
+      - xpack.reporting.enabled=false
+      - xpack.security.enabled=false
+      - xpack.watcher.enabled=false
+      - discovery.type=single-node
+      - cluster.routing.allocation.disk.watermark.low=60%
+      - cluster.routing.allocation.disk.watermark.high=70%
+      - cluster.routing.allocation.disk.watermark.flood_stage=75%
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:6.3.1
+    networks:
+      - core
+      - ingest
+    restart: always
+    ports:
+      - "5140:5140/tcp"
+      - "5140:5140/udp"
+      - "5006:5006/udp"
+      - "5044:5044/tcp"
+      - "5044:5044/udp"
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - /var/log:/var/log
+    environment:
+      - "LS_JAVA_OPTS=-Xmx256m -Xms256m"
+      - xpack.graph.enabled=false
+      - xpack.ml.enabled=false
+      - xpack.monitoring.enabled=false
+      - xpack.reporting.enabled=false
+      - xpack.security.enabled=false
+      - xpack.watcher.enabled=false
+
+  logspout:
+    image: gliderlabs/logspout:v3.2.5
+    command: "syslog://logstash:5006"
+    restart: always
+    networks: 
+      - ingest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  core:
+  backend:
+  ingest:
+
+volumes:
+  data:

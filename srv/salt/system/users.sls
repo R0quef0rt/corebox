@@ -14,6 +14,7 @@
     - optional_groups:
       - docker
       - sudo
+      - adm
 {{user}}:
   group.present
 {% endfor %}

@@ -5,6 +5,7 @@ services:
     image: linuxserver/sonarr:143
     ports:
       - 8989:8989
+    restart: always
     volumes:
       - nzbget_downloads:/downloads
       {% if saltenv == 'dev' %}

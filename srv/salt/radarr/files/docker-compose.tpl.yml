@@ -5,6 +5,7 @@ services:
     image: linuxserver/radarr:116
     ports:
       - 7878:7878
+    restart: always
     volumes:
       - nzbget_downloads:/downloads
       {% if saltenv == 'dev' %}

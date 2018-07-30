@@ -39,6 +39,10 @@ scrape_configs:
     static_configs:
       - targets: ['traefik_proxy_1:8080']
 
+  - job_name: 'elasticsearch-exporter'
+    static_configs:
+      - targets: ['elasticsearch-exporter:9108']
+
   # - job_name: 'docker-engine'
   #   dns_sd_configs:
   #     - names: ['tasks.engine-proxy']

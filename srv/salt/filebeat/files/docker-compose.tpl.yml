@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+
+  app:
+    image: docker.elastic.co/beats/filebeat:6.3.1
+    user: "1000"
+    networks:
+      - core
+      - elasticsearch_ingest
+    restart: always
+    volumes:
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - /var/log:/var/log
+
+networks:
+  core:
+  elasticsearch_ingest:

@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  controller:
+    image: linuxserver/unifi:154
+    ports:
+      - 8080:8080
+      - 8443:8443
+      - 3478:3478/udp
+      - 10001:10001/udp
+    volumes:
+      - config:/config
+    restart: always
+
+volumes:
+  config:
