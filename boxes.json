@@ -1,6 +1,6 @@
 {
   "description": "Ubuntu 18.04 w/ few modifications",
-  "name": "generic/ubuntu1804",
+  "name": "ubuntu1804",
   "versions": [
     {
       "providers": [
@@ -10,10 +10,10 @@
         },
         {
           "name": "virtualbox",
-          "url": "https://app.vagrantup.com/ubuntu/boxes/bionic64/versions/20180725.0.0"
+          "url": "http://cloud-images.ubuntu.com/bionic/20180725/bionic-server-cloudimg-amd64-vagrant.box"
         }
       ],
-      "version": "0.1.1"
+      "version": "0.1.0"
     }
   ]
 }
