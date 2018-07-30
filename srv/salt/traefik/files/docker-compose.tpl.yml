@@ -7,7 +7,6 @@ services:
     command: --api --docker
     ports:
       - "80:80"
-      - "8383:8080"
     networks:
       - frontend
       - backend
@@ -20,6 +19,7 @@ services:
       - "traefik.frontend.rule=PathPrefixStrip:/traefik"
       - "traefik.port=8080"
       - "traefik.docker.network=backend"
+      
 networks:
   frontend:
   backend:

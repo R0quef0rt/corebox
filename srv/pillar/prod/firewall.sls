@@ -114,3 +114,8 @@ firewall-rules:
     jump: ACCEPT
     dport: 5044
     protocol: udp
+  gitlab-container:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 5000
+    protocol: tcp
