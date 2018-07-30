@@ -41,3 +41,8 @@ prod:
     - docker.compose-cli.build
     - docker.compose-cli.up
     - system.raid
+  'houston':
+    - traefik
+    - hugo
+    - docker.compose-cli.build
+    - docker.compose-cli.up
