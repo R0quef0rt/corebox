@@ -35,6 +35,9 @@
 [entryPoints]
     [entryPoints.http]
     address = ":80"
+    [entryPoints.https]
+    address = ":443"
+      [entryPoints.https.tls]
 
 ################################################################
 # Traefik logs configuration
