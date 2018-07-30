@@ -3,8 +3,8 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "file://boxes.json"
-  config.vm.hostname = "sandbox"
+  config.vm.box = "r0quef0rt/ubuntu"
+  config.vm.box_url = "file://boxes.json"
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "4096"
@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :salt do |salt|
     salt.masterless = true
-    salt.minion_id = "sandbox"
+    salt.minion_id = "houston"
     salt.minion_config = "etc/salt/minion"
     salt.install_type = "stable"
     salt.bootstrap_options = "-F -P -p python-git"
