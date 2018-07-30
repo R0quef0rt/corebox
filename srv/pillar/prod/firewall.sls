@@ -4,10 +4,15 @@ firewall-rules:
     jump: ACCEPT
     dport: 22
     protocol: tcp
-  traefik:
+  traefik-http:
     chain: INPUT
     jump: ACCEPT
     dport: 80
+    protocol: tcp
+  traefik-https:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 443
     protocol: tcp
   unifi-device:
     chain: INPUT
