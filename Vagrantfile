@@ -6,14 +6,14 @@ Vagrant.configure("2") do |config|
   config.vm.box = "generic/ubuntu1804"
   config.vm.hostname = "sandbox"
 
-  config.vm.provider "hyperv" do |vb|
+  config.vm.provider "virtualbox" do |vb|
     vb.memory = "4096"
-    vb.maxmemory = "8192"
     vb.cpus = 2
   end
 
-  config.vm.provider "virtualbox" do |vb|
+  config.vm.provider "hyperv" do |vb|
     vb.memory = "4096"
+    vb.maxmemory = "8192"
     vb.cpus = 2
   end
 
