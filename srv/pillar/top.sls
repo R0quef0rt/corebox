@@ -21,9 +21,12 @@ prod:
     - prod.system
     - prod.raid
     - prod.users
-    - prod.docker
     - prod.hugo
     - prod.firewall
     - prod.directory
     - prod.grafana
     - prod.hugo
+  'devbox':
+    - prod.home.docker
+  'houston':
+    - prod.cdi.docker
