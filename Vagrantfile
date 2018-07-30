@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "generic/ubuntu1804"
+  config.vm.box = "file://boxes.json"
   config.vm.hostname = "sandbox"
 
   config.vm.provider "virtualbox" do |vb|
