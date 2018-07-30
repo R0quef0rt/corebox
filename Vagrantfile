@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "main" do |mn|
     mn.vm.box = "ubuntu1804"
     mn.vm.box_url = "file://boxes.json"
+    mn.vm.network "public_network"
   end  
 
   config.vm.provider "virtualbox" do |vb|
@@ -13,11 +14,11 @@ Vagrant.configure("2") do |config|
     vb.cpus = 2
   end
 
-  # config.vm.provider "hyperv" do |hv|
-  #   hv.memory = "4096"
-  #   hv.maxmemory = "8192"
-  #   hv.cpus = 2
-  # end
+  config.vm.provider "hyperv" do |hv|
+    hv.memory = "4096"
+    hv.maxmemory = "8192"
+    hv.cpus = 2
+  end
 
   config.vm.synced_folder ".", "/app/live"
 
