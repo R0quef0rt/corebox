@@ -11,15 +11,16 @@ services:
     tmpfs:
       - /run
       - /tmp
-    network_mode: bridge
+    networks:
+      - core
     ports:
       - {{ grains['ipv4']|last }}:53:53/udp
       - {{ grains['ipv4']|last }}:53:53
+      - 80:80
+      - 443:443
       - 88:88
       - 88:88/udp
       - 389:389
-      - 8080:80
-      - 443:443
       - 464:464
       - 464:464/udp
       - 636:636
@@ -39,3 +40,6 @@ services:
 
 volumes:
   data:
+
+networks:
+  core:

@@ -5,9 +5,26 @@ dev:
   'roles:proxy':
     - match: grain
     - traefik
+  'roles:scm':
+    - match: grain
+    - gitlab
+  'roles:mediaserver':
+    - match: grain
+    - nzbget
+    - sonarr
+    - radarr
+    - plex
+    - sync
+    - duplicati
   'roles:dashboard':
     - match: grain
     - hugo
+  'roles:siem':
+    - match: grain
+    - elasticsearch
+    - prometheus
+    - grafana
+    - filebeat
   'roles:docker':
     - match: grain
     - docker
