@@ -2,10 +2,33 @@ dev:
   '*':
     - common
     - system
+  'roles:proxy':
+    - match: grain
+    - traefik
+  'roles:scm':
+    - match: grain
+    - gitlab
+  'roles:mediaserver':
+    - match: grain
+    - nzbget
+    - sonarr
+    - radarr
+    - plex
+    - sync
+    - duplicati
+  'roles:dashboard':
+    - match: grain
+    - hugo
+  'roles:siem':
+    - match: grain
+    - elasticsearch
+    - prometheus
+    - grafana
+    - filebeat
+  'roles:docker':
+    - match: grain
     - docker
     - docker.compose
-    - traefik
-    - hugo
     - docker.compose-cli.build
     - docker.compose-cli.up
 qa:

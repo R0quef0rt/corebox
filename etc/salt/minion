@@ -65,3 +65,7 @@ schedule:
     function: state.highstate
     seconds: 3600
     run_on_start: True
+
+grains:
+  roles:
+    - docker
