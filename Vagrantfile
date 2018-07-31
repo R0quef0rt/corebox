@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
 
   config.vm.define "main" do |mn|
-    mn.vm.box = "ubuntu1804"
+    mn.vm.box = "ubuntu1810"
     mn.vm.box_url = "file://boxes.json"
     mn.vm.network "public_network"
   end  

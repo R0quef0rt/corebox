@@ -1,12 +1,12 @@
 {
   "description": "Ubuntu 18.04 w/ few modifications",
-  "name": "ubuntu1804",
+  "name": "ubuntu1810",
   "versions": [
     {
       "providers": [
         {
           "name": "hyperv",
-          "url": "https://app.vagrantup.com/generic/boxes/ubuntu1804/versions/1.8.14"
+          "url": "https://app.vagrantup.com/generic/boxes/ubuntu1804/versions/1.8.14/providers/hyperv.box"
         },
         {
           "name": "virtualbox",

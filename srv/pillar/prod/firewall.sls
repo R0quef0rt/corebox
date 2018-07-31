@@ -14,6 +14,16 @@ firewall-rules:
     jump: ACCEPT
     dport: 443
     protocol: tcp
+  freeipa-http:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 8080
+    protocol: tcp
+  freeipa-https:
+    chain: INPUT
+    jump: ACCEPT
+    dport: 8443
+    protocol: tcp
   unifi-device:
     chain: INPUT
     jump: ACCEPT

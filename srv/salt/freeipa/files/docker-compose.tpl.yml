@@ -1,0 +1,41 @@
+version: '3.3'
+
+services:
+
+  server:
+    image: freeipa/freeipa-server:fedora-24
+    hostname: 'ldap.example.test'
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - data:/data
+    tmpfs:
+      - /run
+      - /tmp
+    network_mode: bridge
+    ports:
+      - {{ grains['ipv4']|last }}:53:53/udp
+      - {{ grains['ipv4']|last }}:53:53
+      - 88:88
+      - 88:88/udp
+      - 389:389
+      - 8080:80
+      - 443:443
+      - 464:464
+      - 464:464/udp
+      - 636:636
+      - 7389:7389
+      - 9443:9443
+      - 9444:9444
+      - 9445:9445
+    restart: unless-stopped
+    privileged: true
+    command: '-U --realm EXAMPLE.TEST --no-ntp --no_hbac_allow --ds-password=cdi@1234 --admin-password=cdi@1234'
+    environment:
+      - "IPA_SERVER_HOSTNAME=ldap.example.test"
+      - "TZ=America/Toronto"
+      - "PASSWORD=cdi@1234"
+      - "IPA_SERVER_IP={{ grains['ipv4']|last }}"
+      - "DEBUG_TRACE=1"
+
+volumes:
+  data:

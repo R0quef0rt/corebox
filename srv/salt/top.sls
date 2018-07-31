@@ -2,10 +2,16 @@ dev:
   '*':
     - common
     - system
+  'roles:proxy':
+    - match: grain
+    - traefik
+  'roles:dashboard':
+    - match: grain
+    - hugo
+  'roles:docker':
+    - match: grain
     - docker
     - docker.compose
-    - traefik
-    - hugo
     - docker.compose-cli.build
     - docker.compose-cli.up
 qa:
