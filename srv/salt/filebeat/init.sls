@@ -3,3 +3,8 @@ filebeat-config:
     - template: jinja
     - source: salt://filebeat/files/filebeat.tpl.yml
     - name: /app/live/projects/filebeat/filebeat.yml
+
+{% from 'docker/compose/build.sls' import compose_build with context %}
+{{ compose_build('filebeat') }}
+{% from 'docker/compose/up.sls' import compose_up with context %}
+{{ compose_up('filebeat') }}

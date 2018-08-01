@@ -70,3 +70,4 @@ grains:
   roles:
     - docker
     - ldap
+    - scm

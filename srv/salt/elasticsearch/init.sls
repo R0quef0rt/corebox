@@ -12,3 +12,8 @@ kibana-config:
   file.recurse:
     - source: salt://elasticsearch/files/logstash/pipeline
     - include_empty: True
+
+{% from 'docker/compose/build.sls' import compose_build with context %}
+{{ compose_build('elasticsearch') }}
+{% from 'docker/compose/up.sls' import compose_up with context %}
+{{ compose_up('elasticsearch') }}
