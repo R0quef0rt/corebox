@@ -26,8 +26,8 @@ services:
       - /etc:/etc.local
       - /mnt:/mnt
     environment:
-      PUID: 1006
-      PGID: 1006
+      PUID: 6005
+      PGID: 7000
       {% endif %}
 
 volumes:

@@ -3,6 +3,7 @@ version: '3'
 services:
   app:
     image: resilio/sync:release-2.5.13
+    user: "6004"
     ports:
       - "8888:8888"
       - "55555:55555"

@@ -19,8 +19,8 @@ services:
       - /etc/sonarr/config:/config
       - /mnt/television:/television
     environment:
-      PUID: 1002
-      PGID: 1002
+      PUID: 6003
+      PGID: 7000
       {% endif %}
     networks:
       - media
@@ -41,7 +41,5 @@ volumes:
 
 networks:
   media:
-    external: 
-      name: plex_media
   # traefik_frontend:
   #   external: true

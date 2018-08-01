@@ -13,11 +13,12 @@ services:
       - /tmp
     networks:
       - core
+      {% if grains['traefik-enabled'] == true -%}
+      - traefik_backend
+      {%- endif %}
     ports:
       - {{ grains['ipv4']|last }}:53:53/udp
       - {{ grains['ipv4']|last }}:53:53
-      - 80:80
-      - 443:443
       - 88:88
       - 88:88/udp
       - 389:389
@@ -37,9 +38,21 @@ services:
       - "PASSWORD=cdi@1234"
       - "IPA_SERVER_IP={{ grains['ipv4']|last }}"
       - "DEBUG_TRACE=1"
+    {% if grains['traefik-enabled'] == true -%}
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_backend
+      - traefik.http.port=80
+      - traefik.https.port=443
+      - traefik.frontend.rule=Host:ldap.example.test;Path:/ipa/ui
+    {%- endif %}
 
 volumes:
   data:
 
 networks:
   core:
+  {% if grains['traefik-enabled'] == true -%}
+  traefik_backend:
+    external: true
+  {%- endif %}

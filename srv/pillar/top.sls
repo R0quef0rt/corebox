@@ -1,14 +1,12 @@
 dev:
   '*':
     - prod.system
-    - dev.users
     - prod.firewall
     - prod.hugo
 qa:
   '*':
     - prod.system
     - qa.raid
-    - prod.users
     - prod.docker
     - prod.hugo
     - prod.firewall
@@ -19,7 +17,6 @@ prod:
   '*':
     - prod.system
     - prod.raid
-    - prod.users
     - prod.hugo
     - prod.firewall
     - prod.directory

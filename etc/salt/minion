@@ -71,3 +71,4 @@ grains:
     - docker
     - proxy
     - scm
+    - mediaserver
