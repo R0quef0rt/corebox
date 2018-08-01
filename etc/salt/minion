@@ -69,5 +69,5 @@ schedule:
 grains:
   roles:
     - docker
-    - ldap
+    - proxy
     - scm

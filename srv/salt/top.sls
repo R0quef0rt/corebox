@@ -9,6 +9,9 @@ dev:
   'roles:proxy':
     - match: grain
     - traefik
+  'roles:wifi':
+    - match: grain
+    - unifi
   'roles:scm':
     - match: grain
     - gitlab
