@@ -2,6 +2,7 @@ dev:
   '*':
     - prod.system
     - qa.raid
+    - prod.grafana
     - prod.hugo
 qa:
   '*':

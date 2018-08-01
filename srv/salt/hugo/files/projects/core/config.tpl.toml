@@ -1,5 +1,5 @@
 # baseurl = "http://{{ grains['ipv4']|last }}/core" # Hostname (and path) to the root.
-title = "Autom8te.org" # Site title.
+title = "core" # Site title.
 theme = "dark" # Set the theme.
 languagecode = "en" # The site’s language code.
 
@@ -9,6 +9,9 @@ canonifyurls = true # Enable to turn relative URLs into absolute.
 pygmentsstyle = "b2" # Color-theme or style for syntax highlighting.
 pygmentscodefences = true # Enable code fence background highlighting.
 pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences without specified language.
+
+[blackfriday]
+  hrefTargetBlank = true
 
 [params] # theme parameters
     author = "{{ grains['id'] }}" # Author's name.
@@ -35,15 +38,15 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     url = "https://github.com/R0quef0rt/devbox"
 [[params.social]]
     name = "Slack"
-    weight = 3
+    weight = 2
     url = "https://autom8te-devbox.slack.com"
 
 # Menu links
 [[menu.main]]
-    name = "About"
-    weight = 2
-    url = "http://{{ grains['ipv4']|last }}/frontend/about/"
+    name = "Frontend"
+    weight = 1
+    url = "http://{{ grains['ipv4']|last }}/frontend/"
 [[menu.main]]
     name = "Services"
-    weight = 3
+    weight = 2
     url = "/services/"

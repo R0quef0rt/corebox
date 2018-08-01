@@ -70,6 +70,6 @@ grains:
   roles:
     - docker
     - proxy
-    - scm
+    - siem
     - mediaserver
     - dashboard
