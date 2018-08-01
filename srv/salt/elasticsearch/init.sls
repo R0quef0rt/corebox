@@ -20,12 +20,9 @@ kibana-config:
 {{ compose_build('elasticsearch') }}
 {{ compose_up('elasticsearch') }}
 
-
 {{ add_port('elasticsearch-api-http', '9200', 'tcp') }}
 {{ add_port('elasticsearch-api-https', '9300', 'tcp') }}
-
 {{ add_port('kibana', '5601', 'tcp') }}
-
 {{ add_port('logstash-syslog-tcp', '5140', 'tcp') }}
 {{ add_port('logstash-syslog-udp', '5140', 'udp') }}
 {{ add_port('logstash-beats-tcp', '5044', 'tcp') }}

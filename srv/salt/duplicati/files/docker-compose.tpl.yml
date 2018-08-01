@@ -8,8 +8,8 @@ services:
     restart: always
     volumes:
       - source:/source
-      {% if saltenv == 'dev' %}
       - config:/config
+      {% if saltenv == 'dev' %}
       - mnt:/mnt
     networks:
       - traefik_frontend
@@ -22,7 +22,6 @@ services:
       PGID: 1000
       {% elif saltenv == 'prod' or 'qa' %}
       - /etc/localtime:/etc/localtime:ro
-      - /etc/duplicati/config:/config
       - /etc:/etc.local
       - /mnt:/mnt
     environment:
@@ -32,8 +31,8 @@ services:
 
 volumes:
   source:
-  {% if saltenv == 'dev' %}
   config:
+  {% if saltenv == 'dev' %}
   mnt:
   {% endif %}
 

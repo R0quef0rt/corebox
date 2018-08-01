@@ -7,8 +7,8 @@ services:
     restart: always
     volumes:
       - temp:/transcode
-      {% if saltenv == 'dev' %}
       - config:/config
+      {% if saltenv == 'dev' %}
       - radarr_movies:/movies
       - sonarr_television:/television
     environment:
@@ -16,7 +16,6 @@ services:
       PGID: 1000
       {% elif saltenv == 'prod' or 'qa' %}
       - /etc/localtime:/etc/localtime:ro
-      - /etc/plex/config:/config
       - /mnt/movies:/movies
       - /mnt/television:/television
     environment:
@@ -31,8 +30,8 @@ services:
 
 volumes:
   temp:
-  {% if saltenv == 'dev' %}
   config:
+  {% if saltenv == 'dev' %}
   radarr_movies:
     external: true
   sonarr_television:

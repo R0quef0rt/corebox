@@ -1,12 +1,12 @@
 dev:
   '*':
     - prod.system
+    - qa.raid
     - prod.hugo
 qa:
   '*':
     - prod.system
     - qa.raid
-    - prod.docker
     - prod.hugo
     - qa.directory
     - prod.grafana
@@ -19,7 +19,3 @@ prod:
     - prod.directory
     - prod.grafana
     - prod.hugo
-  'devbox':
-    - prod.home.docker
-  'houston':
-    - prod.cdi.docker

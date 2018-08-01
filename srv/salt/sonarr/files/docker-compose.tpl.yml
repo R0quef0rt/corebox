@@ -16,7 +16,7 @@ services:
       PGID: 1000
       {% elif saltenv == 'prod' or 'qa' %}
       - /etc/localtime:/etc/localtime:ro
-      - /etc/sonarr/config:/config
+      - ./config:/config
       - /mnt/television:/television
     environment:
       PUID: 6003
