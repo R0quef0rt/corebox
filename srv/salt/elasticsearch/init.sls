@@ -1,3 +1,7 @@
+{% from 'docker/compose/build.sls' import compose_build with context %}
+{% from 'docker/compose/up.sls' import compose_up with context %}
+{% from 'system/firewall.sls' import add_port with context %}
+
 vm.max_map_count:
   sysctl.present:
     - value: 262144
@@ -13,7 +17,16 @@ kibana-config:
     - source: salt://elasticsearch/files/logstash/pipeline
     - include_empty: True
 
-{% from 'docker/compose/build.sls' import compose_build with context %}
 {{ compose_build('elasticsearch') }}
-{% from 'docker/compose/up.sls' import compose_up with context %}
 {{ compose_up('elasticsearch') }}
+
+
+{{ add_port('elasticsearch-api-http', '9200', 'tcp') }}
+{{ add_port('elasticsearch-api-https', '9300', 'tcp') }}
+
+{{ add_port('kibana', '5601', 'tcp') }}
+
+{{ add_port('logstash-syslog-tcp', '5140', 'tcp') }}
+{{ add_port('logstash-syslog-udp', '5140', 'udp') }}
+{{ add_port('logstash-beats-tcp', '5044', 'tcp') }}
+{{ add_port('logstash-beats-udp', '5044', 'udp') }}

@@ -1,3 +1,7 @@
+{% from 'docker/compose/build.sls' import compose_build with context %}
+{% from 'docker/compose/up.sls' import compose_up with context %}
+{% from 'system/firewall.sls' import add_port with context %}
+
 traefik-config: 
   file.managed: 
     - template: jinja
@@ -12,7 +16,9 @@ traefik-url:
   grains.present:
     - value: http://{{ grains['ipv4']|last }}/traefik
 
-{% from 'docker/compose/build.sls' import compose_build with context %}
 {{ compose_build('traefik') }}
-{% from 'docker/compose/up.sls' import compose_up with context %}
 {{ compose_up('traefik') }}
+
+{{ add_port('ssh', '22', 'tcp') }}
+{{ add_port('traefik-http', '80', 'tcp') }}
+{{ add_port('traefik-https', '443', 'tcp') }}

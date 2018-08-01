@@ -1,3 +1,6 @@
+{% from 'docker/compose/build.sls' import compose_build with context %}
+{% from 'docker/compose/up.sls' import compose_up with context %}
+
 {% for project in salt['pillar.get']('hugo:projects', '') %}
 /app/live/projects/hugo/src/{{project}}:
   file.recurse:
@@ -23,7 +26,5 @@ hugo-entrypoint:
     - source: salt://hugo/files/entrypoint.sh
     - name: /app/live/projects/hugo/entrypoint.sh
 
-{% from 'docker/compose/build.sls' import compose_build with context %}
 {{ compose_build('hugo') }}
-{% from 'docker/compose/up.sls' import compose_up with context %}
 {{ compose_up('hugo') }}

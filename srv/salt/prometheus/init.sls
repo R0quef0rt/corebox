@@ -1,3 +1,7 @@
+{% from 'docker/compose/build.sls' import compose_build with context %}
+{% from 'docker/compose/up.sls' import compose_up with context %}
+{% from 'system/firewall.sls' import add_port with context %}
+
 prometheus-config: 
   file.managed: 
     - template: jinja
@@ -10,7 +14,9 @@ alertmanager-config:
     - source: salt://prometheus/files/alertmanager.tpl.conf
     - name: /app/live/projects/prometheus/alertmanager.conf
 
-{% from 'docker/compose/build.sls' import compose_build with context %}
 {{ compose_build('prometheus') }}
-{% from 'docker/compose/up.sls' import compose_up with context %}
 {{ compose_up('prometheus') }}
+
+{{ add_port('prometheus', '9090', 'tcp') }}
+{{ add_port('alertmanager', '9093', 'tcp') }}
+{{ add_port('cadvisor', '8484', 'tcp') }}
