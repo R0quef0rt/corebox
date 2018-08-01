@@ -2,12 +2,19 @@ dev:
   '*':
     - common
     - system
+  'roles:docker':
+    - match: grain
+    - docker
+    - docker.compose
   'roles:proxy':
     - match: grain
     - traefik
   'roles:scm':
     - match: grain
     - gitlab
+  'roles:ldap':
+    - match: grain
+    - freeipa
   'roles:mediaserver':
     - match: grain
     - nzbget
@@ -25,12 +32,6 @@ dev:
     - prometheus
     - grafana
     - filebeat
-  'roles:docker':
-    - match: grain
-    - docker
-    - docker.compose
-    - docker.compose-cli.build
-    - docker.compose-cli.up
 qa:
   '*':
     - common

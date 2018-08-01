@@ -2,7 +2,6 @@ dev:
   '*':
     - prod.system
     - dev.users
-    - dev.docker
     - prod.firewall
     - prod.hugo
 qa:

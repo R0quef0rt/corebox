@@ -69,3 +69,4 @@ schedule:
 grains:
   roles:
     - docker
+    - ldap
