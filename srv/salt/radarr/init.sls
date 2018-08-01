@@ -8,4 +8,9 @@
 {{ compose_build('radarr') }}
 {{ compose_up('radarr') }}
 
+url-radarr:
+  grains.list_present:
+    - name: url-backend
+    - value: radarr, http://{{ grains['ipv4']|last }}:7878
+
 {{ add_port('radarr', '7878', 'tcp') }}

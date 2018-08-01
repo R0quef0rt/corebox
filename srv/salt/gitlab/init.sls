@@ -5,4 +5,9 @@
 {{ compose_build('gitlab') }}
 {{ compose_up('gitlab') }}
 
+url-gitlab:
+  grains.list_present:
+    - name: url-backend
+    - value: gitlab, http://{{ grains['ipv4']|last }}/gitlab
+
 {{ add_port('gitlab-container-registry', '5000', 'tcp') }}

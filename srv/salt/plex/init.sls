@@ -8,4 +8,9 @@
 {{ compose_build('plex') }}
 {{ compose_up('plex') }}
 
+url-plex:
+  grains.list_present:
+    - name: url-backend
+    - value: plex, http://{{ grains['ipv4']|last }}:32400
+
 {{ add_port('plex', '32400', 'tcp') }}

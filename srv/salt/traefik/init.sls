@@ -8,16 +8,17 @@ traefik-config:
     - source: salt://traefik/files/traefik.tpl.toml
     - name: /app/live/projects/traefik/traefik.toml
 
+{{ compose_build('traefik') }}
+{{ compose_up('traefik') }}
+
 traefik-enabled:
   grains.present:
     - value: true
 
-traefik-url:
-  grains.present:
-    - value: http://{{ grains['ipv4']|last }}/traefik
-
-{{ compose_build('traefik') }}
-{{ compose_up('traefik') }}
+url-traefik:
+  grains.list_present:
+    - name: url-backend
+    - value: traefik, http://{{ grains['ipv4']|last }}/traefik
 
 {{ add_port('ssh', '22', 'tcp') }}
 {{ add_port('traefik-http', '80', 'tcp') }}

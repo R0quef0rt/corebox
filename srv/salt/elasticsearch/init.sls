@@ -20,6 +20,16 @@ kibana-config:
 {{ compose_build('elasticsearch') }}
 {{ compose_up('elasticsearch') }}
 
+url-elasticsearch:
+  grains.list_present:
+    - name: url-backend
+    - value: elasticsearch, http://{{ grains['ipv4']|last }}:9200
+
+url-kibana:
+  grains.list_present:
+    - name: url-backend
+    - value: kibana, http://{{ grains['ipv4']|last }}:5601
+
 {{ add_port('elasticsearch-api-http', '9200', 'tcp') }}
 {{ add_port('elasticsearch-api-https', '9300', 'tcp') }}
 {{ add_port('kibana', '5601', 'tcp') }}

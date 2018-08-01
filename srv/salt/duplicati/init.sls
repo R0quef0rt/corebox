@@ -8,4 +8,9 @@
 {{ compose_build('duplicati') }}
 {{ compose_up('duplicati') }}
 
+url-duplicati:
+  grains.list_present:
+    - name: url-backend
+    - value: duplicati, http://{{ grains['ipv4']|last }}:8200
+
 {{ add_port('duplicati', '8200', 'tcp') }}

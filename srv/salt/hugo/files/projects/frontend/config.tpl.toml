@@ -1,4 +1,4 @@
-baseurl = "http://localhost" # Hostname (and path) to the root.
+# baseurl = "http://{{ grains['ipv4']|last }}/frontend" # Hostname (and path) to the root.
 title = "Autom8te.org" # Site title.
 theme = "coder" # Set the theme.
 languagecode = "en" # The site’s language code.
@@ -47,3 +47,11 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     name = "About"
     weight = 2
     url = "/about/"
+[[menu.main]]
+    name = "Services"
+    weight = 3
+    url = "/services/"
+[[menu.main]]
+    name = "Core"
+    weight = 4
+    url = "http://{{ grains['ipv4']|last }}/core/"

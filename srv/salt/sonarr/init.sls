@@ -8,4 +8,9 @@
 {{ compose_build('sonarr') }}
 {{ compose_up('sonarr') }}
 
+url-sonarr:
+  grains.list_present:
+    - name: url-backend
+    - value: sonarr, http://{{ grains['ipv4']|last }}:8989
+
 {{ add_port('sonarr', '8989', 'tcp') }}

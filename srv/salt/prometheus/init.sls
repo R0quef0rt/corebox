@@ -17,6 +17,21 @@ alertmanager-config:
 {{ compose_build('prometheus') }}
 {{ compose_up('prometheus') }}
 
+url-prometheus:
+  grains.list_present:
+    - name: url-backend
+    - value: prometheus, http://{{ grains['ipv4']|last }}:9090
+
+url-alertmanager:
+  grains.list_present:
+    - name: url-backend
+    - value: alertmanager, http://{{ grains['ipv4']|last }}:9093
+
+url-cadvisor:
+  grains.list_present:
+    - name: url-backend
+    - value: cadvisor, http://{{ grains['ipv4']|last }}:8484
+
 {{ add_port('prometheus', '9090', 'tcp') }}
 {{ add_port('alertmanager', '9093', 'tcp') }}
 {{ add_port('cadvisor', '8484', 'tcp') }}

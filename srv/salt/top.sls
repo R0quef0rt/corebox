@@ -26,15 +26,15 @@ dev:
     - plex
     - sync
     - duplicati
-  'roles:dashboard':
-    - match: grain
-    - hugo
   'roles:siem':
     - match: grain
     - elasticsearch
     - prometheus
     - grafana
     - filebeat
+  'roles:dashboard':
+    - match: grain
+    - hugo
 qa:
   '*':
     - common
@@ -66,15 +66,15 @@ qa:
     - plex
     - sync
     - duplicati
-  'roles:dashboard':
-    - match: grain
-    - hugo
   'roles:siem':
     - match: grain
     - elasticsearch
     - prometheus
     - grafana
     - filebeat
+  'roles:dashboard':
+    - match: grain
+    - hugo
 prod:
   '*':
     - common
@@ -106,12 +106,12 @@ prod:
     - plex
     - sync
     - duplicati
-  'roles:dashboard':
-    - match: grain
-    - hugo
   'roles:siem':
     - match: grain
     - elasticsearch
     - prometheus
     - grafana
     - filebeat
+  'roles:dashboard':
+    - match: grain
+    - hugo

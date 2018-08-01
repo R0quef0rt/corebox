@@ -9,4 +9,9 @@
 {{ compose_build('nzbget') }}
 {{ compose_up('nzbget') }}
 
+url-nzbget:
+  grains.list_present:
+    - name: url-backend
+    - value: nzbget, http://{{ grains['ipv4']|last }}:6789
+
 {{ add_port('nzbget', '6789', 'tcp') }}

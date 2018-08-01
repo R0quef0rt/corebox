@@ -72,3 +72,4 @@ grains:
     - proxy
     - scm
     - mediaserver
+    - dashboard
