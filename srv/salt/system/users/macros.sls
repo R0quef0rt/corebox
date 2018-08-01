@@ -5,8 +5,8 @@
     - gid: {{gid}}
 {%- endmacro %}
 
-{% macro master_user(name, uid, gid) -%}
-master-{{name}}:
+{% macro admin_user(name, uid, gid) -%}
+admin-{{name}}:
   user.present:
     - name: {{name}}
     - fullname: {{name}}
