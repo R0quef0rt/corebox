@@ -30,7 +30,6 @@ service-{{name}}:
     - name: {{name}}
     - fullname: {{name}}
     - shell: /bin/bash
-    - home: /home/{{name}}
     - createhome: False
     - gid_from_name: False
     - uid: {{uid}}
