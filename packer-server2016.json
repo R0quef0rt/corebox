@@ -44,7 +44,6 @@
       "winrm_use_ssl": "true",
       "winrm_use_ntlm": "true",
       "winrm_insecure": "true",
-      "winrm_timeout": "4h",
       "winrm_username": "{{user `winrm_user`}}",
       "winrm_password": "{{user `winrm_password`}}",
       "shutdown_command": "C:/Windows/system32/sysprep/sysprep.exe /generalize /shutdown",

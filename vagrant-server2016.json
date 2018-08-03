@@ -13,7 +13,7 @@
             "url": "https://vagrantcloud.com/roquefort/boxes/win-server-2016/versions/0.1.0/providers/virtualbox.box"
           }
         ],
-        "version": "0.1.1"
+        "version": "0.1.2"
       }
     ]
   }
