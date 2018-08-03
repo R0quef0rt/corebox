@@ -1,0 +1,40 @@
+file_client: local
+
+top_file_merging_strategy: merge
+
+saltenv: dev
+pillarenv: dev
+
+env_order:
+  - dev
+  - qa
+  - prod
+
+file_roots:
+  dev:
+    - C:\\app\dev\srv\salt
+  qa:
+    - C:\\app\live\srv\salt
+  prod:
+    - C:\\app\live\srv\salt
+
+pillar_roots:
+  dev:
+    - C:\\app\dev\srv\pillar
+  qa:
+    - C:\\app\live\srv\pillar
+  prod:
+    - C:\\app\live\srv\pillar
+
+fileserver_backend:
+  - roots
+
+schedule:
+  routine-highstate:
+    function: state.highstate
+    seconds: 3600
+    run_on_start: True
+
+grains:
+  roles:
+    - ldap

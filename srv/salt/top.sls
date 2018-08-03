@@ -1,5 +1,6 @@
 dev:
-  '*':
+  'roles:common':
+    - match: grain
     - common
     - system
   'roles:docker':
@@ -15,9 +16,16 @@ dev:
   'roles:scm':
     - match: grain
     - gitlab
-  'roles:ldap':
+  'roles:ldap and os:Ubuntu':
     - match: grain
     - freeipa
+  'roles:ldap and os:Windows':
+    - match: grain
+    - dsc.lcm
+    - dsc.dependencies
+    - dsc.ad.pdc
+    - dsc.ad.users
+    - rapididentity
   'roles:mediaserver':
     - match: grain
     - nzbget

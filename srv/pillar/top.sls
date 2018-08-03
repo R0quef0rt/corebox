@@ -3,6 +3,7 @@ dev:
     - prod.system
     - prod.grafana
     - prod.hugo
+    - dev.dsc
 qa:
   '*':
     - prod.system

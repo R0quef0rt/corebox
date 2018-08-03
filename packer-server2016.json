@@ -1,0 +1,72 @@
+{
+    "min_packer_version": "0.12.0",
+    "variables": {
+      "service_name": "server2016",
+      "region": "us-east-1",
+      "service_version": "0.4.0",
+      "env": "dev",
+      "winrm_user": "Administrator",
+      "winrm_password": "cdi@2468"
+    },
+    "builders": [{
+      "name": "hyperv",
+      "type": "hyperv-vmcx",
+      "iso_url": "C:\\Users\\RYA1\\Downloads\\Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
+      "iso_checksum_type": "md5",
+      "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
+      "cpu": "2",
+      "ram_size": "4096",
+      "enable_dynamic_memory": "true",
+      "communicator": "winrm",
+      "winrm_port": "5986",
+      "winrm_use_ssl": "true",
+      "winrm_use_ntlm": "true",
+      "winrm_insecure": "true",
+      "winrm_username": "{{user `winrm_user`}}",
+      "winrm_password": "{{user `winrm_password`}}",
+      "shutdown_command": "C:/Windows/system32/sysprep/sysprep.exe /generalize /shutdown",
+      "shutdown_timeout": "4h",
+      "output_directory": "C:\\Packer\\temp"
+    },
+    {
+      "name": "virtualbox",
+      "type": "virtualbox-iso",
+      "iso_url": "C:\\Users\\RYA1\\Downloads\\Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
+      "iso_checksum_type": "md5",
+      "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
+      "guest_os_type": "Windows2016_64",
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "4096"],
+        ["modifyvm", "{{.Name}}", "--cpus", "2"]
+      ],
+      "communicator": "winrm",
+      "winrm_port": "5986",
+      "winrm_use_ssl": "true",
+      "winrm_use_ntlm": "true",
+      "winrm_insecure": "true",
+      "winrm_timeout": "4h",
+      "winrm_username": "{{user `winrm_user`}}",
+      "winrm_password": "{{user `winrm_password`}}",
+      "shutdown_command": "C:/Windows/system32/sysprep/sysprep.exe /generalize /shutdown",
+      "shutdown_timeout": "4h",
+      "output_directory": "C:\\Packer\\temp"
+    }],
+    "provisioners": [
+    ],
+    "post-processors": [
+      {
+        "type": "vagrant",
+        "only": ["hyperv"],
+        "compression_level": 6,
+        "output": "{{template_dir}}/artifacts/{{user `service_name`}}-{{user `service_version`}}-hyperv.box",
+        "vagrantfile_template": "{{template_dir}}/srv/tpl.Vagrantfile"
+      },
+      {
+        "type": "vagrant",
+        "only": ["virtualbox"],
+        "compression_level": 6,
+        "output": "{{template_dir}}/artifacts/{{user `service_name`}}-{{user `service_version`}}-virtualbox.box",
+        "vagrantfile_template": "{{template_dir}}/srv/tpl.Vagrantfile"
+      }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "description": "Windows Server 2016 Datacenter Eval.",
+    "name": "ldap",
+    "versions": [
+      {
+        "providers": [
+          {
+            "name": "hyperv",
+            "url": "https://vagrantcloud.com/roquefort/boxes/win-server-2016/versions/0.1.0/providers/hyperv.box"
+          },
+          {
+            "checksum": "7dfac5a1cc95a0d6e7d37de3ec2efad9a49a69ba",
+            "checksum_type": "sha1",
+            "name": "virtualbox",
+            "url": "https://cd-svr-jfrog.cyberglobal.local:8443/artifactory/generic-local/vagrant/boxes/Windows/Server2016/virtualbox-0.1.1.box"
+          }
+        ],
+        "version": "0.1.1"
+      }
+    ]
+  }

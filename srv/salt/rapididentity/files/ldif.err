@@ -1,0 +1,108 @@
+﻿Entry DN: CN=idautoPersonDistrictCodes,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+changetype: add
+Attribute 0) objectClass:top attributeSchema
+Attribute 1) attributeID:1.3.6.1.4.1.24312.1.2.220
+Attribute 2) attributeSyntax:2.5.5.4
+Attribute 3) cn:idautoPersonDistrictCodes
+Attribute 4) instanceType:4
+Attribute 5) isSingleValued:FALSE
+Attribute 6) lDAPDisplayName:idautoPersonDistrictCodes
+Attribute 7) objectCategory:CN=Attribute-Schema,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+Attribute 8) oMSyntax:20
+Attribute 9) adminDisplayName:idautoPersonDistrictCodes
+Attribute 10) distinguishedName:CN=idautoPersonDistrictCodes,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+Attribute 11) name:idautoPersonDistrictCodes
+Attribute 12) showInAdvancedViewOnly:TRUE
+
+3659: Entry already exists, entry skipped
+
+Entry DN: CN=idautoPersonHomeAddress1,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+changetype: add
+Attribute 0) objectClass:top attributeSchema
+Attribute 1) attributeID:1.3.6.1.4.1.24312.1.2.456
+Attribute 2) attributeSyntax:2.5.5.4
+Attribute 3) cn:idautoPersonHomeAddress1
+Attribute 4) instanceType:4
+Attribute 5) isSingleValued:TRUE
+Attribute 6) lDAPDisplayName:idautoPersonHomeAddress1
+Attribute 7) objectCategory:CN=Attribute-Schema,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+Attribute 8) oMSyntax:20
+Attribute 9) adminDisplayName:idautoPersonHomeAddress1
+Attribute 10) distinguishedName:CN=idautoPersonHomeAddress1,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+Attribute 11) name:idautoPersonHomeAddress1
+Attribute 12) showInAdvancedViewOnly:TRUE
+
+7770: Entry already exists, entry skipped
+
+Entry DN: CN=idautoPersonHomeCity,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+changetype: add
+Attribute 0) objectClass:top attributeSchema
+Attribute 1) attributeID:1.3.6.1.4.1.24312.1.2.457
+Attribute 2) attributeSyntax:2.5.5.4
+Attribute 3) cn:idautoPersonHomeCity
+Attribute 4) instanceType:4
+Attribute 5) isSingleValued:TRUE
+Attribute 6) lDAPDisplayName:idautoPersonHomeCity
+Attribute 7) objectCategory:CN=Attribute-Schema,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+Attribute 8) oMSyntax:20
+Attribute 9) adminDisplayName:idautoPersonHomeCity
+Attribute 10) distinguishedName:CN=idautoPersonHomeCity,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+Attribute 11) name:idautoPersonHomeCity
+Attribute 12) showInAdvancedViewOnly:TRUE
+
+7787: Entry already exists, entry skipped
+
+Entry DN: CN=idautoPersonHomeState,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+changetype: add
+Attribute 0) objectClass:top attributeSchema
+Attribute 1) attributeID:1.3.6.1.4.1.24312.1.2.458
+Attribute 2) attributeSyntax:2.5.5.4
+Attribute 3) cn:idautoPersonHomeState
+Attribute 4) instanceType:4
+Attribute 5) isSingleValued:TRUE
+Attribute 6) lDAPDisplayName:idautoPersonHomeState
+Attribute 7) objectCategory:CN=Attribute-Schema,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+Attribute 8) oMSyntax:20
+Attribute 9) adminDisplayName:idautoPersonHomeState
+Attribute 10) distinguishedName:CN=idautoPersonHomeState,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+Attribute 11) name:idautoPersonHomeState
+Attribute 12) showInAdvancedViewOnly:TRUE
+
+7804: Entry already exists, entry skipped
+
+Entry DN: CN=idautoPersonHomeZipCode,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+changetype: add
+Attribute 0) objectClass:top attributeSchema
+Attribute 1) attributeID:1.3.6.1.4.1.24312.1.2.459
+Attribute 2) attributeSyntax:2.5.5.4
+Attribute 3) cn:idautoPersonHomeZipCode
+Attribute 4) instanceType:4
+Attribute 5) isSingleValued:TRUE
+Attribute 6) lDAPDisplayName:idautoPersonHomeZipCode
+Attribute 7) objectCategory:CN=Attribute-Schema,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+Attribute 8) oMSyntax:20
+Attribute 9) adminDisplayName:idautoPersonHomeZipCode
+Attribute 10) distinguishedName:CN=idautoPersonHomeZipCode,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+Attribute 11) name:idautoPersonHomeZipCode
+Attribute 12) showInAdvancedViewOnly:TRUE
+
+7821: Entry already exists, entry skipped
+
+Entry DN: CN=idautoPersonDivisionCode,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+changetype: add
+Attribute 0) objectClass:top attributeSchema
+Attribute 1) attributeID:1.3.6.1.4.1.24312.1.2.481
+Attribute 2) attributeSyntax:2.5.5.4
+Attribute 3) cn:idautoPersonDivisionCode
+Attribute 4) instanceType:4
+Attribute 5) isSingleValued:TRUE
+Attribute 6) lDAPDisplayName:idautoPersonDivisionCode
+Attribute 7) objectCategory:CN=Attribute-Schema,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+Attribute 8) oMSyntax:20
+Attribute 9) adminDisplayName:idautoPersonDivisionCode
+Attribute 10) distinguishedName:CN=idautoPersonDivisionCode,CN=Schema,CN=Configuration,DC=internal,DC=cyber-global,DC=net
+Attribute 11) name:idautoPersonDivisionCode
+Attribute 12) showInAdvancedViewOnly:TRUE
+
+8195: Entry already exists, entry skipped
+
