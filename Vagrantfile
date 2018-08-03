@@ -3,31 +3,36 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.define "main" do |mn|
-    mn.vm.box = "ubuntu1810"
-    mn.vm.box_url = "file://vagrant-ubuntu.json"
-    mn.vm.network "public_network"
-  end  
+  config.vm.box_check_update = true
+  config.vm.box = "ldap"
+  config.vm.box_url = "C:\\Users\\Ryan\\Documents\\Repo\\r0quef0rt\\devbox\\artifacts\\server2016-0.4.0-hyperv.box"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "8192"
+    vb.memory = "4096"
     vb.cpus = 2
   end
 
-  config.vm.provider "hyperv" do |hv|
-    hv.memory = "4096"
-    hv.maxmemory = "8192"
-    hv.cpus = 2
+  config.vm.provider "hyperv" do |vb|
+    vb.vmname = "ldap"
+    vb.memory = "2048"
+    vb.maxmemory = "8192"
+    vb.cpus = 2
   end
+  
+  config.vm.guest = :windows
+  config.vm.communicator = "winrm"
+  config.winrm.username = "Administrator"
+  config.winrm.password = "cdi@2468"
 
-  config.vm.synced_folder ".", "/app/live"
+  config.vm.provision "file", source: "./srv/salt", destination: "C:\\app\\live\\srv\\salt"
+  config.vm.provision "file", source: "./srv/pillar", destination: "C:\\app\\live\\srv\\pillar"
 
   config.vm.provision :salt do |salt|
     salt.masterless = true
-    salt.minion_id = "houston"
-    salt.minion_config = "etc/salt/minion"
-    salt.install_type = "stable"
-    salt.bootstrap_options = "-F -P -p python-git"
+    salt.minion_id = "winbox"
+    salt.minion_config = "etc/salt/minion.windows"
+    salt.bootstrap_options = "-pythonVersion 3"
+    salt.version = "2018.3.2"
     salt.salt_call_args = ["saltenv=dev", "pillarenv=dev"]
     salt.run_highstate = true
     salt.colorize = true

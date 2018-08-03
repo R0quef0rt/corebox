@@ -16,11 +16,10 @@ dev:
   'roles:scm':
     - match: grain
     - gitlab
-  'roles:ldap and os:Ubuntu':
+  'roles:ldap and os_family:Linux':
     - match: grain
     - freeipa
-  'roles:ldap and os:Windows':
-    - match: grain
+  'G@roles:ldap and G@os_family:Windows':
     - dsc.lcm
     - dsc.dependencies
     - dsc.ad.pdc

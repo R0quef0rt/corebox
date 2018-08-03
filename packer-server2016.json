@@ -10,8 +10,8 @@
     },
     "builders": [{
       "name": "hyperv",
-      "type": "hyperv-vmcx",
-      "iso_url": "C:\\Users\\RYA1\\Downloads\\Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
+      "type": "hyperv-iso",
+      "iso_url": "D:\\Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
       "iso_checksum_type": "md5",
       "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
       "cpu": "2",
@@ -26,7 +26,7 @@
       "winrm_password": "{{user `winrm_password`}}",
       "shutdown_command": "C:/Windows/system32/sysprep/sysprep.exe /generalize /shutdown",
       "shutdown_timeout": "4h",
-      "output_directory": "C:\\Packer\\temp"
+      "output_directory": "D:\\output"
     },
     {
       "name": "virtualbox",
@@ -59,14 +59,14 @@
         "only": ["hyperv"],
         "compression_level": 6,
         "output": "{{template_dir}}/artifacts/{{user `service_name`}}-{{user `service_version`}}-hyperv.box",
-        "vagrantfile_template": "{{template_dir}}/srv/tpl.Vagrantfile"
+        "vagrantfile_template": "{{template_dir}}/srv/salt/vagrant/files/tpl.Vagrantfile"
       },
       {
         "type": "vagrant",
         "only": ["virtualbox"],
         "compression_level": 6,
         "output": "{{template_dir}}/artifacts/{{user `service_name`}}-{{user `service_version`}}-virtualbox.box",
-        "vagrantfile_template": "{{template_dir}}/srv/tpl.Vagrantfile"
+        "vagrantfile_template": "{{template_dir}}/srv/salt/vagrant/files/tpl.Vagrantfile"
       }
     ]
 }

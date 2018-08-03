@@ -12,7 +12,7 @@ env_order:
 
 file_roots:
   dev:
-    - C:\\app\dev\srv\salt
+    - C:\\app\live\srv\salt
   qa:
     - C:\\app\live\srv\salt
   prod:
@@ -20,7 +20,7 @@ file_roots:
 
 pillar_roots:
   dev:
-    - C:\\app\dev\srv\pillar
+    - C:\\app\live\srv\pillar
   qa:
     - C:\\app\live\srv\pillar
   prod:
