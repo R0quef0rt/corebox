@@ -8,20 +8,20 @@ services:
     restart: always
     volumes:
       - nzbget_downloads:/downloads
-      {% if saltenv == 'dev' %}
+      {% if saltenv == 'dev' -%}
       - config:/config
       - television:/television
     environment:
       PUID: 1000
       PGID: 1000
-      {% elif saltenv == 'prod' or 'qa' %}
+      {%- elif saltenv == 'prod' or 'qa' -%}
       - /etc/localtime:/etc/localtime:ro
-      - /etc/sonarr/config:/config
+      - ./config:/config
       - /mnt/television:/television
     environment:
-      PUID: 1002
-      PGID: 1002
-      {% endif %}
+      PUID: 6003
+      PGID: 7000
+      {%- endif %}
     networks:
       - media
     #   - traefik_frontend
@@ -41,7 +41,5 @@ volumes:
 
 networks:
   media:
-    external: 
-      name: plex_media
   # traefik_frontend:
   #   external: true

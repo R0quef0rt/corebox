@@ -1,15 +1,15 @@
-{% for path, args in pillar['directory'].iteritems() %}
+{% macro add_directory(path, user, group, mode, recurse) -%}
 {{path}}-directory:
   file.directory:
     - name: {{path}}
-    - user: {{args['user']}}
-    - group: {{args['group']}}
-    - mode: {{args['mode']}}
+    - user: {{user}}
+    - group: {{group}}
+    - mode: {{mode}}
     - makedirs: True
-    {% if args['recurse'] %}
+    {% if recurse == 'true' %}
     - recurse:
       - user
       - group
       - mode
     {% endif %}
-{% endfor %}
+{%- endmacro %}

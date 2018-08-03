@@ -5,8 +5,6 @@ services:
   {{project}}:
     image: roquefort/hugo:latest
     build: .
-    ports:
-      - 13{{loop.index}}3:1313
     restart: always
     volumes:
       - ./src/{{project}}:/src/{{project}}
@@ -21,7 +19,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik_frontend
-      - traefik.port=1313
+      - traefik.port=80
       - traefik.frontend.rule=PathPrefix:/{{project}}
 {% endfor %}
 networks:

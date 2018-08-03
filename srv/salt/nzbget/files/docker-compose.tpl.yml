@@ -5,33 +5,33 @@ services:
     restart: always
     volumes:
       - downloads:/downloads
-      {% if saltenv == 'dev' -%}
       - ./config:/config
+    {% if saltenv == 'dev' -%}
     environment:
       PUID: 1000
       PGID: 1000
       {%- elif saltenv == 'prod' or 'qa' -%}
       - /etc/localtime:/etc/localtime:ro
-      - /etc/nzbget/config:/config
     environment:
-      PUID: 1002
-      PGID: 1002
+      PUID: 6000
+      PGID: 7000
     {%- endif %}
-    {% if grains['traefik-enabled'] == true -%}
     networks:
+      - media
+      {% if grains['traefik-enabled'] == true -%}
       - traefik_frontend
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik_frontend
       - traefik.port=6789
       - traefik.frontend.rule=PathPrefix:/nzbget
-    {%- endif %}
+      {%- endif %}
 
 volumes:
   downloads:
-
-{% if grains['traefik-enabled'] == true -%}
 networks:
+  media:
+  {% if grains['traefik-enabled'] == true -%}
   traefik_frontend:
     external: true
-{%- endif %}
+  {%- endif %}

@@ -1,13 +1,13 @@
-{% for rule, args in pillar['firewall-rules'].iteritems() %}
-{{rule}}-managed-rule:
+{% macro add_port(name, dport, protocol) -%}
+{{name}}-managed-rule:
   iptables.append:
     - table: filter
-    - chain: {{args['chain']}}
-    - jump: {{args['jump']}}
+    - chain: INPUT
+    - jump: ACCEPT
     - match: state
     - connstate: NEW
-    - dport: {{args['dport']}}
-    - protocol: {{args['protocol']}}
+    - dport: {{dport}}
+    - protocol: {{protocol}}
     - sport: 1025:65535
     - save: True
-{% endfor %}
+{%- endmacro %}

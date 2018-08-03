@@ -1,6 +1,6 @@
 variable "service_name" {
   description = "Name of this project"
-  default     = "devbox"
+  default     = "corebox"
 }
 
 variable "service_version" {

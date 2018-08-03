@@ -1,10 +1,4 @@
-# /dev/md0:
-#   raid:
-#     - absent
-
-# /mnt:
-#   mount.unmounted:
-#     - device: /dev/md0
+{% from 'system/directory.sls' import add_directory with context %}
 
 {% for mount, args in pillar['raid_devices'].iteritems() %}
 {{mount}}:
@@ -34,4 +28,7 @@ md0:
     - mkmnt: True
     - opts:
       - defaults
+
+{{ add_directory('/mnt', 'master', 'media', '777', 'true') }}
+
 {% endfor %}

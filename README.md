@@ -88,3 +88,7 @@ hugo new site /home/master/journal
 - Your CI config should be IN THIS REPO. So that we can share it with others.
 - This repo should generally not make an effort to configure the final applications. It should only provide a clean-slate for bootstrapping them, managing their lifecyle, etc
 - All Docker images must come from official repos, unless unavailable
+
+# READ
+
+- https://timber.io/blog/promql-for-humans/

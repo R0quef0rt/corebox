@@ -1,13 +1,29 @@
 dev:
-  '*':
+  'roles:common':
+    - match: grain
     - common
     - system
+  'roles:docker':
+    - match: grain
+    - docker
+    - docker.compose
   'roles:proxy':
     - match: grain
     - traefik
+  'roles:wifi':
+    - match: grain
+    - unifi
   'roles:scm':
     - match: grain
     - gitlab
+  'G@roles:ldap and G@os_family:Linux':
+    - freeipa
+  'G@roles:ldap and G@os_family:Windows':
+    - dsc.lcm
+    - dsc.dependencies
+    - dsc.ad.pdc
+    - dsc.ad.users
+    - rapididentity
   'roles:mediaserver':
     - match: grain
     - nzbget
@@ -16,56 +32,92 @@ dev:
     - plex
     - sync
     - duplicati
-  'roles:dashboard':
-    - match: grain
-    - hugo
   'roles:siem':
     - match: grain
     - elasticsearch
     - prometheus
     - grafana
     - filebeat
-  'roles:docker':
+  'roles:dashboard':
     - match: grain
-    - docker
-    - docker.compose
-    - docker.compose-cli.build
-    - docker.compose-cli.up
+    - hugo
 qa:
   '*':
     - common
     - system
     - system.repo
+  'devbox':
+    - system.raid
+  'roles:docker':
+    - match: grain
     - docker
     - docker.compose
-  'cloudbox':
+  'roles:proxy':
+    - match: grain
     - traefik
-    - hugo
+  'roles:wifi':
+    - match: grain
+    - unifi
+  'roles:scm':
+    - match: grain
+    - gitlab
+  'roles:ldap':
+    - match: grain
+    - freeipa
+  'roles:mediaserver':
+    - match: grain
+    - nzbget
+    - sonarr
+    - radarr
+    - plex
+    - sync
+    - duplicati
+  'roles:siem':
+    - match: grain
     - elasticsearch
     - prometheus
     - grafana
-    - docker.compose-cli.build
-    - docker.compose-cli.up
-  'devbox':
-    - system.raid
+    - filebeat
+  'roles:dashboard':
+    - match: grain
+    - hugo
 prod:
   '*':
     - common
     - system
     - system.repo
+  'devbox':
+    - system.raid
+  'roles:docker':
+    - match: grain
     - docker
     - docker.compose
-  'devbox':
+  'roles:proxy':
+    - match: grain
     - traefik
-    - hugo
+  'roles:wifi':
+    - match: grain
+    - unifi
+  'roles:scm':
+    - match: grain
+    - gitlab
+  'roles:ldap':
+    - match: grain
+    - freeipa
+  'roles:mediaserver':
+    - match: grain
+    - nzbget
+    - sonarr
+    - radarr
+    - plex
+    - sync
+    - duplicati
+  'roles:siem':
+    - match: grain
     - elasticsearch
     - prometheus
     - grafana
-    - docker.compose-cli.build
-    - docker.compose-cli.up
-    - system.raid
-  'houston':
-    - traefik
+    - filebeat
+  'roles:dashboard':
+    - match: grain
     - hugo
-    - docker.compose-cli.build
-    - docker.compose-cli.up

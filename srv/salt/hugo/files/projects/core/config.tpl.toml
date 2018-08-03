@@ -1,5 +1,5 @@
-baseurl = "http://localhost" # Hostname (and path) to the root.
-title = "Autom8te.org" # Site title.
+# baseurl = "http://{{ grains['ipv4']|last }}/core" # Hostname (and path) to the root.
+title = "core" # Site title.
 theme = "dark" # Set the theme.
 languagecode = "en" # The site’s language code.
 
@@ -9,6 +9,9 @@ canonifyurls = true # Enable to turn relative URLs into absolute.
 pygmentsstyle = "b2" # Color-theme or style for syntax highlighting.
 pygmentscodefences = true # Enable code fence background highlighting.
 pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences without specified language.
+
+[blackfriday]
+  hrefTargetBlank = true
 
 [params] # theme parameters
     author = "{{ grains['id'] }}" # Author's name.
@@ -23,7 +26,7 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     hideCopyright = true
 
     # Custom CSS
-    custom_css = ["less/inverted.less"]
+    custom_css = []
 
     # RTL support
     rtl = false
@@ -35,59 +38,15 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
     url = "https://github.com/R0quef0rt/devbox"
 [[params.social]]
     name = "Slack"
-    weight = 3
+    weight = 2
     url = "https://autom8te-devbox.slack.com"
 
 # Menu links
 [[menu.main]]
-    name = "Blog"
+    name = "Frontend"
     weight = 1
-    url  = "/tags/golang/"
+    url = "http://{{ grains['ipv4']|last }}/frontend/"
 [[menu.main]]
-    name = "About"
+    name = "Services"
     weight = 2
-    url = "/about/"
-[[menu.main]]
-    name = "Traefik"
-    weight = 2
-    url = "http://{{ grains['ipv4']|last }}/traefik"
-[[menu.main]]
-    name = "NZBGet"
-    weight = 3
-    url = "http://{{ grains['ipv4']|last }}/nzbget"
-[[menu.main]]
-    name = "Sonarr"
-    weight = 4
-    url = "http://{{ grains['ipv4']|last }}:8989"
-[[menu.main]]
-    name = "Radarr"
-    weight = 5
-    url = "http://{{ grains['ipv4']|last }}:7878"
-[[menu.main]]
-    name = "Sync"
-    weight = 6
-    url = "http://{{ grains['ipv4']|last }}:8888"
-[[menu.main]]
-    name = "Duplicati"
-    weight = 7
-    url = "http://{{ grains['ipv4']|last }}:8200"
-[[menu.main]]
-    name = "Plex"
-    weight = 8
-    url = "http://{{ grains['ipv4']|last }}:32400"
-[[menu.main]]
-    name = "Prometheus"
-    weight = 9
-    url = "http://{{ grains['ipv4']|last }}:9090"
-[[menu.main]]
-    name = "Alertmanager"
-    weight = 10
-    url = "http://{{ grains['ipv4']|last }}:9093"
-[[menu.main]]
-    name = "CAdvisor"
-    weight = 11
-    url = "http://{{ grains['ipv4']|last }}:8484"
-[[menu.main]]
-    name = "Grafana"
-    weight = 12
-    url = "http://{{ grains['ipv4']|last }}:3000"
+    url = "/services/"

@@ -17,7 +17,7 @@ services:
 
   alertmanager:
     image: prom/alertmanager:v0.15.1
-    command: -config.file=/config/alertmanager.conf
+    command: --config.file=/config/alertmanager.conf
     ports:
       - "9093:9093"
     networks:

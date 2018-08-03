@@ -9,4 +9,4 @@ config.ign.merged
 .vagrant/
 *.log
 
-projects/
+projects/*

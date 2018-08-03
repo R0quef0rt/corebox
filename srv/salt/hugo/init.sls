@@ -1,3 +1,6 @@
+{% from 'docker/compose/build.sls' import compose_build with context %}
+{% from 'docker/compose/up.sls' import compose_up with context %}
+
 {% for project in salt['pillar.get']('hugo:projects', '') %}
 /app/live/projects/hugo/src/{{project}}:
   file.recurse:
@@ -9,6 +12,12 @@ hugo-{{project}}:
     - template: jinja
     - source: salt://hugo/files/projects/{{project}}/config.tpl.toml
     - name: /app/live/projects/hugo/src/{{project}}/config.toml
+
+hugo-{{project}}-services: 
+  file.managed: 
+    - template: jinja
+    - source: salt://hugo/files/projects/{{project}}/services.tpl.md
+    - name: /app/live/projects/hugo/src/{{project}}/content/services.md
 {% endfor %}
 
 hugo-dockerfile: 
@@ -22,3 +31,16 @@ hugo-entrypoint:
     - template: jinja
     - source: salt://hugo/files/entrypoint.sh
     - name: /app/live/projects/hugo/entrypoint.sh
+
+url-hugo-core:
+  grains.list_present:
+    - name: url-backend
+    - value: core, http://{{ grains['ipv4']|last }}/core
+
+url-hugo-frontend:
+  grains.list_present:
+    - name: url-frontend
+    - value: frontend, http://{{ grains['ipv4']|last }}/frontend
+
+{{ compose_build('hugo') }}
+{{ compose_up('hugo') }}

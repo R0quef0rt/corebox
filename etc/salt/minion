@@ -41,7 +41,7 @@ gitfs_root: srv/salt
 gitfs_provider: gitpython
 
 gitfs_remotes:
-  - https://github.com/R0quef0rt/devbox.git
+  - https://github.com/R0quef0rt/corebox.git
 
 gitfs_saltenv:
   - qa:
@@ -51,11 +51,11 @@ gitfs_saltenv:
 
 ext_pillar:
   - git:
-    - dev https://github.com/R0quef0rt/devbox.git:
+    - dev https://github.com/R0quef0rt/corebox.git:
       - env: qa
       - name: qa
       - root: srv/pillar
-    - master https://github.com/R0quef0rt/devbox.git:
+    - master https://github.com/R0quef0rt/corebox.git:
       - env: prod
       - name: prod
       - root: srv/pillar
@@ -69,3 +69,6 @@ schedule:
 grains:
   roles:
     - docker
+    - proxy
+    - siem
+    - dashboard
