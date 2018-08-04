@@ -23,7 +23,7 @@ services:
       PGID: 7000
       {%- endif %}
     networks:
-      - media
+      - nzbget_media
     #   - traefik_frontend
     # labels:
     #   - traefik.enable=true
@@ -40,6 +40,7 @@ volumes:
   {% endif %}
 
 networks:
-  media:
+  nzbget_media:
+    external: true
   # traefik_frontend:
   #   external: true
