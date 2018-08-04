@@ -20,7 +20,7 @@ services:
       - /mnt/downloads:/downloads
       - /mnt/television:/television
     environment:
-      PUID: 6003
+      PUID: 7000
       PGID: 7000
       {%- endif %}
     networks:

@@ -4,9 +4,9 @@
 {% from 'system/directory.sls' import add_directory with context %}
 
 {{ group('media', '7000') }}
-{{ service_user('nzbget', '6000', 'media') }}
+{{ service_user('media', '7000', 'media') }}
 
-{{ add_directory('/app/live/projects/nzbget/config', 'nzbget', 'media', '770', 'true') }}
+{{ add_directory('/app/live/projects/nzbget/config', 'media', 'media', '770', 'true') }}
 
 {{ compose_build('nzbget') }}
 {{ compose_up('nzbget') }}

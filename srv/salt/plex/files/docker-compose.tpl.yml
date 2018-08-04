@@ -19,7 +19,7 @@ services:
       - /mnt/movies:/movies
       - /mnt/television:/television
     environment:
-      PLEX_UID: 6001
+      PLEX_UID: 7000
       PLEX_GID: 7000
       {% endif %}
       ADVERTISE_IP: "http://192.168.5.20:32400/"

@@ -20,7 +20,7 @@ services:
       - /mnt/downloads:/downloads
       - /mnt/movies:/movies
     environment:
-      PUID: 6002
+      PUID: 7000
       PGID: 7000
       {%- endif %}
     networks:
