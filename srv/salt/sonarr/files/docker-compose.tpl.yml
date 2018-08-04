@@ -7,8 +7,8 @@ services:
       - 8989:8989
     restart: always
     volumes:
-      - nzbget_downloads:/downloads
       {% if saltenv == 'dev' -%}
+      - nzbget_downloads:/downloads
       - config:/config
       - television:/television
     environment:
@@ -17,6 +17,7 @@ services:
       {%- elif saltenv == 'prod' or 'qa' -%}
       - /etc/localtime:/etc/localtime:ro
       - ./config:/config
+      - /mnt/downloads:/downloads
       - /mnt/television:/television
     environment:
       PUID: 6003
@@ -31,13 +32,14 @@ services:
     #   - traefik.port=8989
     #   - traefik.frontend.rule=Path:/sonarr
 
+
+{% if saltenv == 'dev' %}
 volumes:
   nzbget_downloads:
     external: true
-  {% if saltenv == 'dev' %}
   config:
   television:
-  {% endif %}
+{% endif %}
 
 networks:
   nzbget_media:
