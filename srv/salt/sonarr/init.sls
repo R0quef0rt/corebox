@@ -11,6 +11,6 @@
 url-sonarr:
   grains.list_present:
     - name: url-backend
-    - value: sonarr, http://{{ grains['ipv4']|last }}:8989
+    - value: sonarr, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}:8989
 
 {{ add_port('sonarr', '8989', 'tcp') }}

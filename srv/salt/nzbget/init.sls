@@ -14,4 +14,4 @@
 url-nzbget:
   grains.list_present:
     - name: url-backend
-    - value: nzbget, http://{{ grains['ipv4']|last }}/nzbget
+    - value: nzbget, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}/nzbget

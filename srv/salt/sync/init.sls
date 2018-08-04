@@ -11,7 +11,7 @@
 url-sync:
   grains.list_present:
     - name: url-backend
-    - value: sync, http://{{ grains['ipv4']|last }}:8888
+    - value: sync, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}:8888
 
 {{ add_port('sync-web', '8888', 'tcp') }}
 {{ add_port('sync-proxy', '55555', 'tcp') }}
