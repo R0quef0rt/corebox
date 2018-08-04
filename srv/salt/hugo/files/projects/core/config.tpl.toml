@@ -45,7 +45,7 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
 [[menu.main]]
     name = "Frontend"
     weight = 1
-    url = "http://{{ salt['grains.get']('ip4_interfaces:enp2s0')  }}/frontend/"
+    url = "http://{{ grains['ip4_interfaces:enp2s0']  }}/frontend/"
 [[menu.main]]
     name = "Services"
     weight = 2
