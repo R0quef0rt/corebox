@@ -2,7 +2,7 @@ version: '3'
 services:
   app:
     image: linuxserver/nzbget:125
-    restart: always
+    restart: unless-stopped
     {% if saltenv == 'dev' -%}
     volumes:
       - downloads:/downloads
