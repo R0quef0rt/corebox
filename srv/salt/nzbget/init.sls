@@ -7,6 +7,7 @@
 {{ service_user('media', '7000', 'media') }}
 
 {{ add_directory('/app/live/projects/nzbget/config', 'media', 'media', '770', 'true') }}
+{{ add_directory('/mnt', 'media', 'media', '770', 'true') }}
 
 {{ compose_build('nzbget') }}
 {{ compose_up('nzbget') }}
