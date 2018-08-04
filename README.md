@@ -1,10 +1,10 @@
-# DevBox [![Build Status](https://travis-ci.org/R0quef0rt/devbox.svg?branch=master)](https://travis-ci.org/R0quef0rt/devbox)
+# CoreBox [![Build Status](https://travis-ci.org/R0quef0rt/CoreBox.svg?branch=master)](https://travis-ci.org/R0quef0rt/CoreBox)
 
-DevBox is a (someday) production-ready, single-server solution to a DevOps beginner. It aims to bridge the difficult gap between putting automation technologies to good use, and learning the languages necessary to maintain a full stack. 
+CoreBox is a (someday) production-ready, single-server solution to a DevOps beginner. It aims to bridge the difficult gap between putting automation technologies to good use, and learning the languages necessary to maintain a full stack. 
 
-DevBox is a developer's playground, build for modularity, speed of development, and ease of forking for your own project.
+CoreBox is a developer's playground, build for modularity, speed of development, and ease of forking for your own project.
 
-DevBox aims to walk you, the developer, through all common lifecycle stages in the build automation pipeline process.
+CoreBox aims to walk you, the developer, through all common lifecycle stages in the build automation pipeline process.
 
 ## Salt
 
@@ -71,7 +71,7 @@ hugo new site /home/master/journal
 - Setup reverse proxy
 - Make a default landing page w/ links to all running apps
 - Add a shared .vscode configuration to repo
-- "DEVBOX" on the landing page should display the hostname of the machine
+- "CoreBox" on the landing page should display the hostname of the machine
 - Random phrase generator below title
 - Grafana, Prometheus, Alerts
 

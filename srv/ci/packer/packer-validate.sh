@@ -1,3 +1,3 @@
 #!/bin/bash
 
-packer validate packer.json
+packer validate packer-ubuntu.json

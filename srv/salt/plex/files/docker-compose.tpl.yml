@@ -25,8 +25,7 @@ services:
       ADVERTISE_IP: "http://192.168.5.20:32400/"
       PLEX_CLAIM: "claim-Zp5pDPtg2jw93A15G81u"
     networks:
-      - sonarr_media
-      - radarr_media
+      - nzbget_media
 
 volumes:
   temp:
@@ -39,7 +38,5 @@ volumes:
   {% endif %}
 
 networks:
-  sonarr_media:
-    external: true
-  radarr_media:
+  nzbget_media:
     external: true

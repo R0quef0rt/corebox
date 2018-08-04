@@ -10,7 +10,7 @@ services:
     restart: always
     volumes:
       {% if saltenv == 'dev' %}
-      - ./etc/sync:/mnt/sync
+      - config:/mnt/sync
       - mnt:/mnt/mounted_folders
       {% elif saltenv == 'prod' or 'qa' %}
       - /etc/localtime:/etc/localtime:ro
@@ -27,6 +27,7 @@ services:
 
   {% if saltenv == 'dev' %}
 volumes:
+  config:
   mnt:
   {% endif %}
 # networks:
