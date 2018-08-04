@@ -7,7 +7,7 @@ if   [ "$DESTROY_ALL" == true ]; then
 elif [ "$LATEST_AMI" == "$ENV-$SERVICE_NAME-$SERVICE_VERSION" ]; then
     echo "The latest AMI and this project are the same SERVICE_VERSION. Skipping..."
 elif [ "$LATEST_AMI" = "null" ]; then
-    packer build packer.json
+    packer build packer-ubuntu.json
 else
     echo "Something went wrong. This is probably a problem with the jq syntax in $0"
 fi

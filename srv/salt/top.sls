@@ -1,5 +1,5 @@
 dev:
-  'roles:common':
+  'os_family:Linux':
     - match: grain
     - common
     - system
@@ -42,12 +42,11 @@ dev:
     - match: grain
     - hugo
 qa:
-  '*':
+  'os_family:Linux':
+    - match: grain
     - common
     - system
     - system.repo
-  'devbox':
-    - system.raid
   'roles:docker':
     - match: grain
     - docker
@@ -61,9 +60,14 @@ qa:
   'roles:scm':
     - match: grain
     - gitlab
-  'roles:ldap':
-    - match: grain
+  'G@roles:ldap and G@os_family:Linux':
     - freeipa
+  'G@roles:ldap and G@os_family:Windows':
+    - dsc.lcm
+    - dsc.dependencies
+    - dsc.ad.pdc
+    - dsc.ad.users
+    - rapididentity
   'roles:mediaserver':
     - match: grain
     - nzbget
@@ -82,12 +86,11 @@ qa:
     - match: grain
     - hugo
 prod:
-  '*':
+  'os_family:Linux':
+    - match: grain
     - common
     - system
     - system.repo
-  'devbox':
-    - system.raid
   'roles:docker':
     - match: grain
     - docker
@@ -101,9 +104,14 @@ prod:
   'roles:scm':
     - match: grain
     - gitlab
-  'roles:ldap':
-    - match: grain
+  'G@roles:ldap and G@os_family:Linux':
     - freeipa
+  'G@roles:ldap and G@os_family:Windows':
+    - dsc.lcm
+    - dsc.dependencies
+    - dsc.ad.pdc
+    - dsc.ad.users
+    - rapididentity
   'roles:mediaserver':
     - match: grain
     - nzbget

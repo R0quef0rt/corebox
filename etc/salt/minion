@@ -71,4 +71,6 @@ grains:
     - docker
     - proxy
     - siem
+    - mediaserver
+    - wifi
     - dashboard
