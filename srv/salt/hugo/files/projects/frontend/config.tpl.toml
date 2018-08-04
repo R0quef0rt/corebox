@@ -53,7 +53,7 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
 [[menu.main]]
     name = "Core"
     weight = 3
-    url = "http://{{ grains['ipv4']|last }}/core/"
+    url = "http://{{ grains['enp2s0'] }}/core/"
 [[menu.main]]
     name = "Services"
     weight = 4
