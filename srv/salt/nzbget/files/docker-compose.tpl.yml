@@ -7,7 +7,6 @@ services:
     volumes:
       - downloads:/downloads
       - ./config:/config
-    {% if saltenv == 'dev' -%}
     environment:
       PUID: 1000
       PGID: 1000
