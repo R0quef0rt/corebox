@@ -5,10 +5,10 @@ services:
     image: linuxserver/radarr:116
     ports:
       - 7878:7878
-    restart: always
+    restart: unless-stopped
     volumes:
-      - nzbget_downloads:/downloads
       {% if saltenv == 'dev' -%}
+      - nzbget_downloads:/downloads
       - config:/config
       - movies:/movies
     environment:
@@ -17,9 +17,10 @@ services:
       {%- elif saltenv == 'prod' or 'qa' -%}
       - /etc/localtime:/etc/localtime:ro
       - ./config:/config
+      - /mnt/downloads:/downloads
       - /mnt/movies:/movies
     environment:
-      PUID: 6002
+      PUID: 7000
       PGID: 7000
       {%- endif %}
     networks:
@@ -31,13 +32,13 @@ services:
     #   - traefik.port=7878
     #   - traefik.frontend.rule=PathPrefix:/radarr
 
+{% if saltenv == 'dev' %}
 volumes:
   nzbget_downloads:
     external: true
-  {% if saltenv == 'dev' %}
   config:
   movies:
-  {% endif %}
+{% endif %}
 
 networks:
   nzbget_media:

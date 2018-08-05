@@ -46,7 +46,6 @@ qa:
     - match: grain
     - common
     - system
-    - system.repo
   'roles:docker':
     - match: grain
     - docker
@@ -90,7 +89,6 @@ prod:
     - match: grain
     - common
     - system
-    - system.repo
   'roles:docker':
     - match: grain
     - docker

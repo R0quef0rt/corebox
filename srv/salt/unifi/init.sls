@@ -8,7 +8,7 @@
 url-unifi:
   grains.list_present:
     - name: url-backend
-    - value: unifi, https://{{ grains['ipv4']|last }}:8443
+    - value: unifi, https://{{ grains['ip4_interfaces']['enp2s0'][0] }}:8443
 
 {{ add_port('unifi-device', '8080', 'tcp') }}
 {{ add_port('unifi-web', '8443', 'tcp') }}

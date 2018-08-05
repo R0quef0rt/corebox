@@ -22,10 +22,10 @@ services:
       PGID: 1000
       {% elif saltenv == 'prod' or 'qa' %}
       - /etc/localtime:/etc/localtime:ro
-      - /etc:/etc.local
+      - /app:/host/app
       - /mnt:/mnt
     environment:
-      PUID: 6005
+      PUID: 7000
       PGID: 7000
       {% endif %}
 
