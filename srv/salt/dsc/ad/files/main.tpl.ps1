@@ -133,7 +133,7 @@ Configuration BuildADDC {
     }
 }
 
-$PWord = ConvertTo-SecureString -String "cdi@123" -AsPlainText -Force
+$PWord = ConvertTo-SecureString -String "cdi@2468" -AsPlainText -Force
 $FQDomainName = "internal.cyberdefenses.io"
 $DomainAdminstratorCreds=New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList "$FQDomainName\Administrator", $PWord
 
