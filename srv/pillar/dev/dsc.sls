@@ -9,5 +9,6 @@ win_dsc:
       - xStorage
       - xRemoteDesktopAdmin
       - xAdcsDeployment
+      - xWindowsUpdate
   networking:
     ipaddress: 192.168.5.230

@@ -25,7 +25,7 @@ Configuration BuildADDC {
         [Int]$RetryIntervalSec=30
     )
 
-    Import-DscResource -ModuleName PSDesiredStateConfiguration, xActiveDirectory, xComputerManagement, xNetworking, xStorage, xRemoteDesktopAdmin, xAdcsDeployment
+    Import-DscResource -ModuleName PSDesiredStateConfiguration, xActiveDirectory, xComputerManagement, xNetworking, xStorage, xRemoteDesktopAdmin, xAdcsDeployment, xWindowsUpdate
  
     Node $AllNodes.NodeName 
     {
@@ -37,6 +37,14 @@ Configuration BuildADDC {
 
         xComputer SetName { 
           Name = $Node.MachineName 
+        }
+
+        xWindowsUpdateAgent InstallUpdates {
+          UpdateNow = $True
+          Category = 'Security','Important'
+          Notifications = 'Disabled'
+          Source = 'WindowsUpdate'
+          IsSingleInstance = 'Yes'
         }
  
         # xIPAddress IPAddress {
