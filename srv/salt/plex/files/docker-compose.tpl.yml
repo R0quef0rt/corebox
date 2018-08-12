@@ -23,7 +23,7 @@ services:
       PLEX_GID: 7000
       {% endif %}
       ADVERTISE_IP: "http://192.168.5.20:32400/"
-      PLEX_CLAIM: "claim-9FLbBFpXiRVkHzvs3ujp"
+      PLEX_CLAIM: "claim-jR1YMoXAiGWd25GUNzSz"
     networks:
       - nzbget_media
 
