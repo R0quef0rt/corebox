@@ -31,10 +31,12 @@
     {
       "name": "virtualbox",
       "type": "virtualbox-iso",
-      "iso_url": "C:\\Users\\RYA1\\Downloads\\Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
+      "iso_url": "./import/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
       "iso_checksum_type": "md5",
       "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
       "guest_os_type": "Windows2016_64",
+      "guest_additions_mode": "attach",
+      "headless": "true",
       "vboxmanage": [
         ["modifyvm", "{{.Name}}", "--memory", "4096"],
         ["modifyvm", "{{.Name}}", "--cpus", "2"]
@@ -46,9 +48,14 @@
       "winrm_insecure": "true",
       "winrm_username": "{{user `winrm_user`}}",
       "winrm_password": "{{user `winrm_password`}}",
+      "winrm_timeout": "12h",
       "shutdown_command": "C:/Windows/system32/sysprep/sysprep.exe /generalize /shutdown",
       "shutdown_timeout": "4h",
-      "output_directory": "C:\\Packer\\temp"
+      "output_directory": "./output/",
+      "floppy_files": [
+        "srv/ci/packer/Windows/Server2016/Autounattend.xml",
+        "srv/ci/ansible/ConfigureRemotingForAnsible.ps1"
+      ]
     }],
     "provisioners": [
     ],
@@ -57,14 +64,14 @@
         "type": "vagrant",
         "only": ["hyperv"],
         "compression_level": 6,
-        "output": "{{template_dir}}/artifacts/{{user `service_name`}}-{{user `service_version`}}-hyperv.box",
+        "output": "{{template_dir}}/output/{{user `service_name`}}-{{user `service_version`}}-hyperv.box",
         "vagrantfile_template": "{{template_dir}}/srv/salt/vagrant/files/tpl.Vagrantfile"
       },
       {
         "type": "vagrant",
         "only": ["virtualbox"],
         "compression_level": 6,
-        "output": "{{template_dir}}/artifacts/{{user `service_name`}}-{{user `service_version`}}-virtualbox.box",
+        "output": "{{template_dir}}/output/{{user `service_name`}}-{{user `service_version`}}-virtualbox.box",
         "vagrantfile_template": "{{template_dir}}/srv/salt/vagrant/files/tpl.Vagrantfile"
       }
     ]
