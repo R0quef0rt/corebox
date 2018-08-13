@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.box_check_update = true
   config.vm.box = "ldap"
-  config.vm.box_url = "file://vagrant-server2016.json"
+  config.vm.box_url = "./output/artifacts/server2016-0.4.0-virtualbox.box"
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "4096"
