@@ -39,7 +39,9 @@
       "headless": "true",
       "vboxmanage": [
         ["modifyvm", "{{.Name}}", "--memory", "4096"],
-        ["modifyvm", "{{.Name}}", "--cpus", "2"]
+        ["modifyvm", "{{.Name}}", "--cpus", "2"],
+        ["modifyvm", "{{.Name}}", "--vram", "128" ],
+        ["modifyvm", "{{.Name}}", "--cableconnected1", "on"]
       ],
       "communicator": "winrm",
       "winrm_port": "5986",
@@ -49,12 +51,13 @@
       "winrm_username": "{{user `winrm_user`}}",
       "winrm_password": "{{user `winrm_password`}}",
       "winrm_timeout": "12h",
-      "shutdown_command": "C:/Windows/system32/sysprep/sysprep.exe /generalize /shutdown",
+      "shutdown_command": "%WINDIR%\\system32\\sysprep\\sysprep.exe /generalize /shutdown /oobe",
       "shutdown_timeout": "4h",
       "output_directory": "./output/",
       "floppy_files": [
         "srv/ci/packer/Windows/Server2016/Autounattend.xml",
-        "srv/ci/ansible/ConfigureRemotingForAnsible.ps1"
+        "srv/ci/ansible/ConfigureRemotingForAnsible.ps1",
+        "srv/ci/packer/Windows/install-guest-additions.bat"
       ]
     }],
     "provisioners": [

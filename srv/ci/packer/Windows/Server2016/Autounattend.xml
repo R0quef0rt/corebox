@@ -9,7 +9,6 @@
 			</PathAndCredentials>
 		</DriverPaths>
 	</component>
-
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
             <SetupUILanguage>
                 <UILanguage>en-US</UILanguage>
@@ -78,6 +77,10 @@
                 <FullName>Vagrant</FullName>
                 <Organization>Vagrant</Organization>
             </UserData>
+            <DynamicUpdate>
+                <Enable>true</Enable>
+                <WillShowUI>Never</WillShowUI>
+            </DynamicUpdate>
         </component>
     </settings>  
   <settings pass="generalize">
@@ -103,7 +106,7 @@
                 <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
                 <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
                 <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
-                <NetworkLocation>Home</NetworkLocation>
+                <NetworkLocation>Work</NetworkLocation>
                 <ProtectYourPC>1</ProtectYourPC>
             </OOBE>
       <TimeZone>UTC</TimeZone>
@@ -126,6 +129,11 @@
            <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\ConfigureRemotingForAnsible.ps1</CommandLine>
            <Order>1</Order>
         </SynchronousCommand>
+        <!-- <SynchronousCommand wcm:action="add">
+           <CommandLine>cmd.exe /c a:\install-guest-additions.bat</CommandLine>
+              <Order>2</Order>
+              <Description>Install virtual machine guest additions</Description>
+        </SynchronousCommand> -->
       </FirstLogonCommands>
     </component>
   </settings>
