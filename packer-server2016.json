@@ -62,6 +62,24 @@
       ]
     }],
     "provisioners": [
+      {
+        "type": "salt-masterless",
+        "salt_bin_dir": "C:\\salt",
+        "temp_config_dir": "C:\\tmp",
+        "local_state_tree": "srv/salt",
+        "local_pillar_roots": "srv/pillar",
+        "minion_config": "etc/salt/minion.windows",
+        "guest_os_type": "windows",
+        "bootstrap_args": "-version 2018.3.2 -pythonVersion 3 -runservice false -minion base",
+        "salt_call_args": "--id=base",
+        "no_exit_on_failure": "true"
+      },{
+        "type": "shell",
+        "pause_before": "2h",
+        "inline": [
+          "echo test"
+        ]
+      }
     ],
     "post-processors": [
       {

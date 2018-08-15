@@ -130,11 +130,6 @@
                <Order>1</Order>
                <Description>Enable WinRM (works for all scenarios; not just Ansible)</Description>
             </SynchronousCommand>
-            <SynchronousCommand wcm:action="add">
-               <CommandLine>cmd.exe /c a:\install-guest-additions.bat</CommandLine>
-               <Order>2</Order>
-               <Description>Install virtual machine guest additions</Description>
-            </SynchronousCommand>
          </FirstLogonCommands>
       </component>
    </settings>
