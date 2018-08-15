@@ -63,18 +63,27 @@
     }],
     "provisioners": [
       {
-        "type": "salt-masterless",
-        "minion_config": "etc/salt/minion.windows",
-        "disable_sudo": "true",
-        "salt_bin_dir": "C:/salt",
-        "temp_config_dir": "C:/Windows/Temp/salt",
-        "local_state_tree": "srv/salt",
-        "guest_os_type": "windows",
-        "bootstrap_args": "-version 2018.3.2 -pythonVersion 3 -runservice false -minion base",
-        "salt_call_args": "--id=base",
-        "no_exit_on_failure": "true"
+        "type": "powershell",
+        "inline": [
+          "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12",
+          "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/saltstack/salt-bootstrap/stable/bootstrap-salt.ps1' -OutFile 'C:/Windows/Temp/bootstrap-salt.ps1'",
+          "C:\\Windows\\Temp\\bootstrap-salt.ps1 -version 2018.3.2 -pythonVersion 3 -runservice false -minion base"
+        ]
       },{
-        "type": "shell",
+        "destination": "c:/app/live/srv/",
+        "source": "./srv/",
+        "type": "file"
+      },{
+        "destination": "c:/salt/conf/minion",
+        "source": "./etc/salt/minion.windows",
+        "type": "file"
+      },{
+        "type": "powershell",
+        "inline": [
+          "C:\\salt\\salt-call state.highstate --id=base"
+        ]
+      },{
+        "type": "powershell",
         "pause_before": "2h",
         "inline": [
           "echo test"

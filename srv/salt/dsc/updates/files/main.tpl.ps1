@@ -30,4 +30,4 @@ Configuration Updates {
     }
 }
 
-Updates -ConfigurationData $ConfigData -DomainAdminstratorCreds $DomainAdminstratorCreds
+Updates -ConfigurationData $ConfigData
