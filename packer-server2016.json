@@ -51,8 +51,9 @@
       "winrm_username": "{{user `winrm_user`}}",
       "winrm_password": "{{user `winrm_password`}}",
       "winrm_timeout": "12h",
-      "shutdown_command": "%WINDIR%\\system32\\sysprep\\sysprep.exe /generalize /shutdown",
+      "shutdown_command": "%WINDIR%\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe /shutdown",
       "shutdown_timeout": "4h",
+      "post_shutdown_delay": "2m",
       "output_directory": "./output/temp/",
       "floppy_files": [
         "srv/ci/packer/Windows/Server2016/Autounattend.xml",
