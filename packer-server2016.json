@@ -64,11 +64,13 @@
     "provisioners": [
       {
         "type": "salt-masterless",
-        "salt_bin_dir": "C:\\salt",
-        "temp_config_dir": "C:\\tmp",
+        "disable_sudo": "true",
+        "salt_bin_dir": "C:/salt",
+        "temp_config_dir": "C:/Windows/Temp/salt",
         "local_state_tree": "srv/salt",
         "local_pillar_roots": "srv/pillar",
-        "minion_config": "etc/salt/minion.windows",
+        "remote_state_tree": "C:/app/live/srv/salt",
+        "remote_pillar_roots": "C:/app/live/srv/pillar",
         "guest_os_type": "windows",
         "bootstrap_args": "-version 2018.3.2 -pythonVersion 3 -runservice false -minion base",
         "salt_call_args": "--id=base",
