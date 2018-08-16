@@ -11,7 +11,7 @@
     "builders": [{
       "name": "hyperv",
       "type": "hyperv-iso",
-      "iso_url": "D:\\Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
+      "iso_url": "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
       "iso_checksum_type": "md5",
       "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
       "cpu": "2",
@@ -31,7 +31,7 @@
     {
       "name": "virtualbox",
       "type": "virtualbox-iso",
-      "iso_url": "./import/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
+      "iso_url": "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
       "iso_checksum_type": "md5",
       "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
       "guest_os_type": "Windows2016_64",
@@ -57,12 +57,19 @@
       "output_directory": "./output/temp/",
       "floppy_files": [
         "srv/ci/packer/Windows/Server2016/Autounattend.xml",
-        "srv/ci/ansible/ConfigureRemotingForAnsible.ps1",
-        "srv/ci/packer/Windows/install-guest-additions.bat"
+        "srv/ci/ansible/ConfigureRemotingForAnsible.ps1"
       ]
     }],
     "provisioners": [
       {
+        "type": "powershell",
+        "only": ["virtualbox"],
+        "inline": [
+          "certutil -addstore -f \"TrustedPublisher\" E:\\cert\\vbox-sha1.cer",
+          "certutil -addstore -f \"TrustedPublisher\" E:\\cert\\vbox-sha256.cer",
+          "E:\\VBoxWindowsAdditions.exe /S"
+        ]
+      },{
         "type": "powershell",
         "inline": [
           "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12",
