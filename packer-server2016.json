@@ -11,6 +11,9 @@
     "builders": [{
       "name": "hyperv",
       "type": "hyperv-iso",
+      "generation": "1",
+      "enable_secure_boot": "false",
+      "headless": "true",
       "iso_url": "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
       "iso_checksum_type": "md5",
       "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
@@ -24,9 +27,14 @@
       "winrm_insecure": "true",
       "winrm_username": "{{user `winrm_user`}}",
       "winrm_password": "{{user `winrm_password`}}",
-      "shutdown_command": "C:/Windows/system32/sysprep/sysprep.exe /generalize /shutdown",
+      "winrm_timeout": "12h",
+      "shutdown_command": "%WINDIR%\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe /shutdown",
       "shutdown_timeout": "4h",
-      "output_directory": "D:\\output"
+      "output_directory": "./output/temp/",
+      "floppy_files": [
+        "srv/ci/packer/Windows/Server2016/Autounattend.xml",
+        "srv/ci/ansible/ConfigureRemotingForAnsible.ps1"
+      ]
     },
     {
       "name": "virtualbox",
