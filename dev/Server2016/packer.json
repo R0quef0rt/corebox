@@ -2,11 +2,14 @@
     "min_packer_version": "0.12.0",
     "variables": {
       "service_name": "server2016",
+      "iso_checksum": "70721288bbcdfe3239d8f8c0fae55f1f",
+      "iso_url": "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
       "region": "us-east-1",
       "service_version": "0.4.0",
       "env": "dev",
       "winrm_user": "Administrator",
-      "winrm_password": "cdi@2468"
+      "winrm_password": "cdi@2468",
+      "TimeGrantedWindowsUpdates": "2h" 
     },
     "builders": [{
       "name": "hyperv",
@@ -14,9 +17,9 @@
       "generation": "1",
       "enable_secure_boot": "false",
       "headless": "true",
-      "iso_url": "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
+      "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "md5",
-      "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
+      "iso_checksum": "{{user `iso_checksum`}}",
       "cpu": "2",
       "ram_size": "4096",
       "enable_dynamic_memory": "true",
@@ -39,9 +42,9 @@
     {
       "name": "virtualbox",
       "type": "virtualbox-iso",
-      "iso_url": "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
+      "iso_url": "{{user `iso_url`}}",
       "iso_checksum_type": "md5",
-      "iso_checksum": "70721288BBCDFE3239D8F8C0FAE55F1F",
+      "iso_checksum": "{{user `iso_checksum`}}",
       "guest_os_type": "Windows2016_64",
       "guest_additions_mode": "attach",
       "headless": "true",
@@ -101,7 +104,9 @@
         "type": "powershell",
         "pause_before": "2h",
         "inline": [
-          "Optimize-Volume -DriveLetter C -Defrag -Verbose"
+          "C:\\Windows\\SysWOW64\\cipher.exe /w:C",
+          "Optimize-Volume -DriveLetter C -Defrag -Verbose",
+          "Please wait {{user `TimeGrantedWindowsUpdates`}} to allow Windows to fully update. Packer will shutdown the machine when completed."
         ]
       }
     ],
