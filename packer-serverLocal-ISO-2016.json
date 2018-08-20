@@ -1,0 +1,101 @@
+{
+    "min_packer_version": "0.12.0",
+    "variables": {
+      "service_name": "server2016",
+      "region": "us-east-1",
+      "service_version": "0.4.0",
+      "env": "dev",
+      "winrm_user": "Administrator",
+      "winrm_password": "cdi@2468",
+      "iso_checksum": "70721288bbcdfe3239d8f8c0fae55f1f",
+      "iso_url": "./import/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
+      "disk_size": "30000",
+      "TimeGrantedWindowsUpdates": "2H" 
+    },
+    "builders": [
+    {
+      "name": "virtualbox",
+      "type": "virtualbox-iso",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "md5",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "guest_os_type": "Windows2016_64",
+      "guest_additions_mode": "attach",
+      "headless": "true",
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "4096"],
+        ["modifyvm", "{{.Name}}", "--cpus", "2"],
+        ["modifyvm", "{{.Name}}", "--vram", "128" ],
+        ["modifyvm", "{{.Name}}", "--cableconnected1", "on"]
+      ],
+      "communicator": "winrm",
+      "winrm_port": "5986",
+      "winrm_use_ssl": "true",
+      "winrm_use_ntlm": "true",
+      "winrm_insecure": "true",
+      "winrm_username": "{{user `winrm_user`}}",
+      "winrm_password": "{{user `winrm_password`}}",
+      "winrm_timeout": "12h",
+      "shutdown_command": "%WINDIR%\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe /shutdown",
+      "shutdown_timeout": "4h",
+      "post_shutdown_delay": "2m",
+      "output_directory": "./output/temp/",
+      "floppy_files": [
+        "srv/ci/packer/Windows/Server2016/Autounattend.xml",
+        "srv/ci/ansible/ConfigureRemotingForAnsible.ps1",
+        "srv/ci/packer/Windows/install-guest-additions.bat"
+      ],"disk_size": "{{user `disk_size`}}"
+    }],
+    "provisioners": [
+      {
+        "type": "powershell",
+        "inline": [
+          "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12",
+          "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/saltstack/salt-bootstrap/stable/bootstrap-salt.ps1' -OutFile 'C:/Windows/Temp/bootstrap-salt.ps1'",
+          "C:\\Windows\\Temp\\bootstrap-salt.ps1 -version 2018.3.2 -pythonVersion 3 -runservice false -minion base"
+        ]
+      },{
+        "destination": "c:/app/live/srv/",
+        "source": "./srv/",
+        "type": "file"
+      },{
+        "destination": "c:/salt/conf/minion",
+        "source": "./etc/salt/minion.windows",
+        "type": "file"
+      },{
+        "type": "powershell",
+        "inline": [
+          "C:\\salt\\salt-call state.highstate --id=base"
+        ]
+      },
+      
+      {
+        "type": "powershell",
+        "pause_before": "2h",
+        "inline": [
+          "echo In a long holding process to allow windows updates to finish {{user `TimeGrantedWindowsUpdates`}}"
+        ]
+      },
+      {
+        "type": "powershell",
+        "inline":[
+          "c:\\Windows\\SysWOW64\\cipher.exe /w:C" 
+        ]
+      },
+      {
+        "type": "powershell",
+        "inline":[
+          "Optimize-Volume -DriveLetter C -Defrag -Verbose" 
+        ]
+      }
+    ],
+    "post-processors": [
+      {
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": true,
+        "output": "./output/artifacts/{{user `service_name`}}-{{user `service_version`}}-virtualbox.box",
+        "vagrantfile_template": "./srv/salt/vagrant/files/tpl.Vagrantfile"
+      }
+    ]
+}
