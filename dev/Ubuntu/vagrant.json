@@ -1,6 +1,6 @@
 {
   "description": "Ubuntu 18.04 w/ few modifications",
-  "name": "ubuntu1810",
+  "name": "ubuntu1804",
   "versions": [
     {
       "providers": [

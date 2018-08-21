@@ -18,7 +18,11 @@ dev:
     - gitlab
   'G@roles:ldap and G@os_family:Linux':
     - freeipa
-  'G@roles:ldap and G@os_family:Windows':
+  'base and G@os_family:Windows':
+    - dsc.lcm
+    - dsc.dependencies
+    - dsc.updates
+  'winbox and G@roles:ldap and G@os_family:Windows':
     - dsc.lcm
     - dsc.dependencies
     - dsc.ad.pdc

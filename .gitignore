@@ -1,6 +1,7 @@
 *.backup
 *.info
 *.img
+*.iso
 *.vmdk
 *.ign.merged
 packer_cache
@@ -8,5 +9,6 @@ config.ign.merged
 .terraform/
 .vagrant/
 *.log
+output/*
 
 projects/*

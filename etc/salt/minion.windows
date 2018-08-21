@@ -14,19 +14,19 @@ env_order:
 
 file_roots:
   dev:
-    - C:\\app\live\srv\salt
+    - C:\app\live\srv\salt
   qa:
-    - C:\\app\live\srv\salt
+    - C:\app\live\srv\salt
   prod:
-    - C:\\app\live\srv\salt
+    - C:\app\live\srv\salt
 
 pillar_roots:
   dev:
-    - C:\\app\live\srv\pillar
+    - C:\app\live\srv\pillar
   qa:
-    - C:\\app\live\srv\pillar
+    - C:\app\live\srv\pillar
   prod:
-    - C:\\app\live\srv\pillar
+    - C:\app\live\srv\pillar
 
 fileserver_backend:
   - roots
