@@ -1,12 +1,46 @@
 # CoreBox [![Build Status](https://travis-ci.org/R0quef0rt/corebox.svg?branch=master)](https://travis-ci.org/R0quef0rt/corebox)
 
-CoreBox is a (someday) production-ready, single-server solution to a DevOps beginner. It aims to bridge the difficult gap between putting automation technologies to good use, and learning the languages necessary to maintain a full stack. 
+CoreBox is a (someday) production-ready, single-server solution for a DevOps beginner. It aims to bridge the difficult gap between putting automation technologies to good use, and learning the languages necessary to maintain a full stack. 
 
 CoreBox is a developer's playground, build for modularity, speed of development, and ease of forking for your own project.
 
-CoreBox aims to walk you, the developer, through all common lifecycle stages in the build automation pipeline process.
+CoreBox aims to walk you, the developer or sysadmin, through all common lifecycle stages in the build automation pipeline process.
 
-## Salt
+## Requirements
+
+The following dependencies may or may not actually be required, depending on how you use this project. 
+
+- A hypervisor (VirtualBox 5.2 or Hyper-V currently supported)
+- Packer
+- Vagrant
+
+## Getting started
+
+To start working with a local development environment, perform the following tasks:
+
+1) Download this project from https://github.com/R0quef0rt/corebox
+
+### Building a local image with Packer (only required for Windows development environments)
+
+1) Using the command line, navigate to the location where you downloaded this project
+2) Now, navigate to the ./dev folder within this location. Choose a development environment (in this example, ./dev/Server2016)
+3) Finally, run the following command: packer build -force -only=hyperv packer.json (replace the 'only' flag with your preferred hypervisor)
+4) Wait for the image to complete. In some cases, this can take upwards of 4 hours
+
+The end result of this process will be a .box file in the ./output directory. This file is automatically ready to be used with Vagrant in your development environment.
+
+### Launching your development environment with Vagrant
+
+1) Using the command line, navigate to the location where you downloaded this project
+2) Now, navigate to the ./dev folder within this location. Choose a development environment (in this example, ./dev/Server2016)
+3) To launch this environment using the default configuration (in this case, an Active Directory environment), run the following command: vagrant up
+4) To use a different configuration, you must modify the "roles" grain in the ./etc/minion.windows configuration file. Of course, this role must be supported by the configuration in this repository.
+
+## Incomplete
+
+Information below this point is not well-documented. Updates will come in the near future.
+
+### Salt
 
 List all minions
 salt-run manage.up
@@ -30,7 +64,7 @@ Test before highstate
 salt-call --local state.highstate test=True
 
 
-## Docker Compose
+### Docker Compose
 
 docker-compose up
 
@@ -38,28 +72,28 @@ docker-compose down
 
 docker volume prune
 
-## Travis CI
+### Travis CI
 
 travis encrypt MY_SECRET_ENV=super_secret --add env.global
 
 travis encrypt-file dev.key --add
 
-## Hugo
+### Hugo
 
 sudo hugo server --bind="0.0.0.0"
 
 hugo new site /home/master/journal
 
-# MAJOR SECURITY ISSUES
+## MAJOR SECURITY ISSUES
 
 - Plex docker-compose template has CLAIM_ID hardcoded. This gives a person FULL ACCESS to the account (I think)
 
-## Known issues
+### Known issues
 
 - In prod, the root partition is running out of space. Probably because Docker mount should be moved to /mnt
 - Race conditions. Sometimes requires salt highstate reapply
 
-### To do
+## To do
 
 - Add CI, CD, CM, unit testing, integration testing
 - Add Slack alerts and ChatOps functionality
@@ -89,6 +123,6 @@ hugo new site /home/master/journal
 - This repo should generally not make an effort to configure the final applications. It should only provide a clean-slate for bootstrapping them, managing their lifecyle, etc
 - All Docker images must come from official repos, unless unavailable
 
-# READ
+## READ
 
 - https://timber.io/blog/promql-for-humans/
