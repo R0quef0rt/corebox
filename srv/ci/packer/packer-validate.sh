@@ -1,3 +1,5 @@
 #!/bin/bash
 
-packer validate packer-ubuntu.json
+PACKER_ENV=Ubuntu
+
+packer validate ./dev/$PACKER_ENV/packer.json

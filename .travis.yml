@@ -48,7 +48,7 @@ before_script:
 - bash -x ./srv/ci/get-credentials.sh
 - bash -x ./srv/ci/export-variables.sh
 - bash -x ./srv/ci/terraform/terraform-install.sh
-- cd ./dev/ubuntu && bash -x ./srv/ci/packer/packer-install.sh
+- bash -x ./srv/ci/packer/packer-install.sh
 - export PATH="~/bin:$PATH"
 - bash -x ./srv/ci/terraform/terraform-init.sh
 jobs:
@@ -56,10 +56,10 @@ jobs:
   - stage: prepare
     script:
     - bash -x ./srv/ci/terraform/terraform-validate.sh
-    - cd ./dev/ubuntu && bash -x ./srv/ci/packer/packer-validate.sh
+    - bash -x ./srv/ci/packer/packer-validate.sh
   - stage: build
     script:
-    - cd ./dev/ubuntu && bash -x ./srv/ci/packer/packer-build.sh || true
+    - bash -x ./srv/ci/packer/packer-build.sh || true
   - stage: plan
     script:
     - bash -x ./srv/ci/terraform/terraform-plan.sh
