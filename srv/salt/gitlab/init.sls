@@ -8,6 +8,6 @@
 url-gitlab:
   grains.list_present:
     - name: url-backend
-    - value: gitlab, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}/gitlab
+    - value: gitlab, http://{{ grains['ip4_interfaces']['eth0'][0] }}/gitlab
 
 {{ add_port('gitlab-container-registry', '5000', 'tcp') }}

@@ -20,17 +20,17 @@ alertmanager-config:
 url-prometheus:
   grains.list_present:
     - name: url-backend
-    - value: prometheus, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}:9090
+    - value: prometheus, http://{{ grains['ip4_interfaces']['eth0'][0] }}:9090
 
 url-alertmanager:
   grains.list_present:
     - name: url-backend
-    - value: alertmanager, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}:9093
+    - value: alertmanager, http://{{ grains['ip4_interfaces']['eth0'][0] }}:9093
 
 url-cadvisor:
   grains.list_present:
     - name: url-backend
-    - value: cadvisor, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}:8484
+    - value: cadvisor, http://{{ grains['ip4_interfaces']['eth0'][0] }}:8484
 
 {{ add_port('prometheus', '9090', 'tcp') }}
 {{ add_port('alertmanager', '9093', 'tcp') }}
