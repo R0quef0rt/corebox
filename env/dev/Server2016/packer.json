@@ -33,7 +33,7 @@
       "winrm_timeout": "12h",
       "shutdown_command": "%WINDIR%\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe /shutdown",
       "shutdown_timeout": "4h",
-      "output_directory": "../../output/temp/",
+      "output_directory": "../../../output/temp/",
       "floppy_files": [
         "Autounattend.xml",
         "ConfigureRemotingForAnsible.ps1"
@@ -65,7 +65,7 @@
       "shutdown_command": "%WINDIR%\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe /shutdown",
       "shutdown_timeout": "4h",
       "post_shutdown_delay": "2m",
-      "output_directory": "../../output/temp/",
+      "output_directory": "../../../output/temp/",
       "floppy_files": [
         "Autounattend.xml",
         "ConfigureRemotingForAnsible.ps1"
@@ -89,11 +89,11 @@
         ]
       },{
         "destination": "c:/app/live/srv/",
-        "source": "../../srv/",
+        "source": "../../../srv/",
         "type": "file"
       },{
         "destination": "c:/salt/conf/minion",
-        "source": "../../etc/salt/minion.windows",
+        "source": "../../../etc/salt/minion.windows",
         "type": "file"
       },{
         "type": "powershell",
@@ -115,7 +115,7 @@
         "type": "vagrant",
         "only": ["hyperv"],
         "compression_level": 6,
-        "output": "../../output/artifacts/{{user `service_name`}}-{{user `service_version`}}-hyperv.box",
+        "output": "../../../output/artifacts/{{user `service_name`}}-{{user `service_version`}}-hyperv.box",
         "keep_input_artifacts": "true",
         "vagrantfile_template": "../tpl.Vagrantfile"
       },
@@ -123,9 +123,9 @@
         "type": "vagrant",
         "only": ["virtualbox"],
         "compression_level": 6,
-        "output": "../../output/artifacts/{{user `service_name`}}-{{user `service_version`}}-virtualbox.box",
+        "output": "../../../output/artifacts/{{user `service_name`}}-{{user `service_version`}}-virtualbox.box",
         "keep_input_artifacts": "true",
-        "vagrantfile_template": "../tpl.Vagrantfile"
+        "vagrantfile_template": "../../tpl.Vagrantfile"
       }
     ]
 }

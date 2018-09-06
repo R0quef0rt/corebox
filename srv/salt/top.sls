@@ -3,6 +3,10 @@ dev:
     - match: grain
     - common
     - system
+  'os_family:RedHat':
+    - match: grain
+    - common
+    - system
   'roles:docker':
     - match: grain
     - docker

@@ -6,11 +6,11 @@
         "providers": [
           {
             "name": "hyperv",
-            "url": "../../output/artifacts/server2016-0.4.0-hyperv.box"
+            "url": "../../../output/artifacts/server2016-0.4.0-hyperv.box"
           },
           {
             "name": "virtualbox",
-            "url": "../../output/artifacts/server2016-0.4.0-virtualbox.box"
+            "url": "../../../output/artifacts/server2016-0.4.0-virtualbox.box"
           }
         ],
         "version": "0.4.0"
