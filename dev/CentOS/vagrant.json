@@ -1,0 +1,19 @@
+{
+  "description": "CentOS 18.03",
+  "name": "centos7",
+  "versions": [
+    {
+      "providers": [
+        {
+          "name": "hyperv",
+          "url": "https://cloud.centos.org/centos/7/vagrant/x86_64/images/CentOS-7.HyperV.box"
+        },
+        {
+          "name": "virtualbox",
+          "url": "https://cloud.centos.org/centos/7/vagrant/x86_64/images/CentOS-7-x86_64-Vagrant-1805_01.VirtualBox.box"
+        }
+      ],
+      "version": "18.03"
+    }
+  ]
+}
