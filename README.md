@@ -13,6 +13,7 @@ The following dependencies may or may not actually be required, depending on how
 - A hypervisor (VirtualBox 5.2 or Hyper-V currently supported)
 - Packer
 - Vagrant
+- Rsync (use Cygwin on Windows)
 
 ## Getting started
 
