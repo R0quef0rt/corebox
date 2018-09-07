@@ -1,5 +1,5 @@
 #!/bin/sh
 
 terraform validate \
--var-file=./conf/$ENV.tfvars \
+-var-file=./env/$ENV/config.tfvars \
 -check-variables=true

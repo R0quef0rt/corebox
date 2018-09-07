@@ -10,7 +10,7 @@ else
     terraform refresh -target=data.terraform_remote_state.environment
     sleep 10
     terraform plan \
-    -var-file=$CI_PROJECT_DIR/conf/$ENV.tfvars \
+    -var-file=$CI_PROJECT_DIR/env/$ENV/config.tfvars \
     -var-file=$CI_PROJECT_DIR/terraform.tfvars \
     -input=false \
     -out=plan.tfplan \

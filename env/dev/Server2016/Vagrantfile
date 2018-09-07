@@ -24,13 +24,13 @@ Vagrant.configure("2") do |config|
   config.winrm.username = "Administrator"
   config.winrm.password = "cdi@2468"
 
-  config.vm.provision "file", source: "../../srv/salt", destination: "C:\\app\\live\\srv\\salt"
-  config.vm.provision "file", source: "../../srv/pillar", destination: "C:\\app\\live\\srv\\pillar"
+  config.vm.provision "file", source: "../../../srv/salt", destination: "C:\\app\\live\\srv\\salt"
+  config.vm.provision "file", source: "../../../srv/pillar", destination: "C:\\app\\live\\srv\\pillar"
 
   config.vm.provision :salt do |salt|
     salt.masterless = true
     salt.minion_id = "winbox"
-    salt.minion_config = "../../etc/salt/minion.windows"
+    salt.minion_config = "../../../etc/salt/minion.windows"
     salt.bootstrap_options = "-U -pythonVersion 3"
     salt.version = "2018.3.2"
     salt.salt_call_args = ["saltenv=dev", "pillarenv=dev"]

@@ -23,8 +23,8 @@ To start working with a local development environment, perform the following tas
 ### Building a local image with Packer (only required for Windows development environments)
 
 1) Using the command line, navigate to the location where you downloaded this project
-2) Now, navigate to the ./dev folder within this location. Choose a development environment (in this example, ./dev/Server2016)
-3) Finally, run the following command: packer build -force -only=hyperv packer.json (replace the 'only' flag with your preferred hypervisor)
+2) Now, navigate to the appropriate "env" folder within this location. Choose a development environment (in my case, C:/Users/R0quef0rt/Documents/Repo/corebox/env/dev/Server2016)
+3) Finally, run the following command: packer build -force -only=hyperv packer.json (replacing the 'only' flag with your preferred hypervisor)
 4) Wait for the image to complete. In some cases, this can take upwards of 4 hours
 
 The end result of this process will be a .box file in the ./output directory. This file is automatically ready to be used with Vagrant in your development environment.
@@ -32,7 +32,7 @@ The end result of this process will be a .box file in the ./output directory. Th
 ### Launching your development environment with Vagrant
 
 1) Using the command line, navigate to the location where you downloaded this project
-2) Now, navigate to the ./dev folder within this location. Choose a development environment (in this example, ./dev/Server2016)
+2) Now, navigate to the appropriate "env" folder within this location. Choose a development environment (in my case, C:/Users/R0quef0rt/Documents/Repo/corebox/env/dev/Server2016)
 3) To launch this environment using the default configuration (in this case, an Active Directory environment), run the following command: vagrant up
 4) To use a different configuration, you must modify the "roles" grain in the ./etc/minion.windows configuration file. Of course, this role must be supported by the configuration in this repository.
 

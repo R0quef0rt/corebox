@@ -1,0 +1,70 @@
+id: devbox
+
+file_client: local
+
+top_file_merging_strategy: merge
+
+saltenv: dev
+pillarenv: dev
+
+env_order:
+  - dev
+  - qa
+  - prod
+
+file_roots:
+  dev:
+    - /app/live/srv/salt
+  qa:
+    - /srv/salt
+    - /app/live/srv/salt
+  prod:
+    - /srv/salt
+    - /app/live/srv/salt
+
+pillar_roots:
+  dev:
+    - /app/live/srv/pillar
+  qa:
+    - /srv/pillar
+    - /app/live/srv/pillar
+  prod:
+    - /srv/pillar
+    - /app/live/srv/pillar
+
+fileserver_backend:
+  - roots
+  - gitfs
+
+gitfs_root: srv/salt
+
+gitfs_provider: gitpython
+
+gitfs_remotes:
+  - https://github.com/R0quef0rt/corebox.git
+
+gitfs_saltenv:
+  - qa:
+    - ref: master
+  - prod:
+    - ref: stable
+
+ext_pillar:
+  - git:
+    - master https://github.com/R0quef0rt/corebox.git:
+      - env: qa
+      - name: qa
+      - root: srv/pillar
+    - stable https://github.com/R0quef0rt/corebox.git:
+      - env: prod
+      - name: prod
+      - root: srv/pillar
+
+schedule:
+  routine-highstate:
+    function: state.highstate
+    seconds: 3600
+    run_on_start: True
+
+grains:
+  roles:

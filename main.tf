@@ -5,8 +5,6 @@ provider "aws" {
 }
 
 terraform {
-  required_version = ">= 0.9.3, != 0.9.5"
-
   backend "s3" {
     encrypt = "true"
   }
