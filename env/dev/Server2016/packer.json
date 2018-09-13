@@ -30,9 +30,9 @@
       "winrm_insecure": "true",
       "winrm_username": "{{user `winrm_user`}}",
       "winrm_password": "{{user `winrm_password`}}",
-      "winrm_timeout": "12h",
-      "shutdown_command": "%WINDIR%\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe /shutdown",
-      "shutdown_timeout": "4h",
+      "winrm_timeout": "20m",
+      "shutdown_command": "%WINDIR%\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /shutdown",
+      "shutdown_timeout": "20m",
       "output_directory": "../../../output/temp/",
       "floppy_files": [
         "Autounattend.xml",
@@ -62,7 +62,7 @@
       "winrm_username": "{{user `winrm_user`}}",
       "winrm_password": "{{user `winrm_password`}}",
       "winrm_timeout": "12h",
-      "shutdown_command": "%WINDIR%\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe /shutdown",
+      "shutdown_command": "%WINDIR%\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /shutdown",
       "shutdown_timeout": "4h",
       "post_shutdown_delay": "2m",
       "output_directory": "../../../output/temp/",
@@ -102,11 +102,10 @@
         ]
       },{
         "type": "powershell",
-        "pause_before": "2h",
+        "pause_before": "10m",
         "inline": [
           "C:\\Windows\\SysWOW64\\cipher.exe /w:C",
-          "Optimize-Volume -DriveLetter C -Defrag -Verbose",
-          "Please wait {{user `TimeGrantedWindowsUpdates`}} to allow Windows to fully update. Packer will shutdown the machine when completed."
+          "Optimize-Volume -DriveLetter C -Defrag -Verbose"
         ]
       }
     ],
