@@ -42,6 +42,9 @@ gitfs_provider: gitpython
 
 gitfs_remotes:
   - https://github.com/R0quef0rt/corebox.git
+  - https://github.com/saltstack-formulas/docker-formula.git:
+    - root: /
+    - all_saltenvs: master
 
 gitfs_saltenv:
   - qa:
@@ -68,3 +71,7 @@ schedule:
 
 grains:
   roles:
+    - docker
+  deploy:
+    ## Options are "baremetal" or "docker"
+    type: baremetal

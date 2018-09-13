@@ -70,9 +70,9 @@ docker package repository:
 docker package repository:
   pkgrepo.{{ repo_state }}:
     - name: docker
-    - baseurl: https://yum.dockerproject.org/repo/main/centos/$releasever/
+    - baseurl: https://download.docker.com/linux/{{ grains['os'] |lower }}/{{ grains['osmajorrelease'] }}/$basearch/stable/
     - gpgcheck: 1
-    - gpgkey: https://yum.dockerproject.org/gpg
+    - gpgkey: https://download.docker.com/linux/{{ grains['os'] |lower }}/gpg
     - require_in:
       - pkg: docker package
     - require:

@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+
+  db:
+    image: mariadb:latest
+    ports: 
+      - "3306:3306"
+    volumes:
+      - '/var/lib/mysql:/var/lib/mysql'
+    environment:
+      - MYSQL_ROOT_PASSWORD=Cyb3rR@nger

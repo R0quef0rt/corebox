@@ -10,7 +10,6 @@ dev:
   'roles:docker':
     - match: grain
     - docker
-    - docker.compose
   'roles:proxy':
     - match: grain
     - traefik
@@ -57,7 +56,6 @@ qa:
   'roles:docker':
     - match: grain
     - docker
-    - docker.compose
   'roles:proxy':
     - match: grain
     - traefik
@@ -100,7 +98,6 @@ prod:
   'roles:docker':
     - match: grain
     - docker
-    - docker.compose
   'roles:proxy':
     - match: grain
     - traefik
