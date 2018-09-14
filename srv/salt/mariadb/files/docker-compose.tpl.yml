@@ -7,9 +7,10 @@ services:
     ports: 
       - "3306:3306"
     volumes:
-      - 'db:/var/lib/mysql'
+      - '/var/lib/mysql:/var/lib/mysql'
     environment:
-      - MYSQL_ROOT_PASSWORD=Cyb3rR@nger
+      # - MYSQL_ROOT_PASSWORD=Cyb3rR@nger
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
 volumes:
   db:
