@@ -1,5 +1,3 @@
-
-
 {% macro compose_up(project) -%}
 {{project}}-compose-pull:
   cmd.run:

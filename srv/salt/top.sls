@@ -11,6 +11,11 @@ dev:
     - match: grain
     - docker
     - docker.compose
+    - docker.build
+    - docker.up
+  'roles:mariadb':
+    - match: grain
+    - mariadb
   'roles:proxy':
     - match: grain
     - traefik
@@ -58,6 +63,11 @@ qa:
     - match: grain
     - docker
     - docker.compose
+    - docker.build
+    - docker.up
+  'roles:mariadb':
+    - match: grain
+    - mariadb
   'roles:proxy':
     - match: grain
     - traefik
@@ -101,6 +111,11 @@ prod:
     - match: grain
     - docker
     - docker.compose
+    - docker.build
+    - docker.up
+  'roles:mariadb':
+    - match: grain
+    - mariadb
   'roles:proxy':
     - match: grain
     - traefik

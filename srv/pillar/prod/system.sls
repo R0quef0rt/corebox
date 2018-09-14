@@ -4,4 +4,4 @@ timezone:
   default: America/Chicago
 
 repos:
-  - https://github.com/R0quef0rt/devbox
+  - https://github.com/R0quef0rt/corebox
