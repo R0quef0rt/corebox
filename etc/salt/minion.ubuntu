@@ -42,6 +42,24 @@ gitfs_provider: gitpython
 
 gitfs_remotes:
   - https://github.com/R0quef0rt/corebox.git
+  - https://github.com/saltstack-formulas/docker-formula.git:
+    - name: docker-dev
+    - root: /
+    - saltenv:
+      - dev:
+        - ref: master
+  - https://github.com/saltstack-formulas/docker-formula.git:
+    - name: docker-qa
+    - root: /
+    - saltenv:
+      - qa:
+        - ref: master
+  - https://github.com/saltstack-formulas/docker-formula.git:
+    - name: docker-prod
+    - root: /
+    - saltenv:
+      - prod:
+        - ref: master
 
 gitfs_saltenv:
   - qa:

@@ -1,21 +1,36 @@
 dev:
+  'os_family:Linux':
+    - match: grain
+    - prod.Ubuntu.docker
+  'os_family:RedHat':
+    - match: grain
+    - prod.CentOS.docker
   '*':
     - prod.system
-    - prod.docker
     - prod.grafana
     - prod.hugo
     - dev.dsc
 qa:
+  'os_family:Linux':
+    - match: grain
+    - prod.Ubuntu.docker
+  'os_family:RedHat':
+    - match: grain
+    - prod.CentOS.docker
   '*':
     - prod.system
-    - prod.docker
-    - qa.raid
     - prod.grafana
     - prod.hugo
+    - dev.dsc
 prod:
+  'os_family:Linux':
+    - match: grain
+    - prod.Ubuntu.docker
+  'os_family:RedHat':
+    - match: grain
+    - prod.CentOS.docker
   '*':
     - prod.system
-    - prod.docker
-    - prod.raid
     - prod.grafana
     - prod.hugo
+    - dev.dsc
