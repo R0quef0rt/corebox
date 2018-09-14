@@ -2,4 +2,4 @@
 
 PACKER_ENV=Ubuntu
 
-packer validate ./$ENV/$PACKER_ENV/packer.json
+packer validate ./env/$ENV/$PACKER_ENV/packer.json
