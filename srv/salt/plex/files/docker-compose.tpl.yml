@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: plexinc/pms-docker:1.13.4.5271-200287a06
+    image: plexinc/pms-docker:1.13.5.5332-21ab172de
     ports:
       - 32400:32400
     restart: unless-stopped
@@ -23,7 +23,7 @@ services:
       PLEX_GID: 7000
       {% endif %}
       ADVERTISE_IP: "http://192.168.5.20:32400/"
-      PLEX_CLAIM: "claim-jR1YMoXAiGWd25GUNzSz"
+      PLEX_CLAIM: "claim-yZ1ZuSBVPc2yFw2KrgcK"
     networks:
       - nzbget_media
 
