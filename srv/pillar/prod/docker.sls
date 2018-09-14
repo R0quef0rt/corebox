@@ -7,7 +7,7 @@ docker:
     hold: False
 
   pip:
-    pkgname: python-pip
+    pkgname: python2-pip
     upgrade: True
 
   compose_version:

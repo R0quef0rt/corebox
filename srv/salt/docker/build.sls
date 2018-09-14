@@ -13,6 +13,5 @@
     - name: 'docker-compose build'
     - cwd: /app/live/projects/{{project}}
     - require:
-      - pip: compose
       - file: {{project}}-compose-config
 {%- endmacro %}
