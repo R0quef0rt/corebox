@@ -1,5 +1,5 @@
-{% from 'docker/compose/build.sls' import compose_build with context %}
-{% from 'docker/compose/up.sls' import compose_up with context %}
+{% from 'docker/build.sls' import compose_build with context %}
+{% from 'docker/up.sls' import compose_up with context %}
 {% from 'system/users/macros.sls' import group, master_user, service_user with context %}
 {% from 'system/directory.sls' import add_directory with context %}
 

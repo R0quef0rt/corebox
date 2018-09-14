@@ -1,5 +1,5 @@
-{% from 'docker/compose/build.sls' import compose_build with context %}
-{% from 'docker/compose/up.sls' import compose_up with context %}
+{% from 'docker/build.sls' import compose_build with context %}
+{% from 'docker/up.sls' import compose_up with context %}
 
 include:
   - grafana.datasources
