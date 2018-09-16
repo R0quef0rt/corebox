@@ -8,7 +8,7 @@
 url-freeipa:
   grains.list_present:
     - name: url-backend
-    - value: freeipa, https://{{ grains['ip4_interfaces']['eth0'][0] }}/ipa/ui
+    - value: freeipa, https://{{ grains['ip4_interfaces']['enp2s0'][0] }}/ipa/ui
 
 {{ add_port('freeipa-http', '80', 'tcp') }}
 {{ add_port('freeipa-https', '443', 'tcp') }}

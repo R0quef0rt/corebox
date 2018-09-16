@@ -18,7 +18,7 @@ traefik-enabled:
 url-traefik:
   grains.list_present:
     - name: url-backend
-    - value: traefik, http://{{ grains['ip4_interfaces']['eth0'][0] }}/traefik
+    - value: traefik, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}/traefik
 
 {{ add_port('ssh', '22', 'tcp') }}
 {{ add_port('traefik-http', '80', 'tcp') }}

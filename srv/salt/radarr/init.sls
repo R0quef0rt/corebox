@@ -8,6 +8,6 @@
 url-radarr:
   grains.list_present:
     - name: url-backend
-    - value: radarr, http://{{ grains['ip4_interfaces']['eth0'][0] }}:7878
+    - value: radarr, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}:7878
 
 {{ add_port('radarr', '7878', 'tcp') }}

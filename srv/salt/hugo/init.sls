@@ -35,12 +35,12 @@ hugo-entrypoint:
 url-hugo-core:
   grains.list_present:
     - name: url-backend
-    - value: core, http://{{ grains['ip4_interfaces']['eth0'][0] }}/core
+    - value: core, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}/core
 
 url-hugo-frontend:
   grains.list_present:
     - name: url-frontend
-    - value: frontend, http://{{ grains['ip4_interfaces']['eth0'][0] }}/frontend
+    - value: frontend, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}/frontend
 
 {{ compose_build('hugo') }}
 {{ compose_up('hugo') }}

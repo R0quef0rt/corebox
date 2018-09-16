@@ -11,4 +11,4 @@ include:
 url-grafana:
   grains.list_present:
     - name: url-backend
-    - value: grafana, http://{{ grains['ip4_interfaces']['eth0'][0] }}:3000
+    - value: grafana, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}:3000
