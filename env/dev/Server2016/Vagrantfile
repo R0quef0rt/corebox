@@ -12,11 +12,12 @@ Vagrant.configure("2") do |config|
     vb.cpus = 2
   end
 
-  config.vm.provider "hyperv" do |vb|
-    vb.vmname = "ldap"
+  config.vm.provider "hyperv" do |hv|
+    hv.vmname = "ldap"
     vb.memory = "4096"
-    vb.maxmemory = "8192"
-    vb.cpus = 2
+    hv.maxmemory = "8192"
+    hv.cpus = 2
+    hv.linked_clone = true
   end
   
   config.vm.guest = :windows
