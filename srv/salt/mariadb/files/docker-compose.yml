@@ -8,5 +8,10 @@ services:
       - "3306:3306"
     volumes:
       - '/var/lib/mysql:/var/lib/mysql'
-    environment:
-      - MYSQL_ROOT_PASSWORD=Cyb3rR@nger
+    networks:
+      - backend
+    env_file:
+      - db.env
+
+networks:
+  backend:

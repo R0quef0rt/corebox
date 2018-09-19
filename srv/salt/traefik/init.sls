@@ -2,12 +2,6 @@
 {% from 'docker/up.sls' import compose_up with context %}
 {% from 'system/firewall.sls' import add_port with context %}
 
-traefik-config: 
-  file.managed: 
-    - template: jinja
-    - source: salt://traefik/files/traefik.tpl.toml
-    - name: /app/live/projects/traefik/traefik.toml
-
 {{ compose_build('traefik') }}
 {{ compose_up('traefik') }}
 
