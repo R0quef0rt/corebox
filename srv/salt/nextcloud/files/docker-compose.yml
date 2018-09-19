@@ -8,16 +8,10 @@ services:
     volumes:
       - /var/www/html:/var/www/html
     networks:
-      # - traefik_frontend
       - mariadb_backend
-    ports:
-      - "80:80"
-      - "443:443"
     env_file:
       - app.env
 
 networks:
-  # traefik_frontend:
-  #   external: true
   mariadb_backend:
     external: true
