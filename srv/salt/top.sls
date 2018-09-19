@@ -16,6 +16,9 @@ dev:
   'roles:mariadb':
     - match: grain
     - mariadb
+  'roles:nextcloud':
+    - match: grain
+    - nextcloud
   'roles:proxy':
     - match: grain
     - traefik

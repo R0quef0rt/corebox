@@ -10,6 +10,7 @@ dev:
     - prod.grafana
     - prod.hugo
     - dev.dsc
+    - dev.mariadb
 qa:
   'os_family:Linux':
     - match: grain
