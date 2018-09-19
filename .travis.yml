@@ -9,7 +9,7 @@ addons:
 env:
   global:
   - REGION="us-east-1"
-  - ENV="dev"
+  - ENV="qa"
   - ACCOUNT="root"
   - PROJECT_KEY="rjb"
   - PROVIDER="aws"
@@ -69,7 +69,6 @@ jobs:
     - bash -x ./srv/ci/terraform/terraform-apply.sh
     - DESTROY_ALL=true && bash -x ./srv/ci/terraform/terraform-destroy.sh
     env:
-    - ENV=qa
     - TEST=true
 notifications:
   slack:
