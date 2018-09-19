@@ -69,21 +69,21 @@ resource "aws_instance" "minion" {
     device_name           = "/dev/sdx"
     volume_size           = 5
     volume_type           = "gp2"
-    delete_on_termination = false
+    delete_on_termination = true
   }
 
   ebs_block_device {
     device_name           = "/dev/sdy"
     volume_size           = 5
     volume_type           = "gp2"
-    delete_on_termination = false
+    delete_on_termination = true
   }
 
   ebs_block_device {
     device_name           = "/dev/sdz"
     volume_size           = 5
     volume_type           = "gp2"
-    delete_on_termination = false
+    delete_on_termination = true
   }
 
   provisioner "remote-exec" {

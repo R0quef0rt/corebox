@@ -10,6 +10,8 @@ dev:
     - prod.grafana
     - prod.hugo
     - dev.dsc
+    - dev.mariadb
+    - dev.nextcloud
 qa:
   'os_family:Linux':
     - match: grain

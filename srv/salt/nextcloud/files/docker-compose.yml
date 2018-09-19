@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+
+  nextcloud:
+    image: nextcloud:14.0.0-apache
+    restart: always
+    volumes:
+      - /var/www/html:/var/www/html
+    networks:
+      - mariadb_backend
+    env_file:
+      - app.env
+
+networks:
+  mariadb_backend:
+    external: true

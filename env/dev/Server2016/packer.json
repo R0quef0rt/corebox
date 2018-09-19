@@ -31,7 +31,7 @@
       "winrm_username": "{{user `winrm_user`}}",
       "winrm_password": "{{user `winrm_password`}}",
       "winrm_timeout": "20m",
-      "shutdown_command": "%WINDIR%\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /shutdown",
+      "shutdown_command": "%WINDIR%\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe",
       "shutdown_timeout": "20m",
       "output_directory": "../../../output/temp/",
       "floppy_files": [
@@ -99,13 +99,6 @@
         "type": "powershell",
         "inline": [
           "C:\\salt\\salt-call state.highstate --id=base"
-        ]
-      },{
-        "type": "powershell",
-        "pause_before": "10m",
-        "inline": [
-          "C:\\Windows\\SysWOW64\\cipher.exe /w:C",
-          "Optimize-Volume -DriveLetter C -Defrag -Verbose"
         ]
       }
     ],
