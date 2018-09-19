@@ -30,7 +30,7 @@
     "provisioners": [{
       "type": "salt-masterless",
       "minion_config": "../../../etc/salt/minion.ubuntu",
-      "local_state_tree": "srv/salt",
+      "local_state_tree": "../../../srv/salt",
       "bootstrap_args": "-i basebox -F -P -p python-git",
       "salt_call_args": "--id basebox saltenv=qa pillarenv=qa"
     }
