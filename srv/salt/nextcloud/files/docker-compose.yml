@@ -5,6 +5,8 @@ services:
   nextcloud:
     image: nextcloud:14.0.0-apache
     restart: always
+    ports:
+      - "5432:80"
     volumes:
       - /var/www/html:/var/www/html
     networks:

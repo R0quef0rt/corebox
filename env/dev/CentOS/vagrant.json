@@ -1,6 +1,6 @@
 {
   "description": "CentOS 7.5",
-  "name": "centos7.5",
+  "name": "centos-7.5",
   "versions": [
     {
       "providers": [

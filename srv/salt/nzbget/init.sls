@@ -2,6 +2,7 @@
 {% from 'docker/up.sls' import compose_up with context %}
 {% from 'system/users/macros.sls' import group, master_user, service_user with context %}
 {% from 'system/directory.sls' import add_directory with context %}
+{% from 'grains/url.sls' import set_url with context %}
 
 {{ group('media', '7000') }}
 {{ service_user('media', '7000', 'media') }}
@@ -12,7 +13,4 @@
 {{ compose_build('nzbget') }}
 {{ compose_up('nzbget') }}
 
-url-nzbget:
-  grains.list_present:
-    - name: url-backend
-    - value: nzbget, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}/nzbget
+{{ set_url('nzbget', 'backend', 'http', '/nzbget') }}

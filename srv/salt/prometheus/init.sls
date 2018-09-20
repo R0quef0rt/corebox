@@ -1,6 +1,7 @@
 {% from 'docker/build.sls' import compose_build with context %}
 {% from 'docker/up.sls' import compose_up with context %}
 {% from 'system/firewall.sls' import add_port with context %}
+{% from 'grains/url.sls' import set_url with context %}
 
 prometheus-config: 
   file.managed: 
@@ -17,20 +18,9 @@ alertmanager-config:
 {{ compose_build('prometheus') }}
 {{ compose_up('prometheus') }}
 
-url-prometheus:
-  grains.list_present:
-    - name: url-backend
-    - value: prometheus, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}:9090
-
-url-alertmanager:
-  grains.list_present:
-    - name: url-backend
-    - value: alertmanager, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}:9093
-
-url-cadvisor:
-  grains.list_present:
-    - name: url-backend
-    - value: cadvisor, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}:8484
+{{ set_url('prometheus', 'backend', 'http', ':9090') }}
+{{ set_url('alertmanager', 'backend', 'http', ':9093') }}
+{{ set_url('cadvisor', 'backend', 'http', ':8484') }}
 
 {{ add_port('prometheus', '9090', 'tcp') }}
 {{ add_port('alertmanager', '9093', 'tcp') }}

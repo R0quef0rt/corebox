@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
 
   config.vm.define "main" do |mn|
-    mn.vm.box = "ubuntu1804"
+    mn.vm.box = "ubuntu-18.04"
     mn.vm.box_url = "file://vagrant.json"
     mn.vm.network "public_network"
   end  
@@ -21,6 +21,8 @@ Vagrant.configure("2") do |config|
     hv.linked_clone = true
   end
 
+  config.vm.synced_folder '.', '/vagrant', 
+    disabled: true
   config.vm.synced_folder "../../../", "/app/live"
 
   config.vm.provision :salt do |salt|

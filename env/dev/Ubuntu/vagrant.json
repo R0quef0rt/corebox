@@ -1,19 +1,19 @@
 {
-  "description": "Ubuntu 18.04 w/ few modifications",
-  "name": "ubuntu1804",
+  "description": "Ubuntu 18.04",
+  "name": "ubuntu-18.04",
   "versions": [
     {
       "providers": [
         {
           "name": "hyperv",
-          "url": "https://app.vagrantup.com/generic/boxes/ubuntu1804/versions/1.8.14/providers/hyperv.box"
+          "url": "https://app.vagrantup.com/bento/boxes/ubuntu-18.04/versions/201808.24.0/providers/hyperv.box"
         },
         {
           "name": "virtualbox",
-          "url": "http://cloud-images.ubuntu.com/bionic/20180725/bionic-server-cloudimg-amd64-vagrant.box"
+          "url": "https://app.vagrantup.com/bento/boxes/ubuntu-18.04/versions/201808.24.0/providers/virtualbox.box"
         }
       ],
-      "version": "0.1.0"
+      "version": "18.04"
     }
   ]
 }

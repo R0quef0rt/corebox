@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
 
   config.vm.define "main" do |mn|
-    mn.vm.box = "centos7.5"
+    mn.vm.box = "centos-7.5"
     mn.vm.box_url = "file://vagrant.json"
     mn.vm.network "public_network"
   end  

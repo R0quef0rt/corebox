@@ -15,7 +15,9 @@ services:
       SERVICE_NAME: "{{project}}"
       WATCH: "true"
       REFRESH_TIME: 15
-      BASEURL: "http://{{ grains['ip4_interfaces']['enp2s0'][0] }}/{{project}}"
+      {% set interfaces = salt['grains.get']('ip4_interfaces') %}
+      {% set primary = salt['grains.get']('network:interfaces:primary') %}
+      BASEURL: "http://{{ interfaces.get(primary)[0] | yaml }}/{{project}}"
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik_frontend

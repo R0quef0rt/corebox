@@ -1,6 +1,8 @@
 {% from 'docker/build.sls' import compose_build with context %}
 {% from 'docker/up.sls' import compose_up with context %}
 {% from 'system/firewall.sls' import add_port with context %}
+{% from 'grains/url.sls' import set_url with context %}
+
 
 vm.max_map_count:
   sysctl.present:
@@ -20,15 +22,8 @@ kibana-config:
 {{ compose_build('elasticsearch') }}
 {{ compose_up('elasticsearch') }}
 
-url-elasticsearch:
-  grains.list_present:
-    - name: url-backend
-    - value: elasticsearch, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}:9200
-
-url-kibana:
-  grains.list_present:
-    - name: url-backend
-    - value: kibana, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}:5601
+{{ set_url('elasticsearch', 'backend', 'http', ':9200') }}
+{{ set_url('kibana', 'backend', 'http', ':5601') }}
 
 {{ add_port('elasticsearch-api-http', '9200', 'tcp') }}
 {{ add_port('elasticsearch-api-https', '9300', 'tcp') }}

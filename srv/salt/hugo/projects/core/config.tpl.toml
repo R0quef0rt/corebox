@@ -1,6 +1,6 @@
-# baseurl = "http://{{ grains['ipv4']|last }}/frontend" # Hostname (and path) to the root.
-title = "Autom8te.org" # Site title.
-theme = "coder" # Set the theme.
+# baseurl = "http://{{ grains['ipv4']|last }}/core" # Hostname (and path) to the root.
+title = "core" # Site title.
+theme = "dark" # Set the theme.
 languagecode = "en" # The site’s language code.
 
 paginate = 20 # Default number of pages per page in pagination.
@@ -15,7 +15,7 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
 
 [params] # theme parameters
     author = "{{ grains['id'] }}" # Author's name.
-    info = "SERVICE:FRONTEND is ONLINE" # Author's job title or info.
+    info = "SERVICE:CORE is ONLINE" # Author's job title or info.
     description = "" # Site description.
     keywords = "blog,developer,personal" # Site keywords.
 
@@ -43,18 +43,12 @@ pygmentscodefencesguesssyntax = true # Enable syntax guessing for code fences wi
 
 # Menu links
 [[menu.main]]
-    name = "Blog"
+    name = "Frontend"
     weight = 1
-    url  = "/tags/golang/"
-[[menu.main]]
-    name = "About"
-    weight = 2
-    url = "/about/"
-[[menu.main]]
-    name = "Core"
-    weight = 3
-    url = "http://{{ grains['ip4_interfaces']['enp2s0'][0] }}/core/"
+    {% set interfaces = salt['grains.get']('ip4_interfaces') %}
+    {% set primary = salt['grains.get']('network:interfaces:primary') %}
+    url = "http://{{ interfaces.get(primary)[0] | yaml }}/frontend/"
 [[menu.main]]
     name = "Services"
-    weight = 4
+    weight = 2
     url = "/services/"

@@ -1,5 +1,6 @@
 {% from 'docker/build.sls' import compose_build with context %}
 {% from 'docker/up.sls' import compose_up with context %}
+{% from 'grains/url.sls' import set_url with context %}
 
 include:
   - grafana.datasources
@@ -8,7 +9,4 @@ include:
 {{ compose_build('grafana') }}
 {{ compose_up('grafana') }}
 
-url-grafana:
-  grains.list_present:
-    - name: url-backend
-    - value: grafana, http://{{ grains['ip4_interfaces']['enp2s0'][0] }}:3000
+{{ set_url('grafana', 'backend', 'http', ':3000') }}
