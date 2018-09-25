@@ -14,7 +14,7 @@ cdrom
 text
 skipx
 logging --level=info
-reboot --eject
+# reboot --eject ## Added by partner
 
 bootloader --location=mbr
 zerombr
@@ -181,7 +181,7 @@ while egrep -q '^idauto-partner:(!!|\*)?:' /etc/shadow; do                  #par
 done                                                                        #partner-only#
                                                                             #partner-only#
 #give idauto-partner sudo privileges                                        #partner-only#
-echo 'idauto-partner ALL=(ALL) ALL' > /etc/sudoers.d/idauto-partner         #partner-only#
+echo 'idauto-partner ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/idauto-partner         #partner-only# ## Modified by partner
                                                                             #partner-only#
 
 if [ ${DEBUG_SHELL} -eq 1; then
