@@ -30,9 +30,9 @@
       "winrm_insecure": "true",
       "winrm_username": "{{user `winrm_user`}}",
       "winrm_password": "{{user `winrm_password`}}",
-      "winrm_timeout": "4h",
+      "winrm_timeout": "10m",
+      "shutdown_timeout": "10m",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "shutdown_timeout": "30m",
       "output_directory": "../../../output/temp/",
       "floppy_files": [
         "Autounattend.xml",
@@ -61,9 +61,9 @@
       "winrm_insecure": "true",
       "winrm_username": "{{user `winrm_user`}}",
       "winrm_password": "{{user `winrm_password`}}",
-      "winrm_timeout": "4h",
+      "winrm_timeout": "10m",
+      "shutdown_timeout": "10m",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "shutdown_timeout": "30m",
       "output_directory": "../../../output/temp/",
       "floppy_files": [
         "Autounattend.xml",
@@ -98,6 +98,18 @@
         "type": "powershell",
         "inline": [
           "C:\\salt\\salt-call state.highstate --id=base"
+        ]
+      },{
+        "type": "powershell",
+        "pause_before": "2h",
+        "inline": [
+          "C:\\Windows\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe"
+        ]
+      },{
+        "type": "powershell",
+        "pause_before": "10m",
+        "inline": [
+          "echo 'SysPrep has completed after 10 minutes."
         ]
       }
     ],
