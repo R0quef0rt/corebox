@@ -8,8 +8,7 @@
       "service_version": "0.4.0",
       "env": "dev",
       "winrm_user": "Administrator",
-      "winrm_password": "cdi@2468",
-      "TimeGrantedWindowsUpdates": "2h" 
+      "winrm_password": "cdi@2468"
     },
     "builders": [{
       "name": "hyperv",
@@ -32,7 +31,7 @@
       "winrm_password": "{{user `winrm_password`}}",
       "winrm_timeout": "10m",
       "shutdown_timeout": "10m",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_command": "C:\\Windows\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe /shutdown",
       "output_directory": "../../../output/temp/",
       "floppy_files": [
         "Autounattend.xml",
@@ -63,7 +62,7 @@
       "winrm_password": "{{user `winrm_password`}}",
       "winrm_timeout": "10m",
       "shutdown_timeout": "10m",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_command": "C:\\Windows\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe /shutdown",
       "output_directory": "../../../output/temp/",
       "floppy_files": [
         "Autounattend.xml",
@@ -78,13 +77,6 @@
           "certutil -addstore -f \"TrustedPublisher\" E:\\cert\\vbox-sha1.cer",
           "certutil -addstore -f \"TrustedPublisher\" E:\\cert\\vbox-sha256.cer",
           "E:\\VBoxWindowsAdditions.exe /S"
-        ]
-      },{
-        "type": "powershell",
-        "inline": [
-          "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12",
-          "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/saltstack/salt-bootstrap/stable/bootstrap-salt.ps1' -OutFile 'C:/Windows/Temp/bootstrap-salt.ps1'",
-          "C:\\Windows\\Temp\\bootstrap-salt.ps1 -version 2018.3.2 -pythonVersion 3 -runservice false -minion base"
         ]
       },{
         "destination": "c:/app/live/srv/",
@@ -103,13 +95,7 @@
         "type": "powershell",
         "pause_before": "2h",
         "inline": [
-          "C:\\Windows\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe"
-        ]
-      },{
-        "type": "powershell",
-        "pause_before": "10m",
-        "inline": [
-          "echo 'SysPrep has completed after 10 minutes."
+          "echo 'Packer build has completed in 2h. Performing sysprep...'"
         ]
       }
     ],
