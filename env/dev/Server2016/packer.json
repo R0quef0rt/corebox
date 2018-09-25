@@ -8,8 +8,7 @@
       "service_version": "0.4.0",
       "env": "dev",
       "winrm_user": "Administrator",
-      "winrm_password": "cdi@2468",
-      "TimeGrantedWindowsUpdates": "2h" 
+      "winrm_password": "cdi@2468"
     },
     "builders": [{
       "name": "hyperv",
@@ -30,9 +29,9 @@
       "winrm_insecure": "true",
       "winrm_username": "{{user `winrm_user`}}",
       "winrm_password": "{{user `winrm_password`}}",
-      "winrm_timeout": "4h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "shutdown_timeout": "30m",
+      "winrm_timeout": "10m",
+      "shutdown_timeout": "10m",
+      "shutdown_command": "C:\\Windows\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe /shutdown",
       "output_directory": "../../../output/temp/",
       "floppy_files": [
         "Autounattend.xml",
@@ -61,9 +60,9 @@
       "winrm_insecure": "true",
       "winrm_username": "{{user `winrm_user`}}",
       "winrm_password": "{{user `winrm_password`}}",
-      "winrm_timeout": "4h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "shutdown_timeout": "30m",
+      "winrm_timeout": "10m",
+      "shutdown_timeout": "10m",
+      "shutdown_command": "C:\\Windows\\system32\\sysprep\\sysprep.exe /unattend:A:\\Autounattend.xml /quiet /generalize /oobe /shutdown",
       "output_directory": "../../../output/temp/",
       "floppy_files": [
         "Autounattend.xml",
@@ -98,6 +97,12 @@
         "type": "powershell",
         "inline": [
           "C:\\salt\\salt-call state.highstate --id=base"
+        ]
+      },{
+        "type": "powershell",
+        "pause_before": "2h",
+        "inline": [
+          "echo 'Packer build has completed in 2h. Performing sysprep...'"
         ]
       }
     ],
