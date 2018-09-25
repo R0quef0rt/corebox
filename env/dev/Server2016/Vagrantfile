@@ -10,6 +10,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "4096"
     vb.cpus = 2
+    vb.network "private_network", virtualbox__intnet: "dev"
   end
 
   config.vm.provider "hyperv" do |hv|
