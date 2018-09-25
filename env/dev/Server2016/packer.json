@@ -79,6 +79,13 @@
           "E:\\VBoxWindowsAdditions.exe /S"
         ]
       },{
+        "type": "powershell",
+        "inline": [
+          "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12",
+          "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/saltstack/salt-bootstrap/stable/bootstrap-salt.ps1' -OutFile 'C:/Windows/Temp/bootstrap-salt.ps1'",
+          "C:\\Windows\\Temp\\bootstrap-salt.ps1 -version 2018.3.2 -pythonVersion 3 -runservice false -minion base"
+        ]
+      },{
         "destination": "c:/app/live/srv/",
         "source": "../../../srv/",
         "type": "file"
