@@ -14,7 +14,7 @@ cdrom
 text
 skipx
 logging --level=info
-# reboot
+reboot --eject
 
 bootloader --location=mbr
 zerombr
