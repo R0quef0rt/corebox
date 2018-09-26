@@ -192,6 +192,29 @@ if [ ${DEBUG_SHELL} -eq 1; then
     bash
 fi
 
+echo "************************************************************************"                                   ## Added by partner
+echo "    Install and configure Guest Additions"                                                                  ## Added by partner
+echo "************************************************************************"                                   ## Added by partner
+
+HYPERVISOR="none"                                                                                                 ## Added by partner
+for opt in $(cat /proc/cmdline); do                                                                               ## Added by partner
+    case "$opt" in                                                                                                ## Added by partner
+        --hyperv)                                                                                                 ## Added by partner
+            export HYPERVISOR="hyperv"                                                                            ## Added by partner
+        ;;                                                                                                        ## Added by partner
+        --virtualbox)                                                                                             ## Added by partner
+            export HYPERVISOR="virtualbox"                                                                        ## Added by partner
+        ;;                                                                                                        ## Added by partner
+    esac                                                                                                          ## Added by partner
+done                                                                                                              ## Added by partner
+
+if [ ${HYPERVISOR} -eq "hyperv"; then                                                                             ## Added by partner
+    wget https://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.6.tar.gz ## Added by partner
+    tar xvzf lis-rpms-4.2.6.tar.gz                                                                                ## Added by partner
+    cd LISISO                                                                                                     ## Added by partner
+    ./install.sh                                                                                                  ## Added by partner
+fi                                                                                                                ## Added by partner
+
 tput rmcup
 
 # switch back to main console
