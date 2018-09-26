@@ -87,7 +87,6 @@ schedule:
 grains:
   roles:
     - docker
-    - mariadb
   deploy:
     ## Options are "baremetal" or "docker"
     type: baremetal
