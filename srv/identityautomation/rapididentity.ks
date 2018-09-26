@@ -112,13 +112,13 @@ for opt in $(cat /proc/cmdline); do                                             
 done                                                                                                              ## Added by partner
 
 if [ ${HYPERVISOR} == 'hyperv' ]; then                                                                            ## Added by partner
-    wget https://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.6.tar.gz ## Added by partner
-    tar xvzf lis-rpms-4.2.6.tar.gz                                                                                ## Added by partner
-    cd LISISO                                                                                                     ## Added by partner
-    ./install.sh                                                                                                  ## Added by partner
-    cd ..                                                                                                         ## Added by partner
-    rm lis-rpms-4.2.6.tar.gz                                                                                      ## Added by partner
-    rm -rf ./LISISO                                                                                               ## Added by partner
+    wget -O /root/hyperv.tar.gz https://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.6.tar.gz ## Added by partner
+    tar xvzf /root/hyperv.tar.gz                                                                                  ## Added by partner
+    cd /root/LISISO                                                                                               ## Added by partner
+    /root/LISISO/install.sh                                                                                       ## Added by partner
+    cd /                                                                                                          ## Added by partner
+    rm /root/hyperv.tar.gz                                                                                        ## Added by partner
+    rm -rf /root/LISISO                                                                                           ## Added by partner
 fi                                                                                                                ## Added by partner
 
 echo "************************************************************************"
@@ -223,7 +223,5 @@ tput rmcup
 # switch back to main console
 #chvt 1
 #exec < /dev/tty1 > /dev/tty1 2> /dev/tty1
-
-reboot --eject                                                               ## Added by partner
 
 %end
