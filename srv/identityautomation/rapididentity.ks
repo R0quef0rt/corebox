@@ -113,7 +113,7 @@ done                                                                            
 
 if [ ${HYPERVISOR} == 'hyperv' ]; then                                                                            ## Added by partner
     wget -O /root/hyperv.tar.gz https://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.6.tar.gz ## Added by partner
-    tar xvzf /root/hyperv.tar.gz /root                                                                 ## Added by partner
+    tar xvzf /root/hyperv.tar.gz --directory /root                                                                 ## Added by partner
     cd /root/LISISO                                                                                               ## Added by partner
     /root/LISISO/install.sh                                                                                       ## Added by partner
     cd /                                                                                                          ## Added by partner
