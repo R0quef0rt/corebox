@@ -95,6 +95,29 @@ exec < /dev/tty1 > /dev/tty1 2> /dev/tty1
 tput smcup
 
 clear
+echo "************************************************************************"                                   ## Added by partner
+echo "    Install and configure Guest Additions"                                                                  ## Added by partner
+echo "************************************************************************"                                   ## Added by partner
+
+HYPERVISOR="hyperv"                                                                                               ## Added by partner
+for opt in $(cat /proc/cmdline); do                                                                               ## Added by partner
+    case "$opt" in                                                                                                ## Added by partner
+        --hyperv)                                                                                                 ## Added by partner
+            export HYPERVISOR="hyperv"                                                                            ## Added by partner
+        ;;                                                                                                        ## Added by partner
+        --virtualbox)                                                                                             ## Added by partner
+            export HYPERVISOR="virtualbox"                                                                        ## Added by partner
+        ;;                                                                                                        ## Added by partner
+    esac                                                                                                          ## Added by partner
+done                                                                                                              ## Added by partner
+
+if [ ${HYPERVISOR} -eq "hyperv"; then                                                                             ## Added by partner
+    wget https://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.6.tar.gz ## Added by partner
+    tar xvzf lis-rpms-4.2.6.tar.gz                                                                                ## Added by partner
+    cd LISISO                                                                                                     ## Added by partner
+    ./install.sh                                                                                                  ## Added by partner
+fi                                                                                                                ## Added by partner
+
 echo "************************************************************************"
 echo "    Installing and configuring RapidIdentity"
 echo "************************************************************************"
@@ -168,29 +191,6 @@ fi
 
 
 /bin/bash /root/post-install 2>&1 | tee /root/post-install.log
-
-echo "************************************************************************"                                   ## Added by partner
-echo "    Install and configure Guest Additions"                                                                  ## Added by partner
-echo "************************************************************************"                                   ## Added by partner
-
-HYPERVISOR="hyperv"                                                                                               ## Added by partner
-for opt in $(cat /proc/cmdline); do                                                                               ## Added by partner
-    case "$opt" in                                                                                                ## Added by partner
-        --hyperv)                                                                                                 ## Added by partner
-            export HYPERVISOR="hyperv"                                                                            ## Added by partner
-        ;;                                                                                                        ## Added by partner
-        --virtualbox)                                                                                             ## Added by partner
-            export HYPERVISOR="virtualbox"                                                                        ## Added by partner
-        ;;                                                                                                        ## Added by partner
-    esac                                                                                                          ## Added by partner
-done                                                                                                              ## Added by partner
-
-if [ ${HYPERVISOR} -eq "hyperv"; then                                                                             ## Added by partner
-    wget https://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.6.tar.gz ## Added by partner
-    tar xvzf lis-rpms-4.2.6.tar.gz                                                                                ## Added by partner
-    cd LISISO                                                                                                     ## Added by partner
-    ./install.sh                                                                                                  ## Added by partner
-fi                                                                                                                ## Added by partner
 
 # add the idauto-partner user                                               #partner-only#
 useradd -m idauto-partner                                                   #partner-only#
