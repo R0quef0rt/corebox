@@ -169,29 +169,6 @@ fi
 
 /bin/bash /root/post-install 2>&1 | tee /root/post-install.log
 
-# add the idauto-partner user                                               #partner-only#
-useradd -m idauto-partner                                                   #partner-only#
-                                                                            #partner-only#
-#make them set a password                                                   #partner-only#
-while egrep -q '^idauto-partner:(!!|\*)?:' /etc/shadow; do                  #partner-only#
-    echo "************************************************************************"
-    echo "Must set password for idauto-partner account!!!"                  #partner-only#
-    echo "************************************************************************"
-    passwd idauto-partner                                                   #partner-only#
-done                                                                        #partner-only#
-                                                                            #partner-only#
-#give idauto-partner sudo privileges                                        #partner-only#
-echo 'idauto-partner ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/idauto-partner         #partner-only# ## Modified by partner
-                                                                            #partner-only#
-
-if [ ${DEBUG_SHELL} -eq 1; then
-    echo "************************************************************************"
-    echo "    Pausing in Debug Shell after running install script
-    echo "    TYPE exit to leave shell and continue
-    echo "*******************************"
-    bash
-fi
-
 echo "************************************************************************"                                   ## Added by partner
 echo "    Install and configure Guest Additions"                                                                  ## Added by partner
 echo "************************************************************************"                                   ## Added by partner
@@ -214,6 +191,29 @@ if [ ${HYPERVISOR} -eq "hyperv"; then                                           
     cd LISISO                                                                                                     ## Added by partner
     ./install.sh                                                                                                  ## Added by partner
 fi                                                                                                                ## Added by partner
+
+# add the idauto-partner user                                               #partner-only#
+useradd -m idauto-partner                                                   #partner-only#
+                                                                            #partner-only#
+#make them set a password                                                   #partner-only#
+while egrep -q '^idauto-partner:(!!|\*)?:' /etc/shadow; do                  #partner-only#
+    echo "************************************************************************"
+    echo "Must set password for idauto-partner account!!!"                  #partner-only#
+    echo "************************************************************************"
+    passwd idauto-partner                                                   #partner-only#
+done                                                                        #partner-only#
+                                                                            #partner-only#
+#give idauto-partner sudo privileges                                        #partner-only#
+echo 'idauto-partner ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/idauto-partner         #partner-only# ## Modified by partner
+                                                                            #partner-only#
+
+if [ ${DEBUG_SHELL} -eq 1; then
+    echo "************************************************************************"
+    echo "    Pausing in Debug Shell after running install script
+    echo "    TYPE exit to leave shell and continue
+    echo "*******************************"
+    bash
+fi
 
 tput rmcup
 
