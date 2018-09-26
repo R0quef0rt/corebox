@@ -116,6 +116,9 @@ if [ ${HYPERVISOR} == 'hyperv' ]; then                                          
     tar xvzf lis-rpms-4.2.6.tar.gz                                                                                ## Added by partner
     cd LISISO                                                                                                     ## Added by partner
     ./install.sh                                                                                                  ## Added by partner
+    cd ..                                                                                                         ## Added by partner
+    rm lis-rpms-4.2.6.tar.gz                                                                                      ## Added by partner
+    rm -rf ./LISISO                                                                                               ## Added by partner
 fi                                                                                                                ## Added by partner
 
 echo "************************************************************************"
@@ -221,5 +224,6 @@ tput rmcup
 #chvt 1
 #exec < /dev/tty1 > /dev/tty1 2> /dev/tty1
 
+reboot --eject                                                               ## Added by partner
 
 %end
