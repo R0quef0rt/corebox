@@ -173,7 +173,7 @@ echo "************************************************************************" 
 echo "    Install and configure Guest Additions"                                                                  ## Added by partner
 echo "************************************************************************"                                   ## Added by partner
 
-HYPERVISOR="none"                                                                                                 ## Added by partner
+HYPERVISOR="hyperv"                                                                                               ## Added by partner
 for opt in $(cat /proc/cmdline); do                                                                               ## Added by partner
     case "$opt" in                                                                                                ## Added by partner
         --hyperv)                                                                                                 ## Added by partner
