@@ -129,7 +129,7 @@
                     <PlainText>true</PlainText>
                 </AdministratorPassword>
             </UserAccounts>
-            <TimeZone>UTC</TimeZone>
+            <TimeZone>Central Standard Time</TimeZone>
             <AutoLogon>
                 <Password>
                     <Value>cdi@2468</Value>
