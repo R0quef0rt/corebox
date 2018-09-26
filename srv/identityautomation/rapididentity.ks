@@ -109,18 +109,7 @@ for opt in $(cat /proc/cmdline); do                                             
             export HYPERVISOR='virtualbox'                                                                        ## Added by partner
         ;;                                                                                                        ## Added by partner
     esac                                                                                                          ## Added by partner
-done                                                                                                              ## Added by partner
-
-if [ ${HYPERVISOR} == 'hyperv' ]; then                                                                            ## Added by partner
-    wget -O /root/hyperv.tar.gz https://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.6.tar.gz ## Added by partner
-    tar xvzf /root/hyperv.tar.gz --directory /root                                                                 ## Added by partner
-    cd /root/LISISO                                                                                               ## Added by partner
-    /root/LISISO/install.sh                                                                                       ## Added by partner
-    cd /                                                                                                          ## Added by partner
-    rm /root/hyperv.tar.gz                                                                                        ## Added by partner
-    rm -rf /root/LISISO                                                                                           ## Added by partner
-    sleep 30
-fi                                                                                                                ## Added by partner
+done                                                                                                              ## Added by partner                                                                                                    ## Added by partner
 
 echo "************************************************************************"
 echo "    Installing and configuring RapidIdentity"
@@ -166,6 +155,17 @@ if ! wget -O /root/ApplianceSetupScript.sh \
     read
     exit
 fi
+
+if [ ${HYPERVISOR} == 'hyperv' ]; then                                                                            ## Added by partner
+    wget -O /root/hyperv.tar.gz https://download.microsoft.com/download/6/8/F/68FE11B8-FAA4-4F8D-8C7D-74DA7F2CFC8C/lis-rpms-4.2.6.tar.gz ## Added by partner
+    tar xvzf /root/hyperv.tar.gz --directory /root                                                                 ## Added by partner
+    cd /root/LISISO                                                                                               ## Added by partner
+    /root/LISISO/install.sh                                                                                       ## Added by partner
+    cd /                                                                                                          ## Added by partner
+    rm /root/hyperv.tar.gz                                                                                        ## Added by partner
+    rm -rf /root/LISISO                                                                                           ## Added by partner
+    sleep 30
+fi            
 
 # temporarily force looking at network for CentOS-Base.repo while we run the standard setup script
 mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.save
