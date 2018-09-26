@@ -102,7 +102,7 @@
         "type": "powershell",
         "pause_before": "2h",
         "inline": [
-          "echo 'Packer build has completed in 2h. Performing sysprep...'"
+          "Optimize-Volume -DriveLetter C -Defrag -Verbose'"
         ]
       }
     ],
