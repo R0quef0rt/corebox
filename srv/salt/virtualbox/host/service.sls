@@ -8,7 +8,7 @@ virtualbox_repo:
   - human_name: virtualbox
   - name: deb http://download.virtualbox.org/virtualbox/debian {{ grains.oscodename }} contrib
   - file: /etc/apt/sources.list.d/virtualbox.list
-  - key_url: https://download.virtualbox.org/virtualbox/debian/dists/bionic/Release.gpg
+  - key_url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
 
 virtualbox_packages:
   pkg.installed:
