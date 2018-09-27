@@ -17,7 +17,6 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provider "hyperv" do |hv|
-    hv.vmname = "ldap"
     hv.memory = "4096"
     hv.maxmemory = "8192"
     hv.cpus = 2
