@@ -16,6 +16,7 @@ virtualbox_packages:
     - build-essential
     - dkms
     - linux-headers-{{ grains.kernelrelease }}
+    - python-software-properties
     - virtualbox-{{ host.version }}
   - require:
     - pkgrepo: virtualbox_repo
