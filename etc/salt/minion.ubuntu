@@ -60,6 +60,24 @@ gitfs_remotes:
     - saltenv:
       - prod:
         - ref: master
+  - https://github.com/salt-formulas/salt-formula-virtualbox:
+    - name: virtualbox-dev
+    - root: /
+    - saltenv:
+      - dev:
+        - ref: master
+  - https://github.com/salt-formulas/salt-formula-virtualbox:
+    - name: virtualbox-qa
+    - root: /
+    - saltenv:
+      - qa:
+        - ref: master
+  - https://github.com/salt-formulas/salt-formula-virtualbox:
+    - name: virtualbox-prod
+    - root: /
+    - saltenv:
+      - prod:
+        - ref: master
 
 gitfs_saltenv:
   - qa:

@@ -57,6 +57,9 @@ dev:
   'roles:dashboard':
     - match: grain
     - hugo
+  'roles:hypervisor':
+    - match: grain
+    - virtualbox
 qa:
   'os_family:Linux':
     - match: grain
@@ -105,6 +108,9 @@ qa:
   'roles:dashboard':
     - match: grain
     - hugo
+  'roles:hypervisor':
+    - match: grain
+    - virtualbox
 prod:
   'os_family:Linux':
     - match: grain
@@ -153,3 +159,6 @@ prod:
   'roles:dashboard':
     - match: grain
     - hugo
+  'roles:hypervisor':
+    - match: grain
+    - virtualbox
