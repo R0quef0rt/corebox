@@ -23,7 +23,7 @@ virtualbox_packages:
 
 virtualbox_setup_kernel_drivers:
   cmd.wait:
-  - name: /etc/init.d/vboxdrv setup
+  - name: /sbin/vboxconfig
   - cwd: /root
   - watch:
     - pkg: virtualbox_packages
