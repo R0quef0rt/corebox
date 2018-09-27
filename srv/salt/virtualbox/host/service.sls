@@ -8,7 +8,7 @@ virtualbox_repo:
   - human_name: virtualbox
   - name: deb http://download.virtualbox.org/virtualbox/debian {{ grains.oscodename }} contrib
   - file: /etc/apt/sources.list.d/virtualbox.list
-  - key_url: salt://virtualbox/files/virtualbox-apt.gpg
+  - key_url: http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc
 
 virtualbox_packages:
   pkg.installed:
@@ -16,7 +16,6 @@ virtualbox_packages:
     - build-essential
     - dkms
     - linux-headers-{{ grains.kernelrelease }}
-    - python-software-properties
     - virtualbox-{{ host.version }}
   - require:
     - pkgrepo: virtualbox_repo
