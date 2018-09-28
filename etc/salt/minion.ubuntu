@@ -86,11 +86,7 @@ schedule:
 
 grains:
   roles:
-    - docker
-    - proxy
-    - mariadb
-    - nextcloud
-    - dashboard
+    - imaging
   network:
     interfaces:
       primary: eth0

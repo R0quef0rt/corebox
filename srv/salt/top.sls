@@ -60,6 +60,9 @@ dev:
   'roles:hypervisor':
     - match: grain
     - virtualbox
+  'roles:imaging':
+    - match: grain
+    - packer
 qa:
   'os_family:Linux':
     - match: grain
@@ -111,6 +114,9 @@ qa:
   'roles:hypervisor':
     - match: grain
     - virtualbox
+  'roles:imaging':
+    - match: grain
+    - packer
 prod:
   'os_family:Linux':
     - match: grain
@@ -162,3 +168,6 @@ prod:
   'roles:hypervisor':
     - match: grain
     - virtualbox
+  'roles:imaging':
+    - match: grain
+    - packer

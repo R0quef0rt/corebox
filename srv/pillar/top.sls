@@ -7,6 +7,7 @@ dev:
     - dev.mariadb
     - dev.nextcloud
     - prod.virtualbox
+    - prod.packer
   'os_family:Linux':
     - match: grain
     - prod.Ubuntu.docker
@@ -20,6 +21,7 @@ qa:
     - prod.hugo
     - dev.dsc
     - prod.virtualbox
+    - prod.packer
   'os_family:Linux':
     - match: grain
     - prod.Ubuntu.docker
@@ -33,6 +35,7 @@ prod:
     - prod.hugo
     - dev.dsc
     - prod.virtualbox
+    - prod.packer
   'os_family:Linux':
     - match: grain
     - prod.Ubuntu.docker
