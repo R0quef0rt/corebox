@@ -34,7 +34,7 @@ dev:
     - dsc.lcm
     - dsc.dependencies
     - dsc.updates
-  'G@roles:ldap and G@os_family:Windows':
+  'winbox and G@roles:ldap and G@os_family:Windows':
     - dsc.lcm
     - dsc.dependencies
     - dsc.ad.pdc
