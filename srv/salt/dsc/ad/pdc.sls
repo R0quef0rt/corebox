@@ -1,10 +1,10 @@
-generate-template: 
+{{saltenv}}-generate-template: 
   file.managed: 
     - template: jinja
     - source: salt://dsc/ad/files/main.tpl.ps1
     - name: C:\\app\\main.ps1
 
-run-dsc-config:
+{{saltenv}}-run-dsc-config:
   module.run:
     - name: dsc.run_config
     - path: C:\\app\\main.ps1
