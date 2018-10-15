@@ -33,7 +33,12 @@ variable "region" {
   default     = "us-east-1"
 }
 
+variable "salt_version" {
+  description = "The version of Salt to install"
+  default     = "2018.3.2"
+}
+
 variable "test" {
-  description = "Toggle unit testing for Salt"
+  description = "Enable unit testing for Salt"
   default     = "false"
 }

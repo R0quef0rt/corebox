@@ -122,6 +122,7 @@ prod:
     - match: grain
     - common
     - system
+    - system.raid
   'roles:docker':
     - match: grain
     - docker

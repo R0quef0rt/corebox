@@ -27,6 +27,11 @@ data "aws_ami" "minion" {
 
 data "template_file" "minion-user-data" {
   template = "${file("${path.root}/setup.sh")}"
+
+  vars {
+    SALT_VERSION  = "${var.salt_version}"
+    MINION_CONFIG = "${jsonencode(file("${path.root}/etc/minion.ubuntu"))}"
+  }
 }
 
 resource "aws_security_group" "minion" {
@@ -63,27 +68,6 @@ resource "aws_instance" "minion" {
     type        = "ssh"
     user        = "ubuntu"
     private_key = "${file("${path.root}/auth/dev.key")}"
-  }
-
-  ebs_block_device {
-    device_name           = "/dev/sdx"
-    volume_size           = 5
-    volume_type           = "gp2"
-    delete_on_termination = true
-  }
-
-  ebs_block_device {
-    device_name           = "/dev/sdy"
-    volume_size           = 5
-    volume_type           = "gp2"
-    delete_on_termination = true
-  }
-
-  ebs_block_device {
-    device_name           = "/dev/sdz"
-    volume_size           = 5
-    volume_type           = "gp2"
-    delete_on_termination = true
   }
 
   provisioner "remote-exec" {

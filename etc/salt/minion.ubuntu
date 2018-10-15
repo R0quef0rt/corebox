@@ -86,7 +86,7 @@ schedule:
 
 grains:
   roles:
-    - imaging
+    - docker
   network:
     interfaces:
       primary: eth0
