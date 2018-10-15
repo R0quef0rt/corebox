@@ -42,3 +42,8 @@ variable "test" {
   description = "Enable unit testing for Salt"
   default     = "false"
 }
+
+variable "os_family" {
+  description = "Used to look up a matching operating system AMI"
+  default     = "ubuntu"
+}

@@ -7,7 +7,7 @@
       "env": "{{env `ENV`}}"
     },
     "builders": [{
-      "ami_name": "{{user `service_name`}}-{{user `service_version` | clean_ami_name}}",
+      "ami_name": "{{user `service_name`}}-ubuntu-{{user `service_version` | clean_ami_name}}",
       "ami_description": "An Ubuntu 18.04 AMI pre-installed with Salt and basic system configurations.",
       "instance_type": "t2.micro",
       "force_deregister": "false",

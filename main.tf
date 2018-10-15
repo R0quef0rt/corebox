@@ -21,18 +21,18 @@ data "aws_ami" "minion" {
 
   filter {
     name   = "name"
-    values = ["${var.service_name}-*"]
+    values = ["${var.service_name}-${var.os_family}-*"]
   }
 }
 
-data "template_file" "minion-user-data" {
-  template = "${file("${path.root}/setup.sh")}"
+# data "template_file" "minion-user-data" {
+#   template = "${file("${path.root}/setup.sh")}"
 
-  vars {
-    SALT_VERSION  = "${var.salt_version}"
-    MINION_CONFIG = "${jsonencode(file("${path.root}/etc/salt/minion.ubuntu"))}"
-  }
-}
+#   vars {
+#     SALT_VERSION  = "${var.salt_version}"
+#     MINION_CONFIG = "${jsonencode(file("${path.root}/etc/salt/minion.ubuntu"))}"
+#   }
+# }
 
 resource "aws_security_group" "minion" {
   name        = "${var.env}-${var.service_name}-minion"
@@ -57,9 +57,8 @@ resource "aws_security_group" "minion" {
 
 resource "aws_instance" "minion" {
   instance_type = "t2.micro"
-  ami           = "ami-0977029b5b13f3d08"
+  ami           = "${data.aws_ami.minion.image_id}"
 
-  user_data              = "${data.template_file.minion-user-data.rendered}"
   key_name               = "dev"
   subnet_id              = "subnet-df80f097"
   vpc_security_group_ids = ["${aws_security_group.minion.id}"]
