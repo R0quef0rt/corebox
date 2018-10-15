@@ -21,7 +21,7 @@ data "aws_ami" "minion" {
 
   filter {
     name   = "name"
-    values = ["${var.service_name}-*"]
+    values = ["*ubuntu-bionic-18.04-amd64-server-*"]
   }
 }
 
