@@ -30,7 +30,7 @@ data "template_file" "minion-user-data" {
 
   vars {
     SALT_VERSION  = "${var.salt_version}"
-    MINION_CONFIG = "${jsonencode(file("${path.root}/etc/minion.ubuntu"))}"
+    MINION_CONFIG = "${jsonencode(file("${path.root}/etc/salt/minion.ubuntu"))}"
   }
 }
 
