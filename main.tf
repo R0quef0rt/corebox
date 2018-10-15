@@ -21,7 +21,7 @@ data "aws_ami" "minion" {
 
   filter {
     name   = "name"
-    values = ["*ubuntu-bionic-18.04-amd64-server-*"]
+    values = ["${var.service_name}-*"]
   }
 }
 
@@ -57,7 +57,7 @@ resource "aws_security_group" "minion" {
 
 resource "aws_instance" "minion" {
   instance_type = "t2.micro"
-  ami           = "${data.aws_ami.minion.image_id}"
+  ami           = "ami-0977029b5b13f3d08"
 
   user_data              = "${data.template_file.minion-user-data.rendered}"
   key_name               = "dev"
