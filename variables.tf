@@ -60,5 +60,5 @@ variable "private_key" {
 
 variable "source" {
   description = "Path to the terraform module"
-  default     = "./"
+  default     = "/"
 }
