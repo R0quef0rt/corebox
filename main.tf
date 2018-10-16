@@ -5,6 +5,10 @@ provider "aws" {
   version                 = "~> 1.40"
 }
 
+provider "random" {
+  version = "~> 2.0"
+}
+
 terraform {
   required_version = ">= 0.11.4, < 0.12.0"
   backend "s3" {
@@ -65,17 +69,17 @@ resource "aws_instance" "minion" {
   subnet_id              = "subnet-df80f097"
   vpc_security_group_ids = ["${aws_security_group.minion.id}"]
 
-  # connection {
-  #   type        = "ssh"
-  #   user        = "ubuntu"
-  #   private_key = "${file("${var.private_key}")}"
-  # }
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = "${file("${var.private_key}")}"
+  }
 
-  # provisioner "remote-exec" {
-  #   inline = [
-  #     "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.test}",
-  #   ]
-  # }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.test}",
+    ]
+  }
 
   tags {
     Name        = "${var.project_key}-${var.service_name}-${var.env}"

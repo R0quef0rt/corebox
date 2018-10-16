@@ -3,7 +3,7 @@ module "extensive_kitchen_terraform" {
 
   # The generated key pair will be used to configure SSH authentication
   public_key  = "${file("${path.module}/../../assets/key_pair/id_rsa.pub")}"
-  # private_key = "${file("${path.module}/../../assets/key_pair/id_rsa")}"
+  private_key = "${"${path.module}/../../assets/key_pair/id_rsa"}"
 
   # The source of the module is the root directory of the Terraform project
   source                   = "../../../"
