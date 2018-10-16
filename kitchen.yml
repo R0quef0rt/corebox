@@ -99,7 +99,7 @@ platforms:
 
           # The value of the Terraform output named remote_group_public_dns will
           # be used to obtain the hostnames to target with InSpec
-          # hosts_output: remote_group_public_dns
+          hosts_output: remote_group_public_dns
 
           # The generated key pair is configured to be used for the SSH
           # authentication performed by InSpec

@@ -68,7 +68,7 @@ jobs:
   #   - bash -x ./srv/ci/terraform/terraform-plan.sh
   - stage: test
     script:
-    - bash -x ./srv/ci/kitchen/terraform-test.sh
+    - bash ./srv/ci/kitchen/terraform-test.sh
     # - bash -x ./srv/ci/terraform/terraform-plan.sh
     # - bash -x ./srv/ci/terraform/terraform-apply.sh
     # - DESTROY_ALL=true && bash -x ./srv/ci/terraform/terraform-destroy.sh

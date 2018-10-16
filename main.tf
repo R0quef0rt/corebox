@@ -68,7 +68,7 @@ resource "aws_instance" "minion" {
   # connection {
   #   type        = "ssh"
   #   user        = "ubuntu"
-  #   private_key = "${file("${path.root}/assets/key_pair/id_rsa")}"
+  #   private_key = "${file("${var.private_key}")}"
   # }
 
   # provisioner "remote-exec" {
