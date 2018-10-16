@@ -1,12 +1,12 @@
-output "reachable_other_host_ip_address" {
-  description = <<EOD
-This output is used as an attribute in the reachable_other_host control
-EOD
+# output "reachable_other_host_ip_address" {
+#   description = <<EOD
+# This output is used as an attribute in the reachable_other_host control
+# EOD
 
-  value = <<EOV
-${module.extensive_kitchen_terraform.reachable_other_host_ip_address}
-EOV
-}
+#   value = <<EOV
+# ${module.extensive_kitchen_terraform.reachable_other_host_ip_address}
+# EOV
+# }
 
 output "static_terraform_output" {
   description = <<EOD
@@ -24,8 +24,8 @@ ${path.cwd}/terraform.tfstate.d/${terraform.workspace}/terraform.tfstate
 EOV
 }
 
-output "remote_group_public_dns" {
-  description = "This output is used to obtain targets for InSpec"
+# output "remote_group_public_dns" {
+#   description = "This output is used to obtain targets for InSpec"
 
-  value = ["${module.extensive_kitchen_terraform.remote_group_public_dns}"]
-}
+#   value = ["${module.extensive_kitchen_terraform.remote_group_public_dns}"]
+# }
