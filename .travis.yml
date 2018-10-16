@@ -37,7 +37,7 @@ branches:
 stages:
 - prepare
 - build
-- plan
+# - plan
 - test
 cache:
   directories:
@@ -63,9 +63,9 @@ jobs:
   - stage: build
     script:
     - bash -x ./srv/ci/packer/packer-build.sh || true
-  - stage: plan
-    script:
-    - bash -x ./srv/ci/terraform/terraform-plan.sh
+  # - stage: plan
+  #   script:
+  #   - bash -x ./srv/ci/terraform/terraform-plan.sh
   - stage: test
     script:
     - bash -x ./srv/ci/kitchen/terraform-test.sh
