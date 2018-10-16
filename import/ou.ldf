@@ -1,6 +1,0 @@
-dn: OU=Domain Controllers,DC=internal,DC=cyberdefenses,DC=io
-changetype: modify
-objectClass: top
-objectClass: organizationalUnit
-ou: Domain Controllers
-

@@ -104,7 +104,7 @@ platforms:
           # The generated key pair is configured to be used for the SSH
           # authentication performed by InSpec
           key_files:
-            - <%= ENV['CI_BUILD_DIR'] %>/.ssh/id_rsa.pub
+            - ~/.ssh/id_rsa.pub
 
           user: ubuntu
 
