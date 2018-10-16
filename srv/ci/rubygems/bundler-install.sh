@@ -4,4 +4,4 @@ gem update --system
 gem --version
 gem install bundler
 gem update bundler
-bundle install
+bin/bundle install
