@@ -57,3 +57,8 @@ variable "private_key" {
   description = "Private key used for SSH authenticatoin"
   default     = "~/.ssh/id_rsa"
 }
+
+variable "source" {
+  description = "Path to the terraform module"
+  default     = "./"
+}

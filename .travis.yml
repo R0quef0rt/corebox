@@ -35,7 +35,6 @@ branches:
   - master
   - stable
 stages:
-- prepare
 - build
 # - plan
 - test
@@ -56,18 +55,17 @@ before_script:
 - bash ./srv/ci/terraform/terraform-init.sh
 jobs:
   include:
-  - stage: prepare
+  - stage: validate and build
     script:
     - bash ./srv/ci/terraform/terraform-validate.sh
-    - bash ./srv/ci/packer/packer-validate.sh ubuntu
-    - bash ./srv/ci/packer/packer-validate.sh centos
-  - stage: build
-    script:
+    - bash ./srv/ci/packer/packer-validate.sh
     - bash ./srv/ci/packer/packer-build.sh || true
     env:
     - OS_FAMILY=ubuntu
-  - stage: build
+  - stage: validate and build
     script:
+    - bash ./srv/ci/terraform/terraform-validate.sh
+    - bash ./srv/ci/packer/packer-validate.sh
     - bash ./srv/ci/packer/packer-build.sh || true
     env:
     - OS_FAMILY=centos
