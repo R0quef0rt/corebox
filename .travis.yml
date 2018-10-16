@@ -51,7 +51,7 @@ before_script:
 - bash -x ./srv/ci/terraform/terraform-install.sh
 - bash -x ./srv/ci/packer/packer-install.sh
 - sudo bash -x ./srv/ci/jq/jq-install.sh
-- sudo bash -x ./srv/ci/rubygems/bundler-install.sh
+- bash -x ./srv/ci/rubygems/bundler-install.sh
 - export PATH="~/bin:$PATH"
 - bash -x ./srv/ci/terraform/terraform-init.sh
 jobs:
