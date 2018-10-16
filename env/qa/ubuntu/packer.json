@@ -32,7 +32,7 @@
       "minion_config": "../../../etc/salt/minion.ubuntu",
       "local_state_tree": "../../../srv/salt",
       "bootstrap_args": "-i basebox -U -F -P -p python-git",
-      "salt_call_args": "--id basebox saltenv=qa pillarenv=qa"
+      "salt_call_args": "--id basebox saltenv={{user `env`}} pillarenv={{user `env`}}"
     }
   ]
 }

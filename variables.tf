@@ -20,7 +20,7 @@ variable "account" {
 
 variable "env" {
   description = "dev/qa/prod"
-  default     = "qa"
+  default     = "dev"
 }
 
 variable "project_key" {

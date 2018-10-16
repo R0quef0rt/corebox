@@ -31,17 +31,8 @@ data "aws_ami" "minion" {
   }
 }
 
-# data "template_file" "minion-user-data" {
-#   template = "${file("${path.root}/setup.sh")}"
-
-#   vars {
-#     SALT_VERSION  = "${var.salt_version}"
-#     MINION_CONFIG = "${jsonencode(file("${path.root}/etc/salt/minion.ubuntu"))}"
-#   }
-# }
-
 resource "aws_security_group" "minion" {
-  name        = "${var.env}-${var.service_name}-minion"
+  name        = "${var.env}-${var.service_name}-${var.os_family}-minion"
   description = "Used by the AWS instance."
   vpc_id      = "vpc-cd2d97b4"
 
@@ -75,11 +66,18 @@ resource "aws_instance" "minion" {
     private_key = "${file("${var.private_key}")}"
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.test}",
-    ]
-  }
+provisioner "salt-masterless" {
+    "local_state_tree"   = "./srv/salt"
+    "minion_config_file" = "./etc/salt/minion.ubuntu"
+    "bootstrap_args"     = "-i cloudbox -U -F -P -p python-git"
+    "salt_call_args"     = "--id cloudbox saltenv=${var.env} pillarenv=${var.env}"
+}
+
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.test}",
+  #   ]
+  # }
 
   tags {
     Name        = "${var.project_key}-${var.service_name}-${var.env}"

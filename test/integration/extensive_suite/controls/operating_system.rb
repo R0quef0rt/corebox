@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 os_family_operating_system_name = attribute(
-  "instances_ami_operating_system_name",
+  "os_family_operating_system_name",
   description: "The Terraform configuration under test must define the " \
   "equivalently named output",
 )
