@@ -24,8 +24,8 @@ ${path.cwd}/terraform.tfstate.d/${terraform.workspace}/terraform.tfstate
 EOV
 }
 
-# output "remote_group_public_dns" {
-#   description = "This output is used to obtain targets for InSpec"
+output "remote_group_public_dns" {
+  description = "This output is used to obtain targets for InSpec"
 
-#   value = ["${module.extensive_kitchen_terraform.remote_group_public_dns}"]
-# }
+  value = ["${module.extensive_kitchen_terraform.remote_group_public_dns}"]
+}
