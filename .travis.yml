@@ -35,9 +35,9 @@ branches:
   - master
   - stable
 stages:
-- build
+- validate and build
 # - plan
-- test
+- integration testing
 cache:
   directories:
   - ".terraform"
@@ -72,12 +72,12 @@ jobs:
   # - stage: plan
   #   script:
   #   - bash ./srv/ci/terraform/terraform-plan.sh
-  - stage: test
+  - stage: integration testing
     script:
     - bash ./srv/ci/kitchen/terraform-test.sh
     env:
     - OS_FAMILY=ubuntu
-  - stage: test
+  - stage: integration testing
     script:
     - bash ./srv/ci/kitchen/terraform-test.sh
     env:
