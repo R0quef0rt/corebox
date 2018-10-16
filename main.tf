@@ -61,25 +61,36 @@ resource "aws_instance" "minion" {
   instance_type = "t2.micro"
   ami           = "${data.aws_ami.minion.image_id}"
 
-  key_name               = "dev"
+  key_name               = "${aws_key_pair.main.key_name}"
   subnet_id              = "subnet-df80f097"
   vpc_security_group_ids = ["${aws_security_group.minion.id}"]
 
-  connection {
-    type        = "ssh"
-    user        = "ubuntu"
-    private_key = "${file("${path.root}/assets/key_pair/id_rsa")}"
-  }
+  # connection {
+  #   type        = "ssh"
+  #   user        = "ubuntu"
+  #   private_key = "${file("${path.root}/assets/key_pair/id_rsa")}"
+  # }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.test}",
-    ]
-  }
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.test}",
+  #   ]
+  # }
 
   tags {
     Name        = "${var.project_key}-${var.service_name}-${var.env}"
     environment = "${var.env}"
     Terraform   = "true"
   }
+}
+
+resource "aws_key_pair" "main" {
+  key_name = "${var.env}-${random_string.key_name.result}"
+
+  public_key = "${var.public_key}"
+}
+
+resource "random_string" "key_name" {
+  length  = 9
+  special = false
 }
