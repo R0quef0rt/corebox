@@ -12,6 +12,7 @@ else
     echo "project_key = \"$PROJECT_KEY\"" >> terraform.tfvars
     echo "service_version = \"$SERVICE_VERSION\"" >> terraform.tfvars
     echo "account = \"$ACCOUNT\"" >> terraform.tfvars
+    echo "os_family = \"$OS_FAMILY\"" >> terraform.tfvars
 fi
 
 

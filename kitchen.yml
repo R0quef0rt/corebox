@@ -14,52 +14,52 @@ verifier:
 # Platforms provide hooks for overriding the global Test Kitchen plugin
 # configuration to provide platform-specific values
 platforms:
-  # - name: centos
+  - name: centos
 
-  #   driver:
-  #     variables:
-  #       instances_ami: ami-ae7bfdb8
+    driver:
+      variables:
+        os_family: centos
 
-  #       subnet_availability_zone: us-east-1a
+        # subnet_availability_zone: us-east-1a
 
-  #   verifier:
-  #     systems:
-  #       - name: local
+    verifier:
+      systems:
+        - name: local
 
-  #         # The customized_inspec_attribute InSpec attribute is configured to
-  #         # satisfy the inspec_attributes control
-  #         attrs_outputs:
-  #           customized_inspec_attribute: static_terraform_output
+          # The customized_inspec_attribute InSpec attribute is configured to
+          # satisfy the inspec_attributes control
+          attrs_outputs:
+            customized_inspec_attribute: static_terraform_output
 
-  #         backend: local
+          backend: local
 
-  #         # A subset of the controls included in the extensive_suite InSpec
-  #         # profile will be executed
-  #         controls:
-  #           - inspec_attributes
-  #           - state_file
+          # A subset of the controls included in the extensive_suite InSpec
+          # profile will be executed
+          controls:
+            - inspec_attributes
+            - state_file
 
-  #       - name: remote
+        - name: remote
 
-  #         attrs:
-  #           - test/integration/extensive_suite/centos_attributes.yml
+          attrs:
+            - test/integration/extensive_suite/centos_attributes.yml
 
-  #         backend: ssh
+          backend: ssh
 
-  #         controls:
-  #           - operating_system
-  #           - reachable_other_host
+          controls:
+            - operating_system
+            # - reachable_other_host
 
-  #         # The value of the Terraform output named remote_group_public_dns will
-  #         # be used to obtain the hostnames to target with InSpec
-  #         hosts_output: remote_group_public_dns
+          # The value of the Terraform output named remote_group_public_dns will
+          # be used to obtain the hostnames to target with InSpec
+          hosts_output: remote_group_public_dns
 
-  #         # The generated key pair is configured to be used for the SSH
-  #         # authentication performed by InSpec
-  #         key_files:
-  #           - test/assets/key_pair
+          # The generated key pair is configured to be used for the SSH
+          # authentication performed by InSpec
+          key_files:
+            - test/assets/key_pair/id_rsa
 
-  #         user: centos
+          user: centos
 
   - name: ubuntu
 

@@ -63,12 +63,26 @@ jobs:
   - stage: build
     script:
     - bash -x ./srv/ci/packer/packer-build.sh || true
+    env:
+    - OS_FAMILY=ubuntu
+  - stage: build
+    script:
+    - bash -x ./srv/ci/packer/packer-build.sh || true
+    env:
+    - OS_FAMILY=centos
   # - stage: plan
   #   script:
   #   - bash -x ./srv/ci/terraform/terraform-plan.sh
   - stage: test
     script:
     - bash ./srv/ci/kitchen/terraform-test.sh
+    env:
+    - OS_FAMILY=ubuntu
+  - stage: test
+    script:
+    - bash ./srv/ci/kitchen/terraform-test.sh
+    env:
+    - OS_FAMILY=centos
     # - bash -x ./srv/ci/terraform/terraform-plan.sh
     # - bash -x ./srv/ci/terraform/terraform-apply.sh
     # - DESTROY_ALL=true && bash -x ./srv/ci/terraform/terraform-destroy.sh

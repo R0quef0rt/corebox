@@ -1,13 +1,12 @@
 #!/bin/bash
 
 source variables
-PACKER_ENV=Ubuntu
 
-cd ./env/$ENV/$PACKER_ENV
+cd ./env/$ENV/$OS_FAMILY
 
 if   [ "$DESTROY_ALL" == true ]; then
     echo "DESTROY_ALL is $DESTROY_ALL. Skipping..."
-elif [ "$LATEST_AMI" == "$ENV-$SERVICE_NAME-$SERVICE_VERSION" ]; then
+elif [ "$LATEST_AMI" == "$ENV-$SERVICE_NAME-$OS_FAMILY-$SERVICE_VERSION" ]; then
     echo "The latest AMI and this project are the same SERVICE_VERSION. Skipping..."
 elif [ "$LATEST_AMI" = "null" ]; then
     packer build packer.json
