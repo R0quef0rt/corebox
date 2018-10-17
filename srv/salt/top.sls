@@ -68,6 +68,10 @@ qa:
     - match: grain
     - common
     - system
+  'os_family:RedHat':
+    - match: grain
+    - common
+    - system
   'roles:docker':
     - match: grain
     - docker
@@ -77,6 +81,9 @@ qa:
   'roles:mariadb':
     - match: grain
     - mariadb
+  'roles:nextcloud':
+    - match: grain
+    - nextcloud
   'roles:proxy':
     - match: grain
     - traefik
@@ -88,7 +95,11 @@ qa:
     - gitlab
   'G@roles:ldap and G@os_family:Linux':
     - freeipa
-  'G@roles:ldap and G@os_family:Windows':
+  'base and G@os_family:Windows':
+    - dsc.lcm
+    - dsc.dependencies
+    - dsc.updates
+  'winbox and G@roles:ldap and G@os_family:Windows':
     - dsc.lcm
     - dsc.dependencies
     - dsc.ad.pdc
