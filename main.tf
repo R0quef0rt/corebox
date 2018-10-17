@@ -89,7 +89,7 @@ provisioner "salt-masterless" {
 resource "aws_key_pair" "main" {
   key_name = "${var.env}-${random_string.key_name.result}"
 
-  public_key = "${var.public_key}"
+  public_key = "${file("${var.public_key}")}"
 }
 
 resource "random_string" "key_name" {
