@@ -62,7 +62,7 @@ resource "aws_instance" "minion" {
 
   connection {
     type        = "ssh"
-    user        = "ubuntu"
+    user        = "${var.os_family}"
     private_key = "${file("${var.private_key}")}"
   }
 
