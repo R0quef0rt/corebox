@@ -58,7 +58,7 @@ variable "private_key" {
   default     = "~/.ssh/id_rsa"
 }
 
-variable "source" {
+variable "rootpath" {
   description = "Path to the terraform module"
   default     = "/"
 }

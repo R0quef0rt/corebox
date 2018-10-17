@@ -19,7 +19,7 @@ platforms:
     driver:
       variables:
         os_family: centos
-        source: ../../../
+        rootpath: /../../../
 
         # subnet_availability_zone: us-east-1a
 
@@ -67,7 +67,7 @@ platforms:
     driver:
       variables:
         os_family: ubuntu
-        source: ../../../
+        rootpath: /../../../
 
         # subnet_availability_zone: us-west-2b
 
