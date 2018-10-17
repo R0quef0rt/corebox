@@ -32,7 +32,7 @@ data "aws_ami" "minion" {
 }
 
 resource "aws_security_group" "minion" {
-  name        = "${var.env}-${var.service_name}-${var.os_family}-minion"
+  name        = "${var.service_name}-${var.env}-minion-${random_string.name.result}"
   description = "Used by the AWS instance."
   vpc_id      = "vpc-cd2d97b4"
 
@@ -87,12 +87,17 @@ resource "aws_instance" "minion" {
 }
 
 resource "aws_key_pair" "main" {
-  key_name = "${var.env}-${random_string.key_name.result}"
+  key_name = "${var.env}-${var.service_name}-${random_string.key_name.result}"
 
   public_key = "${file("${var.public_key}")}"
 }
 
 resource "random_string" "key_name" {
+  length  = 9
+  special = false
+}
+
+resource "random_string" "name" {
   length  = 9
   special = false
 }
