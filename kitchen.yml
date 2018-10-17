@@ -19,7 +19,8 @@ platforms:
     driver:
       variables:
         os_family: centos
-        rootpath: /../../../
+        tf_test: true
+        salt_test: false
 
         # subnet_availability_zone: us-east-1a
 
@@ -67,7 +68,8 @@ platforms:
     driver:
       variables:
         os_family: ubuntu
-        rootpath: /../../../
+        tf_test: true
+        salt_test: false
 
         # subnet_availability_zone: us-west-2b
 

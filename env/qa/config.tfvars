@@ -1,1 +1,2 @@
-test = "false"
+salt_test = "false"
+tf_test = "false"

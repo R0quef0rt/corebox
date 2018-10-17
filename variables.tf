@@ -38,7 +38,12 @@ variable "salt_version" {
   default     = "2018.3.2"
 }
 
-variable "test" {
+variable "tf_test" {
+  description = "Enable kitchen testing for Terraform"
+  default     = "false"
+}
+
+variable "salt_test" {
   description = "Enable unit testing for Salt"
   default     = "false"
 }

@@ -66,18 +66,18 @@ resource "aws_instance" "minion" {
     private_key = "${file("${var.private_key}")}"
   }
 
-provisioner "salt-masterless" {
-    "local_state_tree"   = "${path.root}${var.rootpath}srv/salt"
-    "minion_config_file" = "${path.root}${var.rootpath}etc/salt/minion.${var.os_family}"
-    "bootstrap_args"     = "-i cloudbox -U -F -P -p python-git"
-    "salt_call_args"     = "--id cloudbox saltenv=${var.env} pillarenv=${var.env}"
-}
+# provisioner "salt-masterless" {
+#     "local_state_tree"   = "${path.root}${var.env == "test" ? "/../../.." : ""}/srv/salt"
+#     "minion_config_file" = "${path.root}${var.env == "test" ? "/../../.." : ""}/etc/salt/minion.${var.os_family}"
+#     "bootstrap_args"     = "-i cloudbox -U -F -P -p python-git"
+#     "salt_call_args"     = "--id cloudbox saltenv=${var.env} pillarenv=${var.env}"
+# }
 
-  # provisioner "remote-exec" {
-  #   inline = [
-  #     "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.test}",
-  #   ]
-  # }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.test}",
+    ]
+  }
 
   tags {
     Name        = "${var.project_key}-${var.service_name}-${var.env}"
