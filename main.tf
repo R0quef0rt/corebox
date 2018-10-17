@@ -75,7 +75,7 @@ resource "aws_instance" "minion" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.test}",
+      "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.salt_test}",
     ]
   }
 
