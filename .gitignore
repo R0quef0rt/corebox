@@ -7,6 +7,8 @@
 packer_cache
 config.ign.merged
 .terraform/
+terraform.tfstate
+terraform.tfstate.backup
 .vagrant/
 *.log
 output/*

@@ -103,12 +103,12 @@ variable "os_family" {
 
 variable "public_key" {
   description = "Public key used for SSH authentication"
-  default     = "~/.ssh/id_rsa.pub"
+  default     = "./assets/key_pair/id_rsa.pub"
 }
 
 variable "private_key" {
   description = "Private key used for SSH authenticatoin"
-  default     = "~/.ssh/id_rsa"
+  default     = "./assets/key_pair/id_rsa"
 }
 
 variable "rootpath" {
