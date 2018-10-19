@@ -42,9 +42,9 @@ cache:
   - ".terraform"
 before_install:
 - openssl aes-256-cbc -K $encrypted_dd2382e3b505_key -iv $encrypted_dd2382e3b505_iv
-  -in $ENV.pem.enc -out ~/.ssh/id_rsa -d
+  -in ./assets/key_pair/$ENV.pem.enc -out ~/.ssh/id_rsa -d
 - openssl aes-256-cbc -K $encrypted_dd2382e3b505_key -iv $encrypted_dd2382e3b505_iv
-  -in $ENV.key.enc -out ~/.ssh/id_rsa -d
+  -in ./assets/key_pair/$ENV.key.enc -out ~/.ssh/id_rsa -d
 before_script:
 - bash ./srv/ci/get-credentials.sh
 - bash ./srv/ci/export-variables.sh
