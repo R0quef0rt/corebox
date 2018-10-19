@@ -19,6 +19,7 @@ platforms:
     driver:
       variables:
         os_family: centos
+        project_key: abc
 
         # subnet_availability_zone: us-east-1a
 
@@ -66,6 +67,7 @@ platforms:
     driver:
       variables:
         os_family: ubuntu
+        project_key: xyz
 
         # subnet_availability_zone: us-west-2b
 

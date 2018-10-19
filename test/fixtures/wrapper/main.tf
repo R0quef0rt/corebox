@@ -10,8 +10,9 @@ module "extensive_kitchen_terraform" {
   tf_test       = "true"
   salt_test     = "false"
   env           = "qa"
+  project_key   = "abc"
   minion_config = "../../../etc/salt/minion.linux"
-  grains.config = "../../../etc/salt/grains"
+  grains_config = "../../../etc/salt/grains"
 
   #   subnet_availability_zone = "${var.subnet_availability_zone}"
 }
