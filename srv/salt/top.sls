@@ -1,5 +1,5 @@
 dev:
-  'os_family:Linux or os_family:RedHat':
+  'G@os_family:Linux or G@os_family:RedHat':
     - match: grain
     - common
     - system
@@ -26,7 +26,7 @@ dev:
     - gitlab
   'G@roles:ldap and G@os_family:Linux':
     - freeipa
-  'base and G@os_family:Windows':
+  'G@roles:ldap and G@os_family:Windows':
     - dsc.lcm
     - dsc.dependencies
     - dsc.updates
@@ -60,7 +60,7 @@ dev:
     - match: grain
     - packer
 qa:
-  'os_family:Linux or os_family:RedHat':
+  'G@os_family:Linux or G@os_family:RedHat':
     - match: grain
     - common
     - system
@@ -87,7 +87,7 @@ qa:
     - gitlab
   'G@roles:ldap and G@os_family:Linux':
     - freeipa
-  'base and G@os_family:Windows':
+  'G@roles:ldap and G@os_family:Windows':
     - dsc.lcm
     - dsc.dependencies
     - dsc.updates
@@ -121,7 +121,7 @@ qa:
     - match: grain
     - packer
 prod:
-  'os_family:Linux or os_family:RedHat':
+  'G@os_family:Linux or G@os_family:RedHat':
     - match: grain
     - common
     - system

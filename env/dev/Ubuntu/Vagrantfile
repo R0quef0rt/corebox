@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :salt do |salt|
     salt.masterless = true
-    salt.minion_id = "corebox"
+    salt.minion_id = "devbox"
     salt.minion_config = "../../../etc/salt/minion.linux"
     salt.grains_config = "../../../etc/salt/grains"
     salt.install_type = "stable"

@@ -36,7 +36,18 @@ The end result of this process will be a .box file in the ./output directory. Th
 1) Using the command line, navigate to the location where you downloaded this project
 2) Now, navigate to the appropriate "env" folder within this location. Choose a development environment (in my case, C:/Users/R0quef0rt/Documents/Repo/corebox/env/dev/Server2016)
 3) To launch this environment using the default configuration (in this case, an Active Directory environment), run the following command: vagrant up
-4) To use a different configuration, you must modify the "roles" grain in the ./etc/minion.windows configuration file. Of course, this role must be supported by the configuration in this repository.
+4) To use a different configuration, you must modify the "roles" grain in the ./etc/salt/minion.windows configuration file. Of course, this role must be supported by the configuration in this repository.
+
+### Launching your development environment with Terraform
+
+1) Install AWS-CLI and Terraform
+1) Using the command line, navigate to the location where you downloaded this project
+3) To launch this environment using the default configuration (in this case, an Active Directory environment), run the following commands: 
+- aws configure
+- terraform init
+- terraform plan
+- terraform apply
+4) To use a different configuration, you must modify the "roles" grain in the ./etc/salt/minion.windows configuration file. Of course, this role must be supported by the configuration in this repository.
 
 ## Incomplete
 
