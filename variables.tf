@@ -120,3 +120,8 @@ variable "cidr_block" {
   description = "The CIDR range to use for the VPC"
   default     = "10.0.0.0/16"
 }
+
+variable "dns_zone" {
+  description = "The Route53 DNS zone"
+  default     = "corebox.io"
+}

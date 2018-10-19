@@ -1,9 +1,5 @@
 dev:
-  'os_family:Linux':
-    - match: grain
-    - common
-    - system
-  'os_family:RedHat':
+  'os_family:Linux or os_family:RedHat':
     - match: grain
     - common
     - system
@@ -64,11 +60,7 @@ dev:
     - match: grain
     - packer
 qa:
-  'os_family:Linux':
-    - match: grain
-    - common
-    - system
-  'os_family:RedHat':
+  'os_family:Linux or os_family:RedHat':
     - match: grain
     - common
     - system
@@ -129,7 +121,7 @@ qa:
     - match: grain
     - packer
 prod:
-  'os_family:Linux':
+  'os_family:Linux or os_family:RedHat':
     - match: grain
     - common
     - system

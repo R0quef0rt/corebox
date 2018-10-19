@@ -1,12 +1,13 @@
 {
-    "min_packer_version": "0.12.0",
-    "variables": {
-      "service_name": "{{env `SERVICE_NAME`}}",
-      "region": "{{env `REGION`}}",
-      "service_version": "{{env `SERVICE_VERSION`}}",
-      "env": "{{env `ENV`}}"
-    },
-    "builders": [{
+  "min_packer_version": "0.12.0",
+  "variables": {
+    "service_name": "{{env `SERVICE_NAME`}}",
+    "region": "{{env `REGION`}}",
+    "service_version": "{{env `SERVICE_VERSION`}}",
+    "env": "{{env `ENV`}}"
+  },
+  "builders": [
+    {
       "ami_name": "{{user `service_name`}}-ubuntu-{{user `service_version` | clean_ami_name}}",
       "ami_description": "An Ubuntu 18.04 AMI pre-installed with Salt and basic system configurations.",
       "instance_type": "t2.micro",
@@ -22,14 +23,18 @@
           "block-device-mapping.volume-type": "gp2",
           "root-device-type": "ebs"
         },
-        "owners": ["099720109477"],
+        "owners": [
+          "099720109477"
+        ],
         "most_recent": true
       },
       "ssh_username": "ubuntu"
-    }],
-    "provisioners": [{
+    }
+  ],
+  "provisioners": [
+    {
       "type": "salt-masterless",
-      "minion_config": "../../../etc/salt/minion.ubuntu",
+      "minion_config": "../../../etc/salt/minion.linux",
       "local_state_tree": "../../../srv/salt",
       "bootstrap_args": "-i basebox -U -F -P -p python-git",
       "salt_call_args": "--id basebox saltenv={{user `env`}} pillarenv={{user `env`}}"

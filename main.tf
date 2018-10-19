@@ -28,16 +28,28 @@ data "aws_ami" "minion" {
   }
 }
 
+data "aws_route53_zone" "main" {
+  name         = "${var.dns_zone}."
+  private_zone = false
+}
+
+resource "aws_route53_record" "main" {
+  zone_id = "${data.aws_route53_zone.main.zone_id}"
+  name    = "${var.project_key}.${var.env}.${var.dns_zone}"
+  type    = "CNAME"
+  ttl     = "300"
+  records = ["${aws_instance.minion.public_dns}"]
+}
+
 resource "aws_security_group" "minion" {
   name        = "${var.service_name}-${var.env}-minion-${random_string.main.result}"
   description = "Used by the AWS instance."
   vpc_id      = "${module.vpc.vpc_id}"
 
   ingress {
-    from_port = 22
-    to_port   = 22
-    protocol  = "TCP"
-
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -61,6 +73,16 @@ resource "aws_instance" "minion" {
     type        = "ssh"
     user        = "${var.os_family}"
     private_key = "${file("${var.private_key}")}"
+  }
+
+  provisioner "file" {
+    source      = "etc/salt/minion.${var.os_family}"
+    destination = "/etc/salt/minion"
+  }
+
+  provisioner "file" {
+    source      = "etc/salt/grains"
+    destination = "/etc/salt/grains"
   }
 
   # provisioner "salt-masterless" {
