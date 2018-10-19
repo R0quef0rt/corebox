@@ -76,12 +76,12 @@ resource "aws_instance" "minion" {
   }
 
   provisioner "file" {
-    source      = "etc/salt/minion.linux"
+    source      = "${var.minion_config}"
     destination = "/etc/salt/minion"
   }
 
   provisioner "file" {
-    source      = "etc/salt/grains"
+    source      = "${var.grains_config}"
     destination = "/etc/salt/grains"
   }
 

@@ -46,4 +46,6 @@
 # Perform the same steps for Ubuntu in us-west-2
 bundle exec kitchen test $OS_FAMILY
 
+bundle exec kitchen destroy $OS_FAMILY
+
 # drop_aws_sts_session

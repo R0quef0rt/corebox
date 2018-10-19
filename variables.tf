@@ -125,3 +125,13 @@ variable "dns_zone" {
   description = "The Route53 DNS zone"
   default     = "corebox.io"
 }
+
+variable "minion_config" {
+  description = "Path to the minion config file"
+  default     = "etc/salt/minion.linux"
+}
+
+variable "grains_config" {
+  description = "Path to the grains config file"
+  default     = "etc/salt/grains"
+}
