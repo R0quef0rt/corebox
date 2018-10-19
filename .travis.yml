@@ -14,7 +14,7 @@ env:
   - PROJECT_KEY="rjb"
   - PROVIDER="aws"
   - SERVICE_NAME="corebox"
-  - SERVICE_VERSION="0.1.4"
+  - SERVICE_VERSION="0.1.5"
   - TERRAFORM_VERSION="0.11.8"
   - PACKER_VERSION="1.2.5"
   - DESTROY_ALL="false"
@@ -43,7 +43,7 @@ cache:
   - ".terraform"
 before_install:
 - openssl aes-256-cbc -K $encrypted_1f640c051bb9_key -iv $encrypted_1f640c051bb9_iv
-  -in ./assets/key_pair/qa.key.enc -out ./assets/key_pair/id_rsa -d
+  -in ./assets/key_pair/$ENV.key.enc -out ./assets/key_pair/id_rsa -d
 before_script:
 - bash ./srv/ci/get-credentials.sh
 - bash ./srv/ci/export-variables.sh

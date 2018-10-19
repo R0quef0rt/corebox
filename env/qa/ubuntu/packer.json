@@ -35,6 +35,7 @@
     {
       "type": "salt-masterless",
       "minion_config": "../../../etc/salt/minion.linux",
+      "grains_file": "../../../etc/salt/grains.default",
       "local_state_tree": "../../../srv/salt",
       "bootstrap_args": "-i basebox -U -F -P -p python-git",
       "salt_call_args": "--id basebox saltenv={{user `env`}} pillarenv={{user `env`}}"

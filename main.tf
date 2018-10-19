@@ -76,7 +76,7 @@ resource "aws_instance" "minion" {
   }
 
   provisioner "file" {
-    source      = "etc/salt/minion.${var.os_family}"
+    source      = "etc/salt/minion.linux"
     destination = "/etc/salt/minion"
   }
 
