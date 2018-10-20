@@ -1,9 +1,5 @@
 dev:
-  'os_family:Linux':
-    - match: grain
-    - common
-    - system
-  'os_family:RedHat':
+  'G@os_family:Linux or G@os_family:RedHat':
     - match: grain
     - common
     - system
@@ -30,7 +26,7 @@ dev:
     - gitlab
   'G@roles:ldap and G@os_family:Linux':
     - freeipa
-  'base and G@os_family:Windows':
+  'G@roles:ldap and G@os_family:Windows':
     - dsc.lcm
     - dsc.dependencies
     - dsc.updates
@@ -64,7 +60,7 @@ dev:
     - match: grain
     - packer
 qa:
-  'os_family:Linux':
+  'G@os_family:Linux or G@os_family:RedHat':
     - match: grain
     - common
     - system
@@ -77,6 +73,9 @@ qa:
   'roles:mariadb':
     - match: grain
     - mariadb
+  'roles:nextcloud':
+    - match: grain
+    - nextcloud
   'roles:proxy':
     - match: grain
     - traefik
@@ -89,6 +88,10 @@ qa:
   'G@roles:ldap and G@os_family:Linux':
     - freeipa
   'G@roles:ldap and G@os_family:Windows':
+    - dsc.lcm
+    - dsc.dependencies
+    - dsc.updates
+  'winbox and G@roles:ldap and G@os_family:Windows':
     - dsc.lcm
     - dsc.dependencies
     - dsc.ad.pdc
@@ -118,10 +121,11 @@ qa:
     - match: grain
     - packer
 prod:
-  'os_family:Linux':
+  'G@os_family:Linux or G@os_family:RedHat':
     - match: grain
     - common
     - system
+    - system.raid
   'roles:docker':
     - match: grain
     - docker

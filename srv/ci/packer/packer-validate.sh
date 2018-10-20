@@ -1,6 +1,4 @@
 #!/bin/bash
 
-PACKER_ENV=Ubuntu
-
-cd ./env/$ENV/$PACKER_ENV
+cd ./env/$ENV/$OS_FAMILY
 packer validate packer.json

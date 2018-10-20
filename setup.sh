@@ -10,11 +10,10 @@ mkdir -p /tmp/srv/pillar/dev
 mkdir -p /tmp/srv/pillar/qa
 mkdir -p /tmp/srv/pillar/prod
 
-# wget -O bootstrap-salt.sh https://bootstrap.saltstack.com
-# sh bootstrap-salt.sh -P -U -F \
-#   -i cloudbox \
-#   -c /tmp \
-#   -p python-git \
-#   git vSALT_VERSION
-
-# salt-call state.highstate
+wget -O bootstrap-salt.sh https://bootstrap.saltstack.com
+sh bootstrap-salt.sh -P -U -F \
+  -i cloudbox \
+  -c /tmp \
+  -p python-git \
+  -j ${MINION_CONFIG} \
+  git v${SALT_VERSION}

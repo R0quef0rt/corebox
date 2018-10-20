@@ -2,7 +2,7 @@ version: '3'
 
 services:
   controller:
-    image: linuxserver/unifi:154
+    image: linuxserver/unifi:170
     ports:
       - 8080:8080
       - 8443:8443

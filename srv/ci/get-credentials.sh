@@ -20,19 +20,3 @@ if   [ "$ACCOUNT" = "root" ]; then
 else
     echo "A required secret variable is either incorrect or not defined. Please check Gitlab CI's secret variables."
 fi
-
-
-echo "Write SSH private key to local file. Determines the key used to manage instances."
-
-if   [ "$ENV" = "dev" ];  then
-    echo "$DEV_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-    echo "$DEV_SSH_PUBLIC_KEY" > ~/.ssh/id_rsa.pub
-elif [ "$ENV" = "qa" ]; then
-    echo "$QA_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-    echo "$QA_SSH_PUBLIC_KEY" > ~/.ssh/id_rsa.pub
-elif [ "$ENV" = "prod" ]; then
-    echo "$PROD_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-    echo "$PROD_SSH_PUBLIC_KEY" > ~/.ssh/id_rsa.pub
-else
-    echo "A required secret variable is either incorrect or not defined. Please check Gitlab CI's secret variables."
-fi

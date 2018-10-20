@@ -2,12 +2,15 @@ provider "aws" {
   region                  = "${var.region}"
   shared_credentials_file = "~/.aws/credentials"
   profile                 = "default"
+  version                 = "~> 1.40"
+}
+
+provider "random" {
+  version = "~> 2.0"
 }
 
 terraform {
-  backend "s3" {
-    encrypt = "true"
-  }
+  required_version = ">= 0.11.4, < 0.12.0"
 }
 
 data "aws_ami" "minion" {
@@ -21,24 +24,32 @@ data "aws_ami" "minion" {
 
   filter {
     name   = "name"
-    values = ["${var.service_name}-*"]
+    values = ["${var.service_name}-${var.os_family}-*"]
   }
 }
 
-data "template_file" "minion-user-data" {
-  template = "${file("${path.root}/setup.sh")}"
+data "aws_route53_zone" "main" {
+  name         = "${var.dns_zone}."
+  private_zone = false
+}
+
+resource "aws_route53_record" "main" {
+  zone_id = "${data.aws_route53_zone.main.zone_id}"
+  name    = "${var.project_key}.${var.env}.${var.dns_zone}"
+  type    = "CNAME"
+  ttl     = "300"
+  records = ["${aws_instance.minion.public_dns}"]
 }
 
 resource "aws_security_group" "minion" {
-  name        = "${var.env}-${var.service_name}-minion"
+  name        = "${var.service_name}-${var.env}-minion-${random_string.main.result}"
   description = "Used by the AWS instance."
-  vpc_id      = "vpc-cd2d97b4"
+  vpc_id      = "${module.vpc.vpc_id}"
 
   ingress {
-    from_port = 22
-    to_port   = 22
-    protocol  = "TCP"
-
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -54,45 +65,76 @@ resource "aws_instance" "minion" {
   instance_type = "t2.micro"
   ami           = "${data.aws_ami.minion.image_id}"
 
-  user_data              = "${data.template_file.minion-user-data.rendered}"
-  key_name               = "dev"
-  subnet_id              = "subnet-df80f097"
+  key_name               = "${aws_key_pair.main.key_name}"
+  subnet_id              = "${element(module.vpc.public_subnets, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.minion.id}"]
 
   connection {
     type        = "ssh"
-    user        = "ubuntu"
-    private_key = "${file("${path.root}/auth/dev.key")}"
+    user        = "${var.os_family}"
+    private_key = "${file("${var.private_key}")}"
   }
 
-  ebs_block_device {
-    device_name           = "/dev/sdx"
-    volume_size           = 5
-    volume_type           = "gp2"
-    delete_on_termination = true
+  provisioner "file" {
+    source      = "${var.minion_config}"
+    destination = "/etc/salt/minion"
   }
 
-  ebs_block_device {
-    device_name           = "/dev/sdy"
-    volume_size           = 5
-    volume_type           = "gp2"
-    delete_on_termination = true
+  provisioner "file" {
+    source      = "${var.grains_config}"
+    destination = "/etc/salt/grains"
   }
 
-  ebs_block_device {
-    device_name           = "/dev/sdz"
-    volume_size           = 5
-    volume_type           = "gp2"
-    delete_on_termination = true
-  }
+  # provisioner "salt-masterless" {
+  #     "local_state_tree"   = "${path.root}${var.env == "test" ? "/../../.." : ""}/srv/salt"
+  #     "minion_config_file" = "${path.root}${var.env == "test" ? "/../../.." : ""}/etc/salt/minion.${var.os_family}"
+  #     "bootstrap_args"     = "-i cloudbox -U -F -P -p python-git"
+  #     "salt_call_args"     = "--id cloudbox saltenv=${var.env} pillarenv=${var.env}"
+  # }
 
   provisioner "remote-exec" {
     inline = [
-      "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.test}",
+      "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.salt_test}",
     ]
   }
-
   tags {
+    Name        = "${var.project_key}-${var.service_name}-${var.env}"
+    environment = "${var.env}"
+    Terraform   = "true"
+  }
+}
+
+resource "aws_key_pair" "main" {
+  key_name = "${var.env}-${var.service_name}-${random_string.main.result}"
+
+  public_key = "${file("${var.public_key}")}"
+}
+
+resource "random_string" "main" {
+  length  = 9
+  special = false
+}
+
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+
+  name = "${var.service_name}-${var.env}-${random_string.main.result}"
+  cidr = "${var.cidr_block}"
+
+  azs             = ["${lookup(var.subnetaz1, var.region)}", "${lookup(var.subnetaz2, var.region)}", "${lookup(var.subnetaz3, var.region)}"]
+  private_subnets = ["${cidrsubnet(var.cidr_block, 3, 1)}", "${cidrsubnet(var.cidr_block, 3, 2)}", "${cidrsubnet(var.cidr_block, 3, 3)}"]
+  public_subnets  = ["${cidrsubnet(var.cidr_block, 4, 8)}", "${cidrsubnet(var.cidr_block, 4, 9)}", "${cidrsubnet(var.cidr_block, 4, 10)}"]
+
+  create_vpc = true
+
+  enable_nat_gateway     = true
+  single_nat_gateway     = true
+  one_nat_gateway_per_az = false
+
+  enable_vpn_gateway   = false
+  enable_dns_hostnames = true
+
+  tags = {
     Name        = "${var.project_key}-${var.service_name}-${var.env}"
     environment = "${var.env}"
     Terraform   = "true"

@@ -62,18 +62,24 @@ gitfs_remotes:
         - ref: master
 
 gitfs_saltenv:
+  - dev:
+    - ref: master
   - qa:
     - ref: master
   - prod:
-    - ref: stable
+    - ref: master
 
 ext_pillar:
   - git:
     - master https://github.com/R0quef0rt/corebox.git:
+      - env: dev
+      - name: dev
+      - root: srv/pillar
+    - master https://github.com/R0quef0rt/corebox.git:
       - env: qa
       - name: qa
       - root: srv/pillar
-    - stable https://github.com/R0quef0rt/corebox.git:
+    - master https://github.com/R0quef0rt/corebox.git:
       - env: prod
       - name: prod
       - root: srv/pillar
@@ -83,10 +89,3 @@ schedule:
     function: state.highstate
     seconds: 3600
     run_on_start: True
-
-grains:
-  roles:
-    - docker
-  deploy:
-    ## Options are "baremetal" or "docker"
-    type: baremetal
