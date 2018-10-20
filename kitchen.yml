@@ -58,7 +58,7 @@ platforms:
           # The generated key pair is configured to be used for the SSH
           # authentication performed by InSpec
           key_files:
-            - test/assets/key_pair/id_rsa
+            - ~/.ssh/id_rsa
 
           user: centos
 
@@ -106,7 +106,7 @@ platforms:
           # The generated key pair is configured to be used for the SSH
           # authentication performed by InSpec
           key_files:
-            - test/assets/key_pair/id_rsa
+            - ~/.ssh/id_rsa
 
           user: ubuntu
 
