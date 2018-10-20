@@ -10,7 +10,7 @@ module "extensive_kitchen_terraform" {
   tf_test       = "true"
   salt_test     = "false"
   env           = "qa"
-  project_key   = "abc"
+  project_key   = "${var.project_key}"
   minion_config = "../../../etc/salt/minion.linux"
   grains_config = "../../../etc/salt/grains"
 

@@ -6,11 +6,18 @@ EOD
   type = "string"
 }
 
+variable "project_key" {
+  description = <<EOD
+Per-customer isolation key
+EOD
+
+  type     = "string"
+}
+
 # variable "subnet_availability_zone" {
 #   description = <<EOD
 # The isolated, regional location in which to place the subnet of the module
 # EOD
-
 
 #   type = "string"
 # }
