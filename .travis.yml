@@ -32,7 +32,6 @@ env:
 branches:
   only:
   - dev
-  - kitchen
   - master
   - stable
 stages:
