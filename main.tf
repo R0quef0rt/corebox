@@ -92,16 +92,32 @@ resource "aws_instance" "minion" {
   #     "salt_call_args"     = "--id cloudbox saltenv=${var.env} pillarenv=${var.env}"
   # }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.salt_test}",
-    ]
-  }
   tags {
     Name        = "${var.project_key}-${var.service_name}-${var.env}"
     environment = "${var.env}"
     Terraform   = "true"
   }
+}
+
+resource "null_resource" "minion" {
+  triggers {
+    node = "${join(",", aws_instance.minion.*.id)}"
+    uuid = "${uuid()}"
+  }
+
+  connection {
+    type        = "ssh"
+    user        = "${var.os_family}"
+    private_key = "${file("${var.private_key}")}"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.salt_test}",
+    ]
+  }
+
+  depends_on = ["aws_instance.minion"]
 }
 
 resource "aws_key_pair" "main" {
