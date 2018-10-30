@@ -35,11 +35,16 @@ cache:
     - .terraform
 
 before_script:
+  - sudo ./srv/ci/install-dependencies.sh
   - bash ./srv/ci/get-credentials.sh
   - echo 'aws_access_key_id = '$AWS_ACCESS_KEY >> ~/.aws/credentials
+  - cat ~/.aws/credentials
   - echo 'aws_secret_access_key = '$AWS_SECRET_KEY >> ~/.aws/credentials
+  - cat ~/.aws/credentials
   - echo "$SSH_PUBLIC_KEY" > ~/.ssh/id_rsa.pub
+  - cat ~/.ssh/id_rsa.pub
   - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+  - cat ~/.ssh/id_rsa
   - bash ./srv/ci/export-variables.sh
   - bash ./srv/ci/terraform/terraform-install.sh
   - bash ./srv/ci/packer/packer-install.sh
