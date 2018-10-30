@@ -75,7 +75,7 @@ validate and build:centos:
 integration testing:ubuntu:
   stage: test
   script:
-    - bash ./srv/ci/kitchen/terraform-test.sh
+    - bash ./srv/ci/kitchen/terraform-test.sh || true
   variables:
     OS_FAMILY: ubuntu
   only:
@@ -83,6 +83,10 @@ integration testing:ubuntu:
       - dev
       - master
       - schedules
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - .kitchen/logs/extensive-suite-ubuntu.log
 
 integration testing:centos:
   stage: test
