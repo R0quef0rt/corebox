@@ -9,6 +9,8 @@ provider "random" {
   version = "~> 2.0"
 }
 
+provider "null" {}
+
 terraform {
   required_version = ">= 0.11.4, < 0.12.0"
 }
