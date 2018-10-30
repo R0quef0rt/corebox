@@ -44,7 +44,7 @@ before_script:
   - bash ./srv/ci/export-variables.sh
   - bash ./srv/ci/terraform/terraform-install.sh
   - bash ./srv/ci/packer/packer-install.sh
-  - sudo bash ./srv/ci/rubygems/bundler-install.sh
+  - bash ./srv/ci/rubygems/bundler-install.sh
   - export PATH="~/bin:$PATH"
   - bash ./srv/ci/terraform/terraform-init.sh
 
