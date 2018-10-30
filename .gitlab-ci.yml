@@ -45,7 +45,6 @@ before_script:
   - bash ./srv/ci/terraform/terraform-install.sh
   - bash ./srv/ci/packer/packer-install.sh
   - bash ./srv/ci/rubygems/bundler-install.sh
-  - gem install bundler
   - export PATH="~/bin:$PATH"
 
 stages:
@@ -56,6 +55,7 @@ stages:
 validate and build:ubuntu:
   stage: build
   script:
+    - bash ./srv/ci/kitchen/terraform-test.sh
     - bash ./srv/ci/terraform/terraform-init.sh
     - bash ./srv/ci/terraform/terraform-validate.sh
     - bash ./srv/ci/packer/packer-validate.sh
@@ -76,7 +76,6 @@ validate and build:centos:
 integration testing:ubuntu:
   stage: test
   script:
-    - bundle install
     - bash ./srv/ci/kitchen/terraform-test.sh
   variables:
     OS_FAMILY: ubuntu
