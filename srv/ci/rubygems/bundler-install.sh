@@ -1,4 +1,4 @@
 #! /usr/bin/env bash
 
-apt-get -y install bundler
+apt-get -y install bundler jq
 bundle install
