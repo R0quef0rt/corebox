@@ -10,7 +10,7 @@ variables:
   PROVIDER: aws
   SERVICE_NAME: corebox
   SERVICE_VERSION: "0.2.0"
-  TERRAFORM_VERSION: "0.11.8"
+  TERRAFORM_VERSION: "0.11.10"
   PACKER_VERSION: "1.2.5"
   DESTROY_ALL: "false"
   REBUILD: "false"
