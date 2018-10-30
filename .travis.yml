@@ -5,7 +5,6 @@ addons:
   artifacts:
     paths:
     - $(ls /var/log/*.log | tr "\n" ":")
-    - "$TRAVIS_BUILD_DIR/terraform.tfvars"
 env:
   global:
   - REGION="us-east-1"
@@ -15,7 +14,7 @@ env:
   - PROVIDER="aws"
   - SERVICE_NAME="corebox"
   - SERVICE_VERSION="0.2.0"
-  - TERRAFORM_VERSION="0.11.8"
+  - TERRAFORM_VERSION="0.11.10"
   - PACKER_VERSION="1.2.5"
   - DESTROY_ALL="false"
   - REBUILD="false"
@@ -50,9 +49,7 @@ before_script:
 - bash ./srv/ci/export-variables.sh
 - bash ./srv/ci/terraform/terraform-install.sh
 - bash ./srv/ci/packer/packer-install.sh
-- sudo bash ./srv/ci/jq/jq-install.sh
 - bash ./srv/ci/rubygems/bundler-install.sh
-- export PATH="~/bin:$PATH"
 - bash ./srv/ci/terraform/terraform-init.sh
 jobs:
   include:

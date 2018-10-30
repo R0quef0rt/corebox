@@ -6,10 +6,10 @@ driver:
   root_module_directory: test/fixtures/wrapper
 
   backend_configurations:
-    key: <%= ENV['ENV'] %>/<%= ENV['SERVICE_NAME'] %>/<%= ENV['PROJECT_KEY'] %>/terraform.tfstate
-    bucket: <%= ENV['TFSTATE_BUCKET'] %>
-    region: <%= ENV['REGION'] %>
-    encrypt: true
+    key: "<%= ENV['ENV'] %>/<%= ENV['SERVICE_NAME'] %>/<%= ENV['PROJECT_KEY'] %>/terraform.tfstate"
+    bucket: "<%= ENV['TFSTATE_BUCKET'] %>""
+    region: "<%= ENV['REGION'] %>""
+    encrypt: "true"
     # dynamodb_table: $ENV-tfstate-lock
 
 provisioner:
