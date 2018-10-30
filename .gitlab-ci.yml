@@ -55,7 +55,7 @@ stages:
 validate and build:ubuntu:
   stage: build
   script:
-    - bash ./srv/terraform/terraform-init.sh
+    - bash ./srv/ci/terraform/terraform-init.sh
     - bash ./srv/ci/terraform/terraform-validate.sh
     - bash ./srv/ci/packer/packer-validate.sh
     - bash ./srv/ci/packer/packer-build.sh || true
@@ -65,7 +65,7 @@ validate and build:ubuntu:
 validate and build:centos:
   stage: build
   script:
-    - bash ./srv/terraform/terraform-init.sh
+    - bash ./srv/ci/terraform/terraform-init.sh
     - bash ./srv/ci/terraform/terraform-validate.sh
     - bash ./srv/ci/packer/packer-validate.sh
     - bash ./srv/ci/packer/packer-build.sh || true
