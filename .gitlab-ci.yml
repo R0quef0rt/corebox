@@ -1,0 +1,104 @@
+image:
+  name: ubuntu:trusty
+
+variables:
+
+  REGION: us-east-1
+  ENV: qa
+  ACCOUNT: qa
+  PROJECT_KEY: cdi
+  PROVIDER: aws
+  SERVICE_NAME: corebox
+  SERVICE_VERSION: "0.2.0"
+  TERRAFORM_VERSION: "0.11.8"
+  PACKER_VERSION: "1.2.5"
+  DESTROY_ALL: "false"
+  REBUILD: "false"
+  TF_IN_AUTOMATION: "true"
+  CI_BUILD_DIR: $CI_PROJECT_DIR
+  TFSTATE_BUCKET: roquefort-tfstate
+  ARTIFACTS_BUCKET: roquefort-public
+  ARTIFACTS_PATH: "s3.amazonaws.com/roquefort-public/R0quef0rt/devbox"
+  BUILD_NUMBER: $CI_JOB_ID
+  JOB_NUMBER: $CI_JOB_ID
+  ARTIFACTS_REGION: us-east-1
+  # GIT_SSL_NO_VERIFY: "true"
+  DOCKER_DRIVER: overlay2
+
+cache:
+  paths:
+    - .terraform
+
+before_script:
+  - openssl aes-256-cbc -K $encrypted_83b569cb89d7_key -iv $encrypted_83b569cb89d7_iv -in ./assets/key_pair/secrets.tar.enc -out ./assets/key_pair/secrets.tar -d
+  - tar xvf ./assets/key_pair/secrets.tar $ENV.pem $ENV.key
+  - mv $ENV.pem ~/.ssh/id_rsa.pub
+  - mv $ENV.key ~/.ssh/id_rsa
+  - bash ./srv/ci/get-credentials.sh
+  - bash ./srv/ci/export-variables.sh
+  - bash ./srv/ci/terraform/terraform-install.sh
+  - bash ./srv/ci/packer/packer-install.sh
+  - sudo bash ./srv/ci/jq/jq-install.sh
+  - bash ./srv/ci/rubygems/bundler-install.sh
+  - export PATH="~/bin:$PATH"
+  - bash ./srv/ci/terraform/terraform-init.sh
+
+stages:
+  - build
+  - test
+  - deploy
+
+validate and build:ubuntu:
+  stage: build
+  script:
+    - bash ./srv/ci/terraform/terraform-validate.sh
+    - bash ./srv/ci/packer/packer-validate.sh
+    - bash ./srv/ci/packer/packer-build.sh || true
+  variables:
+    OS_FAMILY: ubuntu
+
+validate and build:centos:
+  stage: build
+  script:
+    - bash ./srv/ci/terraform/terraform-validate.sh
+    - bash ./srv/ci/packer/packer-validate.sh
+    - bash ./srv/ci/packer/packer-build.sh || true
+  variables:
+    OS_FAMILY: centos
+
+integration testing:ubuntu:
+  stage: test
+  script:
+    - bash ./srv/ci/kitchen/terraform-test.sh
+  variables:
+    OS_FAMILY: ubuntu
+  only:
+    refs:
+      - dev
+      - master
+      - schedules
+
+integration testing:centos:
+  stage: test
+  script:
+    - bash ./srv/ci/kitchen/terraform-test.sh
+  variables:
+    OS_FAMILY: centos
+  only:
+    refs:
+      - dev
+      - master
+      - schedules
+
+terraform:apply:
+  stage: deploy
+  environment:
+    name: prod
+  script:
+    - bash ./srv/terraform/terraform-init.sh
+    - bash ./srv/terraform/terraform-plan.sh
+    - bash ./srv/terraform/terraform-apply.sh
+  only:
+    refs:
+      - master
+      - schedules
