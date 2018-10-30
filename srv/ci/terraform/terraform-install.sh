@@ -2,7 +2,7 @@
 
 wget --quiet "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
 unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /tmp
-mkdir ~/bin || true
-mv /tmp/terraform ~/bin
+mkdir /usr/local/bin || true
+mv /tmp/terraform /usr/local/bin
 
-export PATH="~/bin/terraform:$PATH"
+export PATH="/usr/local/bin:$PATH"

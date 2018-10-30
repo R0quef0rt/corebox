@@ -29,21 +29,21 @@
 
 # # Initialize the Terraform working directory and select a new Terraform workspace
 # # to test CentOS in us-east-1
-bundle exec kitchen create $OS_FAMILY
+# bundle exec kitchen create $OS_FAMILY
 
 # # Apply the Terraform root module to the Terraform state using the Terraform
 # # fixture configuration
-bundle exec kitchen converge $OS_FAMILY
+# bundle exec kitchen converge $OS_FAMILY
 
 # # Test the Terraform state using the InSpec controls
-bundle exec kitchen verify $OS_FAMILY
+# bundle exec kitchen verify $OS_FAMILY
 
 # # Destroy the Terraform state using the Terraform fixture configuration
-bundle exec kitchen destroy $OS_FAMILY
+# bundle exec kitchen destroy $OS_FAMILY
 
 # export_aws_sts_session "us-west-2"
 
 # Perform the same steps for Ubuntu in us-west-2
-# bundle exec kitchen test $OS_FAMILY
+bundle exec kitchen test $OS_FAMILY
 
 # drop_aws_sts_session
