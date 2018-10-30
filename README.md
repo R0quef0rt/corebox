@@ -1,6 +1,7 @@
 # CoreBox
 
-master: [![Build Status](https://travis-ci.org/R0quef0rt/corebox.svg?branch=master)](https://travis-ci.org/R0quef0rt/corebox)
+Travis-CI: [![Build Status](https://travis-ci.org/R0quef0rt/corebox.svg?branch=master)](https://travis-ci.org/R0quef0rt/corebox)
+Gitlab: [![pipeline status](https://gitlab.com/roquefort/corebox/badges/master/pipeline.svg)](https://gitlab.com/roquefort/corebox/commits/master)
 
 CoreBox is a (someday) production-ready, single-server solution for a DevOps beginner. It aims to bridge the difficult gap between putting automation technologies to good use, and learning the languages necessary to maintain a full stack. 
 
