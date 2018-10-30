@@ -46,6 +46,7 @@ before_script:
   - bash ./srv/ci/packer/packer-install.sh
   - bash ./srv/ci/rubygems/bundler-install.sh
   - export PATH="~/bin:$PATH"
+  - bash ./srv/terraform/terraform-init.sh
 
 stages:
   - build
