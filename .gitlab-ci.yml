@@ -75,6 +75,7 @@ validate and build:centos:
 integration testing:ubuntu:
   stage: test
   script:
+    - export PATH="~/bin/terraform:$PATH"
     - which terraform
     - bash ./srv/ci/kitchen/terraform-test.sh || true
   variables:
