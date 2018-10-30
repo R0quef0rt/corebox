@@ -35,7 +35,7 @@ cache:
     - .terraform
 
 before_script:
-  - sudo ./srv/ci/install-dependencies.sh
+  - sudo bash ./srv/ci/install-dependencies.sh
   - bash ./srv/ci/get-credentials.sh
   - echo 'aws_access_key_id = '$AWS_ACCESS_KEY >> ~/.aws/credentials
   - cat ~/.aws/credentials
