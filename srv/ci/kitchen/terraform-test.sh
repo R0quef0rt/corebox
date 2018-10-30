@@ -44,6 +44,6 @@
 # export_aws_sts_session "us-west-2"
 
 # Perform the same steps for Ubuntu in us-west-2
-bundle exec kitchen test $OS_FAMILY
+bundle exec kitchen test --force $OS_FAMILY
 
 # drop_aws_sts_session

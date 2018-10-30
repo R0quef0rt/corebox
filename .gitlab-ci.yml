@@ -75,7 +75,6 @@ validate and build:centos:
 integration testing:ubuntu:
   stage: test
   script:
-    - bash ./srv/ci/terraform/terraform-init.sh
     - bash ./srv/ci/kitchen/terraform-test.sh
   variables:
     OS_FAMILY: ubuntu
