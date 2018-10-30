@@ -55,7 +55,6 @@ stages:
 validate and build:ubuntu:
   stage: build
   script:
-    - bash ./srv/ci/kitchen/terraform-test.sh
     - bash ./srv/ci/terraform/terraform-init.sh
     - bash ./srv/ci/terraform/terraform-validate.sh
     - bash ./srv/ci/packer/packer-validate.sh
