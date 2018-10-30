@@ -48,8 +48,8 @@ before_script:
   - export PATH="~/bin:$PATH"
 
 stages:
-  - build
   - test
+  - build
   - deploy
 
 validate and build:ubuntu:
@@ -75,6 +75,7 @@ validate and build:centos:
 integration testing:ubuntu:
   stage: test
   script:
+    - which terraform
     - bash ./srv/ci/kitchen/terraform-test.sh || true
   variables:
     OS_FAMILY: ubuntu
