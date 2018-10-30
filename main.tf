@@ -106,6 +106,7 @@ resource "null_resource" "minion" {
   }
 
   connection {
+    host        = "${element(aws_instance.minion.*.public_ip, count.index)}"
     type        = "ssh"
     user        = "${var.os_family}"
     private_key = "${file("${var.private_key}")}"
