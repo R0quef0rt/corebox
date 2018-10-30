@@ -75,6 +75,7 @@ validate and build:centos:
 integration testing:ubuntu:
   stage: test
   script:
+    - bundle install
     - bash ./srv/ci/kitchen/terraform-test.sh
   variables:
     OS_FAMILY: ubuntu
