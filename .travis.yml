@@ -70,8 +70,8 @@ jobs:
     - OS_FAMILY=centos
   - stage: deploy
     script:
-    - bash ./srv/ci/kitchen/terraform-plan.sh
-    - bash ./srv/ci/kitchen/terraform-apply.sh
+    - bash ./srv/ci/terraform/terraform-plan.sh
+    - bash ./srv/ci/terraform/terraform-apply.sh
   - stage: integration testing
     script:
     - bash ./srv/ci/kitchen/terraform-test.sh
