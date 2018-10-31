@@ -71,27 +71,30 @@ resource "aws_instance" "minion" {
   subnet_id              = "${element(module.vpc.public_subnets, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.minion.id}"]
 
-  connection {
-    type        = "ssh"
-    user        = "${var.os_family}"
-    private_key = "${file("${var.private_key}")}"
-  }
+  # connection {
+  #   type        = "ssh"
+  #   user        = "${var.os_family}"
+  #   private_key = "${file("${var.private_key}")}"
+  # }
 
-  provisioner "file" {
-    source      = "${var.minion_config}"
-    destination = "/etc/salt/minion"
-  }
 
-  provisioner "file" {
-    source      = "${var.grains_config}"
-    destination = "/etc/salt/grains"
-  }
+  # provisioner "file" {
+  #   source      = "${var.minion_config}"
+  #   destination = "/etc/salt/minion"
+  # }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.salt_test}",
-    ]
-  }
+
+  # provisioner "file" {
+  #   source      = "${var.grains_config}"
+  #   destination = "/etc/salt/grains"
+  # }
+
+
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.salt_test}",
+  #   ]
+  # }
 
   tags {
     Name        = "${var.project_key}-${var.service_name}-${var.env}"
