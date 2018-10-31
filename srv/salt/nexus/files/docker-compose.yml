@@ -2,15 +2,26 @@ version: '3.3'
 
 services:
 
-  nextcloud:
+  nexus:
     image: sonatype/nexus3:3.14.0
     restart: always
     ports:
       - "8081:8081"
+    networks:
+      - traefik_frontend
     volumes:
-      - "data:/sonatype-work"
-    env_file:
-      - app.env
+      - "data:/sonatype-work/nexus3"
+      - "etc:/etc"
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_frontend
+      - traefik.port=80
+      # - traefik.frontend.rule=PathPrefix:/{{project}}
 
 volumes:
   data:
+  etc:
+
+networks:
+  traefik_frontend:
+    external: true

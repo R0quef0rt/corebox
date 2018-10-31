@@ -80,6 +80,8 @@ salt-call --local state.highstate test=True
 
 ### Docker Compose
 
+$Env:COMPOSE_CONVERT_WINDOWS_PATHS=1
+
 docker-compose up
 
 docker-compose down

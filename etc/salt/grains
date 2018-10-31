@@ -1,5 +1,7 @@
 roles:
   - docker
+  - proxy
+  - duplicati
   - nexus
 
 network:
