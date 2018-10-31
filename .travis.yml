@@ -10,7 +10,7 @@ env:
   - REGION="us-east-1"
   - ENV="qa"
   - ACCOUNT="root"
-  - PROJECT_KEY="rjb"
+  - PROJECT_KEY="abc"
   - PROVIDER="aws"
   - SERVICE_NAME="corebox"
   - SERVICE_VERSION="0.2.0"
