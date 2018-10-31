@@ -1,7 +1,6 @@
 roles:
   - docker
-  - proxy
-  - dashboard
+  - nexus
 
 network:
   interfaces:

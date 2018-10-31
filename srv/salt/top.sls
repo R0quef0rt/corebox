@@ -15,6 +15,9 @@ dev:
   'roles:nextcloud':
     - match: grain
     - nextcloud
+  'roles:nexus':
+    - match: grain
+    - nexus
   'roles:proxy':
     - match: grain
     - traefik
@@ -76,6 +79,9 @@ qa:
   'roles:nextcloud':
     - match: grain
     - nextcloud
+  'roles:nexus':
+    - match: grain
+    - nexus
   'roles:proxy':
     - match: grain
     - traefik
