@@ -35,6 +35,7 @@ branches:
   - stable
 stages:
 - validate and build
+- deploy
 - integration testing
 cache:
   directories:
@@ -67,6 +68,10 @@ jobs:
     - bash ./srv/ci/packer/packer-build.sh || true
     env:
     - OS_FAMILY=centos
+  - stage: deploy
+    script:
+    - bash ./srv/ci/kitchen/terraform-plan.sh
+    - bash ./srv/ci/kitchen/terraform-apply.sh
   - stage: integration testing
     script:
     - bash ./srv/ci/kitchen/terraform-test.sh
