@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+
+  nextcloud:
+    image: sonatype/nexus3:3.14.0
+    restart: always
+    ports:
+      - "8081:8081"
+    volumes:
+      - "data:/sonatype-work"
+    env_file:
+      - app.env
+
+volumes:
+  data:

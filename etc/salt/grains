@@ -1,7 +1,7 @@
 roles:
   - docker
-  - mariadb
-  - nextcloud
+  - proxy
+  - dashboard
 
 network:
   interfaces:

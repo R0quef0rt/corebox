@@ -63,7 +63,7 @@ gitfs_remotes:
 
 gitfs_saltenv:
   - dev:
-    - ref: master
+    - ref: dev
   - qa:
     - ref: master
   - prod:
@@ -71,7 +71,7 @@ gitfs_saltenv:
 
 ext_pillar:
   - git:
-    - master https://github.com/R0quef0rt/corebox.git:
+    - dev https://github.com/R0quef0rt/corebox.git:
       - env: dev
       - name: dev
       - root: srv/pillar

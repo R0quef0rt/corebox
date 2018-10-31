@@ -9,6 +9,10 @@ provider "random" {
   version = "~> 2.0"
 }
 
+provider "null" {
+  version = "~> 1.0"
+}
+
 terraform {
   required_version = ">= 0.11.4, < 0.12.0"
 
@@ -101,6 +105,42 @@ resource "aws_instance" "minion" {
     environment = "${var.env}"
     Terraform   = "true"
   }
+  depends_on = ["module.vpc"]
+}
+
+resource "null_resource" "minion" {
+  triggers {
+    uuid = "${uuid()}"
+  }
+
+  connection {
+    host        = "${aws_instance.minion.public_ip}"
+    type        = "ssh"
+    user        = "${var.os_family}"
+    private_key = "${file("${var.private_key}")}"
+  }
+
+  provisioner "file" {
+    source      = "${var.minion_config}"
+    destination = "/etc/salt/minion"
+  }
+
+  provisioner "file" {
+    source      = "${var.grains_config}"
+    destination = "/etc/salt/grains"
+  }
+
+  provisioner "local-exec" {
+    command = "sleep 120"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.salt_test}",
+    ]
+  }
+
+  depends_on = ["aws_instance.minion"]
 }
 
 resource "aws_key_pair" "main" {
@@ -126,8 +166,8 @@ module "vpc" {
 
   create_vpc = true
 
-  enable_nat_gateway     = true
-  single_nat_gateway     = true
+  enable_nat_gateway     = false
+  single_nat_gateway     = false
   one_nat_gateway_per_az = false
 
   enable_vpn_gateway   = false
