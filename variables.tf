@@ -25,7 +25,7 @@ variable "env" {
 
 variable "project_key" {
   description = "Per-customer isolation key"
-  default     = "rjb"
+  default     = "abc"
 }
 
 variable "region" {
