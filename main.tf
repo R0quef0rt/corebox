@@ -64,27 +64,14 @@ resource "aws_security_group" "minion" {
 }
 
 resource "aws_instance" "minion" {
-  instance_type = "t2.small"
+  instance_type = "t2.nano"
   ami           = "${data.aws_ami.minion.image_id}"
 
   key_name               = "${aws_key_pair.main.key_name}"
   subnet_id              = "${element(module.vpc.public_subnets, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.minion.id}"]
 
-  tags {
-    Name        = "${var.project_key}-${var.service_name}-${var.env}"
-    environment = "${var.env}"
-    Terraform   = "true"
-  }
-}
-
-resource "null_resource" "minion" {
-  triggers {
-    uuid = "${uuid()}"
-  }
-
   connection {
-    host        = "${aws_instance.minion.public_ip}"
     type        = "ssh"
     user        = "${var.os_family}"
     private_key = "${file("${var.private_key}")}"
@@ -106,7 +93,11 @@ resource "null_resource" "minion" {
     ]
   }
 
-  depends_on = ["aws_instance.minion"]
+  tags {
+    Name        = "${var.project_key}-${var.service_name}-${var.env}"
+    environment = "${var.env}"
+    Terraform   = "true"
+  }
 }
 
 resource "aws_key_pair" "main" {
