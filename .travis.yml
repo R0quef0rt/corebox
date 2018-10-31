@@ -34,7 +34,7 @@ branches:
   - master
   - stable
 stages:
-- validate and build
+# - validate and build
 - deploy
 - integration testing
 cache:
@@ -54,24 +54,26 @@ before_script:
 - bash ./srv/ci/rubygems/bundler-install.sh
 jobs:
   include:
-  - stage: validate and build
-    script:
-    - bash ./srv/ci/terraform/terraform-validate.sh
-    - bash ./srv/ci/packer/packer-validate.sh
-    - bash ./srv/ci/packer/packer-build.sh || true
-    env:
-    - OS_FAMILY=ubuntu
-  - stage: validate and build
-    script:
-    - bash ./srv/ci/terraform/terraform-validate.sh
-    - bash ./srv/ci/packer/packer-validate.sh
-    - bash ./srv/ci/packer/packer-build.sh || true
-    env:
-    - OS_FAMILY=centos
+  # - stage: validate and build
+  #   script:
+  #   - bash ./srv/ci/terraform/terraform-validate.sh
+  #   - bash ./srv/ci/packer/packer-validate.sh
+  #   - bash ./srv/ci/packer/packer-build.sh || true
+  #   env:
+  #   - OS_FAMILY=ubuntu
+  # - stage: validate and build
+  #   script:
+  #   - bash ./srv/ci/terraform/terraform-validate.sh
+  #   - bash ./srv/ci/packer/packer-validate.sh
+  #   - bash ./srv/ci/packer/packer-build.sh || true
+  #   env:
+  #   - OS_FAMILY=centos
   - stage: deploy
     script:
     - bash ./srv/ci/terraform/terraform-plan.sh
     - bash ./srv/ci/terraform/terraform-apply.sh
+    env:
+    - OS_FAMILY=ubuntu
   - stage: integration testing
     script:
     - bash ./srv/ci/kitchen/terraform-test.sh
