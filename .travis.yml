@@ -48,9 +48,9 @@ before_script:
 - bash ./srv/ci/get-credentials.sh
 - bash ./srv/ci/export-variables.sh
 - bash ./srv/ci/terraform/terraform-install.sh
-- bash ./srv/ci/packer/packer-install.sh
+- sudo bash ./srv/ci/packer/packer-install.sh
+- sudo bash ./srv/ci/terraform/terraform-init.sh
 - bash ./srv/ci/rubygems/bundler-install.sh
-- bash ./srv/ci/terraform/terraform-init.sh
 jobs:
   include:
   - stage: validate and build
