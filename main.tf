@@ -11,6 +11,8 @@ provider "random" {
 
 terraform {
   required_version = ">= 0.11.4, < 0.12.0"
+
+  backend "s3" {}
 }
 
 data "aws_ami" "minion" {
