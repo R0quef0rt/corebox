@@ -64,14 +64,27 @@ resource "aws_security_group" "minion" {
 }
 
 resource "aws_instance" "minion" {
-  instance_type = "t2.micro"
+  instance_type = "t2.small"
   ami           = "${data.aws_ami.minion.image_id}"
 
   key_name               = "${aws_key_pair.main.key_name}"
   subnet_id              = "${element(module.vpc.public_subnets, count.index)}"
   vpc_security_group_ids = ["${aws_security_group.minion.id}"]
 
+  tags {
+    Name        = "${var.project_key}-${var.service_name}-${var.env}"
+    environment = "${var.env}"
+    Terraform   = "true"
+  }
+}
+
+resource "null_resource" "minion" {
+  triggers {
+    uuid = "${uuid()}"
+  }
+
   connection {
+    host        = "${aws_instance.minion.public_ip}"
     type        = "ssh"
     user        = "${var.os_family}"
     private_key = "${file("${var.private_key}")}"
@@ -85,33 +98,6 @@ resource "aws_instance" "minion" {
   provisioner "file" {
     source      = "${var.grains_config}"
     destination = "/etc/salt/grains"
-  }
-
-  # provisioner "salt-masterless" {
-  #     "local_state_tree"   = "${path.root}${var.env == "test" ? "/../../.." : ""}/srv/salt"
-  #     "minion_config_file" = "${path.root}${var.env == "test" ? "/../../.." : ""}/etc/salt/minion.${var.os_family}"
-  #     "bootstrap_args"     = "-i cloudbox -U -F -P -p python-git"
-  #     "salt_call_args"     = "--id cloudbox saltenv=${var.env} pillarenv=${var.env}"
-  # }
-
-  tags {
-    Name        = "${var.project_key}-${var.service_name}-${var.env}"
-    environment = "${var.env}"
-    Terraform   = "true"
-  }
-}
-
-resource "null_resource" "minion" {
-  triggers {
-    node = "${join(",", aws_instance.minion.*.id)}"
-    uuid = "${uuid()}"
-  }
-
-  connection {
-    host        = "${element(aws_instance.minion.*.public_ip, count.index)}"
-    type        = "ssh"
-    user        = "${var.os_family}"
-    private_key = "${file("${var.private_key}")}"
   }
 
   provisioner "remote-exec" {

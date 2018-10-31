@@ -107,7 +107,7 @@ variable "public_key" {
 }
 
 variable "private_key" {
-  description = "Private key used for SSH authenticatoin"
+  description = "Private key used for SSH authentication"
   default     = "./assets/key_pair/id_rsa"
 }
 
