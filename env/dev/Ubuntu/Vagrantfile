@@ -24,6 +24,8 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder '.', '/vagrant', 
     disabled: true
   config.vm.synced_folder "../../../", "/app/live"
+  # config.vm.provision "file", source: "../../../srv/salt", destination: "C:\\app\\live\\srv\\salt"
+  # config.vm.provision "file", source: "../../../", destination: "/app/live"
 
   config.vm.provision :salt do |salt|
     salt.masterless = true

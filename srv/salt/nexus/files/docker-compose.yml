@@ -7,21 +7,21 @@ services:
     restart: always
     ports:
       - "8081:8081"
-    networks:
-      - traefik_frontend
+    # networks:
+    #   - traefik_frontend
     volumes:
       - "data:/sonatype-work/nexus3"
       - "etc:/etc"
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=traefik_frontend
-      - traefik.port=80
-      # - traefik.frontend.rule=PathPrefix:/{{project}}
+    # labels:
+    #   - traefik.enable=true
+    #   - traefik.docker.network=traefik_frontend
+    #   - traefik.port=80
+    #   # - traefik.frontend.rule=PathPrefix:/{{project}}
 
 volumes:
   data:
   etc:
 
-networks:
-  traefik_frontend:
-    external: true
+# networks:
+#   traefik_frontend:
+#     external: true
