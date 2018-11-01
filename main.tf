@@ -84,6 +84,41 @@ resource "aws_instance" "minion" {
   depends_on = ["module.vpc"]
 }
 
+resource "null_resource" "minion" {
+  triggers {
+    uuid = "${uuid()}"
+  }
+
+  connection {
+    host        = "${aws_instance.minion.public_ip}"
+    type        = "ssh"
+    user        = "${var.os_family}"
+    private_key = "${file("${var.private_key}")}"
+  }
+
+  provisioner "file" {
+    source      = "${var.minion_config}"
+    destination = "/etc/salt/minion"
+  }
+
+  provisioner "file" {
+    source      = "${var.grains_config}"
+    destination = "/etc/salt/grains"
+  }
+
+  provisioner "local-exec" {
+    command = "sleep 120"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.salt_test}",
+    ]
+  }
+
+  depends_on = ["aws_instance.minion"]
+}
+
 resource "aws_key_pair" "main" {
   key_name = "${var.env}-${var.service_name}-${random_string.main.result}"
 
