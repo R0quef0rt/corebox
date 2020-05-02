@@ -1,17 +1,11 @@
-{% macro compose_up(project) -%}
-
-{{project}}-compose-pull:
+docker-compose-pull:
   cmd.run:
-    - name: 'docker-compose pull'
-    - cwd: /app/live/projects/{{project}}
-    - require:
-      - cmd: {{project}}-compose-build
+    - name: 'docker-compose -f docker-compose.yml -f docker-compose.{{saltenv}}.yml pull'
+    - cwd: /app/live
 
-{{project}}-compose-up:
+docker-compose-up:
   cmd.run:
-    - name: 'docker-compose up --no-build -d'
-    - cwd: /app/live/projects/{{project}}
+    - name: 'docker-compose -f docker-compose.yml -f docker-compose.{{saltenv}}.yml up --no-build -d'
+    - cwd: /app/live
     - require:
-      - cmd: {{project}}-compose-pull
-      
-{%- endmacro %}
+      - cmd: docker-compose-pull

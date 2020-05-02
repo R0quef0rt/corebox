@@ -3,6 +3,7 @@ dev:
     - common
     - docker
     - docker.compose
+    - docker.up
 qa:
   'G@os_family:Linux or G@os_family:RedHat':
     - match: grain

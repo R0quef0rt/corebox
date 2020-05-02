@@ -3,7 +3,7 @@ version: "3"
 services:
   traefik:
     image: traefik
-    command: --api --docker
+    command: --api
     ports:
       - "80:80"
       - "443:443"
@@ -11,7 +11,7 @@ services:
       - frontend
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik.toml:/etc/traefik/traefik.toml
+      # - ./traefik.toml:/etc/traefik/traefik.toml
     restart: always
     labels:
       - "traefik.enable=true"
@@ -39,8 +39,8 @@ services:
     volumes:
       - plex_temp:/transcode
       - plex_config:/config
-      - radarr_movies:/movies
-      - sonarr_television:/television
+      - movies:/movies
+      - television:/television
     environment:
       PUID: 1000
       PGID: 1000
@@ -64,7 +64,6 @@ services:
       PGID: 1000
 
   sync:
-    user: "1000"
     volumes:
       - sync_config:/mnt/sync
 
