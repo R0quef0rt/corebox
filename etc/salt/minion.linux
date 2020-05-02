@@ -2,7 +2,7 @@ id: devbox
 
 file_client: local
 
-top_file_merging_strategy: merge
+top_file_merging_strategy: same
 
 saltenv: dev
 pillarenv: dev
@@ -14,7 +14,7 @@ env_order:
 
 file_roots:
   dev:
-    - /app/live/srv/salt
+    - /app/live/salt
   qa:
     - /srv/salt
     - /app/live/srv/salt
@@ -24,7 +24,7 @@ file_roots:
 
 pillar_roots:
   dev:
-    - /app/live/srv/pillar
+    - /app/live/pillar
   qa:
     - /srv/pillar
     - /app/live/srv/pillar
@@ -36,7 +36,7 @@ fileserver_backend:
   - roots
   - gitfs
 
-gitfs_root: srv/salt
+gitfs_root: salt
 
 gitfs_provider: gitpython
 
@@ -62,8 +62,6 @@ gitfs_remotes:
         - ref: master
 
 gitfs_saltenv:
-  - dev:
-    - ref: master
   - qa:
     - ref: master
   - prod:
@@ -71,10 +69,6 @@ gitfs_saltenv:
 
 ext_pillar:
   - git:
-    - master https://github.com/R0quef0rt/corebox.git:
-      - env: dev
-      - name: dev
-      - root: srv/pillar
     - master https://github.com/R0quef0rt/corebox.git:
       - env: qa
       - name: qa

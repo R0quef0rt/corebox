@@ -1,0 +1,19 @@
+{
+  "description": "Ubuntu 18.04",
+  "name": "ubuntu-18.04",
+  "versions": [
+    {
+      "providers": [
+        {
+          "name": "hyperv",
+          "url": "https://app.vagrantup.com/bento/boxes/ubuntu-18.04/versions/201808.24.0/providers/hyperv.box"
+        },
+        {
+          "name": "virtualbox",
+          "url": "https://app.vagrantup.com/bento/boxes/ubuntu-18.04/versions/201808.24.0/providers/virtualbox.box"
+        }
+      ],
+      "version": "18.04"
+    }
+  ]
+}
