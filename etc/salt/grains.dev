@@ -1,7 +1,5 @@
 roles:
-  - docker
-  - mariadb
-  - nextcloud
+  - nas
 
 network:
   interfaces:

@@ -11,7 +11,7 @@ variable "project_key" {
 Per-customer isolation key
 EOD
 
-  type     = "string"
+  type = "string"
 }
 
 # variable "subnet_availability_zone" {
