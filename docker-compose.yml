@@ -1,0 +1,109 @@
+version: "3"
+
+services:
+  duplicati:
+    image: linuxserver/duplicati:86
+    ports:
+      - "8200:8200"
+    restart: always
+    networks:
+      - frontend
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_frontend
+      - traefik.port=8200
+
+  nzbget:
+    image: linuxserver/nzbget:125
+    ports:
+      - 6789:6789
+    restart: unless-stopped
+    networks:
+      - frontend
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_frontend
+      - traefik.port=6789
+      - traefik.frontend.rule=PathPrefix:/nzbget
+
+  plex:
+    image: plexinc/pms-docker:1.13.5.5332-21ab172de
+    ports:
+      - 32400:32400
+    restart: unless-stopped
+    networks:
+      - frontend
+
+  radarr:
+    image: linuxserver/radarr:116
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+    networks:
+      - frontend
+    #   - traefik_frontend
+    # labels:
+    #   - traefik.enable=true
+    #   - traefik.docker.network=traefik_frontend
+    #   - traefik.port=7878
+    #   - traefik.frontend.rule=PathPrefix:/radarr
+
+  sonarr:
+    image: linuxserver/sonarr:143
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+    networks:
+      - frontend
+    #   - traefik_frontend
+    # labels:
+    #   - traefik.enable=true
+    #   - traefik.docker.network=traefik_frontend
+    #   - traefik.port=8989
+    #   - traefik.frontend.rule=Path:/sonarr
+
+  sync:
+    image: resilio/sync:release-2.5.13
+    ports:
+      - "8888:8888"
+      - "55555:55555"
+    restart: unless-stopped
+    # networks:
+    #   - traefik_frontend
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.docker.network=traefik_frontend"
+    #   - "traefik.port=8888"
+    #   - "traefik.frontend.rule=PathPrefixStrip:/sync"
+
+  unifi:
+    image: linuxserver/unifi:170
+    ports:
+      - 8080:8080
+      - 8443:8443
+      - 3478:3478/udp
+      - 10001:10001/udp
+    restart: always
+
+  # hugo:
+  #   image: roquefort/hugo:latest
+  #   build: .
+  #   restart: always
+  #   volumes:
+  #     - ./src/{{project}}:/src/{{project}}
+  #     - ./output/{{project}}:/output/{{project}}
+  #   networks:
+  #     - frontend
+  #   environment:
+  #     SERVICE_NAME: "hugo"
+  #     WATCH: "true"
+  #     REFRESH_TIME: 15
+  #     BASEURL: "http://192.168.1.1"
+  #   labels:
+  #     - traefik.enable=true
+  #     - traefik.docker.network=traefik_frontend
+  #     - traefik.port=80
+  #     # - traefik.frontend.rule=PathPrefix:/{{project}}
+
+networks:
+  frontend:

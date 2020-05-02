@@ -1,0 +1,86 @@
+version: "3"
+
+services:
+  traefik:
+    image: traefik
+    command: --api --docker
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - frontend
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/etc/traefik/traefik.toml
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=PathPrefixStrip:/traefik"
+      - "traefik.port=8080"
+      - "traefik.docker.network=backend"
+
+  duplicati:
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /app:/host/app
+      - /mnt:/mnt
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+  nzbget:
+    volumes:
+      - /mnt/downloads:/downloads
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+  plex:
+    volumes:
+      - plex_temp:/transcode
+      - plex_config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/movies:/movies
+      - /mnt/television:/television
+    environment:
+      PLEX_UID: 7000
+      PLEX_GID: 7000
+      ADVERTISE_IP: "http://192.168.5.20:32400/"
+      PLEX_CLAIM: "claim-V3FUKsHvqF2Vydgynbqp"
+
+  radarr:
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./config:/config
+      - /mnt/downloads:/downloads
+      - /mnt/movies:/movies
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+  sonarr:
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./config:/config
+      - /mnt/downloads:/downloads
+      - /mnt/television:/television
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+  sync:
+    user: "1000"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./config:/mnt/sync
+      - /mnt:/mnt/mounted_folders
+
+  unifi:
+    volumes:
+      - unifi_config:/config
+
+volumes:
+  plex_temp:
+  plex_config:
+  unifi_config:

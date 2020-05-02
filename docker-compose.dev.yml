@@ -1,0 +1,87 @@
+version: "3"
+
+services:
+  traefik:
+    image: traefik
+    command: --api --docker
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - frontend
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/etc/traefik/traefik.toml
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=PathPrefixStrip:/traefik"
+      - "traefik.port=8080"
+      - "traefik.docker.network=backend"
+
+  duplicati:
+    volumes:
+      - duplicati_source:/source
+      - duplicati_config:/config
+    environment:
+      PUID: 1000
+      PGID: 1000
+
+  nzbget:
+    volumes:
+      - downloads:/downloads
+      - ./config:/config
+    environment:
+      PUID: 1000
+      PGID: 1000
+
+  plex:
+    volumes:
+      - plex_temp:/transcode
+      - plex_config:/config
+      - radarr_movies:/movies
+      - sonarr_television:/television
+    environment:
+      PUID: 1000
+      PGID: 1000
+
+  radarr:
+    volumes:
+      - downloads:/downloads
+      - radarr_config:/config
+      - movies:/movies
+    environment:
+      PUID: 1000
+      PGID: 1000
+
+  sonarr:
+    volumes:
+      - downloads:/downloads
+      - sonarr_config:/config
+      - television:/television
+    environment:
+      PUID: 1000
+      PGID: 1000
+
+  sync:
+    user: "1000"
+    volumes:
+      - sync_config:/mnt/sync
+
+  unifi:
+    volumes:
+      - unifi_config:/config
+
+volumes:
+  source:
+  plex_config:
+  plex_temp:
+  duplicati_source:
+  duplicati_config:
+  radarr_config:
+  sonarr_config:
+  sync_config:
+  unifi_config:
+  downloads:
+  movies:
+  television:
