@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+name: default
+title: Salt Formulas
+maintainer: Ryan Brooks
+license: MIT
+summary: Verify that common Salt formulas are setup correctly
+supports:
+  - platform-name: ubuntu
+  - platform-name: centos

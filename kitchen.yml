@@ -9,7 +9,18 @@ provisioner:
   name: terraform
 
 verifier:
-  name: terraform
+  name: inspec
+  sudo: true
+
+suites:
+  - name: default
+    verifier:
+      inspec_tests:
+        - path: test/integration/default
+# suites:
+#   - name: default
+#     driver:
+#       name: vagrant
 
 # Platforms provide hooks for overriding the global Test Kitchen plugin
 # configuration to provide platform-specific values
@@ -54,13 +65,14 @@ platforms:
       # salt_file_root: /app/live/salt
       # salt_pillar_root: /app/live/pillar
 
-    verifier:
-      systems:
-        - name: inspec
-          backend: ssh
-          inspec_tests:
-            - name: docker-formula
-              url: https://github.com/saltstack-formulas/docker-formula/tree/master/test/integration/default
+    # verifier:
+    #   name: inspec
+      # systems:
+      #   - name: docker-formula
+      #     backend: ssh
+      #     inspec_tests:
+      #       - name: docker-formula
+      #         url: https://github.com/saltstack-formulas/docker-formula/tree/master/test/integration/default
 
   - name: centos
 
@@ -158,9 +170,3 @@ platforms:
 
           user: ubuntu
 
-# Suites include tests and provide additional hooks for overriding the global Test
-# Kitchen plugin configuration
-suites:
-  - # Kitchen-Terraform will assume that the InSpec profile for this suite is
-    # located at test/integration/extensive_suite
-    name: extensive_suite
