@@ -1,5 +1,4 @@
-{% for name, zone in pillar.get('timezone', {}).items() %}
-{{zone}}:
+{% set timezone = salt['pillar.get']('timezone', 'America/Chicago') %}
+{{timezone}}:
   timezone.system:
     - utc: True
-{% endfor %}

@@ -1,3 +1,10 @@
+repository:
+  - name: https://github.com/R0quef0rt/corebox
+    rev: dev
+    target: /app-remote
+
+timezone: America/Chicago
+
 firewall:
   - name: ssh
     dport: 22

@@ -1,9 +1,8 @@
 dev:
   '*':
     - common
-    - system.firewall
-    - system.account
-    - system.directory
+    - system
+    - git.repo
     - docker
     - docker.compose
     - compose.up
