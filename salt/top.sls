@@ -9,8 +9,11 @@ dev:
 qa:
   '*':
     - common
+    - system
+    - git.repo
     - docker
     - docker.compose
+    - compose.up
 prod:
   'G@os_family:Linux or G@os_family:RedHat':
     - match: grain
