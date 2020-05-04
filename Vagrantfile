@@ -13,13 +13,13 @@ Vagrant.configure("2") do |config|
   config.ssh.password = "vagrant"
 
   config.vm.provider "hyperv" do |hv|
-    hv.memory = "4096"
+    hv.memory = "2048"
     hv.cpus = 2
     hv.linked_clone = true
   end
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "4096"
+    vb.memory = "2048"
     vb.cpus = 2
   end
 
@@ -31,8 +31,8 @@ Vagrant.configure("2") do |config|
       apt-get update
       dpkg-reconfigure libc6 
       DEBIAN_FRONTEND=noninteractive dpkg --configure libssl1.1 
-      DEBIAN_FRONTEND=noninteractive apt-get install -y libssl1.1
-      pip3 install gitpython
+      DEBIAN_FRONTEND=noninteractive apt-get install -y libssl1.1 python3-pip
+      python3 -m pip install gitpython
     SHELL
   end
 

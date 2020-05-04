@@ -2,9 +2,10 @@
 
 source "https://rubygems.org/" do
     gem 'test-kitchen'
-    gem "kitchen-terraform", "~> 4.0"
+    gem 'train', "~> 2.1.19"
+    gem "kitchen-terraform"
     gem 'kitchen-vagrant'
+    gem 'kitchen-salt'
     gem 'kitchen-inspec'
-    # gem 'pry'
   end
   

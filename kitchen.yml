@@ -14,6 +14,48 @@ verifier:
 # Platforms provide hooks for overriding the global Test Kitchen plugin
 # configuration to provide platform-specific values
 platforms:
+  - name: vagrant
+
+    driver:
+      name: vagrant
+      box: bento/ubuntu-18.04
+      provider: hyperv
+      network:
+        - ["public_network", bridge: "External"]
+      username: vagrant
+      password: vagrant
+      linked_clone: true
+      customize:
+        memory: 2048
+        cpus: 2
+      synced_folders:
+        - [".", "/app/live", "smb_username: \"Ryan\", smb_password: \"<%= ENV['MY_PASSWORD'] %>\""]
+
+    provisioner:
+      name: salt_solo
+      log_level: debug
+      salt_install: bootstrap
+      require_chef: false
+      # formula: docker
+      remote_states: 
+        name: git://github.com/saltstack-formulas/docker-formula.git
+      salt_copy_filter:
+        - .kitchen
+        - .git
+      salt_file_root: /app/live/salt
+      salt_pillar_root: /app/live/pillar
+
+    verifier:
+      systems:
+        - name: inspec
+
+          backend: ssh
+          inspec_tests:
+            - name: docker-formula
+              url: https://github.com/saltstack-formulas/docker-formula/tree/master/test/integration/default
+          # user: vagrant
+          # password: vagrant
+
   - name: centos
 
     driver:
