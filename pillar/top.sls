@@ -1,6 +1,6 @@
-# dev:
-#   '*':
-#     - prod.system
+dev:
+  '*':
+    - dev
 #     - prod.grafana
 #     - prod.hugo
 #     - dev.dsc

@@ -12,11 +12,11 @@ env_order:
 
 file_roots:
   dev:
-    - /app/live/salt
+    - /app/salt
 
 pillar_roots:
   dev:
-    - /app/live/pillar
+    - /app/pillar
 
 fileserver_backend:
   - roots

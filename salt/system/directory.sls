@@ -1,15 +1,15 @@
-{% macro add_directory(path, user, group, mode, recurse) -%}
-{{path}}-directory:
+{% for app in salt['pillar.get']('directory') %}
+{{app['name']}}-directory:
   file.directory:
-    - name: {{path}}
-    - user: {{user}}
-    - group: {{group}}
-    - mode: {{mode}}
+    - name: {{app['path']}}
+    - user: {{app['user']}}
+    - group: {{app['group']}}
+    - mode: {{app['mode']}}
     - makedirs: True
-    {% if recurse == 'true' %}
+    {% if app['recurse'] == 'true' %}
     - recurse:
       - user
       - group
       - mode
     {% endif %}
-{%- endmacro %}
+{%- endfor %}

@@ -30,7 +30,7 @@ services:
   nzbget:
     volumes:
       - downloads:/downloads
-      - ./config:/config
+      - nzbget_config:/config
     environment:
       PUID: 1000
       PGID: 1000
@@ -73,6 +73,7 @@ services:
 
 volumes:
   source:
+  nzbget_config:
   plex_config:
   plex_temp:
   duplicati_source:

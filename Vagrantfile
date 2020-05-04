@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
     vb.cpus = 2
   end
 
-  config.vm.synced_folder ".", "/app/live"
+  config.vm.synced_folder ".", "/app"
 
   # Fixes a bug in the libssl package that causes salt install to hang indefinitely
   config.vm.provision "shell", type: "shell", run: "always" do |s|
