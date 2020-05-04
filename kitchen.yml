@@ -47,10 +47,11 @@ platforms:
       log_level: debug
       salt_install: bootstrap
       pip_bin: /usr/bin/pip3
+      salt_minion_id: qabox
       # salt_version: v3000.2
       salt_bootstrap_options: -F -P -V -a -x python3 git v3000.2
-      salt_minion_config_dropin_files:
-        - ./etc/salt/minion.qa
+      # salt_minion_config_dropin_files:
+      #   - ./etc/salt/minion.qa
       require_chef: false
       is_file_root: true
       local_salt_root: '.'
