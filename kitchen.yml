@@ -28,33 +28,39 @@ platforms:
       customize:
         memory: 2048
         cpus: 2
-      synced_folders:
-        - [".", "/app/live", "smb_username: \"Ryan\", smb_password: \"<%= ENV['MY_PASSWORD'] %>\""]
+      # synced_folders:
+      #   - [".", "/app/live", "smb_username: \"Ryan\", smb_password: \"<%= ENV['MY_PASSWORD'] %>\""]
 
     provisioner:
       name: salt_solo
       log_level: debug
       salt_install: bootstrap
+      pip_bin: /usr/bin/pip3
+      # salt_version: v3000.2
+      salt_bootstrap_options: -F -P -V -a -x python3 git v3000.2
       require_chef: false
-      # formula: docker
-      remote_states: 
-        name: git://github.com/saltstack-formulas/docker-formula.git
+      is_file_root: true
+      local_salt_root: '.'
+      salt_env: qa
+      state_top_from_file: true
+      dependencies: 
+        - name: docker
+          repo: git
+          source: https://github.com/saltstack-formulas/docker-formula
+          branch: master
       salt_copy_filter:
         - .kitchen
         - .git
-      salt_file_root: /app/live/salt
-      salt_pillar_root: /app/live/pillar
+      # salt_file_root: /app/live/salt
+      # salt_pillar_root: /app/live/pillar
 
     verifier:
       systems:
         - name: inspec
-
           backend: ssh
           inspec_tests:
             - name: docker-formula
               url: https://github.com/saltstack-formulas/docker-formula/tree/master/test/integration/default
-          # user: vagrant
-          # password: vagrant
 
   - name: centos
 
