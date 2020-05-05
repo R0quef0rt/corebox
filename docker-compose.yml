@@ -10,7 +10,7 @@ services:
       - frontend
     labels:
       - traefik.enable=true
-      - traefik.docker.network=traefik_frontend
+      - traefik.docker.network=frontend
       - traefik.port=8200
 
   nzbget:
@@ -22,7 +22,7 @@ services:
       - frontend
     labels:
       - traefik.enable=true
-      - traefik.docker.network=traefik_frontend
+      - traefik.docker.network=frontend
       - traefik.port=6789
       - traefik.frontend.rule=PathPrefix:/nzbget
 
@@ -41,10 +41,9 @@ services:
     restart: unless-stopped
     networks:
       - frontend
-    #   - traefik_frontend
     # labels:
     #   - traefik.enable=true
-    #   - traefik.docker.network=traefik_frontend
+    #   - traefik.docker.network=frontend
     #   - traefik.port=7878
     #   - traefik.frontend.rule=PathPrefix:/radarr
 
@@ -55,10 +54,9 @@ services:
     restart: unless-stopped
     networks:
       - frontend
-    #   - traefik_frontend
     # labels:
     #   - traefik.enable=true
-    #   - traefik.docker.network=traefik_frontend
+    #   - traefik.docker.network=frontend
     #   - traefik.port=8989
     #   - traefik.frontend.rule=Path:/sonarr
 
@@ -69,10 +67,10 @@ services:
       - "55555:55555"
     restart: unless-stopped
     # networks:
-    #   - traefik_frontend
+    #   - frontend
     # labels:
     #   - "traefik.enable=true"
-    #   - "traefik.docker.network=traefik_frontend"
+    #   - "traefik.docker.network=frontend"
     #   - "traefik.port=8888"
     #   - "traefik.frontend.rule=PathPrefixStrip:/sync"
 

@@ -1,17 +1,22 @@
-version: "3"
+version: "3.3"
 
 services:
   traefik:
-    image: traefik
-    command: --api --docker
+    image: traefik:v2.2.1
+    # command:
+    #   - "--log.level=DEBUG"
+    #   - "--api.insecure=true"
+    #   - "--providers.docker=true"
+    #   - "--providers.docker.exposedbydefault=false"
+    #   - "--entrypoints.web.address=:80"
     ports:
       - "80:80"
       - "443:443"
     networks:
       - frontend
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik.toml:/etc/traefik/traefik.toml
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yml:/etc/traefik/traefik.yml:ro
     restart: always
     labels:
       - "traefik.enable=true"
