@@ -8,11 +8,6 @@ variable "service_version" {
   default     = "0.0.0"
 }
 
-variable "provider" {
-  description = "Terraform cloud provider"
-  default     = "aws"
-}
-
 variable "account" {
   description = "AWS account to connect with"
   default     = "dev"
@@ -25,7 +20,7 @@ variable "env" {
 
 variable "project_key" {
   description = "Per-customer isolation key"
-  default     = "rjb"
+  default     = "abc"
 }
 
 variable "region" {
@@ -35,7 +30,7 @@ variable "region" {
 
 variable "subnetaz1" {
   description = "The availability zone to use for public subnet A."
-  type        = "map"
+  type        = map(string)
 
   default = {
     us-east-1      = "us-east-1a"
@@ -51,7 +46,7 @@ variable "subnetaz1" {
 
 variable "subnetaz2" {
   description = "The availability zone to use for public subnet B."
-  type        = "map"
+  type        = map(string)
 
   default = {
     us-east-1      = "us-east-1b"
@@ -67,7 +62,7 @@ variable "subnetaz2" {
 
 variable "subnetaz3" {
   description = "The availability zone to use for public subnet C."
-  type        = "map"
+  type        = map(string)
 
   default = {
     us-east-1      = "us-east-1c"
@@ -96,8 +91,8 @@ variable "salt_test" {
   default     = "false"
 }
 
-variable "os_family" {
-  description = "Used to look up a matching operating system AMI"
+variable "ssh_user" {
+  description = "Used to connect to the instance"
   default     = "ubuntu"
 }
 
@@ -128,10 +123,20 @@ variable "dns_zone" {
 
 variable "minion_config" {
   description = "Path to the minion config file"
-  default     = "etc/salt/minion.linux"
+  default     = "etc/salt/minion.qa"
 }
 
 variable "grains_config" {
   description = "Path to the grains config file"
-  default     = "etc/salt/grains"
+  default     = "etc/salt/grains.qa"
+}
+
+variable "ami_name" {
+  description = "The value of the AWS AMI ID to use"
+  default     = "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-arm64-server-20200430"
+}
+
+variable "ami_owner" {
+  description = "The value of the AMI owner"
+  default     = "099720109477"
 }
