@@ -74,14 +74,14 @@ services:
     #   - "traefik.port=8888"
     #   - "traefik.frontend.rule=PathPrefixStrip:/sync"
 
-  unifi:
-    image: linuxserver/unifi:170
-    ports:
-      - 8080:8080
-      - 8443:8443
-      - 3478:3478/udp
-      - 10001:10001/udp
-    restart: always
+  # unifi:
+  #   image: linuxserver/unifi:170
+  #   ports:
+  #     - 8080:8080
+  #     - 8443:8443
+  #     - 3478:3478/udp
+  #     - 10001:10001/udp
+  #   restart: always
 
   # hugo:
   #   image: roquefort/hugo:latest

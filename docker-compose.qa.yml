@@ -81,9 +81,9 @@ services:
       - ./config:/mnt/sync
       - /mnt:/mnt/mounted_folders
 
-  unifi:
-    volumes:
-      - unifi_config:/config
+  # unifi:
+  #   volumes:
+  #     - unifi_config:/config
 
 volumes:
   plex_temp:
