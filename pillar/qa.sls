@@ -14,7 +14,7 @@ directory:
     path: /etc/nzbget
     user: media
     group: media
-    mode: 650
+    mode: 750
     recurse: true
   - name: sonarr
     path: /etc/sonarr
@@ -26,17 +26,17 @@ directory:
     path: /etc/radarr
     user: media
     group: media
-    mode: 650
+    mode: 750
     recurse: true
   - name: sync
     path: /etc/sync
     user: media
     group: media
-    mode: 750
+    mode: 650
     recurse: true
   - name: plex
     path: /etc/plex
     user: media
     group: media
-    mode: 650
+    mode: 750
     recurse: true

@@ -14,21 +14,21 @@ control 'Directory' do
   describe directory('/etc/nzbget') do
     its('owner') { should eq 'media' }
     its('group') { should eq 'media' }
-    its('mode') { should cmp '0650' }
+    its('mode') { should cmp '0750' }
   end
 
   # Sonarr directory
   describe directory('/etc/sonarr') do
     its('owner') { should eq 'media' }
     its('group') { should eq 'media' }
-    its('mode') { should cmp '0650' }
+    its('mode') { should cmp '0750' }
   end
 
   # Radarr directory
   describe directory('/etc/radarr') do
     its('owner') { should eq 'media' }
     its('group') { should eq 'media' }
-    its('mode') { should cmp '0650' }
+    its('mode') { should cmp '0750' }
   end
 
   # Resilio Sync directory
@@ -42,6 +42,6 @@ control 'Directory' do
   describe directory('/etc/plex') do
     its('owner') { should eq 'media' }
     its('group') { should eq 'media' }
-    its('mode') { should cmp '0650' }
+    its('mode') { should cmp '0750' }
   end
 end
