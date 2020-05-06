@@ -3,64 +3,68 @@ version: "3.3"
 services:
   duplicati:
     volumes:
-      - duplicati_config:/data
+      - /etc/duplicati:/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/nzbget:/etc/nzbget
+      - /etc/sonarr:/etc/sonarr
+      - /etc/radarr:/etc/radarr
+      - /etc/sync:/etc/sync
+      - /etc/plex:/etc/plex
+      - /mnt:/mnt
     environment:
-      PUID: 1000
-      PGID: 1000
+      PUID: 7000
+      PGID: 7000
 
   nzbget:
     volumes:
-      - downloads:/downloads
-      - nzbget_config:/config
+      - /mnt/downloads:/downloads
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/nzbget:/config
     environment:
-      PUID: 1000
-      PGID: 1000
+      PUID: 7000
+      PGID: 7000
 
   plex:
     volumes:
       - plex_temp:/transcode
-      - plex_config:/config
-      - movies:/movies
-      - television:/television
+      - /etc/plex:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/movies:/movies
+      - /mnt/television:/television
     environment:
-      PUID: 1000
-      PGID: 1000
+      PLEX_UID: 7000
+      PLEX_GID: 7000
+      ADVERTISE_IP: "http://192.168.5.20:32400/"
+      PLEX_CLAIM: "claim-V3FUKsHvqF2Vydgynbqp"
 
   radarr:
     volumes:
-      - downloads:/downloads
-      - radarr_config:/config
-      - movies:/movies
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/radarr:/config
+      - /mnt/downloads:/downloads
+      - /mnt/movies:/movies
     environment:
-      PUID: 1000
-      PGID: 1000
+      PUID: 7000
+      PGID: 7000
 
   sonarr:
     volumes:
-      - downloads:/downloads
-      - sonarr_config:/config
-      - television:/television
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/sonarr:/config
+      - /mnt/downloads:/downloads
+      - /mnt/television:/television
     environment:
-      PUID: 1000
-      PGID: 1000
+      PUID: 7000
+      PGID: 7000
 
   sync:
     volumes:
-      - sync_config:/mnt/sync
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/sync:/mnt/sync
+      - /mnt:/mnt/mounted_folders
     environment:
-      PUID: 1000
-      PGID: 1000
+      PUID: 7000
+      PGID: 7000
 
 volumes:
-  source:
-  nzbget_config:
-  plex_config:
   plex_temp:
-  duplicati_config:
-  radarr_config:
-  sonarr_config:
-  sync_config:
-  unifi_config:
-  downloads:
-  movies:
-  television:
