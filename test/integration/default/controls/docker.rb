@@ -42,3 +42,33 @@ control 'Docker service' do
     it { should be_running }
   end
 end
+
+control 'Docker containers' do
+  title 'should be running and enabled'
+
+  describe docker.containers do
+    its('images') { should include 'linuxserver/duplicati:86' }
+    its('images') { should include 'linuxserver/nzbget:125' }
+    its('images') { should include 'plexinc/pms-docker:1.13.5.5332-21ab172de' }
+    its('images') { should include 'linuxserver/radarr:116' }
+    its('images') { should include 'linuxserver/sonarr:143' }
+    its('images') { should include 'resilio/sync:release-2.5.13' }
+  end
+
+  docker.containers.running?.ids.each do |id|
+    describe docker.object(id), :sensitive do
+      its('State.Status') { should eq 'running' }
+    end
+  end
+end
+
+control 'Docker containers permissions' do
+  title 'should be limited'
+
+  docker.containers.ids.each do |id|
+    describe docker.object(id) do
+      its(%w(HostConfig Privileged)) { should cmp false }
+      its(%w(HostConfig Privileged)) { should_not cmp true }
+    end
+  end
+end

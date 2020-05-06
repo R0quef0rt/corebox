@@ -36,11 +36,5 @@ directory:
     path: /mnt
     user: media
     group: media
-    mode: 770
-    recurse: true
-  - name: nzbget-config
-    path: /etc/nzbget
-    user: media
-    group: media
-    mode: 660
+    mode: 650
     recurse: true

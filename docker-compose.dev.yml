@@ -3,8 +3,7 @@ version: "3.3"
 services:
   duplicati:
     volumes:
-      - duplicati_source:/source
-      - duplicati_config:/config
+      - duplicati_config:/data
     environment:
       PUID: 1000
       PGID: 1000
@@ -48,13 +47,15 @@ services:
   sync:
     volumes:
       - sync_config:/mnt/sync
+    environment:
+      PUID: 1000
+      PGID: 1000
 
 volumes:
   source:
   nzbget_config:
   plex_config:
   plex_temp:
-  duplicati_source:
   duplicati_config:
   radarr_config:
   sonarr_config:

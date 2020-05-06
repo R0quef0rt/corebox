@@ -39,8 +39,6 @@ platforms:
       customize:
         memory: 2048
         cpus: 2
-      # synced_folders:
-      #   - [".", "/app/live", "smb_username: \"Ryan\", smb_password: \"<%= ENV['MY_PASSWORD'] %>\""]
 
     provisioner:
       name: salt_solo
@@ -48,10 +46,7 @@ platforms:
       salt_install: bootstrap
       pip_bin: /usr/bin/pip3
       salt_minion_id: qabox
-      # salt_version: v3000.2
       salt_bootstrap_options: -F -P -V -a -x python3 git v3000.2
-      # salt_minion_config_dropin_files:
-      #   - ./etc/salt/minion.qa
       require_chef: false
       is_file_root: true
       local_salt_root: '.'
@@ -65,8 +60,6 @@ platforms:
       salt_copy_filter:
         - .kitchen
         - .git
-      # salt_file_root: /app/live/salt
-      # salt_pillar_root: /app/live/pillar
 
     # verifier:
     #   name: inspec

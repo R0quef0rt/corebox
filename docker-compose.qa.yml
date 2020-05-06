@@ -3,6 +3,7 @@ version: "3.3"
 services:
   duplicati:
     volumes:
+      - /etc/duplicati:/data
       - /etc/localtime:/etc/localtime:ro
       - /etc/nzbget:/host/etc/nzbget
       - /etc/sonarr:/host/etc/sonarr
@@ -57,11 +58,13 @@ services:
       PGID: 7000
 
   sync:
-    user: "7000"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/sync:/mnt/sync
       - /mnt:/mnt/mounted_folders
+    environment:
+      PUID: 7000
+      PGID: 7000
 
 volumes:
   plex_temp:
