@@ -1,33 +1,14 @@
 version: "3.3"
 
 services:
-  traefik:
-    image: traefik:v2.2.1
-    # command:
-    #   - "--log.level=DEBUG"
-    #   - "--api.insecure=true"
-    #   - "--providers.docker=true"
-    #   - "--providers.docker.exposedbydefault=false"
-    #   - "--entrypoints.web.address=:80"
-    ports:
-      - "80:80"
-      - "443:443"
-    networks:
-      - frontend
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./traefik.yml:/etc/traefik/traefik.yml:ro
-    restart: always
-    labels:
-      - "traefik.enable=true"
-      - "traefik.frontend.rule=PathPrefixStrip:/traefik"
-      - "traefik.port=8080"
-      - "traefik.docker.network=backend"
-
   duplicati:
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /app:/host/app
+      - /etc/nzbget:/host/etc/nzbget
+      - /etc/sonarr:/host/etc/sonarr
+      - /etc/radarr:/host/etc/radarr
+      - /etc/sync:/host/etc/sync
+      - /etc/plex:/host/etc/plex
       - /mnt:/mnt
     environment:
       PUID: 7000
@@ -37,6 +18,7 @@ services:
     volumes:
       - /mnt/downloads:/downloads
       - /etc/localtime:/etc/localtime:ro
+      - /etc/nzbget:/config
     environment:
       PUID: 7000
       PGID: 7000
@@ -44,7 +26,7 @@ services:
   plex:
     volumes:
       - plex_temp:/transcode
-      - plex_config:/config
+      - /etc/plex:/config
       - /etc/localtime:/etc/localtime:ro
       - /mnt/movies:/movies
       - /mnt/television:/television
@@ -57,7 +39,7 @@ services:
   radarr:
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./config:/config
+      - /etc/radarr:/config
       - /mnt/downloads:/downloads
       - /mnt/movies:/movies
     environment:
@@ -67,7 +49,7 @@ services:
   sonarr:
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./config:/config
+      - /etc/sonarr:/config
       - /mnt/downloads:/downloads
       - /mnt/television:/television
     environment:
@@ -78,14 +60,8 @@ services:
     user: "7000"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./config:/mnt/sync
+      - /etc/sync:/mnt/sync
       - /mnt:/mnt/mounted_folders
-
-  # unifi:
-  #   volumes:
-  #     - unifi_config:/config
 
 volumes:
   plex_temp:
-  plex_config:
-  unifi_config:

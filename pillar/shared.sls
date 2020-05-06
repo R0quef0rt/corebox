@@ -22,24 +22,6 @@ firewall:
   - name: sync-proxy
     dport: 55555
     protocol: tcp
-  - name: traefik-http
-    dport: 80
-    protocol: tcp
-  - name: traefik-https
-    dport: 443
-    protocol: tcp
-  - name: unifi-device
-    dport: 8080
-    protocol: tcp
-  - name: unifi-web
-    dport: 8443
-    protocol: tcp
-  - name: unifi-stun
-    dport: 3478
-    protocol: udp
-  - name: unifi-discovery
-    dport: 10001
-    protocol: udp
 
 account:
   - name: master

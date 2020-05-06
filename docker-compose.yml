@@ -8,10 +8,6 @@ services:
     restart: always
     networks:
       - frontend
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=frontend
-      - traefik.port=8200
 
   nzbget:
     image: linuxserver/nzbget:125
@@ -20,11 +16,6 @@ services:
     restart: unless-stopped
     networks:
       - frontend
-    labels:
-      - traefik.enable=true
-      - traefik.docker.network=frontend
-      - traefik.port=6789
-      - traefik.frontend.rule=PathPrefix:/nzbget
 
   plex:
     image: plexinc/pms-docker:1.13.5.5332-21ab172de
@@ -41,11 +32,6 @@ services:
     restart: unless-stopped
     networks:
       - frontend
-    # labels:
-    #   - traefik.enable=true
-    #   - traefik.docker.network=frontend
-    #   - traefik.port=7878
-    #   - traefik.frontend.rule=PathPrefix:/radarr
 
   sonarr:
     image: linuxserver/sonarr:143
@@ -54,11 +40,6 @@ services:
     restart: unless-stopped
     networks:
       - frontend
-    # labels:
-    #   - traefik.enable=true
-    #   - traefik.docker.network=frontend
-    #   - traefik.port=8989
-    #   - traefik.frontend.rule=Path:/sonarr
 
   sync:
     image: resilio/sync:release-2.5.13
@@ -66,22 +47,8 @@ services:
       - "8888:8888"
       - "55555:55555"
     restart: unless-stopped
-    # networks:
-    #   - frontend
-    # labels:
-    #   - "traefik.enable=true"
-    #   - "traefik.docker.network=frontend"
-    #   - "traefik.port=8888"
-    #   - "traefik.frontend.rule=PathPrefixStrip:/sync"
-
-  # unifi:
-  #   image: linuxserver/unifi:170
-  #   ports:
-  #     - 8080:8080
-  #     - 8443:8443
-  #     - 3478:3478/udp
-  #     - 10001:10001/udp
-  #   restart: always
+    networks:
+      - frontend
 
   # hugo:
   #   image: roquefort/hugo:latest
