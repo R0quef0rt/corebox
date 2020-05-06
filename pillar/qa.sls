@@ -20,7 +20,7 @@ directory:
     path: /etc/sonarr
     user: media
     group: media
-    mode: 650
+    mode: 750
     recurse: true
   - name: radarr
     path: /etc/radarr
