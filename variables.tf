@@ -133,7 +133,7 @@ variable "grains_config" {
 
 variable "ami_name" {
   description = "The value of the AWS AMI ID to use"
-  default     = "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-arm64-server-20200430"
+  default     = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20200423"
 }
 
 variable "ami_owner" {

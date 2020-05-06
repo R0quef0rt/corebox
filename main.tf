@@ -57,22 +57,22 @@ resource "aws_instance" "main" {
   subnet_id              = element(module.vpc.public_subnets, count.index)
   vpc_security_group_ids = [aws_security_group.main.id]
 
-  connection {
-    host        = coalesce(self.public_ip, self.private_ip)
-    type        = "ssh"
-    user        = var.ssh_user
-    private_key = file(var.private_key)
-  }
+  # connection {
+  #   host        = coalesce(self.public_ip, self.private_ip)
+  #   type        = "ssh"
+  #   user        = var.ssh_user
+  #   private_key = file(var.private_key)
+  # }
 
-  provisioner "file" {
-    source      = var.minion_config
-    destination = "/etc/salt/minion"
-  }
+  # provisioner "file" {
+  #   source      = var.minion_config
+  #   destination = "/etc/salt/minion"
+  # }
 
-  provisioner "file" {
-    source      = var.grains_config
-    destination = "/etc/salt/grains"
-  }
+  # provisioner "file" {
+  #   source      = var.grains_config
+  #   destination = "/etc/salt/grains"
+  # }
 
   # provisioner "salt-masterless" {
   #     "local_state_tree"   = "${path.root}${var.env == "test" ? "/../../.." : ""}/srv/salt"
