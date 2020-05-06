@@ -4,9 +4,13 @@ control 'Firewall' do
   title 'should should be listening'
   
   # SSH
+  ssh_protocols = [
+    "tcp",
+    "tcp6"
+  ]
   describe port(22) do
     it { should be_listening }
-    its('protocols') { should cmp 'tcp' }
+    its('protocols') { should be_in ssh_protocols }
   end
 
   # Duplicati

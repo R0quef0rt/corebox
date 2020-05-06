@@ -47,7 +47,7 @@ control 'Docker containers' do
   title 'should be running and enabled'
 
   describe docker.containers do
-    its('images') { should include 'linuxserver/duplicati:86' }
+    its('images') { should include 'duplicati/duplicati:2.0.5.104_canary_2020-03-25' }
     its('images') { should include 'linuxserver/nzbget:125' }
     its('images') { should include 'plexinc/pms-docker:1.13.5.5332-21ab172de' }
     its('images') { should include 'linuxserver/radarr:116' }

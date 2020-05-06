@@ -15,19 +15,19 @@ directory:
     user: media
     group: media
     mode: 750
-    recurse: true
+    recurse: false
   - name: sonarr
     path: /etc/sonarr
     user: media
     group: media
     mode: 750
-    recurse: true
+    recurse: false
   - name: radarr
     path: /etc/radarr
     user: media
     group: media
     mode: 750
-    recurse: true
+    recurse: false
   - name: sync
     path: /etc/sync
     user: media
@@ -39,4 +39,4 @@ directory:
     user: media
     group: media
     mode: 750
-    recurse: true
+    recurse: false
