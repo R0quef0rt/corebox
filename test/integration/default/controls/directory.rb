@@ -10,6 +10,11 @@ control 'Directory' do
     its('mode') { should cmp '0650' }
   end
 
+  # Project git repo
+  describe directory('/app') do
+    it { should exist }
+  end
+
   # Sonarr
   describe directory('/etc/nzbget') do
     its('owner') { should eq 'media' }

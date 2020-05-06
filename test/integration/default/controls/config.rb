@@ -3,6 +3,11 @@
 control 'Directory' do
   title 'should should be configured'
 
+  # Project docker-compose file
+  describe directory('/app/docker-compose.yml') do
+    it { should exist }
+  end
+
   # NZBGet
   describe file('/etc/nzbget/nzbget.conf') do
     it { should exist }
