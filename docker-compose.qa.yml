@@ -20,7 +20,7 @@ services:
       - /mnt/downloads:/downloads
       - /etc/localtime:/etc/localtime:ro
       - /etc/nzbget:/config
-    user: "media"
+    user: "7000"
     environment:
       PUID: 7000
       PGID: 7000
