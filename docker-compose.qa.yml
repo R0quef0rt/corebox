@@ -11,6 +11,7 @@ services:
       - /etc/sync:/host/etc/sync
       - /etc/plex:/host/etc/plex
       - /mnt:/mnt
+    user: "7000:7000"
     environment:
       PUID: 7000
       PGID: 7000
@@ -20,7 +21,7 @@ services:
       - /mnt/downloads:/downloads
       - /etc/localtime:/etc/localtime:ro
       - /etc/nzbget:/config
-    user: "7000"
+    user: "7000:7000"
     environment:
       PUID: 7000
       PGID: 7000
@@ -32,6 +33,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /mnt/movies:/movies
       - /mnt/television:/television
+    user: "7000:7000"
     environment:
       PLEX_UID: 7000
       PLEX_GID: 7000
@@ -44,6 +46,7 @@ services:
       - /etc/radarr:/config
       - /mnt/downloads:/downloads
       - /mnt/movies:/movies
+    user: "7000:7000"
     environment:
       PUID: 7000
       PGID: 7000
@@ -54,6 +57,7 @@ services:
       - /etc/sonarr:/config
       - /mnt/downloads:/downloads
       - /mnt/television:/television
+    user: "7000:7000"
     environment:
       PUID: 7000
       PGID: 7000
@@ -63,6 +67,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/sync:/mnt/sync
       - /mnt:/mnt/mounted_folders
+    user: "7000:7000"
     environment:
       PUID: 7000
       PGID: 7000
