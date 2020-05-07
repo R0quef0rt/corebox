@@ -5,10 +5,6 @@ provider "aws" {
   version                 = "~> 2.60.0"
 }
 
-provider "tls" {
-  version = "~> 2.1"
-}
-
 provider "random" {
   version = "~> 2.2.1"
 }
@@ -52,54 +48,17 @@ resource "aws_security_group" "main" {
   }
 }
 
-
-
-
-
-
-
-
-
-resource "aws_key_pair" "test" {
-  key_name   = "${uuid()}"
-  public_key = "${tls_private_key.t.public_key_openssh}"
-}
-provider "tls" {}
-resource "tls_private_key" "t" {
-  algorithm = "RSA"
-}
-provider "local" {}
-resource "local_file" "key" {
-  content  = "${tls_private_key.t.private_key_pem}"
-  filename = "id_rsa"
-  provisioner "local-exec" {
-    command = "chmod 600 id_rsa"
-  }
-}
-
-
-
-
-
-
-
-
-
 resource "aws_key_pair" "main" {
   key_name   = "${local.name}-${random_string.main.result}"
-  public_key = tls_private_key.main.public_key_openssh
-}
-
-resource "tls_private_key" "main" {
-  algorithm   = "ECDSA"
-  rsa_bits    = "4096"
-  ecdsa_curve = "P384"
+  public_key = file(var.public_key)
 }
 
 resource "aws_instance" "main" {
   count         = 1
   instance_type = "t2.micro"
   ami           = data.aws_ami.main.image_id
+
+  user_data = file("user_data.sh")
 
   key_name               = aws_key_pair.main.key_name
   subnet_id              = element(module.vpc.public_subnets, count.index)
@@ -109,31 +68,35 @@ resource "aws_instance" "main" {
     host        = coalesce(self.public_ip, self.private_ip)
     type        = "ssh"
     user        = var.ssh_user
-    private_key = tls_private_key.main.private_key_pem
+    private_key = file(var.private_key)
   }
 
   provisioner "file" {
     source      = var.minion_config
-    destination = "/etc/salt/minion"
+    destination = "/app/minion"
   }
 
   provisioner "file" {
     source      = var.grains_config
-    destination = "/etc/salt/grains"
+    destination = "/app/grains"
   }
 
-  # provisioner "salt-masterless" {
-  #     "local_state_tree"   = "${path.root}${var.env == "test" ? "/../../.." : ""}/srv/salt"
-  #     "minion_config_file" = "${path.root}${var.env == "test" ? "/../../.." : ""}/etc/salt/minion.${var.os_family}"
-  #     "bootstrap_args"     = "-i cloudbox -U -F -P -p python-git"
-  #     "salt_call_args"     = "--id cloudbox saltenv=${var.env} pillarenv=${var.env}"
-  # }
+  provisioner "file" {
+    source      = "./salt"
+    destination = "/app/salt"
+  }
+
+  provisioner "file" {
+    source      = "./pillar"
+    destination = "/app/pillar"
+  }
 
   # provisioner "remote-exec" {
   #   inline = [
+  #     "while [ ! -f /tmp/signal ]; do sleep 2; done",
   #     "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.salt_test}",
   #   ]
-  # }
+
   tags = {
     Name        = local.name
     environment = var.env

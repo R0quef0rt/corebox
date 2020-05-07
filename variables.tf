@@ -123,12 +123,12 @@ variable "dns_zone" {
 
 variable "minion_config" {
   description = "Path to the minion config file"
-  default     = "etc/salt/minion.qa"
+  default     = "etc/salt/minion.dev"
 }
 
 variable "grains_config" {
   description = "Path to the grains config file"
-  default     = "etc/salt/grains.qa"
+  default     = "etc/salt/grains.dev"
 }
 
 variable "ami_name" {
