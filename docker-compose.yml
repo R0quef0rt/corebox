@@ -13,7 +13,7 @@ services:
     image: linuxserver/nzbget:125
     ports:
       - 6789:6789
-    restart: unless-stopped
+    restart: always
     networks:
       - frontend
 
@@ -21,7 +21,7 @@ services:
     image: plexinc/pms-docker:1.13.5.5332-21ab172de
     ports:
       - 32400:32400
-    restart: unless-stopped
+    restart: always
     networks:
       - frontend
 
@@ -29,7 +29,7 @@ services:
     image: linuxserver/radarr:116
     ports:
       - 7878:7878
-    restart: unless-stopped
+    restart: always
     networks:
       - frontend
 
@@ -37,7 +37,7 @@ services:
     image: linuxserver/sonarr:143
     ports:
       - 8989:8989
-    restart: unless-stopped
+    restart: always
     networks:
       - frontend
 
@@ -46,7 +46,7 @@ services:
     ports:
       - "8888:8888"
       - "55555:55555"
-    restart: unless-stopped
+    restart: always
     networks:
       - frontend
 
