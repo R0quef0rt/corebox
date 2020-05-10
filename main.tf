@@ -62,13 +62,6 @@ resource "aws_instance" "main" {
   subnet_id              = element(module.vpc.public_subnets, count.index)
   vpc_security_group_ids = [aws_security_group.main.id]
 
-  # connection {
-  #   host        = coalesce(self.public_ip, self.private_ip)
-  #   type        = "ssh"
-  #   user        = var.ssh_user
-  #   private_key = file(var.private_key)
-  # }
-
   tags = {
     Name        = local.name
     environment = var.env

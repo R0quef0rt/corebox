@@ -3,16 +3,6 @@ variable "service_name" {
   default     = "corebox"
 }
 
-variable "service_version" {
-  description = "Version of this project"
-  default     = "0.0.0"
-}
-
-variable "account" {
-  description = "AWS account to connect with"
-  default     = "dev"
-}
-
 variable "env" {
   description = "dev/qa/prod"
   default     = "dev"
@@ -76,26 +66,6 @@ variable "subnetaz3" {
   }
 }
 
-variable "salt_version" {
-  description = "The version of Salt to install"
-  default     = "2018.3.2"
-}
-
-variable "tf_test" {
-  description = "Enable kitchen testing for Terraform"
-  default     = "false"
-}
-
-variable "salt_test" {
-  description = "Enable unit testing for Salt"
-  default     = "false"
-}
-
-variable "ssh_user" {
-  description = "Used to connect to the instance"
-  default     = "ubuntu"
-}
-
 variable "public_key" {
   description = "Public key used for SSH authentication"
   default     = "./assets/key_pair/id_rsa.pub"
@@ -114,21 +84,6 @@ variable "rootpath" {
 variable "cidr_block" {
   description = "The CIDR range to use for the VPC"
   default     = "10.0.0.0/16"
-}
-
-variable "dns_zone" {
-  description = "The Route53 DNS zone"
-  default     = "corebox.io"
-}
-
-variable "minion_config" {
-  description = "Path to the minion config file"
-  default     = "etc/salt/minion.dev"
-}
-
-variable "grains_config" {
-  description = "Path to the grains config file"
-  default     = "etc/salt/grains.dev"
 }
 
 variable "ami_name" {
