@@ -58,44 +58,16 @@ resource "aws_instance" "main" {
   instance_type = "t2.micro"
   ami           = data.aws_ami.main.image_id
 
-  user_data = file("user_data.sh")
-
   key_name               = aws_key_pair.main.key_name
   subnet_id              = element(module.vpc.public_subnets, count.index)
   vpc_security_group_ids = [aws_security_group.main.id]
 
-  connection {
-    host        = coalesce(self.public_ip, self.private_ip)
-    type        = "ssh"
-    user        = var.ssh_user
-    private_key = file(var.private_key)
-  }
-
-  provisioner "file" {
-    source      = var.minion_config
-    destination = "/app/minion"
-  }
-
-  provisioner "file" {
-    source      = var.grains_config
-    destination = "/app/grains"
-  }
-
-  provisioner "file" {
-    source      = "./salt"
-    destination = "/app/salt"
-  }
-
-  provisioner "file" {
-    source      = "./pillar"
-    destination = "/app/pillar"
-  }
-
-  # provisioner "remote-exec" {
-  #   inline = [
-  #     "while [ ! -f /tmp/signal ]; do sleep 2; done",
-  #     "sudo salt-call --local --id cloudbox state.highstate saltenv=${var.env} pillarenv=${var.env} TEST=${var.salt_test}",
-  #   ]
+  # connection {
+  #   host        = coalesce(self.public_ip, self.private_ip)
+  #   type        = "ssh"
+  #   user        = var.ssh_user
+  #   private_key = file(var.private_key)
+  # }
 
   tags = {
     Name        = local.name

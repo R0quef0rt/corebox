@@ -133,10 +133,10 @@ variable "grains_config" {
 
 variable "ami_name" {
   description = "The value of the AWS AMI ID to use"
-  default     = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20200423"
+  default     = "corebox-ubuntu"
 }
 
 variable "ami_owner" {
   description = "The value of the AMI owner"
-  default     = "099720109477"
+  default     = "self"
 }
