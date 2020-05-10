@@ -3,7 +3,7 @@
     "variables": {
         "service_name": "corebox",
         "region": "us-east-1",
-        "env": "dev"
+        "env": "qa"
     },
     "builders": [
         {
@@ -35,7 +35,7 @@
             "type": "shell",
             "inline": [
                 "sudo apt-get update",
-                "sudo apt-get -y install python3-dev python3-pip python-git",
+                "sudo apt-get -y install python3-dev python3-pip",
                 "pip3 install gitpython",
                 "sudo mkdir -p /etc/salt",
                 "sudo chmod -R 777 /etc/salt"
@@ -43,10 +43,10 @@
         },
         {
             "type": "salt-masterless",
-            "minion_config": "etc/salt/minion.dev",
-            "grains_file": "etc/salt/grains.dev",
+            "minion_config": "etc/salt/minion.{{user `env`}}",
+            "grains_file": "etc/salt/grains.{{user `env`}}",
             "local_state_tree": "salt",
-            "local_pillar_roots": "salt",
+            "local_pillar_roots": "pillar",
             "bootstrap_args": "-F -P -V -a -x python3 -p gitpython git v3000.2",
             "salt_call_args": "saltenv={{user `env`}} pillarenv={{user `env`}}"
         }

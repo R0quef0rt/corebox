@@ -1,0 +1,36 @@
+id: qabox
+
+file_client: local
+
+top_file_merging_strategy: same
+
+saltenv: qa
+pillarenv: qa
+
+env_order:
+  - qa
+
+file_roots:
+  qa:
+    - /app/salt
+    - /srv/salt
+
+pillar_roots:
+  qa:
+    - /app/pillar
+    - /srv/pillar
+
+fileserver_backend:
+  - roots
+  - gitfs
+
+gitfs_root: /
+
+gitfs_provider: gitpython
+
+gitfs_remotes:
+  - https://github.com/saltstack-formulas/docker-formula.git
+
+gitfs_saltenv:
+  - qa:
+    - ref: master
