@@ -1,8 +1,5 @@
 driver:
   name: terraform
-
-  # The test fixture Terraform configuration is configured to be the Terraform
-  # root module
   root_module_directory: test/fixtures/wrapper
 
 provisioner:
@@ -17,16 +14,9 @@ suites:
     verifier:
       inspec_tests:
         - path: test/integration/default
-# suites:
-#   - name: default
-#     driver:
-#       name: vagrant
 
-# Platforms provide hooks for overriding the global Test Kitchen plugin
-# configuration to provide platform-specific values
 platforms:
   - name: vagrant
-
     driver:
       name: vagrant
       box: bento/ubuntu-18.04
@@ -49,10 +39,10 @@ platforms:
       salt_bootstrap_options: -F -P -V -a -x python3 git v3000.2
       require_chef: false
       is_file_root: true
-      local_salt_root: '.'
+      local_salt_root: "."
       salt_env: qa
       state_top_from_file: true
-      dependencies: 
+      dependencies:
         - name: docker
           repo: git
           source: https://github.com/saltstack-formulas/docker-formula
@@ -61,108 +51,28 @@ platforms:
         - .kitchen
         - .git
 
-    # verifier:
-    #   name: inspec
-      # systems:
-      #   - name: docker-formula
-      #     backend: ssh
-      #     inspec_tests:
-      #       - name: docker-formula
-      #         url: https://github.com/saltstack-formulas/docker-formula/tree/master/test/integration/default
-
-  - name: centos
-
-    driver:
-      variables:
-        os_family: centos
-        project_key: abc
-
-        # subnet_availability_zone: us-east-1a
-
-    verifier:
-      systems:
-        - name: local
-
-          # The customized_inspec_attribute InSpec attribute is configured to
-          # satisfy the inspec_attributes control
-          attrs_outputs:
-            customized_inspec_attribute: static_terraform_output
-
-          backend: local
-
-          # A subset of the controls included in the extensive_suite InSpec
-          # profile will be executed
-          controls:
-            - inspec_attributes
-            - state_file
-
-        - name: remote
-
-          attrs:
-            - test/integration/extensive_suite/centos_attributes.yml
-
-          backend: ssh
-
-          controls:
-            - operating_system
-            # - reachable_other_host
-
-          # The value of the Terraform output named remote_group_public_dns will
-          # be used to obtain the hostnames to target with InSpec
-          hosts_output: remote_group_public_dns
-
-          # The generated key pair is configured to be used for the SSH
-          # authentication performed by InSpec
-          key_files:
-            - ~/.ssh/id_rsa
-
-          user: centos
-
   - name: ubuntu
-
     driver:
       variables:
-        os_family: ubuntu
         project_key: xyz
 
-        # subnet_availability_zone: us-west-2b
-
     verifier:
       systems:
         - name: local
-
-          # The customized_inspec_attribute InSpec attribute is configured to
-          # satisfy the inspec_attributes control
+          backend: local
           attrs_outputs:
             customized_inspec_attribute: static_terraform_output
-
-          backend: local
-
-          # A subset of the controls included in the extensive_suite InSpec
-          # profile will be executed
           controls:
             - inspec_attributes
             - state_file
 
         - name: remote
-
+          backend: ssh
           attrs:
             - test/integration/extensive_suite/ubuntu_attributes.yml
-
-          backend: ssh
-
           controls:
             - operating_system
-            # - reachable_other_host
-
-          # The value of the Terraform output named remote_group_public_dns will
-          # be used to obtain the hostnames to target with InSpec
           hosts_output: remote_group_public_dns
-
-          # The generated key pair is configured to be used for the SSH
-          # authentication performed by InSpec
           key_files:
-            - ~/.ssh/id_rsa
-
+            - ./assets/key_pair/id_rsa
           user: ubuntu
-

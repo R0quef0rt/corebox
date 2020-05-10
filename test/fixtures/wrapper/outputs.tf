@@ -1,13 +1,3 @@
-# output "reachable_other_host_ip_address" {
-#   description = <<EOD
-# This output is used as an attribute in the reachable_other_host control
-# EOD
-
-#   value = <<EOV
-# ${module.extensive_kitchen_terraform.reachable_other_host_ip_address}
-# EOV
-# }
-
 output "static_terraform_output" {
   description = <<EOD
 This output is used as an attribute in the inspec_attributes control
