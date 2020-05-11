@@ -51,11 +51,10 @@ platforms:
         - .kitchen
         - .git
 
-  - name: ubuntu
+  - name: terraform
     driver:
       variables:
         project_key: xyz
-
     verifier:
       systems:
         - name: local
@@ -65,7 +64,6 @@ platforms:
           controls:
             - inspec_attributes
             - state_file
-
         - name: remote
           backend: ssh
           attrs:
