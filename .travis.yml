@@ -1,6 +1,6 @@
 dist: trusty
-sudo: false
-language: bash
+os: linux
+language: shell
 addons:
   artifacts:
     paths:
@@ -27,11 +27,6 @@ cache:
   directories:
     - ".terraform"
     - ".kitchen"
-# before_install:
-#   - openssl aes-256-cbc -K $encrypted_83b569cb89d7_key -iv $encrypted_83b569cb89d7_iv -in ./assets/key_pair/secrets.tar.enc -out ./assets/key_pair/secrets.tar -d
-#   - tar xvf ./assets/key_pair/secrets.tar $ENV.pem $ENV.key
-#   - mv $ENV.pem ~/.ssh/id_rsa.pub
-#   - mv $ENV.key ~/.ssh/id_rsa
 before_script:
   - bash ./scripts/get-credentials.sh
   - bash ./scripts/terraform/install.sh
