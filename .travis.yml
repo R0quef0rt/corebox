@@ -5,80 +5,45 @@ addons:
   artifacts:
     paths:
       - $(ls /var/log/*.log | tr "\n" ":")
-      - "$TRAVIS_BUILD_DIR/terraform.tfvars"
 env:
   global:
     - REGION="us-east-1"
-    - ENV="qa"
-    - ACCOUNT="root"
-    - PROJECT_KEY="rjb"
-    - PROVIDER="aws"
-    - SERVICE_NAME="corebox"
-    - SERVICE_VERSION="0.2.0"
-    - TERRAFORM_VERSION="0.11.8"
+    - TERRAFORM_VERSION="0.12.24"
     - PACKER_VERSION="1.2.5"
-    - DESTROY_ALL="false"
-    - REBUILD="false"
-    - TF_IN_AUTOMATION="true"
-    - CI_BUILD_DIR="$TRAVIS_BUILD_DIR"
-    - TFSTATE_BUCKET="roquefort-tfstate"
     - ARTIFACTS_BUCKET="roquefort-public"
     - ARTIFACTS_PATH="s3.amazonaws.com/roquefort-public/R0quef0rt/devbox"
-    - BUILD_NUMBER="$TRAVIS_BUILD_NUMBER"
-    - JOB_NUMBER="$TRAVIS_JOB_NUMBER"
     - ARTIFACTS_REGION="us-east-1"
     - secure: mv28mxrSt+6eygRT/CWMGiVyYMqL6JNia6YsPc3Hdl1pdonVguOVIUfR8Ti6UU5LdFyV3Fo5RnMNv4Pel452XWubm2+Q3gTgTxA7n/QkiHjVUu3Sj2EWucm5fonhn4iQt2Z+2Y2TCGoMfazGE8M1D1dVvm5TdBdlj7QSuSWs75fKqUD6lLqYgZX7GCZsIl9oVFJeupVfUeftrHuh+zwV815xZlLsnkuroo7Kp19n7P6S+yWs9L71DtmkpDFW1I6Uwf8D+Cx18jA3YG6knzzZBmQNSG/UVi0yG69hL56XftEDlvtFjkLF9wgbT8s+bfgj2K2RAkxUpFKEk/xJTmmh801sfBjqKOYj560YQA55dGrQd62VwYjvedKurRYTt7kOyh3QARqLF3rwgXXy1jItLWDQnwfyRHZ8QGgomBpGcn2IqFyOizojdx/aaIRY9FTtJ9qnd+ZyrRdhe2Xw1y90bn3ZmHpqNP/0jryjM9M2m2+qcF+Q7PhZF1/rbRuARP+9X1OFXavYmCwso6AWMYrKk+bx02XtQTg2dgg8ktjNlRjBciw0SRVdyiNggOODlWB2lpXVGb4KThq8VknxGOJB44JgzULEZLDtL1Y2nCaEur+jqanKWRSaW7q1T3ypZQWkKnV7BLLzs7Zt161fdjHFXccAth1UxiciG5POrApKLhg=
     - secure: amIB3nDD5fXey1r85DqIasDL//uzbtY8xVVEX/18RKCpq7ELWlk8YBPvOqmgVEdnzSiAo5wwG6QeknLhuSIMhsV8MhFyJBrdTJqrqvAB/5gqIkEQeRRxp7z0AfhsE8hc9z6GUZWiXLnIyyYm+PeU9f3faWQGiWNXUjTF60WjmWlCUzS/GyAmhN7TdXHGl8WZ4uPge008E08cPS1s91jzdhdx8b21owk6eSzN2hJoUrclVeTBNj9FJHWvaKCOzDd5xbzcBThArX9o10GjEEXcyt94hxFhNUprYMPVh9t1rlwUAZzisfQKiE0zzS6frzbK3DgnS4APonmv2Iozw8/7iNPkaKIXNtuobJUDqwwecSbjzgF+R3mfB9+BWtHPRj88XBJ8bdbUPA7y4XyJ2zCLZj6c2HoI4GET/6izfG8k5tg7JXKHPL5nCkjhVE1zD4pKkqJjH4khbAp4lkuDcA40f4Iml7pTYQUuaE5MPLP2Uelm3qarRMXvdzdWoiZd3sZuipcOAd2qaQGMfdQclNBsicHv4jDJbYy9wyRyyy3iKSQAiI6b3Pj3lxwZ/x/WRSDlm3Y0w0vuZr7P1/kE4lvAsin0qArS4FR0KrXOoFzfQU8V4x5zqo6QyIKa7otOjZF6b5GnupmdDwzrx4QKHiikp9dgyCAIfyWZtBnRqAytQ4M=
 branches:
   only:
+    - dev
     - master
-    - stable
 stages:
   - validate and build
   - integration testing
 cache:
   directories:
     - ".terraform"
-before_install:
-  - openssl aes-256-cbc -K $encrypted_83b569cb89d7_key -iv $encrypted_83b569cb89d7_iv -in ./assets/key_pair/secrets.tar.enc -out ./assets/key_pair/secrets.tar -d
-  - tar xvf ./assets/key_pair/secrets.tar $ENV.pem $ENV.key
-  - mv $ENV.pem ~/.ssh/id_rsa.pub
-  - mv $ENV.key ~/.ssh/id_rsa
+    - ".kitchen"
+# before_install:
+#   - openssl aes-256-cbc -K $encrypted_83b569cb89d7_key -iv $encrypted_83b569cb89d7_iv -in ./assets/key_pair/secrets.tar.enc -out ./assets/key_pair/secrets.tar -d
+#   - tar xvf ./assets/key_pair/secrets.tar $ENV.pem $ENV.key
+#   - mv $ENV.pem ~/.ssh/id_rsa.pub
+#   - mv $ENV.key ~/.ssh/id_rsa
 before_script:
-  - bash ./srv/ci/get-credentials.sh
-  - bash ./srv/ci/export-variables.sh
-  - bash ./srv/ci/terraform/terraform-install.sh
-  - bash ./srv/ci/packer/packer-install.sh
-  - sudo bash ./srv/ci/jq/jq-install.sh
-  - bash ./srv/ci/rubygems/bundler-install.sh
+  - bash ./scripts/get-credentials.sh
+  - bash ./scripts/terraform/install.sh
+  - bash ./scripts/packer/install.sh
+  - bash ./scripts/ruby/bundle/install.sh
   - export PATH="~/bin:$PATH"
-  - bash ./srv/ci/terraform/terraform-init.sh
 jobs:
   include:
     - stage: validate and build
       script:
-        - bash ./srv/ci/terraform/terraform-validate.sh
-        - bash ./srv/ci/packer/packer-validate.sh
-        - bash ./srv/ci/packer/packer-build.sh || true
-      env:
-        - OS_FAMILY=ubuntu
-    - stage: validate and build
-      script:
-        - bash ./srv/ci/terraform/terraform-validate.sh
-        - bash ./srv/ci/packer/packer-validate.sh
-        - bash ./srv/ci/packer/packer-build.sh || true
-      env:
-        - OS_FAMILY=centos
+        - terraform validate
+        - packer validate packer.json
+        - packer build packer.json
     - stage: integration testing
       script:
-        - bash ./srv/ci/kitchen/terraform-test.sh
-      env:
-        - OS_FAMILY=ubuntu
-    - stage: integration testing
-      script:
-        - bash ./srv/ci/kitchen/terraform-test.sh
-      env:
-        - OS_FAMILY=centos
-notifications:
-  slack:
-    secure: jgAHjvDge34aACKUXHLHUzWLvLpwJru/IhbRUO7vHhsoXLq/zanNZgjo0kVvAF2QNx6iUGlXqcsrEJe5rc618g+3avBiCS6DSXfQnt7omEL16CtJ1uB+Ec19QmOEtiwF2QBpLbgO5IPaWfMYAzEm7FTeQHhxT+JbuNvQIfS26Wn+GJZXCNtfUAVxH9eUAsPHgvfa3rauymzOMfyDAYBUyV9oMaHrevmRZoaEbFB7Y8uLV5nRJsQzieTsbX6g7ui7ww9hiJMxl/IhCa3zTKiqQdXJ3FcJa+MYU+AKhhoWWoyZvYyM9lQcwxUzMUOp9gq1d7DPLKoPJ77iRjJB+y2Z5AbLVc6UGTtl3L/I9AW/ik0ZaPpHdyWfxGUeazOF3IzDyAFxtspKSjf01JGjNnawS1+ispN5R2IVdmZl5VcuWbHILUHSwRXdFq6rS4Y2cnnDBMhv0IrKGeAaicH252luTIsZw/KvYlzGhaa7AOP4o9Mn4yqbBzI9vFp+o5Wbx9VWRQfNOtCUZSEHKTHT4REYW4V1LOa4lEmaiNUHRO9cWtSXWxaI2mEwycUuHO6CM2kD5NN/b2Nbi8MP31n7mId1pZBbR53Yhym+IWlWvDZNbrFzcET4mpPfkONXF9k3mECa5Y7gSWudtLfVr7m3UxNRsRsSeGAoyhPyyNrwEkgal/8=
+        - kitchen test default-terraform --destroy=always
