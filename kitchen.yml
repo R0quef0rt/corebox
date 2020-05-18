@@ -14,11 +14,6 @@ suites:
     verifier:
       inspec_tests:
         - path: test/integration/default
-  - name: extensive
-    verifier:
-      name: terraform
-      inspec_tests:
-        - path: test/integration/extensive
 
 platforms:
   - name: vagrant
@@ -61,20 +56,10 @@ platforms:
       variables:
         project_key: xyz
     verifier:
+      name: terraform
       systems:
-        - name: local
-          backend: local
-          attrs_outputs:
-            customized_inspec_attribute: static_terraform_output
-          controls:
-            - inspec_attributes
-            - state_file
         - name: remote
           backend: ssh
-          attrs:
-            - test/integration/extensive/ubuntu_attributes.yml
-          controls:
-            - operating_system
           hosts_output: remote_group_public_dns
           key_files:
             - assets/key_pair/id_rsa
