@@ -55,8 +55,10 @@ platforms:
     driver:
       variables:
         project_key: xyz
+        env: qa
     verifier:
       name: terraform
+      sudo: true
       systems:
         - name: remote
           backend: ssh

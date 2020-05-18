@@ -55,7 +55,7 @@ resource "aws_key_pair" "main" {
 
 resource "aws_instance" "main" {
   count         = 1
-  instance_type = "t2.micro"
+  instance_type = "t2.small"
   ami           = data.aws_ami.main.image_id
 
   key_name               = aws_key_pair.main.key_name

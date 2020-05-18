@@ -5,3 +5,11 @@ EOD
 
   type = string
 }
+
+variable "env" {
+  description = <<EOD
+Environment
+EOD
+
+  type = string
+}

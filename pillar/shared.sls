@@ -30,11 +30,3 @@ account:
   - name: media
     uid: 7000
     gid: 7000
-
-directory:
-  - name: mount
-    path: /mnt
-    user: media
-    group: media
-    mode: 650
-    recurse: true

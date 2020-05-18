@@ -4,6 +4,12 @@ repository:
     target: /app
 
 directory:
+  - name: mount
+    path: /mnt
+    user: media
+    group: media
+    mode: 650
+    recurse: true
   - name: duplicati
     path: /etc/duplicati
     user: media

@@ -9,7 +9,7 @@
         {
             "ami_name": "{{user `service_name`}}-ubuntu",
             "ami_description": "An Ubuntu 18.04 AMI pre-installed with Salt and basic system configurations.",
-            "instance_type": "t2.micro",
+            "instance_type": "t2.small",
             "force_deregister": "true",
             "name": "{{user `service_name`}}",
             "region": "{{user `region`}}",
@@ -34,6 +34,7 @@
         {
             "type": "shell",
             "inline": [
+                "sudo apt-get clean",
                 "sudo apt-get update",
                 "sudo apt-get -y install python3-dev python3-pip",
                 "pip3 install gitpython",
@@ -49,6 +50,12 @@
             "local_pillar_roots": "pillar",
             "bootstrap_args": "-F -P -V -a -x python3 -p gitpython git v3000.2",
             "salt_call_args": "saltenv={{user `env`}} pillarenv={{user `env`}}"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "sudo usermod -a -G docker ubuntu"
+            ]
         }
     ]
 }
