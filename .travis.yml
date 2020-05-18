@@ -41,9 +41,10 @@ jobs:
   include:
     - stage: validate and build
       script:
-        - terraform validate
-        - packer validate packer.json
-        - packer build packer.json
+        - terraform init
+        - terraform validate || travis_terminate 1;
+        - packer validate packer.json || travis_terminate 1;
+        - packer build packer.json || travis_terminate 1;
     - stage: integration testing
       script:
-        - kitchen test default-terraform --destroy=always
+        - kitchen test default-terraform --destroy=always || travis_terminate 1;
