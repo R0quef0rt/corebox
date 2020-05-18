@@ -10,6 +10,7 @@ env:
     - REGION="us-east-1"
     - TERRAFORM_VERSION="0.12.24"
     - PACKER_VERSION="1.2.5"
+    - VAGRANT_VERSION="2.2.9"
     - ARTIFACTS_BUCKET="roquefort-public"
     - ARTIFACTS_PATH="s3.amazonaws.com/roquefort-public/R0quef0rt/devbox"
     - ARTIFACTS_REGION="us-east-1"
