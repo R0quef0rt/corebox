@@ -35,6 +35,7 @@ before_script:
   - bash ./scripts/get-credentials.sh
   - bash ./scripts/terraform/install.sh
   - bash ./scripts/packer/install.sh
+  - bash ./scripts/vagrant/install.sh
   - bash ./scripts/ruby/bundle/install.sh
   - export PATH="~/bin:$PATH"
 jobs:
