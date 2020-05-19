@@ -1,4 +1,0 @@
-hugo:
-  projects:
-    - core
-    - frontend
