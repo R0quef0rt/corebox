@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2018 Autom8te.org
+Copyright (c) 2020 R0quef0rt
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

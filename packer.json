@@ -1,0 +1,61 @@
+{
+    "min_packer_version": "1.2.5",
+    "variables": {
+        "service_name": "corebox",
+        "region": "us-east-1",
+        "env": "qa"
+    },
+    "builders": [
+        {
+            "ami_name": "{{user `service_name`}}-ubuntu",
+            "ami_description": "An Ubuntu 18.04 AMI pre-installed with Salt and basic system configurations.",
+            "instance_type": "t2.small",
+            "force_deregister": "true",
+            "name": "{{user `service_name`}}",
+            "region": "{{user `region`}}",
+            "type": "amazon-ebs",
+            "source_ami_filter": {
+                "filters": {
+                    "virtualization-type": "hvm",
+                    "architecture": "x86_64",
+                    "name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20200408",
+                    "block-device-mapping.volume-type": "gp2",
+                    "root-device-type": "ebs"
+                },
+                "owners": [
+                    "099720109477"
+                ],
+                "most_recent": true
+            },
+            "ssh_username": "ubuntu"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sudo apt-get clean",
+                "sudo apt-get update",
+                "sudo apt-get -y install python3-dev python3-pip",
+                "pip3 install gitpython",
+                "sudo mkdir -p /etc/salt",
+                "sudo chmod -R 777 /etc/salt"
+            ]
+        },
+        {
+            "type": "salt-masterless",
+            "minion_config": "etc/salt/minion.{{user `env`}}",
+            "grains_file": "etc/salt/grains.{{user `env`}}",
+            "local_state_tree": "salt",
+            "local_pillar_roots": "pillar",
+            "bootstrap_args": "-F -P -V -a -x python3 -p gitpython git v3000.2",
+            "salt_call_args": "saltenv={{user `env`}} pillarenv={{user `env`}}"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "sudo usermod -a -G docker ubuntu"
+            ]
+        }
+    ]
+}

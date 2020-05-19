@@ -1,9 +1,0 @@
-roles:
-  - docker
-  - mariadb
-  - nextcloud
-
-network:
-  interfaces:
-    primary: eth0
-    secondary: lo

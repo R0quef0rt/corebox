@@ -1,0 +1,77 @@
+version: "3.3"
+
+services:
+  duplicati:
+    volumes:
+      - duplicati_config:/data
+      - nzbget_config:/etc/nzbget
+      - sonarr_config:/etc/sonarr
+      - radarr_config:/etc/radarr
+      - sync_config:/etc/sync
+      - plex_config:/etc/plex
+      - /mnt:/mnt
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+  nzbget:
+    volumes:
+      - downloads:/downloads
+      - nzbget_config:/config
+      - /mnt:/mnt
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+  plex:
+    volumes:
+      - plex_temp:/transcode
+      - plex_config:/config
+      - movies:/movies
+      - television:/television
+      - /mnt:/mnt
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+  radarr:
+    volumes:
+      - downloads:/downloads
+      - radarr_config:/config
+      - movies:/movies
+      - /mnt:/mnt
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+  sonarr:
+    volumes:
+      - downloads:/downloads
+      - sonarr_config:/config
+      - television:/television
+      - /mnt:/mnt
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+  sync:
+    volumes:
+      - sync_config:/mnt/sync
+      - /mnt:/mnt
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+volumes:
+  source:
+  nzbget_config:
+  plex_config:
+  plex_temp:
+  duplicati_config:
+  radarr_config:
+  sonarr_config:
+  sync_config:
+  unifi_config:
+  downloads:
+  movies:
+  television:

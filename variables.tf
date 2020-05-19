@@ -3,21 +3,6 @@ variable "service_name" {
   default     = "corebox"
 }
 
-variable "service_version" {
-  description = "Version of this project"
-  default     = "0.0.0"
-}
-
-variable "provider" {
-  description = "Terraform cloud provider"
-  default     = "aws"
-}
-
-variable "account" {
-  description = "AWS account to connect with"
-  default     = "dev"
-}
-
 variable "env" {
   description = "dev/qa/prod"
   default     = "dev"
@@ -25,7 +10,7 @@ variable "env" {
 
 variable "project_key" {
   description = "Per-customer isolation key"
-  default     = "rjb"
+  default     = "abc"
 }
 
 variable "region" {
@@ -35,7 +20,7 @@ variable "region" {
 
 variable "subnetaz1" {
   description = "The availability zone to use for public subnet A."
-  type        = "map"
+  type        = map(string)
 
   default = {
     us-east-1      = "us-east-1a"
@@ -51,7 +36,7 @@ variable "subnetaz1" {
 
 variable "subnetaz2" {
   description = "The availability zone to use for public subnet B."
-  type        = "map"
+  type        = map(string)
 
   default = {
     us-east-1      = "us-east-1b"
@@ -67,7 +52,7 @@ variable "subnetaz2" {
 
 variable "subnetaz3" {
   description = "The availability zone to use for public subnet C."
-  type        = "map"
+  type        = map(string)
 
   default = {
     us-east-1      = "us-east-1c"
@@ -79,26 +64,6 @@ variable "subnetaz3" {
     eu-central-1   = "eu-central-1c"
     ap-southeast-1 = "ap-southeast-1c"
   }
-}
-
-variable "salt_version" {
-  description = "The version of Salt to install"
-  default     = "2018.3.2"
-}
-
-variable "tf_test" {
-  description = "Enable kitchen testing for Terraform"
-  default     = "false"
-}
-
-variable "salt_test" {
-  description = "Enable unit testing for Salt"
-  default     = "false"
-}
-
-variable "os_family" {
-  description = "Used to look up a matching operating system AMI"
-  default     = "ubuntu"
 }
 
 variable "public_key" {
@@ -121,17 +86,12 @@ variable "cidr_block" {
   default     = "10.0.0.0/16"
 }
 
-variable "dns_zone" {
-  description = "The Route53 DNS zone"
-  default     = "corebox.io"
+variable "ami_name" {
+  description = "The value of the AWS AMI ID to use"
+  default     = "corebox-ubuntu"
 }
 
-variable "minion_config" {
-  description = "Path to the minion config file"
-  default     = "etc/salt/minion.linux"
-}
-
-variable "grains_config" {
-  description = "Path to the grains config file"
-  default     = "etc/salt/grains"
+variable "ami_owner" {
+  description = "The value of the AMI owner"
+  default     = "self"
 }

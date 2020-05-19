@@ -1,0 +1,70 @@
+version: "3.3"
+
+services:
+  duplicati:
+    volumes:
+      - /etc/duplicati:/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/nzbget:/host/etc/nzbget
+      - /etc/sonarr:/host/etc/sonarr
+      - /etc/radarr:/host/etc/radarr
+      - /etc/sync:/host/etc/sync
+      - /etc/plex:/host/etc/plex
+      - /mnt:/mnt
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+  nzbget:
+    volumes:
+      - /mnt/downloads:/downloads
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/nzbget:/config
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+  plex:
+    volumes:
+      - plex_temp:/transcode
+      - /etc/plex:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/movies:/movies
+      - /mnt/television:/television
+    environment:
+      PLEX_UID: 7000
+      PLEX_GID: 7000
+      ADVERTISE_IP: "http://192.168.5.20:32400/"
+      PLEX_CLAIM: "claim-V3FUKsHvqF2Vydgynbqp"
+
+  radarr:
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/radarr:/config
+      - /mnt/downloads:/downloads
+      - /mnt/movies:/movies
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+  sonarr:
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/sonarr:/config
+      - /mnt/downloads:/downloads
+      - /mnt/television:/television
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+  sync:
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/sync:/mnt/sync
+      - /mnt:/mnt/mounted_folders
+    environment:
+      PUID: 7000
+      PGID: 7000
+
+volumes:
+  plex_temp:

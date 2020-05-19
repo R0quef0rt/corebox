@@ -1,0 +1,7 @@
+roles:
+  - nas
+
+network:
+  interfaces:
+    primary: eth0
+    secondary: lo

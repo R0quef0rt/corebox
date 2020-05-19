@@ -1,0 +1,36 @@
+id: devbox
+
+file_client: local
+
+top_file_merging_strategy: same
+
+saltenv: dev
+pillarenv: dev
+
+env_order:
+  - dev
+
+file_roots:
+  dev:
+    - /app/salt
+    - /srv/salt
+
+pillar_roots:
+  dev:
+    - /app/pillar
+    - /srv/pillar
+
+fileserver_backend:
+  - roots
+  - gitfs
+
+gitfs_root: /
+
+gitfs_provider: gitpython
+
+gitfs_remotes:
+  - https://github.com/saltstack-formulas/docker-formula.git
+
+gitfs_saltenv:
+  - dev:
+    - ref: master

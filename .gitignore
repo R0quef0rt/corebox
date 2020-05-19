@@ -12,5 +12,5 @@ terraform.tfstate.backup
 .vagrant/
 *.log
 output/*
-
+.kitchen
 projects/*
